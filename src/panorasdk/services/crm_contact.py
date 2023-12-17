@@ -54,6 +54,15 @@ class CrmContact(BaseService):
         integration_id: str,
         remote_data: bool = None,
     ) -> AddContactResponseModel:
+        """
+        Create CRM Contact
+        Parameters:
+        ----------
+            integration_id: str
+            linked_user_id: str
+            remote_data: bool
+        """
+
         url_endpoint = "/crm/contact"
         headers = {"Content-type": "application/json"}
         query_params = []
@@ -101,6 +110,14 @@ class CrmContact(BaseService):
         return res
 
     def get_contact(self, id: str, remote_data: bool = None) -> GetContactResponseModel:
+        """
+        Retrive a CRM Contact
+        Parameters:
+        ----------
+            id: str
+            remote_data: bool
+        """
+
         url_endpoint = "/crm/contact/{id}"
         headers = {}
         query_params = []

@@ -127,10 +127,10 @@ A list of all services and services methods.
 
 | Method    | Description|
 | :-------- | :----------| 
-| [add_contact](#add_contact) |  |
+| [add_contact](#add_contact) | Create CRM Contact |
 | [get_contacts](#get_contacts) |  |
 | [update_contact](#update_contact) |  |
-| [get_contact](#get_contact) |  |
+| [get_contact](#get_contact) | Retrive a CRM Contact |
 | [add_contacts](#add_contacts) |  |
 
 
@@ -981,7 +981,7 @@ sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
 request_body = {
 	'data': {},
 	'headers_': {},
-	'method': 'DELETE',
+	'method': 'PATCH',
 	'path': 'path'
 }
 results = sdk.passthrough.passthrough_request(
@@ -996,7 +996,7 @@ pprint(vars(results))
 
 
 ### **add_contact**
-
+Create CRM Contact
 - HTTP Method: POST
 - Endpoint: /crm/contact
 
@@ -1098,7 +1098,7 @@ pprint(vars(results))
 ```
 
 ### **get_contact**
-
+Retrive a CRM Contact
 - HTTP Method: GET
 - Endpoint: /crm/contact/{id}
 

@@ -51,11 +51,11 @@ class TestWebhook_(unittest.TestCase):
     def test_update_webhook_status(self):
         # Mock the API response
         responses.put(
-            "https://api-demo.panora.dev/webhook/5455014695", json={}, status=200
+            "https://api-demo.panora.dev/webhook/6554587399", json={}, status=200
         )
         # call the method to test
         test_service = Webhook("testkey")
-        response = test_service.update_webhook_status("5455014695")
+        response = test_service.update_webhook_status("6554587399")
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -63,7 +63,7 @@ class TestWebhook_(unittest.TestCase):
     def test_update_webhook_status_required_fields_missing(self):
         # Mock the API response
         responses.put(
-            "https://api-demo.panora.dev/webhook/7470577124", json={}, status=202
+            "https://api-demo.panora.dev/webhook/9913796572", json={}, status=202
         )
         with self.assertRaises(TypeError):
             test_service = Webhook("testkey")
@@ -74,11 +74,11 @@ class TestWebhook_(unittest.TestCase):
     def test_update_webhook_status_error_on_non_200(self):
         # Mock the API response
         responses.put(
-            "https://api-demo.panora.dev/webhook/2012679084", json={}, status=404
+            "https://api-demo.panora.dev/webhook/2288382572", json={}, status=404
         )
         with self.assertRaises(ClientException):
             test_service = Webhook("testkey")
-            test_service.update_webhook_status("2012679084")
+            test_service.update_webhook_status("2288382572")
         responses.reset()
 
 
