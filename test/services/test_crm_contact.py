@@ -15,7 +15,7 @@ class TestCrmContact_(unittest.TestCase):
         responses.get("https://api-demo.panora.dev/crm/contact", json={}, status=200)
         # call the method to test
         test_service = CrmContact("testkey")
-        response = test_service.get_contacts("5737995457", "6316030926", True)
+        response = test_service.get_contacts("3205907124", "4436663687", True)
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -34,7 +34,7 @@ class TestCrmContact_(unittest.TestCase):
         responses.get("https://api-demo.panora.dev/crm/contact", json={}, status=404)
         with self.assertRaises(ClientException):
             test_service = CrmContact("testkey")
-            test_service.get_contacts("2094624935", "3114439832", True)
+            test_service.get_contacts("7476413907", "3351510529", True)
         responses.reset()
 
     @responses.activate
@@ -43,7 +43,7 @@ class TestCrmContact_(unittest.TestCase):
         responses.post("https://api-demo.panora.dev/crm/contact", json={}, status=200)
         # call the method to test
         test_service = CrmContact("testkey")
-        response = test_service.add_contact({}, "1448136882", "8929565990", True)
+        response = test_service.add_contact({}, "2808570755", "2027525430", True)
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -62,7 +62,7 @@ class TestCrmContact_(unittest.TestCase):
         responses.post("https://api-demo.panora.dev/crm/contact", json={}, status=404)
         with self.assertRaises(ClientException):
             test_service = CrmContact("testkey")
-            test_service.add_contact({}, "8123708733", "9197038367", True)
+            test_service.add_contact({}, "5681717313", "1492813818", True)
         responses.reset()
 
     @responses.activate
@@ -71,7 +71,7 @@ class TestCrmContact_(unittest.TestCase):
         responses.patch("https://api-demo.panora.dev/crm/contact", json={}, status=200)
         # call the method to test
         test_service = CrmContact("testkey")
-        response = test_service.update_contact("1785683082")
+        response = test_service.update_contact("2965241998")
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -90,18 +90,18 @@ class TestCrmContact_(unittest.TestCase):
         responses.patch("https://api-demo.panora.dev/crm/contact", json={}, status=404)
         with self.assertRaises(ClientException):
             test_service = CrmContact("testkey")
-            test_service.update_contact("4262808443")
+            test_service.update_contact("1528755905")
         responses.reset()
 
     @responses.activate
     def test_get_contact(self):
         # Mock the API response
         responses.get(
-            "https://api-demo.panora.dev/crm/contact/9504928362", json={}, status=200
+            "https://api-demo.panora.dev/crm/contact/8573152275", json={}, status=200
         )
         # call the method to test
         test_service = CrmContact("testkey")
-        response = test_service.get_contact("9504928362", True)
+        response = test_service.get_contact("8573152275", True)
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -109,7 +109,7 @@ class TestCrmContact_(unittest.TestCase):
     def test_get_contact_required_fields_missing(self):
         # Mock the API response
         responses.get(
-            "https://api-demo.panora.dev/crm/contact/7955892000", json={}, status=202
+            "https://api-demo.panora.dev/crm/contact/9699882523", json={}, status=202
         )
         with self.assertRaises(TypeError):
             test_service = CrmContact("testkey")
@@ -120,11 +120,11 @@ class TestCrmContact_(unittest.TestCase):
     def test_get_contact_error_on_non_200(self):
         # Mock the API response
         responses.get(
-            "https://api-demo.panora.dev/crm/contact/7555211527", json={}, status=404
+            "https://api-demo.panora.dev/crm/contact/4050317455", json={}, status=404
         )
         with self.assertRaises(ClientException):
             test_service = CrmContact("testkey")
-            test_service.get_contact("7555211527", True)
+            test_service.get_contact("4050317455", True)
         responses.reset()
 
     @responses.activate
@@ -135,7 +135,7 @@ class TestCrmContact_(unittest.TestCase):
         )
         # call the method to test
         test_service = CrmContact("testkey")
-        response = test_service.add_contacts({}, "7908691191", "5771011245", True)
+        response = test_service.add_contacts({}, "6265242642", "2026358184", True)
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -158,7 +158,7 @@ class TestCrmContact_(unittest.TestCase):
         )
         with self.assertRaises(ClientException):
             test_service = CrmContact("testkey")
-            test_service.add_contacts({}, "6528729706", "9196540093", True)
+            test_service.add_contacts({}, "4998303179", "3188220078", True)
         responses.reset()
 
 
