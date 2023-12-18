@@ -6,6 +6,10 @@ from ..models.WebhookDto import WebhookDto as WebhookDtoModel
 
 class Webhook(BaseService):
     def get_webhooks_metadata(self):
+        """
+        Retrieve webhooks metadata
+        """
+
         url_endpoint = "/webhook"
         headers = {}
         self._add_required_headers(headers)
@@ -15,6 +19,10 @@ class Webhook(BaseService):
         return res
 
     def create_webhook_metadata(self, request_input: WebhookDtoModel):
+        """
+        Add webhook metadata
+        """
+
         url_endpoint = "/webhook"
         headers = {"Content-type": "application/json"}
         self._add_required_headers(headers)
@@ -24,6 +32,13 @@ class Webhook(BaseService):
         return res
 
     def update_webhook_status(self, id: str):
+        """
+        Update webhook status
+        Parameters:
+        ----------
+            id: str
+        """
+
         url_endpoint = "/webhook/{id}"
         headers = {}
         self._add_required_headers(headers)

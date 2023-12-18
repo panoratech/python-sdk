@@ -39,99 +39,99 @@ A list of all services and services methods.
 
 | Method    | Description|
 | :-------- | :----------| 
-| [sign_up](#sign_up) |  |
-| [sign_in](#sign_in) |  |
-| [get_users](#get_users) |  |
-| [get_api_keys](#get_api_keys) |  |
-| [generate_api_key](#generate_api_key) |  |
+| [sign_up](#sign_up) | Register |
+| [sign_in](#sign_in) | Log In |
+| [get_users](#get_users) | Get users |
+| [get_api_keys](#get_api_keys) | Retrieve API Keys |
+| [generate_api_key](#generate_api_key) | Create API Key |
 
 
 ## Connections
 
 | Method    | Description|
 | :-------- | :----------| 
-| [handle_o_auth_callback](#handle_o_auth_callback) |  |
-| [get_connections](#get_connections) |  |
+| [handle_o_auth_callback](#handle_o_auth_callback) | Capture oAuth Callback |
+| [get_connections](#get_connections) | Retrieve Connections |
 
 
 ## Webhook
 
 | Method    | Description|
 | :-------- | :----------| 
-| [create_webhook_metadata](#create_webhook_metadata) |  |
-| [get_webhooks_metadata](#get_webhooks_metadata) |  |
-| [update_webhook_status](#update_webhook_status) |  |
+| [create_webhook_metadata](#create_webhook_metadata) | Add webhook metadata |
+| [get_webhooks_metadata](#get_webhooks_metadata) | Retrieve webhooks metadata  |
+| [update_webhook_status](#update_webhook_status) | Update webhook status |
 
 
 ## LinkedUsers
 
 | Method    | Description|
 | :-------- | :----------| 
-| [add_linked_user](#add_linked_user) |  |
-| [get_linked_users](#get_linked_users) |  |
-| [get_linked_user](#get_linked_user) |  |
+| [add_linked_user](#add_linked_user) | Add Linked User |
+| [get_linked_users](#get_linked_users) | Retrieve Linked Users |
+| [get_linked_user](#get_linked_user) | Retrieve a Linked User |
 
 
 ## Organisations
 
 | Method    | Description|
 | :-------- | :----------| 
-| [get_organisations](#get_organisations) |  |
-| [create_organisation](#create_organisation) |  |
+| [get_organisations](#get_organisations) | Retrieve Organisations |
+| [create_organisation](#create_organisation) | Create an Organisation |
 
 
 ## Projects
 
 | Method    | Description|
 | :-------- | :----------| 
-| [get_projects](#get_projects) |  |
-| [create_project](#create_project) |  |
+| [get_projects](#get_projects) | Retrieve projects |
+| [create_project](#create_project) | Create a project |
 
 
 ## FieldMapping
 
 | Method    | Description|
 | :-------- | :----------| 
-| [get_field_mappings_entities](#get_field_mappings_entities) |  |
-| [get_field_mappings](#get_field_mappings) |  |
-| [get_field_mapping_values](#get_field_mapping_values) |  |
-| [define_target_field](#define_target_field) |  |
-| [map_field](#map_field) |  |
-| [get_custom_provider_properties](#get_custom_provider_properties) |  |
+| [get_field_mappings_entities](#get_field_mappings_entities) | Retrieve field mapping entities |
+| [get_field_mappings](#get_field_mappings) | Retrieve field mappings |
+| [get_field_mapping_values](#get_field_mapping_values) | Retrieve field mappings values |
+| [define_target_field](#define_target_field) | Define target Field |
+| [map_field](#map_field) | Map Custom Field |
+| [get_custom_provider_properties](#get_custom_provider_properties) | Retrieve Custom Properties |
 
 
 ## Events
 
 | Method    | Description|
 | :-------- | :----------| 
-| [get_events](#get_events) |  |
+| [get_events](#get_events) | Retrieve Events |
 
 
 ## MagicLink
 
 | Method    | Description|
 | :-------- | :----------| 
-| [create_magic_link](#create_magic_link) |  |
-| [get_magic_links](#get_magic_links) |  |
-| [get_magic_link](#get_magic_link) |  |
+| [create_magic_link](#create_magic_link) | Create a Magic Link |
+| [get_magic_links](#get_magic_links) | Retrieve Magic Links |
+| [get_magic_link](#get_magic_link) | Retrieve a Magic Link |
 
 
 ## Passthrough
 
 | Method    | Description|
 | :-------- | :----------| 
-| [passthrough_request](#passthrough_request) |  |
+| [passthrough_request](#passthrough_request) | Make a passthrough request |
 
 
 ## CrmContact
 
 | Method    | Description|
 | :-------- | :----------| 
-| [add_contact](#add_contact) |  |
-| [get_contacts](#get_contacts) |  |
-| [update_contact](#update_contact) |  |
-| [get_contact](#get_contact) |  |
-| [add_contacts](#add_contacts) |  |
+| [add_contact](#add_contact) | Create CRM Contact |
+| [get_contacts](#get_contacts) | Retrieve a batch of CRM Contacts |
+| [update_contact](#update_contact) | Update a CRM Contact |
+| [get_contact](#get_contact) | Retrieve a CRM Contact |
+| [add_contacts](#add_contacts) | Add a batch of CRM Contacts |
 
 
 
@@ -167,7 +167,7 @@ pprint(vars(results))
 
 
 ### **sign_up**
-
+Register
 - HTTP Method: POST
 - Endpoint: /auth/register
 
@@ -200,7 +200,7 @@ pprint(vars(results))
 ```
 
 ### **sign_in**
-
+Log In
 - HTTP Method: POST
 - Endpoint: /auth/login
 
@@ -232,7 +232,7 @@ pprint(vars(results))
 ```
 
 ### **get_users**
-
+Get users
 - HTTP Method: GET
 - Endpoint: /auth/users
 
@@ -258,7 +258,7 @@ pprint(vars(results))
 ```
 
 ### **get_api_keys**
-
+Retrieve API Keys
 - HTTP Method: GET
 - Endpoint: /auth/api-keys
 
@@ -284,7 +284,7 @@ pprint(vars(results))
 ```
 
 ### **generate_api_key**
-
+Create API Key
 - HTTP Method: POST
 - Endpoint: /auth/generate-apikey
 
@@ -317,7 +317,7 @@ pprint(vars(results))
 
 
 ### **handle_o_auth_callback**
-
+Capture oAuth Callback
 - HTTP Method: GET
 - Endpoint: /connections/oauth/callback
 
@@ -350,7 +350,7 @@ pprint(vars(results))
 ```
 
 ### **get_connections**
-
+Retrieve Connections
 - HTTP Method: GET
 - Endpoint: /connections
 
@@ -377,7 +377,7 @@ pprint(vars(results))
 
 
 ### **create_webhook_metadata**
-
+Add webhook metadata
 - HTTP Method: POST
 - Endpoint: /webhook
 
@@ -410,7 +410,7 @@ pprint(vars(results))
 ```
 
 ### **get_webhooks_metadata**
-
+Retrieve webhooks metadata 
 - HTTP Method: GET
 - Endpoint: /webhook
 
@@ -436,7 +436,7 @@ pprint(vars(results))
 ```
 
 ### **update_webhook_status**
-
+Update webhook status
 - HTTP Method: PUT
 - Endpoint: /webhook/{id}
 
@@ -464,7 +464,7 @@ pprint(vars(results))
 
 
 ### **add_linked_user**
-
+Add Linked User
 - HTTP Method: POST
 - Endpoint: /linked-users/create
 
@@ -496,7 +496,7 @@ pprint(vars(results))
 ```
 
 ### **get_linked_users**
-
+Retrieve Linked Users
 - HTTP Method: GET
 - Endpoint: /linked-users
 
@@ -522,7 +522,7 @@ pprint(vars(results))
 ```
 
 ### **get_linked_user**
-
+Retrieve a Linked User
 - HTTP Method: GET
 - Endpoint: /linked-users/single
 
@@ -550,7 +550,7 @@ pprint(vars(results))
 
 
 ### **get_organisations**
-
+Retrieve Organisations
 - HTTP Method: GET
 - Endpoint: /organisations
 
@@ -576,7 +576,7 @@ pprint(vars(results))
 ```
 
 ### **create_organisation**
-
+Create an Organisation
 - HTTP Method: POST
 - Endpoint: /organisations/create
 
@@ -608,7 +608,7 @@ pprint(vars(results))
 
 
 ### **get_projects**
-
+Retrieve projects
 - HTTP Method: GET
 - Endpoint: /projects
 
@@ -634,7 +634,7 @@ pprint(vars(results))
 ```
 
 ### **create_project**
-
+Create a project
 - HTTP Method: POST
 - Endpoint: /projects/create
 
@@ -666,7 +666,7 @@ pprint(vars(results))
 
 
 ### **get_field_mappings_entities**
-
+Retrieve field mapping entities
 - HTTP Method: GET
 - Endpoint: /field-mapping/entities
 
@@ -692,7 +692,7 @@ pprint(vars(results))
 ```
 
 ### **get_field_mappings**
-
+Retrieve field mappings
 - HTTP Method: GET
 - Endpoint: /field-mapping/attribute
 
@@ -718,7 +718,7 @@ pprint(vars(results))
 ```
 
 ### **get_field_mapping_values**
-
+Retrieve field mappings values
 - HTTP Method: GET
 - Endpoint: /field-mapping/value
 
@@ -744,7 +744,7 @@ pprint(vars(results))
 ```
 
 ### **define_target_field**
-
+Define target Field
 - HTTP Method: POST
 - Endpoint: /field-mapping/define
 
@@ -777,7 +777,7 @@ pprint(vars(results))
 ```
 
 ### **map_field**
-
+Map Custom Field
 - HTTP Method: POST
 - Endpoint: /field-mapping/map
 
@@ -810,7 +810,7 @@ pprint(vars(results))
 ```
 
 ### **get_custom_provider_properties**
-
+Retrieve Custom Properties
 - HTTP Method: GET
 - Endpoint: /field-mapping/properties
 
@@ -842,7 +842,7 @@ pprint(vars(results))
 
 
 ### **get_events**
-
+Retrieve Events
 - HTTP Method: GET
 - Endpoint: /events
 
@@ -869,7 +869,7 @@ pprint(vars(results))
 
 
 ### **create_magic_link**
-
+Create a Magic Link
 - HTTP Method: POST
 - Endpoint: /magic-link/create
 
@@ -902,7 +902,7 @@ pprint(vars(results))
 ```
 
 ### **get_magic_links**
-
+Retrieve Magic Links
 - HTTP Method: GET
 - Endpoint: /magic-link
 
@@ -928,7 +928,7 @@ pprint(vars(results))
 ```
 
 ### **get_magic_link**
-
+Retrieve a Magic Link
 - HTTP Method: GET
 - Endpoint: /magic-link/single
 
@@ -956,7 +956,7 @@ pprint(vars(results))
 
 
 ### **passthrough_request**
-
+Make a passthrough request
 - HTTP Method: POST
 - Endpoint: /passthrough
 
@@ -981,7 +981,7 @@ sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
 request_body = {
 	'data': {},
 	'headers_': {},
-	'method': 'DELETE',
+	'method': 'GET',
 	'path': 'path'
 }
 results = sdk.passthrough.passthrough_request(
@@ -996,7 +996,7 @@ pprint(vars(results))
 
 
 ### **add_contact**
-
+Create CRM Contact
 - HTTP Method: POST
 - Endpoint: /crm/contact
 
@@ -1038,7 +1038,7 @@ pprint(vars(results))
 ```
 
 ### **get_contacts**
-
+Retrieve a batch of CRM Contacts
 - HTTP Method: GET
 - Endpoint: /crm/contact
 
@@ -1071,7 +1071,7 @@ pprint(vars(results))
 ```
 
 ### **update_contact**
-
+Update a CRM Contact
 - HTTP Method: PATCH
 - Endpoint: /crm/contact
 
@@ -1098,7 +1098,7 @@ pprint(vars(results))
 ```
 
 ### **get_contact**
-
+Retrieve a CRM Contact
 - HTTP Method: GET
 - Endpoint: /crm/contact/{id}
 
@@ -1129,7 +1129,7 @@ pprint(vars(results))
 ```
 
 ### **add_contacts**
-
+Add a batch of CRM Contacts
 - HTTP Method: POST
 - Endpoint: /crm/contact/batch
 

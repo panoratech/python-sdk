@@ -6,6 +6,10 @@ from ..models.CreateMagicLinkDto import CreateMagicLinkDto as CreateMagicLinkDto
 
 class MagicLink(BaseService):
     def create_magic_link(self, request_input: CreateMagicLinkDtoModel):
+        """
+        Create a Magic Link
+        """
+
         url_endpoint = "/magic-link/create"
         headers = {"Content-type": "application/json"}
         self._add_required_headers(headers)
@@ -15,6 +19,10 @@ class MagicLink(BaseService):
         return res
 
     def get_magic_links(self):
+        """
+        Retrieve Magic Links
+        """
+
         url_endpoint = "/magic-link"
         headers = {}
         self._add_required_headers(headers)
@@ -24,6 +32,13 @@ class MagicLink(BaseService):
         return res
 
     def get_magic_link(self, id: str):
+        """
+        Retrieve a Magic Link
+        Parameters:
+        ----------
+            id: str
+        """
+
         url_endpoint = "/magic-link/single"
         headers = {}
         query_params = []

@@ -6,6 +6,10 @@ from ..models.CreateLinkedUserDto import CreateLinkedUserDto as CreateLinkedUser
 
 class LinkedUsers(BaseService):
     def add_linked_user(self, request_input: CreateLinkedUserDtoModel):
+        """
+        Add Linked User
+        """
+
         url_endpoint = "/linked-users/create"
         headers = {"Content-type": "application/json"}
         self._add_required_headers(headers)
@@ -15,6 +19,10 @@ class LinkedUsers(BaseService):
         return res
 
     def get_linked_users(self):
+        """
+        Retrieve Linked Users
+        """
+
         url_endpoint = "/linked-users"
         headers = {}
         self._add_required_headers(headers)
@@ -24,6 +32,13 @@ class LinkedUsers(BaseService):
         return res
 
     def get_linked_user(self, id: str):
+        """
+        Retrieve a Linked User
+        Parameters:
+        ----------
+            id: str
+        """
+
         url_endpoint = "/linked-users/single"
         headers = {}
         query_params = []
