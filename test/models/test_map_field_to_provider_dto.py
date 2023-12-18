@@ -9,15 +9,15 @@ class TestMapFieldToProviderDtoModel(unittest.TestCase):
     def test_map_field_to_provider_dto(self):
         # Create MapFieldToProviderDto class instance
         test_model = MapFieldToProviderDto(
-            linked_user_id="nobis",
-            source_provider="3873985379",
-            source_custom_field_id="odio",
-            attributeId="repudiandae",
+            linked_user_id="porro",
+            source_provider="3071385325",
+            source_custom_field_id="sunt",
+            attributeId="provident",
         )
-        self.assertEqual(test_model.linked_user_id, "nobis")
-        self.assertEqual(test_model.source_provider, "3873985379")
-        self.assertEqual(test_model.source_custom_field_id, "odio")
-        self.assertEqual(test_model.attributeId, "repudiandae")
+        self.assertEqual(test_model.linked_user_id, "porro")
+        self.assertEqual(test_model.source_provider, "3071385325")
+        self.assertEqual(test_model.source_custom_field_id, "sunt")
+        self.assertEqual(test_model.attributeId, "provident")
 
     def test_map_field_to_provider_dto_required_fields_missing(self):
         # Assert MapFieldToProviderDto class generation fails without required fields

@@ -9,15 +9,12 @@ class TestCreateUserDtoModel(unittest.TestCase):
     def test_create_user_dto(self):
         # Create CreateUserDto class instance
         test_model = CreateUserDto(
-            password_hash="architecto",
-            email="illo",
-            last_name="accusantium",
-            first_name="enim",
+            password_hash="hic", email="eum", last_name="animi", first_name="id"
         )
-        self.assertEqual(test_model.password_hash, "architecto")
-        self.assertEqual(test_model.email, "illo")
-        self.assertEqual(test_model.last_name, "accusantium")
-        self.assertEqual(test_model.first_name, "enim")
+        self.assertEqual(test_model.password_hash, "hic")
+        self.assertEqual(test_model.email, "eum")
+        self.assertEqual(test_model.last_name, "animi")
+        self.assertEqual(test_model.first_name, "id")
 
     def test_create_user_dto_required_fields_missing(self):
         # Assert CreateUserDto class generation fails without required fields

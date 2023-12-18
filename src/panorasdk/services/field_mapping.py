@@ -11,6 +11,10 @@ from ..models.MapFieldToProviderDto import (
 
 class FieldMapping(BaseService):
     def get_field_mappings_entities(self):
+        """
+        Retrieve field mapping entities
+        """
+
         url_endpoint = "/field-mapping/entities"
         headers = {}
         self._add_required_headers(headers)
@@ -20,6 +24,10 @@ class FieldMapping(BaseService):
         return res
 
     def get_field_mappings(self):
+        """
+        Retrieve field mappings
+        """
+
         url_endpoint = "/field-mapping/attribute"
         headers = {}
         self._add_required_headers(headers)
@@ -29,6 +37,10 @@ class FieldMapping(BaseService):
         return res
 
     def get_field_mapping_values(self):
+        """
+        Retrieve field mappings values
+        """
+
         url_endpoint = "/field-mapping/value"
         headers = {}
         self._add_required_headers(headers)
@@ -38,6 +50,10 @@ class FieldMapping(BaseService):
         return res
 
     def define_target_field(self, request_input: DefineTargetFieldDtoModel):
+        """
+        Define target Field
+        """
+
         url_endpoint = "/field-mapping/define"
         headers = {"Content-type": "application/json"}
         self._add_required_headers(headers)
@@ -47,6 +63,10 @@ class FieldMapping(BaseService):
         return res
 
     def map_field(self, request_input: MapFieldToProviderDtoModel):
+        """
+        Map Custom Field
+        """
+
         url_endpoint = "/field-mapping/map"
         headers = {"Content-type": "application/json"}
         self._add_required_headers(headers)
@@ -56,6 +76,14 @@ class FieldMapping(BaseService):
         return res
 
     def get_custom_provider_properties(self, provider_id: str, linked_user_id: str):
+        """
+        Retrieve Custom Properties
+        Parameters:
+        ----------
+            linked_user_id: str
+            provider_id: str
+        """
+
         url_endpoint = "/field-mapping/properties"
         headers = {}
         query_params = []
