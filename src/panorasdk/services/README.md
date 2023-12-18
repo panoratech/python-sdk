@@ -127,10 +127,10 @@ A list of all services and services methods.
 
 | Method    | Description|
 | :-------- | :----------| 
-| [add_contact](#add_contact) |  |
+| [add_contact](#add_contact) | Create CRM Contact |
 | [get_contacts](#get_contacts) |  |
 | [update_contact](#update_contact) |  |
-| [get_contact](#get_contact) |  |
+| [get_contact](#get_contact) | Retrive a CRM Contact |
 | [add_contacts](#add_contacts) |  |
 
 
@@ -996,7 +996,7 @@ pprint(vars(results))
 
 
 ### **add_contact**
-
+Create CRM Contact
 - HTTP Method: POST
 - Endpoint: /crm/contact
 
@@ -1098,7 +1098,7 @@ pprint(vars(results))
 ```
 
 ### **get_contact**
-
+Retrive a CRM Contact
 - HTTP Method: GET
 - Endpoint: /crm/contact/{id}
 

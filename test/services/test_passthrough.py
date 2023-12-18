@@ -15,7 +15,7 @@ class TestPassthrough_(unittest.TestCase):
         responses.post("https://api-demo.panora.dev/passthrough", json={}, status=200)
         # call the method to test
         test_service = Passthrough("testkey")
-        response = test_service.passthrough_request({}, "9425502730", "8049363337")
+        response = test_service.passthrough_request({}, "8340502251", "7728981482")
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -34,7 +34,7 @@ class TestPassthrough_(unittest.TestCase):
         responses.post("https://api-demo.panora.dev/passthrough", json={}, status=404)
         with self.assertRaises(ClientException):
             test_service = Passthrough("testkey")
-            test_service.passthrough_request({}, "6014903435", "6926551177")
+            test_service.passthrough_request({}, "9029115699", "8857657048")
         responses.reset()
 
 

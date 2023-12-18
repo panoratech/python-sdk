@@ -9,12 +9,15 @@ class TestCreateMagicLinkDtoModel(unittest.TestCase):
     def test_create_magic_link_dto(self):
         # Create CreateMagicLinkDto class instance
         test_model = CreateMagicLinkDto(
-            id_project="nam", alias="et", email="dicta", linked_user_origin_id="quod"
+            id_project="quo",
+            alias="atque",
+            email="repudiandae",
+            linked_user_origin_id="rerum",
         )
-        self.assertEqual(test_model.id_project, "nam")
-        self.assertEqual(test_model.alias, "et")
-        self.assertEqual(test_model.email, "dicta")
-        self.assertEqual(test_model.linked_user_origin_id, "quod")
+        self.assertEqual(test_model.id_project, "quo")
+        self.assertEqual(test_model.alias, "atque")
+        self.assertEqual(test_model.email, "repudiandae")
+        self.assertEqual(test_model.linked_user_origin_id, "rerum")
 
     def test_create_magic_link_dto_required_fields_missing(self):
         # Assert CreateMagicLinkDto class generation fails without required fields

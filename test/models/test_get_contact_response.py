@@ -9,12 +9,12 @@ class TestGetContactResponseModel(unittest.TestCase):
     def test_get_contact_response(self):
         # Create GetContactResponse class instance
         test_model = GetContactResponse(
-            statusCode=2, message="deleniti", error="quis", data={"commodi": 7}
+            statusCode=9, message="totam", error="minima", data={"reiciendis": 4}
         )
-        self.assertEqual(test_model.statusCode, 2)
-        self.assertEqual(test_model.message, "deleniti")
-        self.assertEqual(test_model.error, "quis")
-        self.assertEqual(test_model.data, {"commodi": 7})
+        self.assertEqual(test_model.statusCode, 9)
+        self.assertEqual(test_model.message, "totam")
+        self.assertEqual(test_model.error, "minima")
+        self.assertEqual(test_model.data, {"reiciendis": 4})
 
     def test_get_contact_response_required_fields_missing(self):
         # Assert GetContactResponse class generation fails without required fields
