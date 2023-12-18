@@ -59,7 +59,7 @@ class TestLinkedUsers_(unittest.TestCase):
         )
         # call the method to test
         test_service = LinkedUsers("testkey")
-        response = test_service.get_linked_user("1689288995")
+        response = test_service.get_linked_user("2413505756")
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -82,7 +82,7 @@ class TestLinkedUsers_(unittest.TestCase):
         )
         with self.assertRaises(ClientException):
             test_service = LinkedUsers("testkey")
-            test_service.get_linked_user("1368407911")
+            test_service.get_linked_user("7972063877")
         responses.reset()
 
 

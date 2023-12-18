@@ -8,9 +8,9 @@ class TestCreateOrganizationDtoModel(unittest.TestCase):
 
     def test_create_organization_dto(self):
         # Create CreateOrganizationDto class instance
-        test_model = CreateOrganizationDto(stripe_customer_id="excepturi", name="quia")
-        self.assertEqual(test_model.stripe_customer_id, "excepturi")
-        self.assertEqual(test_model.name, "quia")
+        test_model = CreateOrganizationDto(stripe_customer_id="nihil", name="voluptas")
+        self.assertEqual(test_model.stripe_customer_id, "nihil")
+        self.assertEqual(test_model.name, "voluptas")
 
     def test_create_organization_dto_required_fields_missing(self):
         # Assert CreateOrganizationDto class generation fails without required fields
