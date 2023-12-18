@@ -8,10 +8,10 @@ class TestPassThroughResponseModel(unittest.TestCase):
 
     def test_pass_through_response(self):
         # Create PassThroughResponse class instance
-        test_model = PassThroughResponse(data={"quidem": 1}, status=2, url="nihil")
-        self.assertEqual(test_model.data, {"quidem": 1})
+        test_model = PassThroughResponse(data={"porro": 7}, status=2, url="quis")
+        self.assertEqual(test_model.data, {"porro": 7})
         self.assertEqual(test_model.status, 2)
-        self.assertEqual(test_model.url, "nihil")
+        self.assertEqual(test_model.url, "quis")
 
     def test_pass_through_response_required_fields_missing(self):
         # Assert PassThroughResponse class generation fails without required fields
