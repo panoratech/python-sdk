@@ -8,10 +8,10 @@ class TestApiKeyDtoModel(unittest.TestCase):
 
     def test_api_key_dto(self):
         # Create ApiKeyDto class instance
-        test_model = ApiKeyDto(userId="nam", projectId="inventore", keyName="placeat")
-        self.assertEqual(test_model.userId, "nam")
-        self.assertEqual(test_model.projectId, "inventore")
-        self.assertEqual(test_model.keyName, "placeat")
+        test_model = ApiKeyDto(userId="nostrum", projectId="voluptas", keyName="animi")
+        self.assertEqual(test_model.userId, "nostrum")
+        self.assertEqual(test_model.projectId, "voluptas")
+        self.assertEqual(test_model.keyName, "animi")
 
     def test_api_key_dto_required_fields_missing(self):
         # Assert ApiKeyDto class generation fails without required fields
