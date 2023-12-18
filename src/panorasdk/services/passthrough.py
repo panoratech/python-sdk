@@ -14,6 +14,14 @@ class Passthrough(BaseService):
         linked_user_id: str,
         integration_id: str,
     ) -> PassThroughResponseModel:
+        """
+        Make a passthrough request
+        Parameters:
+        ----------
+            integration_id: str
+            linked_user_id: str
+        """
+
         url_endpoint = "/passthrough"
         headers = {"Content-type": "application/json"}
         query_params = []

@@ -9,17 +9,17 @@ class TestUnifiedContactInputModel(unittest.TestCase):
     def test_unified_contact_input(self):
         # Create UnifiedContactInput class instance
         test_model = UnifiedContactInput(
-            field_mappings={"molestias": 4},
-            phone_numbers=["fugit", "dolores"],
-            email_addresses=["facere", "consequuntur"],
-            last_name="debitis",
-            first_name="accusamus",
+            field_mappings={"nostrum": 9},
+            phone_numbers=["rerum", "ea"],
+            email_addresses=["voluptatibus", "voluptatem"],
+            last_name="eum",
+            first_name="soluta",
         )
-        self.assertEqual(test_model.field_mappings, {"molestias": 4})
-        self.assertEqual(test_model.phone_numbers, ["fugit", "dolores"])
-        self.assertEqual(test_model.email_addresses, ["facere", "consequuntur"])
-        self.assertEqual(test_model.last_name, "debitis")
-        self.assertEqual(test_model.first_name, "accusamus")
+        self.assertEqual(test_model.field_mappings, {"nostrum": 9})
+        self.assertEqual(test_model.phone_numbers, ["rerum", "ea"])
+        self.assertEqual(test_model.email_addresses, ["voluptatibus", "voluptatem"])
+        self.assertEqual(test_model.last_name, "eum")
+        self.assertEqual(test_model.first_name, "soluta")
 
     def test_unified_contact_input_required_fields_missing(self):
         # Assert UnifiedContactInput class generation fails without required fields

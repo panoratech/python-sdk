@@ -5,6 +5,15 @@ from .base import BaseService
 
 class Connections(BaseService):
     def handle_o_auth_callback(self, location: str, code: str, state: str):
+        """
+        Capture oAuth Callback
+        Parameters:
+        ----------
+            state: str
+            code: str
+            location: str
+        """
+
         url_endpoint = "/connections/oauth/callback"
         headers = {}
         query_params = []
@@ -31,6 +40,10 @@ class Connections(BaseService):
         return res
 
     def get_connections(self):
+        """
+        Retrieve Connections
+        """
+
         url_endpoint = "/connections"
         headers = {}
         self._add_required_headers(headers)

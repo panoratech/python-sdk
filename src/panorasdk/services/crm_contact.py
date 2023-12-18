@@ -13,6 +13,15 @@ class CrmContact(BaseService):
     def get_contacts(
         self, linked_user_id: str, integration_id: str, remote_data: bool = None
     ) -> GetContactsResponseModel:
+        """
+        Retrieve a batch of CRM Contacts
+        Parameters:
+        ----------
+            integration_id: str
+            linked_user_id: str
+            remote_data: bool
+        """
+
         url_endpoint = "/crm/contact"
         headers = {}
         query_params = []
@@ -54,6 +63,15 @@ class CrmContact(BaseService):
         integration_id: str,
         remote_data: bool = None,
     ) -> AddContactResponseModel:
+        """
+        Create CRM Contact
+        Parameters:
+        ----------
+            integration_id: str
+            linked_user_id: str
+            remote_data: bool
+        """
+
         url_endpoint = "/crm/contact"
         headers = {"Content-type": "application/json"}
         query_params = []
@@ -89,6 +107,13 @@ class CrmContact(BaseService):
         return res
 
     def update_contact(self, id: str):
+        """
+        Update a CRM Contact
+        Parameters:
+        ----------
+            id: str
+        """
+
         url_endpoint = "/crm/contact"
         headers = {}
         query_params = []
@@ -101,6 +126,14 @@ class CrmContact(BaseService):
         return res
 
     def get_contact(self, id: str, remote_data: bool = None) -> GetContactResponseModel:
+        """
+        Retrieve a CRM Contact
+        Parameters:
+        ----------
+            id: str
+            remote_data: bool
+        """
+
         url_endpoint = "/crm/contact/{id}"
         headers = {}
         query_params = []
@@ -132,6 +165,15 @@ class CrmContact(BaseService):
         integration_id: str,
         remote_data: bool = None,
     ) -> AddContactsResponseModel:
+        """
+        Add a batch of CRM Contacts
+        Parameters:
+        ----------
+            integration_id: str
+            linked_user_id: str
+            remote_data: bool
+        """
+
         url_endpoint = "/crm/contact/batch"
         headers = {"Content-type": "application/json"}
         query_params = []

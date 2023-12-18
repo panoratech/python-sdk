@@ -5,6 +5,10 @@ from .base import BaseService
 
 class Events(BaseService):
     def get_events(self):
+        """
+        Retrieve Events
+        """
+
         url_endpoint = "/events"
         headers = {}
         self._add_required_headers(headers)

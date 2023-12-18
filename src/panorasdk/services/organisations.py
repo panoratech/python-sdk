@@ -8,6 +8,10 @@ from ..models.CreateOrganizationDto import (
 
 class Organisations(BaseService):
     def get_organisations(self):
+        """
+        Retrieve Organisations
+        """
+
         url_endpoint = "/organisations"
         headers = {}
         self._add_required_headers(headers)
@@ -17,6 +21,10 @@ class Organisations(BaseService):
         return res
 
     def create_organisation(self, request_input: CreateOrganizationDtoModel):
+        """
+        Create an Organisation
+        """
+
         url_endpoint = "/organisations/create"
         headers = {"Content-type": "application/json"}
         self._add_required_headers(headers)
