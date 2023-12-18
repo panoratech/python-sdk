@@ -981,7 +981,7 @@ sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
 request_body = {
 	'data': {},
 	'headers_': {},
-	'method': 'GET',
+	'method': 'PUT',
 	'path': 'path'
 }
 results = sdk.passthrough.passthrough_request(
