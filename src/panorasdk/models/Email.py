@@ -14,9 +14,11 @@ class Email(BaseModel):
         Parameters:
         ----------
             email_address_type: str
+                The email address type of a contact
             email_address: str
                 The email address of a contact
             owner_type: str
+                The owner type of a the email tied to the contact
         """
         self.email_address_type = email_address_type
         self.email_address = email_address

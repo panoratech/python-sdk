@@ -9,11 +9,11 @@ class TestPhoneModel(unittest.TestCase):
     def test_phone(self):
         # Create Phone class instance
         test_model = Phone(
-            phone_type="voluptate", phone_number="aliquid", owner_type="magnam"
+            phone_type="hic", phone_number="explicabo", owner_type="facere"
         )
-        self.assertEqual(test_model.phone_type, "voluptate")
-        self.assertEqual(test_model.phone_number, "aliquid")
-        self.assertEqual(test_model.owner_type, "magnam")
+        self.assertEqual(test_model.phone_type, "hic")
+        self.assertEqual(test_model.phone_number, "explicabo")
+        self.assertEqual(test_model.owner_type, "facere")
 
     def test_phone_required_fields_missing(self):
         # Assert Phone class generation fails without required fields
