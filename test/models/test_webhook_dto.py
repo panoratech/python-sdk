@@ -9,12 +9,15 @@ class TestWebhookDtoModel(unittest.TestCase):
     def test_webhook_dto(self):
         # Create WebhookDto class instance
         test_model = WebhookDto(
-            scope="quidem", id_project="voluptate", url="quis", description="esse"
+            scope=["mollitia", "nostrum"],
+            id_project="provident",
+            url="explicabo",
+            description="numquam",
         )
-        self.assertEqual(test_model.scope, "quidem")
-        self.assertEqual(test_model.id_project, "voluptate")
-        self.assertEqual(test_model.url, "quis")
-        self.assertEqual(test_model.description, "esse")
+        self.assertEqual(test_model.scope, ["mollitia", "nostrum"])
+        self.assertEqual(test_model.id_project, "provident")
+        self.assertEqual(test_model.url, "explicabo")
+        self.assertEqual(test_model.description, "numquam")
 
     def test_webhook_dto_required_fields_missing(self):
         # Assert WebhookDto class generation fails without required fields
