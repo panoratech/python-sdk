@@ -14,7 +14,7 @@ class CrmContact(BaseService):
         self, linked_user_id: str, integration_id: str, remote_data: bool = None
     ) -> GetContactsResponseModel:
         """
-        Retrieve a batch of CRM Contacts
+        List a batch of CRM Contacts
         Parameters:
         ----------
             integration_id: str
@@ -68,8 +68,11 @@ class CrmContact(BaseService):
         Parameters:
         ----------
             integration_id: str
+                The integration ID
             linked_user_id: str
+                The linked user ID
             remote_data: bool
+                Set to true to include data from the original CRM software.
         """
 
         url_endpoint = "/crm/contact"

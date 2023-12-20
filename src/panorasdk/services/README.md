@@ -51,7 +51,7 @@ A list of all services and services methods.
 | Method    | Description|
 | :-------- | :----------| 
 | [handle_o_auth_callback](#handle_o_auth_callback) | Capture oAuth Callback |
-| [get_connections](#get_connections) | Retrieve Connections |
+| [get_connections](#get_connections) | List Connections |
 
 
 ## Webhook
@@ -128,7 +128,7 @@ A list of all services and services methods.
 | Method    | Description|
 | :-------- | :----------| 
 | [add_contact](#add_contact) | Create CRM Contact |
-| [get_contacts](#get_contacts) | Retrieve a batch of CRM Contacts |
+| [get_contacts](#get_contacts) | List a batch of CRM Contacts |
 | [update_contact](#update_contact) | Update a CRM Contact |
 | [get_contact](#get_contact) | Retrieve a CRM Contact |
 | [add_contacts](#add_contacts) | Add a batch of CRM Contacts |
@@ -350,7 +350,7 @@ pprint(vars(results))
 ```
 
 ### **get_connections**
-Retrieve Connections
+List Connections
 - HTTP Method: GET
 - Endpoint: /connections
 
@@ -400,7 +400,7 @@ sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
 request_body = {
 	'description': 'description',
 	'id_project': 'id_project',
-	'scope': 'scope',
+	'scope': ["exercitation","ipsum"],
 	'url': 'url'
 }
 results = sdk.webhook.create_webhook_metadata(request_input = request_body)
@@ -981,7 +981,7 @@ sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
 request_body = {
 	'data': {},
 	'headers_': {},
-	'method': 'GET',
+	'method': 'POST',
 	'path': 'path'
 }
 results = sdk.passthrough.passthrough_request(
@@ -1003,9 +1003,9 @@ Create CRM Contact
 **Parameters**
 | Name    | Type| Required | Description |
 | :-------- | :----------| :----------| :----------| 
-| integration_id | str | Required |  |
-| linked_user_id | str | Required |  |
-| remote_data | bool | Optional |  |
+| integration_id | str | Required | The integration ID |
+| linked_user_id | str | Required | The linked user ID |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 | request_input | [UnifiedContactInput](/src/panorasdk/models/README.md#unifiedcontactinput) | Required | Request body. |
 
 **Return Type**
@@ -1038,7 +1038,7 @@ pprint(vars(results))
 ```
 
 ### **get_contacts**
-Retrieve a batch of CRM Contacts
+List a batch of CRM Contacts
 - HTTP Method: GET
 - Endpoint: /crm/contact
 
