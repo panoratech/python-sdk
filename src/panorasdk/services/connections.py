@@ -41,7 +41,7 @@ class Connections(BaseService):
 
     def get_connections(self):
         """
-        Retrieve Connections
+        List Connections
         """
 
         url_endpoint = "/connections"

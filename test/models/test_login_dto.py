@@ -9,11 +9,11 @@ class TestLoginDtoModel(unittest.TestCase):
     def test_login_dto(self):
         # Create LoginDto class instance
         test_model = LoginDto(
-            password_hash="dicta", id_user="impedit", email="distinctio"
+            password_hash="totam", id_user="nisi", email="exercitationem"
         )
-        self.assertEqual(test_model.password_hash, "dicta")
-        self.assertEqual(test_model.id_user, "impedit")
-        self.assertEqual(test_model.email, "distinctio")
+        self.assertEqual(test_model.password_hash, "totam")
+        self.assertEqual(test_model.id_user, "nisi")
+        self.assertEqual(test_model.email, "exercitationem")
 
     def test_login_dto_required_fields_missing(self):
         # Assert LoginDto class generation fails without required fields
