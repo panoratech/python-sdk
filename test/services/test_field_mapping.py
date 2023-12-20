@@ -133,7 +133,7 @@ class TestFieldMapping_(unittest.TestCase):
         # call the method to test
         test_service = FieldMapping("testkey")
         response = test_service.get_custom_provider_properties(
-            "5299239222", "7943454957"
+            "4634193527", "9179380751"
         )
         self.assertEqual(response, {})
         responses.reset(),
@@ -157,7 +157,7 @@ class TestFieldMapping_(unittest.TestCase):
         )
         with self.assertRaises(ClientException):
             test_service = FieldMapping("testkey")
-            test_service.get_custom_provider_properties("7123397545", "4042063649")
+            test_service.get_custom_provider_properties("6065565244", "4941301170")
         responses.reset()
 
 
