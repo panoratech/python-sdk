@@ -9,11 +9,11 @@ class TestEmailModel(unittest.TestCase):
     def test_email(self):
         # Create Email class instance
         test_model = Email(
-            email_address_type="officiis", email_address="laborum", owner_type="quod"
+            email_address_type="nisi", email_address="commodi", owner_type="tempora"
         )
-        self.assertEqual(test_model.email_address_type, "officiis")
-        self.assertEqual(test_model.email_address, "laborum")
-        self.assertEqual(test_model.owner_type, "quod")
+        self.assertEqual(test_model.email_address_type, "nisi")
+        self.assertEqual(test_model.email_address, "commodi")
+        self.assertEqual(test_model.owner_type, "tempora")
 
     def test_email_required_fields_missing(self):
         # Assert Email class generation fails without required fields

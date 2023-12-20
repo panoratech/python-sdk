@@ -9,11 +9,13 @@ class TestCreateLinkedUserDtoModel(unittest.TestCase):
     def test_create_linked_user_dto(self):
         # Create CreateLinkedUserDto class instance
         test_model = CreateLinkedUserDto(
-            id_project="dicta", alias="enim", linked_user_origin_id="praesentium"
+            id_project="autem",
+            alias="necessitatibus",
+            linked_user_origin_id="reprehenderit",
         )
-        self.assertEqual(test_model.id_project, "dicta")
-        self.assertEqual(test_model.alias, "enim")
-        self.assertEqual(test_model.linked_user_origin_id, "praesentium")
+        self.assertEqual(test_model.id_project, "autem")
+        self.assertEqual(test_model.alias, "necessitatibus")
+        self.assertEqual(test_model.linked_user_origin_id, "reprehenderit")
 
     def test_create_linked_user_dto_required_fields_missing(self):
         # Assert CreateLinkedUserDto class generation fails without required fields
