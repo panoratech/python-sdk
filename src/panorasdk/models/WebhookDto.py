@@ -1,15 +1,21 @@
 from .base import BaseModel
+from typing import List
 
 
 class WebhookDto(BaseModel):
     def __init__(
-        self, scope: str, id_project: str, url: str, description: str = None, **kwargs
+        self,
+        scope: List[str],
+        id_project: str,
+        url: str,
+        description: str = None,
+        **kwargs,
     ):
         """
         Initialize WebhookDto
         Parameters:
         ----------
-            scope: str
+            scope: list of WebhookDtoScope
             id_project: str
             url: str
             description: str
