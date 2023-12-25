@@ -59,7 +59,7 @@ class TestMagicLink_(unittest.TestCase):
         )
         # call the method to test
         test_service = MagicLink("testkey")
-        response = test_service.get_magic_link("3287339879")
+        response = test_service.get_magic_link("9126757025")
         self.assertEqual(response, {})
         responses.reset(),
 
@@ -82,7 +82,7 @@ class TestMagicLink_(unittest.TestCase):
         )
         with self.assertRaises(ClientException):
             test_service = MagicLink("testkey")
-            test_service.get_magic_link("7709270658")
+            test_service.get_magic_link("5065999564")
         responses.reset()
 
 

@@ -65,6 +65,7 @@ Click the service name for a full list of the service methods.
 | Service |
 | :------ |
 |[Main](./services/README.md#main)|
+|[Protected](./services/README.md#protected)|
 |[Auth](./services/README.md#auth)|
 |[Connections](./services/README.md#connections)|
 |[Webhook](./services/README.md#webhook)|
@@ -110,6 +111,8 @@ A list of all services and services methods.
 
     - [Main](#main)
 
+    - [Protected](#protected)
+
     - [Auth](#auth)
 
     - [Connections](#connections)
@@ -141,6 +144,13 @@ A list of all services and services methods.
 | [app_controller_get_hello](#app_controller_get_hello) |  |
 
 
+## Protected
+
+| Method    | Description|
+| :-------- | :----------| 
+| [app_controller_get_hello2](#app_controller_get_hello2) |  |
+
+
 ## Auth
 
 | Method    | Description|
@@ -157,7 +167,7 @@ A list of all services and services methods.
 | Method    | Description|
 | :-------- | :----------| 
 | [handle_o_auth_callback](#handle_o_auth_callback) | Capture oAuth Callback |
-| [get_connections](#get_connections) | Retrieve Connections |
+| [get_connections](#get_connections) | List Connections |
 
 
 ## Webhook
@@ -234,7 +244,7 @@ A list of all services and services methods.
 | Method    | Description|
 | :-------- | :----------| 
 | [add_contact](#add_contact) | Create CRM Contact |
-| [get_contacts](#get_contacts) | Retrieve a batch of CRM Contacts |
+| [get_contacts](#get_contacts) | List a batch of CRM Contacts |
 | [update_contact](#update_contact) | Update a CRM Contact |
 | [get_contact](#get_contact) | Retrieve a CRM Contact |
 | [add_contacts](#add_contacts) | Add a batch of CRM Contacts |
@@ -272,6 +282,33 @@ pprint(vars(results))
 ```
 
 
+### **app_controller_get_hello2**
+
+- HTTP Method: GET
+- Endpoint: /protected
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+
+**Return Type**
+
+Returns a dict object.
+
+**Example Usage Code Snippet**
+```Python
+from os import getenv
+from pprint import pprint
+from panorasdk import PanoraSDK
+sdk = PanoraSDK()
+sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
+results = sdk.protected.app_controller_get_hello2()
+
+pprint(vars(results))
+
+```
+
+
 ### **sign_up**
 Register
 - HTTP Method: POST
@@ -296,6 +333,7 @@ sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
 request_body = {
 	'email': 'email',
 	'first_name': 'first_name',
+	'id_organisation': 'id_organisation',
 	'last_name': 'last_name',
 	'password_hash': 'password_hash'
 }
@@ -456,7 +494,7 @@ pprint(vars(results))
 ```
 
 ### **get_connections**
-Retrieve Connections
+List Connections
 - HTTP Method: GET
 - Endpoint: /connections
 
@@ -506,7 +544,7 @@ sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
 request_body = {
 	'description': 'description',
 	'id_project': 'id_project',
-	'scope': 'scope',
+	'scope': ["enim","enim tempor"],
 	'url': 'url'
 }
 results = sdk.webhook.create_webhook_metadata(request_input = request_body)
@@ -1087,7 +1125,7 @@ sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
 request_body = {
 	'data': {},
 	'headers_': {},
-	'method': 'GET',
+	'method': 'POST',
 	'path': 'path'
 }
 results = sdk.passthrough.passthrough_request(
@@ -1109,9 +1147,9 @@ Create CRM Contact
 **Parameters**
 | Name    | Type| Required | Description |
 | :-------- | :----------| :----------| :----------| 
-| integration_id | str | Required |  |
-| linked_user_id | str | Required |  |
-| remote_data | bool | Optional |  |
+| integration_id | str | Required | The integration ID |
+| linked_user_id | str | Required | The linked user ID |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 | request_input | [UnifiedContactInput](/src/panorasdk/models/README.md#unifiedcontactinput) | Required | Request body. |
 
 **Return Type**
@@ -1144,7 +1182,7 @@ pprint(vars(results))
 ```
 
 ### **get_contacts**
-Retrieve a batch of CRM Contacts
+List a batch of CRM Contacts
 - HTTP Method: GET
 - Endpoint: /crm/contact
 
@@ -1153,7 +1191,7 @@ Retrieve a batch of CRM Contacts
 | :-------- | :----------| :----------| :----------| 
 | integration_id | str | Required |  |
 | linked_user_id | str | Required |  |
-| remote_data | bool | Optional |  |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 
 **Return Type**
 
@@ -1211,8 +1249,8 @@ Retrieve a CRM Contact
 **Parameters**
 | Name    | Type| Required | Description |
 | :-------- | :----------| :----------| :----------| 
-| id | str | Required |  |
-| remote_data | bool | Optional |  |
+| id | str | Required | id of the `contact` you want to retrive. |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 
 **Return Type**
 
@@ -1244,7 +1282,7 @@ Add a batch of CRM Contacts
 | :-------- | :----------| :----------| :----------| 
 | integration_id | str | Required |  |
 | linked_user_id | str | Required |  |
-| remote_data | bool | Optional |  |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 | request_input | [AddContactsRequest](/src/panorasdk/models/README.md#addcontactsrequest) | Required | Request body. |
 
 **Return Type**
