@@ -20,7 +20,7 @@ class TestConnections_(unittest.TestCase):
         # call the method to test
         test_service = Connections("testkey")
         response = test_service.handle_o_auth_callback(
-            "blanditiis", "perferendis", "consequatur"
+            "occaecati", "architecto", "delectus"
         )
         self.assertEqual(response, {})
         responses.reset(),
@@ -48,7 +48,7 @@ class TestConnections_(unittest.TestCase):
         )
         with self.assertRaises(ClientException):
             test_service = Connections("testkey")
-            test_service.handle_o_auth_callback("ratione", "odio", "eum")
+            test_service.handle_o_auth_callback("veritatis", "laborum", "alias")
         responses.reset()
 
     @responses.activate
