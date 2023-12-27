@@ -18,6 +18,8 @@ from .services.main import Main
 from .services.organisations import Organisations
 from .services.passthrough import Passthrough
 from .services.projects import Projects
+from .services.protected import Protected
+from .services.ticketing_ticket import TicketingTicket
 from .services.webhook import Webhook
 
 
@@ -38,6 +40,8 @@ class PanoraSDK:
     organisations : Organisations
     passthrough : Passthrough
     projects : Projects
+    protected : Protected
+    ticketing_ticket : TicketingTicket
     webhook : Webhook
 
     Methods
@@ -69,6 +73,8 @@ class PanoraSDK:
         self.organisations = Organisations(access_token)
         self.passthrough = Passthrough(access_token)
         self.projects = Projects(access_token)
+        self.protected = Protected(access_token)
+        self.ticketing_ticket = TicketingTicket(access_token)
         self.webhook = Webhook(access_token)
 
         self.set_base_url(environment.value)
@@ -93,6 +99,8 @@ class PanoraSDK:
         self.organisations.set_base_url(url)
         self.passthrough.set_base_url(url)
         self.projects.set_base_url(url)
+        self.protected.set_base_url(url)
+        self.ticketing_ticket.set_base_url(url)
         self.webhook.set_base_url(url)
 
     def set_access_token(self, token: str) -> None:
@@ -115,4 +123,6 @@ class PanoraSDK:
         self.organisations.set_access_token(token)
         self.passthrough.set_access_token(token)
         self.projects.set_access_token(token)
+        self.protected.set_access_token(token)
+        self.ticketing_ticket.set_access_token(token)
         self.webhook.set_access_token(token)
