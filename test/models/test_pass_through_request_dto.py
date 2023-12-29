@@ -9,12 +9,12 @@ class TestPassThroughRequestDtoModel(unittest.TestCase):
     def test_pass_through_request_dto(self):
         # Create PassThroughRequestDto class instance
         test_model = PassThroughRequestDto(
-            path="aliquid", method="GET", data={"doloribus": 2}, headers_={"aliquid": 1}
+            path="itaque", method="GET", data={"eos": 1}, headers_={"animi": 2}
         )
-        self.assertEqual(test_model.path, "aliquid")
+        self.assertEqual(test_model.path, "itaque")
         self.assertEqual(test_model.method, "GET")
-        self.assertEqual(test_model.data, {"doloribus": 2})
-        self.assertEqual(test_model.headers_, {"aliquid": 1})
+        self.assertEqual(test_model.data, {"eos": 1})
+        self.assertEqual(test_model.headers_, {"animi": 2})
 
     def test_pass_through_request_dto_required_fields_missing(self):
         # Assert PassThroughRequestDto class generation fails without required fields

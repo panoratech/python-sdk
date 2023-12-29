@@ -1,25 +1,25 @@
 from urllib.parse import quote
 from ..net import query_serializer
 from .base import BaseService
-from ..models.UnifiedContactInput import UnifiedContactInput as UnifiedContactInputModel
-from ..models.AddContactsRequest import AddContactsRequest as AddContactsRequestModel
+from ..models.UnifiedTicketInput import UnifiedTicketInput as UnifiedTicketInputModel
+from ..models.AddTicketsRequest import AddTicketsRequest as AddTicketsRequestModel
 
 
-class CrmContact(BaseService):
-    def get_contacts(
+class TicketingTicket(BaseService):
+    def get_tickets(
         self, linked_user_id: str, integration_id: str, remote_data: bool = None
     ):
         """
-        List a batch of CRM Contacts
+        List a batch of Tickets
         Parameters:
         ----------
             integration_id: str
             linked_user_id: str
             remote_data: bool
-                Set to true to include data from the original CRM software.
+                Set to true to include data from the original Ticketing software.
         """
 
-        url_endpoint = "/crm/contact"
+        url_endpoint = "/ticketing/ticket"
         headers = {}
         query_params = []
         self._add_required_headers(headers)
@@ -49,15 +49,15 @@ class CrmContact(BaseService):
         res = self._http.get(final_url, headers, True)
         return res
 
-    def add_contact(
+    def add_ticket(
         self,
-        request_input: UnifiedContactInputModel,
+        request_input: UnifiedTicketInputModel,
         linked_user_id: str,
         integration_id: str,
         remote_data: bool = None,
     ):
         """
-        Create CRM Contact
+        Create a Ticket
         Parameters:
         ----------
             integration_id: str
@@ -65,10 +65,10 @@ class CrmContact(BaseService):
             linked_user_id: str
                 The linked user ID
             remote_data: bool
-                Set to true to include data from the original CRM software.
+                Set to true to include data from the original Ticketing software.
         """
 
-        url_endpoint = "/crm/contact"
+        url_endpoint = "/ticketing/ticket"
         headers = {"Content-type": "application/json"}
         query_params = []
         self._add_required_headers(headers)
@@ -98,15 +98,15 @@ class CrmContact(BaseService):
         res = self._http.post(final_url, headers, request_input, True)
         return res
 
-    def update_contact(self, id: str):
+    def update_ticket(self, id: str):
         """
-        Update a CRM Contact
+        Update a Ticket
         Parameters:
         ----------
             id: str
         """
 
-        url_endpoint = "/crm/contact"
+        url_endpoint = "/ticketing/ticket"
         headers = {}
         query_params = []
         self._add_required_headers(headers)
@@ -117,18 +117,18 @@ class CrmContact(BaseService):
         res = self._http.patch(final_url, headers, {}, True)
         return res
 
-    def get_contact(self, id: str, remote_data: bool = None):
+    def get_ticket(self, id: str, remote_data: bool = None):
         """
-        Retrieve a CRM Contact
+        Retrieve a Ticket
         Parameters:
         ----------
             id: str
-                id of the `contact` you want to retrive.
+                id of the `ticket` you want to retrive.
             remote_data: bool
-                Set to true to include data from the original CRM software.
+                Set to true to include data from the original Ticketing software.
         """
 
-        url_endpoint = "/crm/contact/{id}"
+        url_endpoint = "/ticketing/ticket/{id}"
         headers = {}
         query_params = []
         self._add_required_headers(headers)
@@ -150,24 +150,24 @@ class CrmContact(BaseService):
         res = self._http.get(final_url, headers, True)
         return res
 
-    def add_contacts(
+    def add_tickets(
         self,
-        request_input: AddContactsRequestModel,
+        request_input: AddTicketsRequestModel,
         linked_user_id: str,
         integration_id: str,
         remote_data: bool = None,
     ):
         """
-        Add a batch of CRM Contacts
+        Add a batch of Tickets
         Parameters:
         ----------
             integration_id: str
             linked_user_id: str
             remote_data: bool
-                Set to true to include data from the original CRM software.
+                Set to true to include data from the original Ticketing software.
         """
 
-        url_endpoint = "/crm/contact/batch"
+        url_endpoint = "/ticketing/ticket/batch"
         headers = {"Content-type": "application/json"}
         query_params = []
         self._add_required_headers(headers)
