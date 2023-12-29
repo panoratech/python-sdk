@@ -9,15 +9,15 @@ class TestDefineTargetFieldDtoModel(unittest.TestCase):
     def test_define_target_field_dto(self):
         # Create DefineTargetFieldDto class instance
         test_model = DefineTargetFieldDto(
-            data_type="culpa",
-            description="dolore",
-            name="amet",
-            object_type_owner="occaecati",
+            data_type="ab",
+            description="provident",
+            name="nemo",
+            object_type_owner="beatae",
         )
-        self.assertEqual(test_model.data_type, "culpa")
-        self.assertEqual(test_model.description, "dolore")
-        self.assertEqual(test_model.name, "amet")
-        self.assertEqual(test_model.object_type_owner, "occaecati")
+        self.assertEqual(test_model.data_type, "ab")
+        self.assertEqual(test_model.description, "provident")
+        self.assertEqual(test_model.name, "nemo")
+        self.assertEqual(test_model.object_type_owner, "beatae")
 
     def test_define_target_field_dto_required_fields_missing(self):
         # Assert DefineTargetFieldDto class generation fails without required fields
