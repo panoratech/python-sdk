@@ -1,25 +1,25 @@
 from urllib.parse import quote
 from ..net import query_serializer
 from .base import BaseService
-from ..models.UnifiedContactInput import UnifiedContactInput as UnifiedContactInputModel
-from ..models.AddContactsRequest import AddContactsRequest as AddContactsRequestModel
+from ..models.UnifiedCommentInput import UnifiedCommentInput as UnifiedCommentInputModel
+from ..models.AddCommentsRequest import AddCommentsRequest as AddCommentsRequestModel
 
 
-class CrmContact(BaseService):
-    def get_contacts(
+class TicketingComment(BaseService):
+    def get_comments(
         self, linked_user_id: str, integration_id: str, remote_data: bool = None
     ):
         """
-        List a batch of CRM Contacts
+        List a batch of Comments
         Parameters:
         ----------
             integration_id: str
             linked_user_id: str
             remote_data: bool
-                Set to true to include data from the original CRM software.
+                Set to true to include data from the original Ticketing software.
         """
 
-        url_endpoint = "/crm/contact"
+        url_endpoint = "/ticketing/comment"
         headers = {}
         query_params = []
         self._add_required_headers(headers)
@@ -27,39 +27,37 @@ class CrmContact(BaseService):
             raise ValueError(
                 "Parameter integration_id is required, cannot be empty or blank."
             )
-        query_params.append(
-            query_serializer.serialize_query(
-                "form", False, "integrationId", integration_id
-            )
+        headers["integrationId"] = query_serializer.serialize_header(
+            False, integration_id
         )
         if not linked_user_id:
             raise ValueError(
                 "Parameter linked_user_id is required, cannot be empty or blank."
             )
-        query_params.append(
-            query_serializer.serialize_query(
-                "form", False, "linkedUserId", linked_user_id
-            )
+        headers["linkedUserId"] = query_serializer.serialize_header(
+            False, linked_user_id
         )
         if remote_data:
             query_params.append(
                 query_serializer.serialize_query(
-                    "form", False, "remote_data", remote_data
+                    "form", False, "remoteData", remote_data
                 )
             )
-        final_url = self._url_prefix + url_endpoint + "?" + "&".join(query_params)
+        final_url = self._url_prefix + url_endpoint
+        if len(query_params) > 0:
+            final_url += "?" + "&".join(query_params)
         res = self._http.get(final_url, headers, True)
         return res
 
-    def add_contact(
+    def add_comment(
         self,
-        request_input: UnifiedContactInputModel,
+        request_input: UnifiedCommentInputModel,
         linked_user_id: str,
         integration_id: str,
         remote_data: bool = None,
     ):
         """
-        Create CRM Contact
+        Create a Comment
         Parameters:
         ----------
             integration_id: str
@@ -67,10 +65,10 @@ class CrmContact(BaseService):
             linked_user_id: str
                 The linked user ID
             remote_data: bool
-                Set to true to include data from the original CRM software.
+                Set to true to include data from the original Ticketing software.
         """
 
-        url_endpoint = "/crm/contact"
+        url_endpoint = "/ticketing/comment"
         headers = {"Content-type": "application/json"}
         query_params = []
         self._add_required_headers(headers)
@@ -78,39 +76,37 @@ class CrmContact(BaseService):
             raise ValueError(
                 "Parameter integration_id is required, cannot be empty or blank."
             )
-        query_params.append(
-            query_serializer.serialize_query(
-                "form", False, "integrationId", integration_id
-            )
+        headers["integrationId"] = query_serializer.serialize_header(
+            False, integration_id
         )
         if not linked_user_id:
             raise ValueError(
                 "Parameter linked_user_id is required, cannot be empty or blank."
             )
-        query_params.append(
-            query_serializer.serialize_query(
-                "form", False, "linkedUserId", linked_user_id
-            )
+        headers["linkedUserId"] = query_serializer.serialize_header(
+            False, linked_user_id
         )
         if remote_data:
             query_params.append(
                 query_serializer.serialize_query(
-                    "form", False, "remote_data", remote_data
+                    "form", False, "remoteData", remote_data
                 )
             )
-        final_url = self._url_prefix + url_endpoint + "?" + "&".join(query_params)
+        final_url = self._url_prefix + url_endpoint
+        if len(query_params) > 0:
+            final_url += "?" + "&".join(query_params)
         res = self._http.post(final_url, headers, request_input, True)
         return res
 
-    def update_contact(self, id: str):
+    def update_comment(self, id: str):
         """
-        Update a CRM Contact
+        Update a Comment
         Parameters:
         ----------
             id: str
         """
 
-        url_endpoint = "/crm/contact"
+        url_endpoint = "/ticketing/comment"
         headers = {}
         query_params = []
         self._add_required_headers(headers)
@@ -121,18 +117,18 @@ class CrmContact(BaseService):
         res = self._http.patch(final_url, headers, {}, True)
         return res
 
-    def get_contact(self, id: str, remote_data: bool = None):
+    def get_comment(self, id: str, remote_data: bool = None):
         """
-        Retrieve a CRM Contact
+        Retrieve a Comment
         Parameters:
         ----------
             id: str
-                id of the `contact` you want to retrive.
+                id of the `ticket` you want to retrive.
             remote_data: bool
-                Set to true to include data from the original CRM software.
+                Set to true to include data from the original Ticketing software.
         """
 
-        url_endpoint = "/crm/contact/{id}"
+        url_endpoint = "/ticketing/comment/{id}"
         headers = {}
         query_params = []
         self._add_required_headers(headers)
@@ -145,7 +141,7 @@ class CrmContact(BaseService):
         if remote_data:
             query_params.append(
                 query_serializer.serialize_query(
-                    "form", False, "remote_data", remote_data
+                    "form", False, "remoteData", remote_data
                 )
             )
         final_url = self._url_prefix + url_endpoint
@@ -154,24 +150,24 @@ class CrmContact(BaseService):
         res = self._http.get(final_url, headers, True)
         return res
 
-    def add_contacts(
+    def add_comments(
         self,
-        request_input: AddContactsRequestModel,
+        request_input: AddCommentsRequestModel,
         linked_user_id: str,
         integration_id: str,
         remote_data: bool = None,
     ):
         """
-        Add a batch of CRM Contacts
+        Add a batch of Comments
         Parameters:
         ----------
             integration_id: str
             linked_user_id: str
             remote_data: bool
-                Set to true to include data from the original CRM software.
+                Set to true to include data from the original Ticketing software.
         """
 
-        url_endpoint = "/crm/contact/batch"
+        url_endpoint = "/ticketing/comment/batch"
         headers = {"Content-type": "application/json"}
         query_params = []
         self._add_required_headers(headers)
@@ -179,26 +175,24 @@ class CrmContact(BaseService):
             raise ValueError(
                 "Parameter integration_id is required, cannot be empty or blank."
             )
-        query_params.append(
-            query_serializer.serialize_query(
-                "form", False, "integrationId", integration_id
-            )
+        headers["integrationId"] = query_serializer.serialize_header(
+            False, integration_id
         )
         if not linked_user_id:
             raise ValueError(
                 "Parameter linked_user_id is required, cannot be empty or blank."
             )
-        query_params.append(
-            query_serializer.serialize_query(
-                "form", False, "linkedUserId", linked_user_id
-            )
+        headers["linkedUserId"] = query_serializer.serialize_header(
+            False, linked_user_id
         )
         if remote_data:
             query_params.append(
                 query_serializer.serialize_query(
-                    "form", False, "remote_data", remote_data
+                    "form", False, "remoteData", remote_data
                 )
             )
-        final_url = self._url_prefix + url_endpoint + "?" + "&".join(query_params)
+        final_url = self._url_prefix + url_endpoint
+        if len(query_params) > 0:
+            final_url += "?" + "&".join(query_params)
         res = self._http.post(final_url, headers, request_input, True)
         return res

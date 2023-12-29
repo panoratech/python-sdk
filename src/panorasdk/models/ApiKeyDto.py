@@ -2,16 +2,15 @@ from .base import BaseModel
 
 
 class ApiKeyDto(BaseModel):
-    def __init__(self, userId: str, projectId: str, keyName: str = None, **kwargs):
+    def __init__(self, keyName: str, userId: str, projectId: str, **kwargs):
         """
         Initialize ApiKeyDto
         Parameters:
         ----------
+            keyName: str
             userId: str
             projectId: str
-            keyName: str
         """
+        self.keyName = keyName
         self.userId = userId
         self.projectId = projectId
-        if keyName is not None:
-            self.keyName = keyName
