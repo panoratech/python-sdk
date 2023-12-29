@@ -66,6 +66,14 @@ def serialize_query(parameter_style, explode, key: str, parameter_value: Any) ->
     return method(key, parameter_value, explode) if method else ""
 
 
+def serialize_header(explode: bool, parameter_value: Any):
+    if not style_methods.get("simple"):
+        return ""
+    if hasattr(parameter_value, "__dict__"):
+        parameter_value = parameter_value.__dict__
+    return style_methods["simple"](parameter_value, explode)
+
+
 def serialize_path(
     parameter_style, explode: bool, parameter_value: Any, parameter_key=None
 ):
