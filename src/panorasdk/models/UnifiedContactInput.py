@@ -27,7 +27,9 @@ class UnifiedContactInput(BaseModel):
             phone_numbers: list of Phone
             email_addresses: list of Email
             last_name: str
+                The last name of the contact
             first_name: str
+                The first name of the contact
         """
         self.field_mappings = field_mappings
         self.phone_numbers = phone_numbers

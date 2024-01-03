@@ -4,6 +4,8 @@ A list of all services and services methods.
 
     - [Main](#main)
 
+    - [Protected](#protected)
+
     - [Auth](#auth)
 
     - [Connections](#connections)
@@ -25,6 +27,10 @@ A list of all services and services methods.
     - [Passthrough](#passthrough)
 
     - [CrmContact](#crmcontact)
+
+    - [TicketingTicket](#ticketingticket)
+
+    - [TicketingComment](#ticketingcomment)
 - [All Methods](#all-methods)
 
 
@@ -33,6 +39,13 @@ A list of all services and services methods.
 | Method    | Description|
 | :-------- | :----------| 
 | [app_controller_get_hello](#app_controller_get_hello) |  |
+
+
+## Protected
+
+| Method    | Description|
+| :-------- | :----------| 
+| [app_controller_get_hello2](#app_controller_get_hello2) |  |
 
 
 ## Auth
@@ -51,7 +64,7 @@ A list of all services and services methods.
 | Method    | Description|
 | :-------- | :----------| 
 | [handle_o_auth_callback](#handle_o_auth_callback) | Capture oAuth Callback |
-| [get_connections](#get_connections) | Retrieve Connections |
+| [get_connections](#get_connections) | List Connections |
 
 
 ## Webhook
@@ -128,10 +141,32 @@ A list of all services and services methods.
 | Method    | Description|
 | :-------- | :----------| 
 | [add_contact](#add_contact) | Create CRM Contact |
-| [get_contacts](#get_contacts) | Retrieve a batch of CRM Contacts |
+| [get_contacts](#get_contacts) | List a batch of CRM Contacts |
 | [update_contact](#update_contact) | Update a CRM Contact |
 | [get_contact](#get_contact) | Retrieve a CRM Contact |
 | [add_contacts](#add_contacts) | Add a batch of CRM Contacts |
+
+
+## TicketingTicket
+
+| Method    | Description|
+| :-------- | :----------| 
+| [add_ticket](#add_ticket) | Create a Ticket |
+| [get_tickets](#get_tickets) | List a batch of Tickets |
+| [update_ticket](#update_ticket) | Update a Ticket |
+| [get_ticket](#get_ticket) | Retrieve a Ticket |
+| [add_tickets](#add_tickets) | Add a batch of Tickets |
+
+
+## TicketingComment
+
+| Method    | Description|
+| :-------- | :----------| 
+| [add_comment](#add_comment) | Create a Comment |
+| [get_comments](#get_comments) | List a batch of Comments |
+| [update_comment](#update_comment) | Update a Comment |
+| [get_comment](#get_comment) | Retrieve a Comment |
+| [add_comments](#add_comments) | Add a batch of Comments |
 
 
 
@@ -152,18 +187,21 @@ A list of all services and services methods.
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.main.app_controller_get_hello()
 
-pprint(vars(results))
 
-```
+### **app_controller_get_hello2**
+
+- HTTP Method: GET
+- Endpoint: /protected
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+
+**Return Type**
+
+Returns a dict object.
+
 
 
 ### **sign_up**
@@ -180,24 +218,6 @@ Register
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'email': 'email',
-	'first_name': 'first_name',
-	'last_name': 'last_name',
-	'password_hash': 'password_hash'
-}
-results = sdk.auth.sign_up(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 ### **sign_in**
 Log In
@@ -213,23 +233,6 @@ Log In
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'email': 'email',
-	'id_user': 'id_user',
-	'password_hash': 'password_hash'
-}
-results = sdk.auth.sign_in(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 ### **get_users**
 Get users
@@ -244,18 +247,6 @@ Get users
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.auth.get_users()
-
-pprint(vars(results))
-
-```
 
 ### **get_api_keys**
 Retrieve API Keys
@@ -270,18 +261,6 @@ Retrieve API Keys
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.auth.get_api_keys()
-
-pprint(vars(results))
-
-```
 
 ### **generate_api_key**
 Create API Key
@@ -297,23 +276,6 @@ Create API Key
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'keyName': 'keyName',
-	'projectId': 'projectId',
-	'userId': 'userId'
-}
-results = sdk.auth.generate_api_key(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 
 ### **handle_o_auth_callback**
@@ -332,25 +294,9 @@ Capture oAuth Callback
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.connections.handle_o_auth_callback(
-	state = 'state',
-	code = 'code',
-	location = 'location'
-)
-
-pprint(vars(results))
-
-```
 
 ### **get_connections**
-Retrieve Connections
+List Connections
 - HTTP Method: GET
 - Endpoint: /connections
 
@@ -362,18 +308,6 @@ Retrieve Connections
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.connections.get_connections()
-
-pprint(vars(results))
-
-```
 
 
 ### **create_webhook_metadata**
@@ -390,24 +324,6 @@ Add webhook metadata
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'description': 'description',
-	'id_project': 'id_project',
-	'scope': 'scope',
-	'url': 'url'
-}
-results = sdk.webhook.create_webhook_metadata(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 ### **get_webhooks_metadata**
 Retrieve webhooks metadata 
@@ -422,18 +338,6 @@ Retrieve webhooks metadata
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.webhook.get_webhooks_metadata()
-
-pprint(vars(results))
-
-```
 
 ### **update_webhook_status**
 Update webhook status
@@ -449,18 +353,6 @@ Update webhook status
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.webhook.update_webhook_status(id = 'id')
-
-pprint(vars(results))
-
-```
 
 
 ### **add_linked_user**
@@ -477,23 +369,6 @@ Add Linked User
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'alias': 'alias',
-	'id_project': 'id_project',
-	'linked_user_origin_id': 'linked_user_origin_id'
-}
-results = sdk.linked_users.add_linked_user(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 ### **get_linked_users**
 Retrieve Linked Users
@@ -508,18 +383,6 @@ Retrieve Linked Users
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.linked_users.get_linked_users()
-
-pprint(vars(results))
-
-```
 
 ### **get_linked_user**
 Retrieve a Linked User
@@ -535,18 +398,6 @@ Retrieve a Linked User
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.linked_users.get_linked_user(id = 'id')
-
-pprint(vars(results))
-
-```
 
 
 ### **get_organisations**
@@ -562,18 +413,6 @@ Retrieve Organisations
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.organisations.get_organisations()
-
-pprint(vars(results))
-
-```
 
 ### **create_organisation**
 Create an Organisation
@@ -589,22 +428,6 @@ Create an Organisation
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'name': 'name',
-	'stripe_customer_id': 'stripe_customer_id'
-}
-results = sdk.organisations.create_organisation(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 
 ### **get_projects**
@@ -620,18 +443,6 @@ Retrieve projects
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.projects.get_projects()
-
-pprint(vars(results))
-
-```
 
 ### **create_project**
 Create a project
@@ -647,22 +458,6 @@ Create a project
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'id_organization': 'id_organization',
-	'name': 'name'
-}
-results = sdk.projects.create_project(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 
 ### **get_field_mappings_entities**
@@ -678,18 +473,6 @@ Retrieve field mapping entities
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.field_mapping.get_field_mappings_entities()
-
-pprint(vars(results))
-
-```
 
 ### **get_field_mappings**
 Retrieve field mappings
@@ -704,18 +487,6 @@ Retrieve field mappings
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.field_mapping.get_field_mappings()
-
-pprint(vars(results))
-
-```
 
 ### **get_field_mapping_values**
 Retrieve field mappings values
@@ -730,18 +501,6 @@ Retrieve field mappings values
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.field_mapping.get_field_mapping_values()
-
-pprint(vars(results))
-
-```
 
 ### **define_target_field**
 Define target Field
@@ -757,24 +516,6 @@ Define target Field
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'data_type': 'data_type',
-	'description': 'description',
-	'name': 'name',
-	'object_type_owner': 'object_type_owner'
-}
-results = sdk.field_mapping.define_target_field(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 ### **map_field**
 Map Custom Field
@@ -790,24 +531,6 @@ Map Custom Field
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'attributeId': 'attributeId',
-	'linked_user_id': 'linked_user_id',
-	'source_custom_field_id': 'source_custom_field_id',
-	'source_provider': 'source_provider'
-}
-results = sdk.field_mapping.map_field(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 ### **get_custom_provider_properties**
 Retrieve Custom Properties
@@ -824,21 +547,6 @@ Retrieve Custom Properties
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.field_mapping.get_custom_provider_properties(
-	linked_user_id = 'linkedUserId',
-	provider_id = 'providerId'
-)
-
-pprint(vars(results))
-
-```
 
 
 ### **get_events**
@@ -854,18 +562,6 @@ Retrieve Events
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.events.get_events()
-
-pprint(vars(results))
-
-```
 
 
 ### **create_magic_link**
@@ -882,24 +578,6 @@ Create a Magic Link
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'alias': 'alias',
-	'email': 'email',
-	'id_project': 'id_project',
-	'linked_user_origin_id': 'linked_user_origin_id'
-}
-results = sdk.magic_link.create_magic_link(request_input = request_body)
-
-pprint(vars(results))
-
-```
 
 ### **get_magic_links**
 Retrieve Magic Links
@@ -914,18 +592,6 @@ Retrieve Magic Links
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.magic_link.get_magic_links()
-
-pprint(vars(results))
-
-```
 
 ### **get_magic_link**
 Retrieve a Magic Link
@@ -941,18 +607,6 @@ Retrieve a Magic Link
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.magic_link.get_magic_link(id = 'id')
-
-pprint(vars(results))
-
-```
 
 
 ### **passthrough_request**
@@ -971,28 +625,6 @@ Make a passthrough request
 
 [PassThroughResponse](/src/panorasdk/models/README.md#passthroughresponse) 
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'data': {},
-	'headers_': {},
-	'method': 'GET',
-	'path': 'path'
-}
-results = sdk.passthrough.passthrough_request(
-	request_input = request_body,
-	integration_id = 'integrationId',
-	linked_user_id = 'linkedUserId'
-)
-
-pprint(vars(results))
-
-```
 
 
 ### **add_contact**
@@ -1003,42 +635,18 @@ Create CRM Contact
 **Parameters**
 | Name    | Type| Required | Description |
 | :-------- | :----------| :----------| :----------| 
-| integration_id | str | Required |  |
-| linked_user_id | str | Required |  |
-| remote_data | bool | Optional |  |
+| integration_id | str | Required | The integration ID |
+| linked_user_id | str | Required | The linked user ID |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 | request_input | [UnifiedContactInput](/src/panorasdk/models/README.md#unifiedcontactinput) | Required | Request body. |
 
 **Return Type**
 
-[AddContactResponse](/src/panorasdk/models/README.md#addcontactresponse) 
+Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = {
-	'email_addresses': [],
-	'field_mappings': {},
-	'first_name': 'first_name',
-	'last_name': 'last_name',
-	'phone_numbers': []
-}
-results = sdk.crm_contact.add_contact(
-	request_input = request_body,
-	integration_id = 'integrationId',
-	linked_user_id = 'linkedUserId',
-	remote_data = True
-)
-
-pprint(vars(results))
-
-```
 
 ### **get_contacts**
-Retrieve a batch of CRM Contacts
+List a batch of CRM Contacts
 - HTTP Method: GET
 - Endpoint: /crm/contact
 
@@ -1047,28 +655,12 @@ Retrieve a batch of CRM Contacts
 | :-------- | :----------| :----------| :----------| 
 | integration_id | str | Required |  |
 | linked_user_id | str | Required |  |
-| remote_data | bool | Optional |  |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 
 **Return Type**
 
-[GetContactsResponse](/src/panorasdk/models/README.md#getcontactsresponse) 
+Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.crm_contact.get_contacts(
-	integration_id = 'integrationId',
-	linked_user_id = 'linkedUserId',
-	remote_data = True
-)
-
-pprint(vars(results))
-
-```
 
 ### **update_contact**
 Update a CRM Contact
@@ -1084,18 +676,6 @@ Update a CRM Contact
 
 Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.crm_contact.update_contact(id = 'id')
-
-pprint(vars(results))
-
-```
 
 ### **get_contact**
 Retrieve a CRM Contact
@@ -1105,28 +685,13 @@ Retrieve a CRM Contact
 **Parameters**
 | Name    | Type| Required | Description |
 | :-------- | :----------| :----------| :----------| 
-| id | str | Required |  |
-| remote_data | bool | Optional |  |
+| id | str | Required | id of the `contact` you want to retrive. |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 
 **Return Type**
 
-[GetContactResponse](/src/panorasdk/models/README.md#getcontactresponse) 
+Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-results = sdk.crm_contact.get_contact(
-	id = 'id',
-	remote_data = True
-)
-
-pprint(vars(results))
-
-```
 
 ### **add_contacts**
 Add a batch of CRM Contacts
@@ -1138,31 +703,183 @@ Add a batch of CRM Contacts
 | :-------- | :----------| :----------| :----------| 
 | integration_id | str | Required |  |
 | linked_user_id | str | Required |  |
-| remote_data | bool | Optional |  |
+| remote_data | bool | Optional | Set to true to include data from the original CRM software. |
 | request_input | [AddContactsRequest](/src/panorasdk/models/README.md#addcontactsrequest) | Required | Request body. |
 
 **Return Type**
 
-[AddContactsResponse](/src/panorasdk/models/README.md#addcontactsresponse) 
+Returns a dict object.
 
-**Example Usage Code Snippet**
-```Python
-from os import getenv
-from pprint import pprint
-from panorasdk import PanoraSDK
-sdk = PanoraSDK()
-sdk.set_access_token(getenv("PANORASDK_ACCESS_TOKEN"))
-request_body = [{},{}]
-results = sdk.crm_contact.add_contacts(
-	request_input = request_body,
-	integration_id = 'integrationId',
-	linked_user_id = 'linkedUserId',
-	remote_data = True
-)
 
-pprint(vars(results))
 
-```
+### **add_ticket**
+Create a Ticket
+- HTTP Method: POST
+- Endpoint: /ticketing/ticket
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| integration_id | str | Required | The integration ID |
+| linked_user_id | str | Required | The linked user ID |
+| remote_data | bool | Optional | Set to true to include data from the original Ticketing software. |
+| request_input | [UnifiedTicketInput](/src/panorasdk/models/README.md#unifiedticketinput) | Required | Request body. |
+
+**Return Type**
+
+Returns a dict object.
+
+
+### **get_tickets**
+List a batch of Tickets
+- HTTP Method: GET
+- Endpoint: /ticketing/ticket
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| integration_id | str | Required |  |
+| linked_user_id | str | Required |  |
+| remote_data | bool | Optional | Set to true to include data from the original Ticketing software. |
+
+**Return Type**
+
+Returns a dict object.
+
+
+### **update_ticket**
+Update a Ticket
+- HTTP Method: PATCH
+- Endpoint: /ticketing/ticket
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| id | str | Required |  |
+
+**Return Type**
+
+Returns a dict object.
+
+
+### **get_ticket**
+Retrieve a Ticket
+- HTTP Method: GET
+- Endpoint: /ticketing/ticket/{id}
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| id | str | Required | id of the `ticket` you want to retrive. |
+| remote_data | bool | Optional | Set to true to include data from the original Ticketing software. |
+
+**Return Type**
+
+Returns a dict object.
+
+
+### **add_tickets**
+Add a batch of Tickets
+- HTTP Method: POST
+- Endpoint: /ticketing/ticket/batch
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| integration_id | str | Required |  |
+| linked_user_id | str | Required |  |
+| remote_data | bool | Optional | Set to true to include data from the original Ticketing software. |
+| request_input | [AddTicketsRequest](/src/panorasdk/models/README.md#addticketsrequest) | Required | Request body. |
+
+**Return Type**
+
+Returns a dict object.
+
+
+
+### **add_comment**
+Create a Comment
+- HTTP Method: POST
+- Endpoint: /ticketing/comment
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| integration_id | str | Required | The integration ID |
+| linked_user_id | str | Required | The linked user ID |
+| remote_data | bool | Optional | Set to true to include data from the original Ticketing software. |
+| request_input | [UnifiedCommentInput](/src/panorasdk/models/README.md#unifiedcommentinput) | Required | Request body. |
+
+**Return Type**
+
+Returns a dict object.
+
+
+### **get_comments**
+List a batch of Comments
+- HTTP Method: GET
+- Endpoint: /ticketing/comment
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| integration_id | str | Required |  |
+| linked_user_id | str | Required |  |
+| remote_data | bool | Optional | Set to true to include data from the original Ticketing software. |
+
+**Return Type**
+
+Returns a dict object.
+
+
+### **update_comment**
+Update a Comment
+- HTTP Method: PATCH
+- Endpoint: /ticketing/comment
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| id | str | Required |  |
+
+**Return Type**
+
+Returns a dict object.
+
+
+### **get_comment**
+Retrieve a Comment
+- HTTP Method: GET
+- Endpoint: /ticketing/comment/{id}
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| id | str | Required | id of the `ticket` you want to retrive. |
+| remote_data | bool | Optional | Set to true to include data from the original Ticketing software. |
+
+**Return Type**
+
+Returns a dict object.
+
+
+### **add_comments**
+Add a batch of Comments
+- HTTP Method: POST
+- Endpoint: /ticketing/comment/batch
+
+**Parameters**
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------| 
+| integration_id | str | Required |  |
+| linked_user_id | str | Required |  |
+| remote_data | bool | Optional | Set to true to include data from the original Ticketing software. |
+| request_input | [AddCommentsRequest](/src/panorasdk/models/README.md#addcommentsrequest) | Required | Request body. |
+
+**Return Type**
+
+Returns a dict object.
+
 
 
 
