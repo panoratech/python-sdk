@@ -13,10 +13,10 @@ List  Stages
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -56,10 +56,10 @@ Retrieve Stages from any connected Crm software
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 

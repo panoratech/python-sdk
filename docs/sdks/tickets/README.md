@@ -14,10 +14,10 @@ List  Tickets
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -57,10 +57,10 @@ Create Tickets in any supported Ticketing software
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -103,10 +103,10 @@ Retrieve Tickets from any connected Ticketing software
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 

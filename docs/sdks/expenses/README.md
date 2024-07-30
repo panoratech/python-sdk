@@ -14,10 +14,10 @@ List  Expenses
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -57,10 +57,10 @@ Create Expenses in any supported Accounting software
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -99,10 +99,10 @@ Retrieve Expenses from any connected Accounting software
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 

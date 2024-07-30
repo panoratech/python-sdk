@@ -14,10 +14,10 @@ List  Campaigns
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -57,10 +57,10 @@ Create a campaign in any supported Marketingautomation software
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -99,10 +99,10 @@ Retrieve Campaigns from any connected Marketingautomation software
 ### Example Usage
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 

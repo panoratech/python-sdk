@@ -37,10 +37,10 @@ poetry add git+<UNSET>.git
 
 ```python
 # Synchronous Example
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -56,11 +56,11 @@ The same SDK client can also be used to make asychronous requests by importing a
 ```python
 # Asynchronous Example
 import asyncio
+from openapi import SDK
 import os
-from panora import Panora
 
 async def main():
-    s = Panora(
+    s = SDK(
         bearer=os.getenv("BEARER", ""),
     )
     await s.hello_async()
@@ -73,10 +73,10 @@ asyncio.run(main())
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [Panora SDK](docs/sdks/panora/README.md)
+### [SDK](docs/sdks/sdk/README.md)
 
-* [hello](docs/sdks/panora/README.md#hello)
-* [health](docs/sdks/panora/README.md#health)
+* [hello](docs/sdks/sdk/README.md#hello)
+* [health](docs/sdks/sdk/README.md#health)
 
 ### [webhook](docs/sdks/webhook/README.md)
 
@@ -129,11 +129,11 @@ asyncio.run(main())
 * [list](docs/sdks/teams/README.md#list) - List  Teams
 * [retrieve](docs/sdks/teams/README.md#retrieve) - Retrieve Teams
 
-### [ticketing.attachments](docs/sdks/panoraticketingattachments/README.md)
+### [ticketing.attachments](docs/sdks/sdkticketingattachments/README.md)
 
-* [list](docs/sdks/panoraticketingattachments/README.md#list) - List  Attachments
-* [create](docs/sdks/panoraticketingattachments/README.md#create) - Create Attachments
-* [retrieve](docs/sdks/panoraticketingattachments/README.md#retrieve) - Retrieve Attachments
+* [list](docs/sdks/sdkticketingattachments/README.md#list) - List  Attachments
+* [create](docs/sdks/sdkticketingattachments/README.md#create) - Create Attachments
+* [retrieve](docs/sdks/sdkticketingattachments/README.md#retrieve) - Retrieve Attachments
 
 ### [sync](docs/sdks/sync/README.md)
 
@@ -147,11 +147,11 @@ asyncio.run(main())
 * [create](docs/sdks/companies/README.md#create) - Create Companies
 * [retrieve](docs/sdks/companies/README.md#retrieve) - Retrieve Companies
 
-### [crm.contacts](docs/sdks/panoracontacts/README.md)
+### [crm.contacts](docs/sdks/sdkcontacts/README.md)
 
-* [list](docs/sdks/panoracontacts/README.md#list) - List CRM Contacts
-* [create](docs/sdks/panoracontacts/README.md#create) - Create Contacts
-* [retrieve](docs/sdks/panoracontacts/README.md#retrieve) - Retrieve Contacts
+* [list](docs/sdks/sdkcontacts/README.md#list) - List CRM Contacts
+* [create](docs/sdks/sdkcontacts/README.md#create) - Create Contacts
+* [retrieve](docs/sdks/sdkcontacts/README.md#retrieve) - Retrieve Contacts
 
 ### [crm.deals](docs/sdks/deals/README.md)
 
@@ -182,10 +182,10 @@ asyncio.run(main())
 * [create](docs/sdks/tasks/README.md#create) - Create Tasks
 * [retrieve](docs/sdks/tasks/README.md#retrieve) - Retrieve Tasks
 
-### [crm.users](docs/sdks/panorausers/README.md)
+### [crm.users](docs/sdks/sdkusers/README.md)
 
-* [list](docs/sdks/panorausers/README.md#list) - List  Users
-* [retrieve](docs/sdks/panorausers/README.md#retrieve) - Retrieve Users
+* [list](docs/sdks/sdkusers/README.md#list) - List  Users
+* [retrieve](docs/sdks/sdkusers/README.md#retrieve) - Retrieve Users
 
 ### [linked_users](docs/sdks/linkedusers/README.md)
 
@@ -216,9 +216,9 @@ asyncio.run(main())
 * [list](docs/sdks/benefits/README.md#list) - List  Benefits
 * [retrieve](docs/sdks/benefits/README.md#retrieve) - Retrieve Benefits
 
-### [hris.companies](docs/sdks/panoracompanies/README.md)
+### [hris.companies](docs/sdks/sdkcompanies/README.md)
 
-* [list](docs/sdks/panoracompanies/README.md#list) - List  Companys
+* [list](docs/sdks/sdkcompanies/README.md#list) - List  Companys
 
 ### [hris.dependents](docs/sdks/dependents/README.md)
 
@@ -295,11 +295,11 @@ asyncio.run(main())
 * [create](docs/sdks/campaigns/README.md#create) - Create Campaign
 * [retrieve](docs/sdks/campaigns/README.md#retrieve) - Retrieve Campaigns
 
-### [marketingautomation.contacts](docs/sdks/panoramarketingautomationcontacts/README.md)
+### [marketingautomation.contacts](docs/sdks/sdkmarketingautomationcontacts/README.md)
 
-* [list](docs/sdks/panoramarketingautomationcontacts/README.md#list) - List  Contacts
-* [create](docs/sdks/panoramarketingautomationcontacts/README.md#create) - Create Contact
-* [retrieve](docs/sdks/panoramarketingautomationcontacts/README.md#retrieve) - Retrieve Contacts
+* [list](docs/sdks/sdkmarketingautomationcontacts/README.md#list) - List  Contacts
+* [create](docs/sdks/sdkmarketingautomationcontacts/README.md#create) - Create Contact
+* [retrieve](docs/sdks/sdkmarketingautomationcontacts/README.md#retrieve) - Retrieve Contacts
 
 ### [marketingautomation.emails](docs/sdks/emails/README.md)
 
@@ -328,10 +328,10 @@ asyncio.run(main())
 * [create](docs/sdks/templates/README.md#create) - Create Template
 * [retrieve](docs/sdks/templates/README.md#retrieve) - Retrieve Templates
 
-### [marketingautomation.users](docs/sdks/panoramarketingautomationusers/README.md)
+### [marketingautomation.users](docs/sdks/sdkmarketingautomationusers/README.md)
 
-* [list](docs/sdks/panoramarketingautomationusers/README.md#list) - List  Users
-* [retrieve](docs/sdks/panoramarketingautomationusers/README.md#retrieve) - Retrieve Users
+* [list](docs/sdks/sdkmarketingautomationusers/README.md#list) - List  Users
+* [retrieve](docs/sdks/sdkmarketingautomationusers/README.md#retrieve) - Retrieve Users
 
 
 ### [ats.activities](docs/sdks/activities/README.md)
@@ -399,15 +399,15 @@ asyncio.run(main())
 * [list](docs/sdks/scorecards/README.md#list) - List  ScoreCards
 * [retrieve](docs/sdks/scorecards/README.md#retrieve) - Retrieve Score Cards
 
-### [ats.tags](docs/sdks/panoratags/README.md)
+### [ats.tags](docs/sdks/sdktags/README.md)
 
-* [list](docs/sdks/panoratags/README.md#list) - List  Tags
-* [retrieve](docs/sdks/panoratags/README.md#retrieve) - Retrieve Tags
+* [list](docs/sdks/sdktags/README.md#list) - List  Tags
+* [retrieve](docs/sdks/sdktags/README.md#retrieve) - Retrieve Tags
 
-### [ats.users](docs/sdks/panoraatsusers/README.md)
+### [ats.users](docs/sdks/sdkatsusers/README.md)
 
-* [list](docs/sdks/panoraatsusers/README.md#list) - List  Users
-* [retrieve](docs/sdks/panoraatsusers/README.md#retrieve) - Retrieve Users
+* [list](docs/sdks/sdkatsusers/README.md#list) - List  Users
+* [retrieve](docs/sdks/sdkatsusers/README.md#retrieve) - Retrieve Users
 
 ### [ats.eeocs](docs/sdks/eeocs/README.md)
 
@@ -415,22 +415,22 @@ asyncio.run(main())
 * [retrieve](docs/sdks/eeocs/README.md#retrieve) - Retrieve Eeocs
 
 
-### [accounting.accounts](docs/sdks/panoraaccounts/README.md)
+### [accounting.accounts](docs/sdks/sdkaccounts/README.md)
 
-* [list](docs/sdks/panoraaccounts/README.md#list) - List  Accounts
-* [create](docs/sdks/panoraaccounts/README.md#create) - Create Accounts
-* [retrieve](docs/sdks/panoraaccounts/README.md#retrieve) - Retrieve Accounts
+* [list](docs/sdks/sdkaccounts/README.md#list) - List  Accounts
+* [create](docs/sdks/sdkaccounts/README.md#create) - Create Accounts
+* [retrieve](docs/sdks/sdkaccounts/README.md#retrieve) - Retrieve Accounts
 
 ### [accounting.addresses](docs/sdks/addresses/README.md)
 
 * [list](docs/sdks/addresses/README.md#list) - List  Addresss
 * [retrieve](docs/sdks/addresses/README.md#retrieve) - Retrieve Addresses
 
-### [accounting.attachments](docs/sdks/panoraattachments/README.md)
+### [accounting.attachments](docs/sdks/sdkattachments/README.md)
 
-* [list](docs/sdks/panoraattachments/README.md#list) - List  Attachments
-* [create](docs/sdks/panoraattachments/README.md#create) - Create Attachments
-* [retrieve](docs/sdks/panoraattachments/README.md#retrieve) - Retrieve Attachments
+* [list](docs/sdks/sdkattachments/README.md#list) - List  Attachments
+* [create](docs/sdks/sdkattachments/README.md#create) - Create Attachments
+* [retrieve](docs/sdks/sdkattachments/README.md#retrieve) - Retrieve Attachments
 
 ### [accounting.balancesheets](docs/sdks/balancesheets/README.md)
 
@@ -447,11 +447,11 @@ asyncio.run(main())
 * [list](docs/sdks/companyinfos/README.md#list) - List  CompanyInfos
 * [retrieve](docs/sdks/companyinfos/README.md#retrieve) - Retrieve Company Infos
 
-### [accounting.contacts](docs/sdks/panoraaccountingcontacts/README.md)
+### [accounting.contacts](docs/sdks/sdkaccountingcontacts/README.md)
 
-* [list](docs/sdks/panoraaccountingcontacts/README.md#list) - List  Contacts
-* [create](docs/sdks/panoraaccountingcontacts/README.md#create) - Create Contacts
-* [retrieve](docs/sdks/panoraaccountingcontacts/README.md#retrieve) - Retrieve Contacts
+* [list](docs/sdks/sdkaccountingcontacts/README.md#list) - List  Contacts
+* [create](docs/sdks/sdkaccountingcontacts/README.md#create) - Create Contacts
+* [retrieve](docs/sdks/sdkaccountingcontacts/README.md#retrieve) - Retrieve Contacts
 
 ### [accounting.creditnotes](docs/sdks/creditnotes/README.md)
 
@@ -541,15 +541,15 @@ asyncio.run(main())
 * [create](docs/sdks/folders/README.md#create) - Create Folders
 * [retrieve](docs/sdks/folders/README.md#retrieve) - Retrieve Folders
 
-### [filestorage.groups](docs/sdks/panoragroups/README.md)
+### [filestorage.groups](docs/sdks/sdkgroups/README.md)
 
-* [list](docs/sdks/panoragroups/README.md#list) - List  Groups
-* [retrieve](docs/sdks/panoragroups/README.md#retrieve) - Retrieve Groups
+* [list](docs/sdks/sdkgroups/README.md#list) - List  Groups
+* [retrieve](docs/sdks/sdkgroups/README.md#retrieve) - Retrieve Groups
 
-### [filestorage.users](docs/sdks/panorafilestorageusers/README.md)
+### [filestorage.users](docs/sdks/sdkfilestorageusers/README.md)
 
-* [list](docs/sdks/panorafilestorageusers/README.md#list) - List  Users
-* [retrieve](docs/sdks/panorafilestorageusers/README.md#retrieve) - Retrieve Users
+* [list](docs/sdks/sdkfilestorageusers/README.md#list) - List  Users
+* [retrieve](docs/sdks/sdkfilestorageusers/README.md#retrieve) - Retrieve Users
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Retries [retries] -->
@@ -559,11 +559,11 @@ Some of the endpoints in this SDK support retries. If you use the SDK without an
 
 To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
 ```python
+from openapi import SDK
 import os
-from panora import Panora
-from panora.utils import BackoffStrategy, RetryConfig
+from sdk.utils import BackoffStrategy, RetryConfig
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -577,11 +577,11 @@ s.hello(,
 
 If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
 ```python
+from openapi import SDK
 import os
-from panora import Panora
-from panora.utils import BackoffStrategy, RetryConfig
+from sdk.utils import BackoffStrategy, RetryConfig
 
-s = Panora(
+s = SDK(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
     bearer=os.getenv("BEARER", ""),
 )
@@ -606,10 +606,10 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ### Example
 
 ```python
+from openapi import SDK, models
 import os
-from panora import Panora, models
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -642,10 +642,10 @@ You can override the default server globally by passing a server index to the `s
 #### Example
 
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     server_idx=2,
     bearer=os.getenv("BEARER", ""),
 )
@@ -662,10 +662,10 @@ s.hello()
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     server_url="https://api.panora.dev",
     bearer=os.getenv("BEARER", ""),
 )
@@ -687,17 +687,17 @@ This allows you to wrap the client with your own custom logic, such as adding cu
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
-from panora import Panora
+from openapi import SDK
 import httpx
 
 http_client = httpx.Client(headers={"x-custom-header": "someValue"})
-s = Panora(client=http_client)
+s = SDK(client=http_client)
 ```
 
 or you could wrap the client with your own custom logic:
 ```python
-from panora import Panora
-from panora.httpclient import AsyncHttpClient
+from openapi import SDK
+from openapi.httpclient import AsyncHttpClient
 import httpx
 
 class CustomClient(AsyncHttpClient):
@@ -755,7 +755,7 @@ class CustomClient(AsyncHttpClient):
             extensions=extensions,
         )
 
-s = Panora(async_client=CustomClient(httpx.AsyncClient()))
+s = SDK(async_client=CustomClient(httpx.AsyncClient()))
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -772,10 +772,10 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `bearer` parameter must be set when initializing the SDK client instance. For example:
 ```python
+from openapi import SDK
 import os
-from panora import Panora
 
-s = Panora(
+s = SDK(
     bearer=os.getenv("BEARER", ""),
 )
 
