@@ -2,19 +2,20 @@ speakeasyVersion: 1.348.2
 sources:
     openapi-main:
         sourceNamespace: openapi-main
-        sourceRevisionDigest: sha256:d8aba72006fbf19c956896597e4e4eefed904a1c8bbd43b53c819cb58df2cda0
-        sourceBlobDigest: sha256:a21a254fe109d7fc4c2665b3f98b8a3f1b6540d7eb99858066e68aa72651b6cf
+        sourceRevisionDigest: sha256:1c52fb4e7f98d0a505d563da23e653bf9dbc5bcf424fa67ea40f58b260600bcb
+        sourceBlobDigest: sha256:a538c397e2c362a3abcb1a53989657ddaf5a6d4b4d08622b93b4df81a4e0ada3
         tags:
             - latest
+            - main
 targets:
     python:
         source: openapi-main
         sourceNamespace: openapi-main
-        sourceRevisionDigest: sha256:d8aba72006fbf19c956896597e4e4eefed904a1c8bbd43b53c819cb58df2cda0
-        sourceBlobDigest: sha256:a21a254fe109d7fc4c2665b3f98b8a3f1b6540d7eb99858066e68aa72651b6cf
-        codeSamplesNamespace: code-samples-typescript-my-first-target
-        codeSamplesRevisionDigest: sha256:46ea350032e48dacc340572d75ce52bc829fe0f9854bf1ceb0b140819b67406c
-        outLocation: /Users/rachidflih/Panora/python-sdk
+        sourceRevisionDigest: sha256:1c52fb4e7f98d0a505d563da23e653bf9dbc5bcf424fa67ea40f58b260600bcb
+        sourceBlobDigest: sha256:a538c397e2c362a3abcb1a53989657ddaf5a6d4b4d08622b93b4df81a4e0ada3
+        codeSamplesNamespace: code-samples-python
+        codeSamplesRevisionDigest: sha256:9d54fb8eacffa8e86e49dce4c0a69a12a05b00361d0ff137b944c00d01c54756
+        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -31,4 +32,4 @@ workflow:
             codeSamples:
                 output: codeSamples.yaml
                 registry:
-                    location: registry.speakeasyapi.dev/panora/panora/code-samples-typescript-my-first-target
+                    location: registry.speakeasyapi.dev/panora/panora/code-samples-python
