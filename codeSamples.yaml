@@ -3,11 +3,11 @@ info:
   title: CodeSamples overlay for python target
   version: 0.0.0
 actions:
-  - target: $["paths"]["/crm/companies/{id}"]["get"]
+  - target: $["paths"]["/webhook/{id}"]["delete"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveCrmCompany
+          label: delete
           source: |-
             import os
             from panora_sdk import Panora
@@ -17,11 +17,276 @@ actions:
             )
 
 
-            res = s.crm.companies.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.webhook.delete(id="<value>")
 
             if res is not None:
                 # handle response
                 pass
+  - target: $["paths"]["/field-mappings/map"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: map
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            s.field_mappings.map(request={
+                "attribute_id": "<value>",
+                "source_custom_field_id": "<value>",
+                "source_provider": "<value>",
+                "linked_user_id": "<value>",
+            })
+
+            # Use the SDK ...
+  - target: $["paths"]["/ats/attachments/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsAttachment
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.attachments.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/candidates"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAtsCandidate
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.candidates.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/attachments"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingAttachments
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.attachments.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/payrollruns"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listHrisPayrollRuns
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.payrollruns.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/actions"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createMarketingautomationAction
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.actions.create(x_connection_token="<value>", unified_marketingautomation_action_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/users"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAtsUsers
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.users.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/addresses/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingAddress
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.addresses.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/timeoffbalances/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisTimeoffbalance
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.timeoffbalances.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/users/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveMarketingAutomationUser
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.users.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/contacts"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createAccountingContact
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.contacts.create(x_connection_token="<value>", unified_accounting_contact_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/sync/status/{vertical}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: status
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            s.sync.status(vertical="<value>")
+
+            # Use the SDK ...
+  - target: $["paths"]["/crm/stages"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listCrmStages
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.stages.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/linked-users/single"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveLinkedUser
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            s.linked_users.retrieve(id="<value>")
+
+            # Use the SDK ...
   - target: $["paths"]["/field-mappings/define"]["post"]
     update:
       x-codeSamples:
@@ -44,11 +309,11 @@ actions:
             })
 
             # Use the SDK ...
-  - target: $["paths"]["/ats/eeocs/{id}"]["get"]
+  - target: $["paths"]["/ats/eeocs"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAtsEeocs
+          label: listAtsEeocs
           source: |-
             import os
             from panora_sdk import Panora
@@ -58,16 +323,16 @@ actions:
             )
 
 
-            res = s.ats.eeocs.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.ats.eeocs.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/invoices/{id}"]["get"]
+  - target: $["paths"]["/ticketing/users/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAccountingInvoice
+          label: retrieveTicketingUser
           source: |-
             import os
             from panora_sdk import Panora
@@ -77,16 +342,16 @@ actions:
             )
 
 
-            res = s.accounting.invoices.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.ticketing.users.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/comments/{id}"]["get"]
+  - target: $["paths"]["/ats/interviews/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveTicketingComment
+          label: retrieveAtsInterview
           source: |-
             import os
             from panora_sdk import Panora
@@ -96,16 +361,16 @@ actions:
             )
 
 
-            res = s.ticketing.comments.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.ats.interviews.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/payments"]["get"]
+  - target: $["paths"]["/accounting/incomestatements"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingPayment
+          label: listAccountingIncomeStatement
           source: |-
             import os
             from panora_sdk import Panora
@@ -115,16 +380,16 @@ actions:
             )
 
 
-            res = s.accounting.payments.list(x_connection_token="<value>")
+            res = s.accounting.incomestatements.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/hris/benefits/{id}"]["get"]
+  - target: $["paths"]["/ticketing/attachments"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveHrisBenefit
+          label: listTicketingAttachments
           source: |-
             import os
             from panora_sdk import Panora
@@ -134,62 +399,7 @@ actions:
             )
 
 
-            res = s.hris.benefits.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/linked-users/fromRemoteId"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: remoteId
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            s.linked_users.remote_id(remote_id="<value>")
-
-            # Use the SDK ...
-  - target: $["paths"]["/accounting/taxrates/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingTaxRate
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.taxrates.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/campaigns/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveMarketingautomationCampaign
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.campaigns.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.ticketing.attachments.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
@@ -213,11 +423,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/marketingautomation/emails"]["get"]
+  - target: $["paths"]["/accounting/expenses"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: listMarketingautomationEmails
+          label: createAccountingExpense
           source: |-
             import os
             from panora_sdk import Panora
@@ -227,7 +437,254 @@ actions:
             )
 
 
-            res = s.marketingautomation.emails.list(x_connection_token="<value>")
+            res = s.accounting.expenses.create(x_connection_token="<value>", unified_accounting_expense_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/items/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingItem
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.items.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/employerbenefits"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listHrisEmployerBenefit
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.employerbenefits.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/trackingcategories/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingTrackingCategory
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.trackingcategories.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/contacts"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingContacts
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.contacts.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/events/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveMarketingautomationEvent
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.events.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/candidates/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsCandidate
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.candidates.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/jobs/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsJob
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.jobs.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/journalentries"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingJournalEntry
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.journalentries.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/employments/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisEmployment
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.employments.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/templates"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listMarketingautomationTemplates
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.templates.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/tags/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsTag
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.tags.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/companyinfos/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingCompanyInfo
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.companyinfos.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/users/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveCrmUser
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.users.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
@@ -253,11 +710,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/balancesheets/{id}"]["get"]
+  - target: $["paths"]["/accounting/accounts"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAccountingBalanceSheet
+          label: listAccountingAccounts
           source: |-
             import os
             from panora_sdk import Panora
@@ -267,16 +724,16 @@ actions:
             )
 
 
-            res = s.accounting.balancesheets.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.accounting.accounts.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/marketingautomation/events"]["get"]
+  - target: $["paths"]["/accounting/creditnotes/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listMarketingAutomationEvents
+          label: retrieveAccountingCreditNote
           source: |-
             import os
             from panora_sdk import Panora
@@ -286,16 +743,16 @@ actions:
             )
 
 
-            res = s.marketingautomation.events.list(x_connection_token="<value>")
+            res = s.accounting.creditnotes.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/journalentries/{id}"]["get"]
+  - target: $["paths"]["/webhook/verifyEvent"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAccountingJournalEntry
+          label: verifyEvent
           source: |-
             import os
             from panora_sdk import Panora
@@ -305,16 +762,20 @@ actions:
             )
 
 
-            res = s.accounting.journalentries.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.webhook.verify_event(request={
+                "payload": {},
+                "signature": "<value>",
+                "secret": "<value>",
+            })
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/tickets"]["get"]
+  - target: $["paths"]["/ticketing/comments/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listTicketingTicket
+          label: retrieveTicketingComment
           source: |-
             import os
             from panora_sdk import Panora
@@ -324,16 +785,16 @@ actions:
             )
 
 
-            res = s.ticketing.tickets.list(x_connection_token="<value>")
+            res = s.ticketing.comments.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/hris/timeoffs"]["get"]
+  - target: $["paths"]["/crm/notes"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listHrisTimeoffs
+          label: listCrmNote
           source: |-
             import os
             from panora_sdk import Panora
@@ -343,16 +804,16 @@ actions:
             )
 
 
-            res = s.hris.timeoffs.list(x_connection_token="<value>")
+            res = s.crm.notes.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/jobs"]["get"]
+  - target: $["paths"]["/filestorage/drives"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAtsJob
+          label: listFilestorageDrives
           source: |-
             import os
             from panora_sdk import Panora
@@ -362,16 +823,16 @@ actions:
             )
 
 
-            res = s.ats.jobs.list(x_connection_token="<value>")
+            res = s.filestorage.drives.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/users"]["get"]
+  - target: $["paths"]["/filestorage/groups/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAtsUsers
+          label: retrieveFilestorageGroup
           source: |-
             import os
             from panora_sdk import Panora
@@ -381,16 +842,16 @@ actions:
             )
 
 
-            res = s.ats.users.list(x_connection_token="<value>")
+            res = s.filestorage.groups.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/crm/users"]["get"]
+  - target: $["paths"]["/ticketing/tickets/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listCrmUsers
+          label: retrieveTicketingTicket
           source: |-
             import os
             from panora_sdk import Panora
@@ -400,16 +861,16 @@ actions:
             )
 
 
-            res = s.crm.users.list(x_connection_token="<value>")
+            res = s.ticketing.tickets.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/collections/{id}"]["get"]
+  - target: $["paths"]["/marketingautomation/templates/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveCollection
+          label: retrieveMarketingautomationTemplate
           source: |-
             import os
             from panora_sdk import Panora
@@ -419,83 +880,7 @@ actions:
             )
 
 
-            res = s.ticketing.collections.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/employeepayrollruns/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveHrisEmployeePayrollRun
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.employeepayrollruns.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/offices"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsOffice
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.offices.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/attachments"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAccountingAttachments
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.attachments.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/webhook"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listWebhooks
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.webhook.list()
+            res = s.marketingautomation.templates.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
@@ -519,11 +904,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/addresses"]["get"]
+  - target: $["paths"]["/accounting/transactions/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingAddress
+          label: retrieveAccountingTransaction
           source: |-
             import os
             from panora_sdk import Panora
@@ -533,16 +918,16 @@ actions:
             )
 
 
-            res = s.accounting.addresses.list(x_connection_token="<value>")
+            res = s.accounting.transactions.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/filestorage/users/{id}"]["get"]
+  - target: $["paths"]["/linked-users/batch"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveFilestorageUser
+          label: importBatch
           source: |-
             import os
             from panora_sdk import Panora
@@ -552,16 +937,19 @@ actions:
             )
 
 
-            res = s.filestorage.users.retrieve(x_connection_token="<value>", id="<value>")
+            s.linked_users.import_batch(request={
+                "linked_user_origin_ids": [
+                    "<value>",
+                ],
+                "alias": "<value>",
+            })
 
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/departments/{id}"]["get"]
+            # Use the SDK ...
+  - target: $["paths"]["/hris/benefits/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAtsDepartment
+          label: retrieveHrisBenefit
           source: |-
             import os
             from panora_sdk import Panora
@@ -571,45 +959,7 @@ actions:
             )
 
 
-            res = s.ats.departments.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/companies"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listCrmCompany
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.companies.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/companies"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisCompanys
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.companies.list(x_connection_token="<value>")
+            res = s.hris.benefits.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
@@ -633,11 +983,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/marketingautomation/users"]["get"]
+  - target: $["paths"]["/filestorage/folders/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listMarketingAutomationUsers
+          label: retrieveFilestorageFolder
           source: |-
             import os
             from panora_sdk import Panora
@@ -647,16 +997,16 @@ actions:
             )
 
 
-            res = s.marketingautomation.users.list(x_connection_token="<value>")
+            res = s.filestorage.folders.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/creditnotes"]["get"]
+  - target: $["paths"]["/hris/employments"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingCreditNote
+          label: listHrisEmployment
           source: |-
             import os
             from panora_sdk import Panora
@@ -666,7 +1016,178 @@ actions:
             )
 
 
-            res = s.accounting.creditnotes.list(x_connection_token="<value>")
+            res = s.hris.employments.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/paygroups/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisPaygroup
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.paygroups.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/taxrates/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingTaxRate
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.taxrates.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/webhook/{id}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: updateStatus
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.webhook.update_status(id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/teams/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveTicketingTeam
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.teams.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/journalentries"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createAccountingJournalEntry
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.journalentries.create(x_connection_token="<value>", unified_accounting_journalentry_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/contacts/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingContact
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.contacts.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/comments"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listTicketingComments
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.comments.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/interviews"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAtsInterview
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.interviews.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/jobs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAtsJob
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.jobs.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
@@ -690,11 +1211,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/rejectreasons"]["get"]
+  - target: $["paths"]["/ats/scorecards"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAtsRejectReasons
+          label: listAtsScorecard
           source: |-
             import os
             from panora_sdk import Panora
@@ -704,16 +1225,16 @@ actions:
             )
 
 
-            res = s.ats.rejectreasons.list(x_connection_token="<value>")
+            res = s.ats.scorecards.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/sync/status/{vertical}"]["get"]
+  - target: $["paths"]["/crm/companies/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: status
+          label: retrieveCrmCompany
           source: |-
             import os
             from panora_sdk import Panora
@@ -723,33 +1244,16 @@ actions:
             )
 
 
-            s.sync.status(vertical="<value>")
-
-            # Use the SDK ...
-  - target: $["paths"]["/crm/notes"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listCrmNote
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.notes.list(x_connection_token="<value>")
+            res = s.crm.companies.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/hris/groups"]["get"]
+  - target: $["paths"]["/crm/engagements/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listHrisGroup
+          label: retrieveCrmEngagement
           source: |-
             import os
             from panora_sdk import Panora
@@ -759,16 +1263,16 @@ actions:
             )
 
 
-            res = s.hris.groups.list(x_connection_token="<value>")
+            res = s.crm.engagements.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/hris/payrollruns"]["get"]
+  - target: $["paths"]["/ats/offers"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listHrisPayrollRuns
+          label: listAtsOffer
           source: |-
             import os
             from panora_sdk import Panora
@@ -778,16 +1282,16 @@ actions:
             )
 
 
-            res = s.hris.payrollruns.list(x_connection_token="<value>")
+            res = s.ats.offers.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/crm/tasks/{id}"]["get"]
+  - target: $["paths"]["/filestorage/files/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveCrmTask
+          label: retrieveFilestorageFile
           source: |-
             import os
             from panora_sdk import Panora
@@ -797,16 +1301,16 @@ actions:
             )
 
 
-            res = s.crm.tasks.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.filestorage.files.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/applications/{id}"]["get"]
+  - target: $["paths"]["/marketingautomation/campaigns/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAtsApplication
+          label: retrieveMarketingautomationCampaign
           source: |-
             import os
             from panora_sdk import Panora
@@ -816,140 +1320,7 @@ actions:
             )
 
 
-            res = s.ats.applications.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/tags/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsTag
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.tags.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/files"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listFilestorageFile
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.files.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/deals"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listCrmDeals
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.deals.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/employees"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisEmployee
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.employees.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/locations"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisLocation
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.locations.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/automations"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createMarketingautomationAutomation
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.automations.create(x_connection_token="<value>", unified_marketingautomation_automation_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/purchaseorders"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createAccountingPurchaseOrder
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.purchaseorders.create(x_connection_token="<value>", unified_accounting_purchaseorder_input={})
+            res = s.marketingautomation.campaigns.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
@@ -992,11 +1363,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/hris/employerbenefits/{id}"]["get"]
+  - target: $["paths"]["/hris/employees"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveHrisEmployerBenefit
+          label: listHrisEmployee
           source: |-
             import os
             from panora_sdk import Panora
@@ -1006,7 +1377,7 @@ actions:
             )
 
 
-            res = s.hris.employerbenefits.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.hris.employees.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
@@ -1032,11 +1403,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/addresses/{id}"]["get"]
+  - target: $["paths"]["/webhook"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAccountingAddress
+          label: createWebhook
           source: |-
             import os
             from panora_sdk import Panora
@@ -1046,16 +1417,22 @@ actions:
             )
 
 
-            res = s.accounting.addresses.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.webhook.create(request={
+                "url": "http://limp-pastry.org",
+                "description": "Inverse discrete benchmark",
+                "scope": [
+                    "<value>",
+                ],
+            })
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/balancesheets"]["get"]
+  - target: $["paths"]["/ticketing/tags"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingBalanceSheets
+          label: listTicketingTags
           source: |-
             import os
             from panora_sdk import Panora
@@ -1065,16 +1442,16 @@ actions:
             )
 
 
-            res = s.accounting.balancesheets.list(x_connection_token="<value>")
+            res = s.ticketing.tags.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/marketingautomation/events/{id}"]["get"]
+  - target: $["paths"]["/marketingautomation/actions"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveMarketingautomationEvent
+          label: listMarketingautomationAction
           source: |-
             import os
             from panora_sdk import Panora
@@ -1084,16 +1461,16 @@ actions:
             )
 
 
-            res = s.marketingautomation.events.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.marketingautomation.actions.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/transactions"]["get"]
+  - target: $["paths"]["/marketingautomation/lists"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingTransaction
+          label: listMarketingautomationLists
           source: |-
             import os
             from panora_sdk import Panora
@@ -1103,7 +1480,681 @@ actions:
             )
 
 
-            res = s.accounting.transactions.list(x_connection_token="<value>")
+            res = s.marketingautomation.lists.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/activities"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAtsActivity
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.activities.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/notes/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveCrmNote
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.notes.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/groups"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listHrisGroup
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.groups.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/rejectreasons/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsRejectReason
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.rejectreasons.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/balancesheets/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingBalanceSheet
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.balancesheets.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/contacts"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listTicketingContacts
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.contacts.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/automations/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveMarketingautomationAutomation
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.automations.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/scorecards/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsScorecard
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.scorecards.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/journalentries/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingJournalEntry
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.journalentries.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/trackingcategories"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingTrackingCategorys
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.trackingcategories.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/filestorage/folders"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listFilestorageFolder
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.filestorage.folders.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/accounts"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listTicketingAccount
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.accounts.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/taxrates"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingTaxRate
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.taxrates.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: hello
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            s.hello()
+
+            # Use the SDK ...
+  - target: $["paths"]["/hris/employees"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createHrisEmployee
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.employees.create(x_connection_token="<value>", unified_hris_employee_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/contacts/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveMarketingAutomationContact
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.contacts.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/activities/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsActivity
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.activities.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/users/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsUser
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.users.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/notes"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createCrmNote
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.notes.create(x_connection_token="<value>", unified_crm_note_input={
+                "content": "<value>",
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/tasks"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createCrmTask
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.tasks.create(x_connection_token="<value>", unified_crm_task_input={
+                "subject": "<value>",
+                "content": "<value>",
+                "status": "<value>",
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/activities"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createAtsActivity
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.activities.create(x_connection_token="<value>", unified_ats_activity_input={
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/purchaseorders"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createAccountingPurchaseOrder
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.purchaseorders.create(x_connection_token="<value>", unified_accounting_purchaseorder_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/filestorage/users/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveFilestorageUser
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.filestorage.users.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/messages/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveMarketingautomationMessage
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.messages.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/accounts/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingAccount
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.accounts.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/payments"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createAccountingPayment
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.payments.create(x_connection_token="<value>", unified_accounting_payment_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/groups/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisGroup
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.groups.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/contacts"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listCrmContacts
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.contacts.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/tasks/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveCrmTask
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.tasks.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/linked-users"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createLinkedUser
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            s.linked_users.create(request={
+                "linked_user_origin_id": "<value>",
+                "alias": "<value>",
+            })
+
+            # Use the SDK ...
+  - target: $["paths"]["/webhook"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listWebhooks
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.webhook.list()
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/expenses"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingExpense
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.expenses.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/timeoffs"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createHrisTimeoff
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.timeoffs.create(x_connection_token="<value>", unified_hris_timeoff_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/events"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listMarketingAutomationEvents
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.events.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/tags"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAtsTags
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.tags.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
@@ -1127,11 +2178,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/hris/timeoffbalances/{id}"]["get"]
+  - target: $["paths"]["/filestorage/folders"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveHrisTimeoffbalance
+          label: createFilestorageFolder
           source: |-
             import os
             from panora_sdk import Panora
@@ -1141,7 +2192,353 @@ actions:
             )
 
 
-            res = s.hris.timeoffbalances.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.filestorage.folders.create(x_connection_token="<value>", remote_data=False, unified_filestorage_folder_input={
+                "name": "<value>",
+                "size": "<value>",
+                "folder_url": "<value>",
+                "description": "Multi-tiered human-resource model",
+                "drive_id": "<value>",
+                "parent_folder_id": "<value>",
+                "shared_link": "<value>",
+                "permission": "<value>",
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/contacts/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveTicketingContact
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.contacts.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/linked-users"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listLinkedUsers
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            s.linked_users.list()
+
+            # Use the SDK ...
+  - target: $["paths"]["/ats/departments/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsDepartment
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.departments.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/addresses"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingAddress
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.addresses.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/cashflowstatements"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingCashflowStatement
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.cashflowstatements.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/sync/resync"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: resync
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            s.sync.resync()
+
+            # Use the SDK ...
+  - target: $["paths"]["/accounting/transactions"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingTransaction
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.transactions.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/tickets"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listTicketingTicket
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.tickets.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/attachments"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAtsAttachment
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.attachments.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/incomestatements/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingIncomeStatement
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.incomestatements.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/phonenumbers"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingPhonenumber
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.phonenumbers.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/employeepayrollruns/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisEmployeePayrollRun
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.employeepayrollruns.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/attachments"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createAccountingAttachment
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.attachments.create(x_connection_token="<value>", unified_accounting_attachment_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/linked-users/fromRemoteId"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: remoteId
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            s.linked_users.remote_id(remote_id="<value>")
+
+            # Use the SDK ...
+  - target: $["paths"]["/marketingautomation/campaigns"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createMarketingautomationCampaign
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.campaigns.create(x_connection_token="<value>", unified_marketingautomation_campaign_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/invoices/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingInvoice
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.invoices.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/applications"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAtsApplication
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.applications.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/balancesheets"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingBalanceSheets
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.balancesheets.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
@@ -1163,11 +2560,11 @@ actions:
             s.health()
 
             # Use the SDK ...
-  - target: $["paths"]["/webhook/verifyEvent"]["post"]
+  - target: $["paths"]["/crm/deals"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: verifyEvent
+          label: listCrmDeals
           source: |-
             import os
             from panora_sdk import Panora
@@ -1177,20 +2574,16 @@ actions:
             )
 
 
-            res = s.webhook.verify_event(request={
-                "payload": {},
-                "signature": "<value>",
-                "secret": "<value>",
-            })
+            res = s.crm.deals.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/users"]["get"]
+  - target: $["paths"]["/accounting/invoices"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listTicketingUsers
+          label: listAccountingInvoice
           source: |-
             import os
             from panora_sdk import Panora
@@ -1200,7 +2593,7 @@ actions:
             )
 
 
-            res = s.ticketing.users.list(x_connection_token="<value>")
+            res = s.accounting.invoices.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
@@ -1226,11 +2619,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/attachments"]["post"]
+  - target: $["paths"]["/crm/users"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: createTicketingAttachment
+          label: listCrmUsers
           source: |-
             import os
             from panora_sdk import Panora
@@ -1240,89 +2633,7 @@ actions:
             )
 
 
-            res = s.ticketing.attachments.create(x_connection_token="<value>", unified_ticketing_attachment_input={
-                "file_name": "your_file_here",
-                "file_url": "<value>",
-                "uploader": "<value>",
-                "field_mappings": {},
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/linked-users"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listLinkedUsers
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            s.linked_users.list()
-
-            # Use the SDK ...
-  - target: $["paths"]["/"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: hello
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            s.hello()
-
-            # Use the SDK ...
-  - target: $["paths"]["/accounting/payments/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingPayment
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.payments.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/tasks"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createCrmTask
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.tasks.create(x_connection_token="<value>", unified_crm_task_input={
-                "subject": "<value>",
-                "content": "<value>",
-                "status": "<value>",
-                "field_mappings": {},
-            })
+            res = s.crm.users.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
@@ -1365,11 +2676,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/scorecards"]["get"]
+  - target: $["paths"]["/accounting/purchaseorders"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAtsScorecard
+          label: listAccountingPurchaseOrder
           source: |-
             import os
             from panora_sdk import Panora
@@ -1379,7 +2690,7 @@ actions:
             )
 
 
-            res = s.ats.scorecards.list(x_connection_token="<value>")
+            res = s.accounting.purchaseorders.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
@@ -1399,1326 +2710,6 @@ actions:
 
 
             res = s.ticketing.attachments.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/contacts"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createAccountingContact
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.contacts.create(x_connection_token="<value>", unified_accounting_contact_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/employments"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisEmployment
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.employments.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/paygroups"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisPaygroup
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.paygroups.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/templates"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listMarketingautomationTemplates
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.templates.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/jobs/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsJob
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.jobs.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/linked-users/single"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveLinkedUser
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            s.linked_users.retrieve(id="<value>")
-
-            # Use the SDK ...
-  - target: $["paths"]["/ticketing/collections"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listTicketingCollections
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.collections.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ticketing/teams/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveTicketingTeam
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.teams.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/linked-users"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createLinkedUser
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            s.linked_users.create(request={
-                "linked_user_origin_id": "<value>",
-                "alias": "<value>",
-            })
-
-            # Use the SDK ...
-  - target: $["paths"]["/marketingautomation/automations/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveMarketingautomationAutomation
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.automations.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/activities/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsActivity
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.activities.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ticketing/contacts/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveTicketingContact
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.contacts.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/incomestatements/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingIncomeStatement
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.incomestatements.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/cashflowstatements/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingCashflowStatement
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.cashflowstatements.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/field-mappings/map"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: map
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            s.field_mappings.map(request={
-                "attribute_id": "<value>",
-                "source_custom_field_id": "<value>",
-                "source_provider": "<value>",
-                "linked_user_id": "<value>",
-            })
-
-            # Use the SDK ...
-  - target: $["paths"]["/hris/locations/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveHrisLocation
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.locations.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/timeoffbalances"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisTimeoffbalance
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.timeoffbalances.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/folders"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createFilestorageFolder
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.folders.create(x_connection_token="<value>", remote_data=False, unified_filestorage_folder_input={
-                "name": "<value>",
-                "size": "<value>",
-                "folder_url": "<value>",
-                "description": "Multi-tiered human-resource model",
-                "drive_id": "<value>",
-                "parent_folder_id": "<value>",
-                "shared_link": "<value>",
-                "permission": "<value>",
-                "field_mappings": {},
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/tasks"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listCrmTask
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.tasks.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/deals/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveCrmDeal
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.deals.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/automations"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listMarketingautomationAutomation
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.automations.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/messages"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listMarketingautomationMessages
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.messages.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/users/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsUser
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.users.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/accounts"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAccountingAccounts
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.accounts.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/passthrough"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: request
-          source: |-
-            import os
-            import panora_sdk
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.passthrough.request(integration_id="<value>", linked_user_id="<value>", vertical="<value>", pass_through_request_dto={
-                "method": panora_sdk.Method.GET,
-                "path": "/dev",
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/templates/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveMarketingautomationTemplate
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.templates.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/attachments"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsAttachment
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.attachments.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/items/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingItem
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.items.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/stages/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveCrmStage
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.stages.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/users/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveMarketingAutomationUser
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.users.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/tags"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsTags
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.tags.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/phonenumbers"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAccountingPhonenumber
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.phonenumbers.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/webhook"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createWebhook
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.webhook.create(request={
-                "url": "http://limp-pastry.org",
-                "description": "Inverse discrete benchmark",
-                "scope": [
-                    "<value>",
-                ],
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/timeoffs/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveHrisTimeoff
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.timeoffs.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/candidates"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createAtsCandidate
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.candidates.create(x_connection_token="<value>", unified_ats_candidate_input={
-                "field_mappings": {},
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ticketing/tags"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listTicketingTags
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.tags.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/messages/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveMarketingautomationMessage
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.messages.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/eeocs"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsEeocs
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.eeocs.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/vendorcredits"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAccountingVendorCredit
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.vendorcredits.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/groups/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveFilestorageGroup
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.groups.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/scorecards/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsScorecard
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.scorecards.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/companyinfos"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAccountingCompanyInfos
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.companyinfos.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/companyinfos/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingCompanyInfo
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.companyinfos.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/employments/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveHrisEmployment
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.employments.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/candidates/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsCandidate
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.candidates.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/jobinterviewstages"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsJobInterviewStage
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.jobinterviewstages.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/invoices"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAccountingInvoice
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.invoices.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/contacts"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createCrmContact
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.contacts.create(x_connection_token="<value>", unified_crm_contact_input={
-                "first_name": "Jed",
-                "last_name": "Kuhn",
-                "field_mappings": {},
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/employerbenefits"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisEmployerBenefit
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.employerbenefits.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/offices/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsOffice
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.offices.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/trackingcategories/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingTrackingCategory
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.trackingcategories.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/timeoffs"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createHrisTimeoff
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.timeoffs.create(x_connection_token="<value>", unified_hris_timeoff_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/accounts/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingAccount
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.accounts.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/expenses"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createAccountingExpense
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.expenses.create(x_connection_token="<value>", unified_accounting_expense_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/folders/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveFilestorageFolder
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.folders.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/offers/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsOffer
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.offers.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/transactions/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingTransaction
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.transactions.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/drives"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listFilestorageDrives
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.drives.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/contacts"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createMarketingAutomationContact
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.contacts.create(x_connection_token="<value>", unified_marketingautomation_contact_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/lists"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createMarketingautomationList
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.lists.create(x_connection_token="<value>", unified_marketingautomation_list_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/contacts/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingContact
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.contacts.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/bankinfos"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisBankinfo
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.bankinfos.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ticketing/accounts/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveTicketingAccount
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.accounts.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/items"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAccountingItem
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.items.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/campaigns"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listMarketingautomationCampaign
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.campaigns.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/lists/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveMarketingautomationList
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.lists.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/phonenumbers/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingPhonenumber
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.phonenumbers.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/files/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveFilestorageFile
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.files.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
@@ -2748,11 +2739,11 @@ actions:
             })
 
             # Use the SDK ...
-  - target: $["paths"]["/hris/bankinfos/{id}"]["get"]
+  - target: $["paths"]["/hris/timeoffs"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveHrisBankinfo
+          label: listHrisTimeoffs
           source: |-
             import os
             from panora_sdk import Panora
@@ -2762,16 +2753,16 @@ actions:
             )
 
 
-            res = s.hris.bankinfos.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.hris.timeoffs.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/purchaseorders"]["get"]
+  - target: $["paths"]["/accounting/cashflowstatements/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingPurchaseOrder
+          label: retrieveAccountingCashflowStatement
           source: |-
             import os
             from panora_sdk import Panora
@@ -2781,7 +2772,426 @@ actions:
             )
 
 
-            res = s.accounting.purchaseorders.list(x_connection_token="<value>")
+            res = s.accounting.cashflowstatements.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/dependents/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisDependent
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.dependents.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/employerbenefits/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisEmployerBenefit
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.employerbenefits.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/creditnotes"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingCreditNote
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.creditnotes.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/payments/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingPayment
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.payments.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/filestorage/users"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listFilestorageUsers
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.filestorage.users.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/contacts"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createMarketingAutomationContact
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.contacts.create(x_connection_token="<value>", unified_marketingautomation_contact_input={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/messages"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listMarketingautomationMessages
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.messages.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/filestorage/files"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createFilestorageFile
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.filestorage.files.create(x_connection_token="<value>", remote_data=False, unified_filestorage_file_input={
+                "name": "<value>",
+                "file_url": "<value>",
+                "mime_type": "<value>",
+                "size": "<value>",
+                "folder_id": "<value>",
+                "permission": "<value>",
+                "shared_link": "<value>",
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/locations"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listHrisLocation
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.locations.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/automations"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listMarketingautomationAutomation
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.automations.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/vendorcredits/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingVendorCredit
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.vendorcredits.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/tickets"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createTicketingTicket
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.tickets.create(x_connection_token="<value>", unified_ticketing_ticket_input={
+                "name": "<value>",
+                "description": "Multi-tiered human-resource model",
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/benefits"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listHrisBenefit
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.benefits.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/filestorage/drives/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveFilestorageDrive
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.filestorage.drives.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/collections/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveCollection
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.collections.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/locations/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisLocation
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.locations.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/applications/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsApplication
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.applications.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/expenses/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAccountingExpense
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.expenses.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/accounts/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveTicketingAccount
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.accounts.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/engagements"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createCrmEngagement
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.engagements.create(x_connection_token="<value>", unified_crm_engagement_input={
+                "type": "<value>",
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/passthrough"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: request
+          source: |-
+            import os
+            import panora_sdk
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.passthrough.request(integration_id="<value>", linked_user_id="<value>", vertical="<value>", pass_through_request_dto={
+                "method": panora_sdk.Method.GET,
+                "path": "/dev",
+            })
 
             if res is not None:
                 # handle response
@@ -2827,11 +3237,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/hris/groups/{id}"]["get"]
+  - target: $["paths"]["/hris/bankinfos/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveHrisGroup
+          label: retrieveHrisBankinfo
           source: |-
             import os
             from panora_sdk import Panora
@@ -2841,16 +3251,16 @@ actions:
             )
 
 
-            res = s.hris.groups.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.hris.bankinfos.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/candidates"]["get"]
+  - target: $["paths"]["/ats/offers/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAtsCandidate
+          label: retrieveAtsOffer
           source: |-
             import os
             from panora_sdk import Panora
@@ -2860,16 +3270,16 @@ actions:
             )
 
 
-            res = s.ats.candidates.list(x_connection_token="<value>")
+            res = s.ats.offers.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/tickets"]["post"]
+  - target: $["paths"]["/accounting/payments"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: createTicketingTicket
+          label: listAccountingPayment
           source: |-
             import os
             from panora_sdk import Panora
@@ -2879,20 +3289,39 @@ actions:
             )
 
 
-            res = s.ticketing.tickets.create(x_connection_token="<value>", unified_ticketing_ticket_input={
-                "name": "<value>",
-                "description": "Multi-tiered human-resource model",
+            res = s.accounting.payments.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/contacts"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createCrmContact
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.contacts.create(x_connection_token="<value>", unified_crm_contact_input={
+                "first_name": "Jed",
+                "last_name": "Kuhn",
                 "field_mappings": {},
             })
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/taxrates"]["get"]
+  - target: $["paths"]["/marketingautomation/actions/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingTaxRate
+          label: retrieveMarketingautomationAction
           source: |-
             import os
             from panora_sdk import Panora
@@ -2902,16 +3331,16 @@ actions:
             )
 
 
-            res = s.accounting.taxrates.list(x_connection_token="<value>")
+            res = s.marketingautomation.actions.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/rejectreasons/{id}"]["get"]
+  - target: $["paths"]["/marketingautomation/users"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAtsRejectReason
+          label: listMarketingAutomationUsers
           source: |-
             import os
             from panora_sdk import Panora
@@ -2921,16 +3350,16 @@ actions:
             )
 
 
-            res = s.ats.rejectreasons.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.marketingautomation.users.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/webhook/{id}"]["delete"]
+  - target: $["paths"]["/ats/offices"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: delete
+          label: listAtsOffice
           source: |-
             import os
             from panora_sdk import Panora
@@ -2940,16 +3369,16 @@ actions:
             )
 
 
-            res = s.webhook.delete(id="<value>")
+            res = s.ats.offices.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/journalentries"]["post"]
+  - target: $["paths"]["/ticketing/collections"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: createAccountingJournalEntry
+          label: listTicketingCollections
           source: |-
             import os
             from panora_sdk import Panora
@@ -2959,16 +3388,16 @@ actions:
             )
 
 
-            res = s.accounting.journalentries.create(x_connection_token="<value>", unified_accounting_journalentry_input={})
+            res = s.ticketing.collections.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/attachments"]["get"]
+  - target: $["paths"]["/crm/stages/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listTicketingAttachments
+          label: retrieveCrmStage
           source: |-
             import os
             from panora_sdk import Panora
@@ -2978,16 +3407,16 @@ actions:
             )
 
 
-            res = s.ticketing.attachments.list(x_connection_token="<value>")
+            res = s.crm.stages.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/attachments/{id}"]["get"]
+  - target: $["paths"]["/hris/bankinfos"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAccountingAttachment
+          label: listHrisBankinfo
           source: |-
             import os
             from panora_sdk import Panora
@@ -2997,16 +3426,16 @@ actions:
             )
 
 
-            res = s.accounting.attachments.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.hris.bankinfos.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/cashflowstatements"]["get"]
+  - target: $["paths"]["/hris/timeoffbalances"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingCashflowStatement
+          label: listHrisTimeoffbalance
           source: |-
             import os
             from panora_sdk import Panora
@@ -3016,16 +3445,16 @@ actions:
             )
 
 
-            res = s.accounting.cashflowstatements.list(x_connection_token="<value>")
+            res = s.hris.timeoffbalances.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/comments"]["get"]
+  - target: $["paths"]["/ats/rejectreasons"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listTicketingComments
+          label: listAtsRejectReasons
           source: |-
             import os
             from panora_sdk import Panora
@@ -3035,16 +3464,16 @@ actions:
             )
 
 
-            res = s.ticketing.comments.list(x_connection_token="<value>")
+            res = s.ats.rejectreasons.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/marketingautomation/campaigns"]["post"]
+  - target: $["paths"]["/ats/eeocs/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: createMarketingautomationCampaign
+          label: retrieveAtsEeocs
           source: |-
             import os
             from panora_sdk import Panora
@@ -3054,16 +3483,16 @@ actions:
             )
 
 
-            res = s.marketingautomation.campaigns.create(x_connection_token="<value>", unified_marketingautomation_campaign_input={})
+            res = s.ats.eeocs.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/interviews/{id}"]["get"]
+  - target: $["paths"]["/ticketing/users"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAtsInterview
+          label: listTicketingUsers
           source: |-
             import os
             from panora_sdk import Panora
@@ -3073,16 +3502,16 @@ actions:
             )
 
 
-            res = s.ats.interviews.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.ticketing.users.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/crm/contacts"]["get"]
+  - target: $["paths"]["/crm/deals/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listCrmContacts
+          label: retrieveCrmDeal
           source: |-
             import os
             from panora_sdk import Panora
@@ -3092,16 +3521,16 @@ actions:
             )
 
 
-            res = s.crm.contacts.list(x_connection_token="<value>")
+            res = s.crm.deals.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/contacts"]["get"]
+  - target: $["paths"]["/crm/tasks"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingContacts
+          label: listCrmTask
           source: |-
             import os
             from panora_sdk import Panora
@@ -3111,16 +3540,16 @@ actions:
             )
 
 
-            res = s.accounting.contacts.list(x_connection_token="<value>")
+            res = s.crm.tasks.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/creditnotes/{id}"]["get"]
+  - target: $["paths"]["/accounting/accounts"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAccountingCreditNote
+          label: createAccountingAccount
           source: |-
             import os
             from panora_sdk import Panora
@@ -3130,16 +3559,16 @@ actions:
             )
 
 
-            res = s.accounting.creditnotes.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.accounting.accounts.create(x_connection_token="<value>", unified_accounting_account_input={})
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/expenses/{id}"]["get"]
+  - target: $["paths"]["/marketingautomation/automations"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveAccountingExpense
+          label: createMarketingautomationAutomation
           source: |-
             import os
             from panora_sdk import Panora
@@ -3149,16 +3578,16 @@ actions:
             )
 
 
-            res = s.accounting.expenses.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.marketingautomation.automations.create(x_connection_token="<value>", unified_marketingautomation_automation_input={})
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/incomestatements"]["get"]
+  - target: $["paths"]["/ats/departments"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingIncomeStatement
+          label: listAtsDepartments
           source: |-
             import os
             from panora_sdk import Panora
@@ -3168,16 +3597,16 @@ actions:
             )
 
 
-            res = s.accounting.incomestatements.list(x_connection_token="<value>")
+            res = s.ats.departments.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/webhook/{id}"]["put"]
+  - target: $["paths"]["/ats/interviews"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: updateStatus
+          label: createAtsInterview
           source: |-
             import os
             from panora_sdk import Panora
@@ -3187,7 +3616,263 @@ actions:
             )
 
 
-            res = s.webhook.update_status(id="<value>")
+            res = s.ats.interviews.create(x_connection_token="<value>", unified_ats_interview_input={
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/accounting/vendorcredits"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listAccountingVendorCredit
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.accounting.vendorcredits.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/filestorage/files"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listFilestorageFile
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.filestorage.files.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/tags/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveTicketingTag
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.tags.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ticketing/attachments"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createTicketingAttachment
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ticketing.attachments.create(x_connection_token="<value>", unified_ticketing_attachment_input={
+                "file_name": "your_file_here",
+                "file_url": "<value>",
+                "uploader": "<value>",
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/employeepayrollruns"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listHrisEmployeePayrollRun
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.employeepayrollruns.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/crm/companies"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listCrmCompany
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.crm.companies.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/companies"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listHrisCompanys
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.companies.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/employees/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveHrisEmployee
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.employees.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/lists/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveMarketingautomationList
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.lists.retrieve(x_connection_token="<value>", id="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/hris/paygroups"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listHrisPaygroup
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.hris.paygroups.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/marketingautomation/emails"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listMarketingautomationEmails
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.marketingautomation.emails.list(x_connection_token="<value>")
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/candidates"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createAtsCandidate
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.candidates.create(x_connection_token="<value>", unified_ats_candidate_input={
+                "field_mappings": {},
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/ats/jobinterviewstages/{id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: retrieveAtsJobInterviewStage
+          source: |-
+            import os
+            from panora_sdk import Panora
+
+            s = Panora(
+                bearer=os.getenv("BEARER", ""),
+            )
+
+
+            res = s.ats.jobinterviewstages.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
@@ -3216,11 +3901,11 @@ actions:
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/interviews"]["post"]
+  - target: $["paths"]["/accounting/attachments/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: createAtsInterview
+          label: retrieveAccountingAttachment
           source: |-
             import os
             from panora_sdk import Panora
@@ -3230,18 +3915,16 @@ actions:
             )
 
 
-            res = s.ats.interviews.create(x_connection_token="<value>", unified_ats_interview_input={
-                "field_mappings": {},
-            })
+            res = s.accounting.attachments.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/hris/dependents/{id}"]["get"]
+  - target: $["paths"]["/hris/timeoffs/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveHrisDependent
+          label: retrieveHrisTimeoff
           source: |-
             import os
             from panora_sdk import Panora
@@ -3251,16 +3934,16 @@ actions:
             )
 
 
-            res = s.hris.dependents.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.hris.timeoffs.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/marketingautomation/lists"]["get"]
+  - target: $["paths"]["/accounting/companyinfos"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listMarketingautomationLists
+          label: listAccountingCompanyInfos
           source: |-
             import os
             from panora_sdk import Panora
@@ -3270,16 +3953,16 @@ actions:
             )
 
 
-            res = s.marketingautomation.lists.list(x_connection_token="<value>")
+            res = s.accounting.companyinfos.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ats/applications"]["get"]
+  - target: $["paths"]["/ats/offices/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAtsApplication
+          label: retrieveAtsOffice
           source: |-
             import os
             from panora_sdk import Panora
@@ -3289,16 +3972,16 @@ actions:
             )
 
 
-            res = s.ats.applications.list(x_connection_token="<value>")
+            res = s.ats.offices.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/expenses"]["get"]
+  - target: $["paths"]["/marketingautomation/campaigns"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingExpense
+          label: listMarketingautomationCampaign
           source: |-
             import os
             from panora_sdk import Panora
@@ -3308,16 +3991,16 @@ actions:
             )
 
 
-            res = s.accounting.expenses.list(x_connection_token="<value>")
+            res = s.marketingautomation.campaigns.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/accounting/journalentries"]["get"]
+  - target: $["paths"]["/marketingautomation/lists"]["post"]
     update:
       x-codeSamples:
         - lang: python
-          label: listAccountingJournalEntry
+          label: createMarketingautomationList
           source: |-
             import os
             from panora_sdk import Panora
@@ -3327,16 +4010,16 @@ actions:
             )
 
 
-            res = s.accounting.journalentries.list(x_connection_token="<value>")
+            res = s.marketingautomation.lists.create(x_connection_token="<value>", unified_marketingautomation_list_input={})
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/filestorage/drives/{id}"]["get"]
+  - target: $["paths"]["/ats/jobinterviewstages"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveFilestorageDrive
+          label: listAtsJobInterviewStage
           source: |-
             import os
             from panora_sdk import Panora
@@ -3346,16 +4029,16 @@ actions:
             )
 
 
-            res = s.filestorage.drives.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.ats.jobinterviewstages.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/marketingautomation/contacts/{id}"]["get"]
+  - target: $["paths"]["/accounting/items"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveMarketingAutomationContact
+          label: listAccountingItem
           source: |-
             import os
             from panora_sdk import Panora
@@ -3365,16 +4048,16 @@ actions:
             )
 
 
-            res = s.marketingautomation.contacts.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.accounting.items.list(x_connection_token="<value>")
 
             if res is not None:
                 # handle response
                 pass
-  - target: $["paths"]["/ticketing/tags/{id}"]["get"]
+  - target: $["paths"]["/accounting/phonenumbers/{id}"]["get"]
     update:
       x-codeSamples:
         - lang: python
-          label: retrieveTicketingTag
+          label: retrieveAccountingPhonenumber
           source: |-
             import os
             from panora_sdk import Panora
@@ -3384,690 +4067,7 @@ actions:
             )
 
 
-            res = s.ticketing.tags.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/attachments/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsAttachment
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.attachments.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/trackingcategories"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAccountingTrackingCategorys
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.trackingcategories.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/users/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveCrmUser
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.users.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/employeepayrollruns"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisEmployeePayrollRun
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.employeepayrollruns.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/actions"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createMarketingautomationAction
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.actions.create(x_connection_token="<value>", unified_marketingautomation_action_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/payments"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createAccountingPayment
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.payments.create(x_connection_token="<value>", unified_accounting_payment_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/notes"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createCrmNote
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.notes.create(x_connection_token="<value>", unified_crm_note_input={
-                "content": "<value>",
-                "field_mappings": {},
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/notes/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveCrmNote
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.notes.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/actions"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listMarketingautomationAction
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.actions.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/activities"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsActivity
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.activities.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/users"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listFilestorageUsers
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.users.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ticketing/accounts"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listTicketingAccount
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.accounts.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/engagements"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createCrmEngagement
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.engagements.create(x_connection_token="<value>", unified_crm_engagement_input={
-                "type": "<value>",
-                "field_mappings": {},
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/benefits"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listHrisBenefit
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.benefits.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/departments"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsDepartments
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.departments.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ticketing/users/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveTicketingUser
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.users.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/folders"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listFilestorageFolder
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.folders.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/interviews"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsInterview
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.interviews.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/vendorcredits/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAccountingVendorCredit
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.vendorcredits.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/employees"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createHrisEmployee
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.employees.create(x_connection_token="<value>", unified_hris_employee_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/filestorage/files"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createFilestorageFile
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.filestorage.files.create(x_connection_token="<value>", remote_data=False, unified_filestorage_file_input={
-                "name": "<value>",
-                "file_url": "<value>",
-                "mime_type": "<value>",
-                "size": "<value>",
-                "folder_id": "<value>",
-                "permission": "<value>",
-                "shared_link": "<value>",
-                "field_mappings": {},
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/activities"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createAtsActivity
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.activities.create(x_connection_token="<value>", unified_ats_activity_input={
-                "field_mappings": {},
-            })
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/accounts"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createAccountingAccount
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.accounts.create(x_connection_token="<value>", unified_accounting_account_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ticketing/contacts"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listTicketingContacts
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.contacts.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/crm/stages"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listCrmStages
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.stages.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ticketing/tickets/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveTicketingTicket
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ticketing.tickets.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/employees/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveHrisEmployee
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.employees.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/hris/paygroups/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveHrisPaygroup
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.hris.paygroups.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/linked-users/batch"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: importBatch
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            s.linked_users.import_batch(request={
-                "linked_user_origin_ids": [
-                    "<value>",
-                ],
-                "alias": "<value>",
-            })
-
-            # Use the SDK ...
-  - target: $["paths"]["/crm/engagements/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveCrmEngagement
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.crm.engagements.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/ats/offers"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: listAtsOffer
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.offers.list(x_connection_token="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/accounting/attachments"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: createAccountingAttachment
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.accounting.attachments.create(x_connection_token="<value>", unified_accounting_attachment_input={})
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/sync/resync"]["post"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: resync
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            s.sync.resync()
-
-            # Use the SDK ...
-  - target: $["paths"]["/ats/jobinterviewstages/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveAtsJobInterviewStage
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.ats.jobinterviewstages.retrieve(x_connection_token="<value>", id="<value>")
-
-            if res is not None:
-                # handle response
-                pass
-  - target: $["paths"]["/marketingautomation/actions/{id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: python
-          label: retrieveMarketingautomationAction
-          source: |-
-            import os
-            from panora_sdk import Panora
-
-            s = Panora(
-                bearer=os.getenv("BEARER", ""),
-            )
-
-
-            res = s.marketingautomation.actions.retrieve(x_connection_token="<value>", id="<value>")
+            res = s.accounting.phonenumbers.retrieve(x_connection_token="<value>", id="<value>")
 
             if res is not None:
                 # handle response
