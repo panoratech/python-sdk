@@ -1,0 +1,20 @@
+speakeasyVersion: 1.348.2
+sources:
+    openapi-main:
+        sourceNamespace: openapi-main
+        sourceRevisionDigest: sha256:ad169aa85f7b0b4476c5cf2340ccc04a2825ed648d3dea21ce542b78fe1ce58f
+        sourceBlobDigest: sha256:6861fe0040053baf708092a1d349d9e5adbca7aeb3a5e803fdb08e1f138db3f2
+        tags:
+            - latest
+            - main
+targets: {}
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        openapi-main:
+            inputs:
+                - location: https://raw.githubusercontent.com/panoratech/Panora/main/packages/api/swagger/swagger-spec.yaml
+            registry:
+                location: registry.speakeasyapi.dev/panora/panora/openapi-main
+    targets: {}
