@@ -15,7 +15,7 @@ List CRM Contacts
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -58,7 +58,7 @@ Create Contacts in any supported CRM
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -104,7 +104,7 @@ Retrieve Contacts from any connected CRM
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),

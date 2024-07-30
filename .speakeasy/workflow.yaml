@@ -6,4 +6,11 @@ sources:
             - location: https://raw.githubusercontent.com/panoratech/Panora/main/packages/api/swagger/swagger-spec.yaml
         registry:
             location: registry.speakeasyapi.dev/panora/panora/openapi-main
-targets: {}
+targets:
+    python:
+        target: python
+        source: openapi-main
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/panora/panora/code-samples-typescript-my-first-target

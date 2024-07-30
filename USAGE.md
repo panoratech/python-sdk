@@ -1,10 +1,10 @@
 <!-- Start SDK Example Usage [usage] -->
 ```python
 # Synchronous Example
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -20,11 +20,11 @@ The same SDK client can also be used to make asychronous requests by importing a
 ```python
 # Asynchronous Example
 import asyncio
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
 async def main():
-    s = SDK(
+    s = Panora(
         bearer=os.getenv("BEARER", ""),
     )
     await s.hello_async()

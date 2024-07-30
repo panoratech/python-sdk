@@ -12,17 +12,17 @@ Make a passthrough request
 ### Example Usage
 
 ```python
-import openapi
-from openapi import SDK
 import os
+import panora_sdk
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
 
 res = s.passthrough.request(integration_id="<value>", linked_user_id="<value>", vertical="<value>", pass_through_request_dto={
-    "method": openapi.Method.GET,
+    "method": panora_sdk.Method.GET,
     "path": "/dev",
 })
 

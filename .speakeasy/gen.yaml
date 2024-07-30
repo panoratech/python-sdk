@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 0.0.1
+  version: 0.0.3
   additionalDependencies:
     dev: {}
     main: {}
@@ -35,14 +35,11 @@ python:
   maxMethodParams: 4
   methodArguments: infer-optional-args
   outputModelSuffix: output
-  packageName: openapi
+  packageName: panora-sdk
   responseFormat: flat
   templateVersion: v2
 targets:
-    my-target:
-        target: python
-        source: my-source
-        codeSamples:
-            output: codeSamplesPython.yaml
-            registry:
-                location: registry.speakeasyapi.dev/<org>/<workspace>/my-typescript-sdk-code-samples
+  version: ""
+  my-target:
+    source: my-source
+    target: python

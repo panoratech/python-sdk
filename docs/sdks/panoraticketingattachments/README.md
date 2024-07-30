@@ -15,7 +15,7 @@ List  Attachments
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -58,7 +58,7 @@ Create Attachments in any supported Ticketing software
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -105,7 +105,7 @@ Retrieve Attachments from any connected Ticketing software
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),

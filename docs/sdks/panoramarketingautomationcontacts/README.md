@@ -15,7 +15,7 @@ List  Contacts
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -58,7 +58,7 @@ Create a contact in any supported Marketingautomation software
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -100,7 +100,7 @@ Retrieve Contacts from any connected Marketingautomation software
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),

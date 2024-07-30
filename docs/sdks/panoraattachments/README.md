@@ -15,7 +15,7 @@ List  Attachments
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -58,7 +58,7 @@ Create attachments in any supported Accounting software
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -100,7 +100,7 @@ Retrieve attachments from any connected Accounting software
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
