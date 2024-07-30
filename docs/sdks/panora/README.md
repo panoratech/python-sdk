@@ -16,7 +16,7 @@ Panora API: A unified API to ship integrations
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),
@@ -47,7 +47,7 @@ s.hello()
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),

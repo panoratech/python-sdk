@@ -13,10 +13,10 @@ List  Groups
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -56,10 +56,10 @@ Retrieve Groups from any connected Hris software
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 

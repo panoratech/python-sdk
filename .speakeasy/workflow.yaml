@@ -1,6 +1,16 @@
 workflowVersion: 1.0.0
+speakeasyVersion: latest
 sources:
     openapi-main:
         inputs:
             - location: https://raw.githubusercontent.com/panoratech/Panora/main/packages/api/swagger/swagger-spec.yaml
-targets: {}
+        registry:
+            location: registry.speakeasyapi.dev/panora/panora/openapi-main
+targets:
+    python:
+        target: python
+        source: openapi-main
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/panora/panora/code-samples-typescript-my-first-target

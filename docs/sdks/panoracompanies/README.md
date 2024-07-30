@@ -13,7 +13,7 @@ List  Companys
 
 ```python
 import os
-from panora import Panora
+from panora_sdk import Panora
 
 s = Panora(
     bearer=os.getenv("BEARER", ""),

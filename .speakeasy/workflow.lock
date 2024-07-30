@@ -1,0 +1,34 @@
+speakeasyVersion: 1.348.2
+sources:
+    openapi-main:
+        sourceNamespace: openapi-main
+        sourceRevisionDigest: sha256:d8aba72006fbf19c956896597e4e4eefed904a1c8bbd43b53c819cb58df2cda0
+        sourceBlobDigest: sha256:a21a254fe109d7fc4c2665b3f98b8a3f1b6540d7eb99858066e68aa72651b6cf
+        tags:
+            - latest
+targets:
+    python:
+        source: openapi-main
+        sourceNamespace: openapi-main
+        sourceRevisionDigest: sha256:d8aba72006fbf19c956896597e4e4eefed904a1c8bbd43b53c819cb58df2cda0
+        sourceBlobDigest: sha256:a21a254fe109d7fc4c2665b3f98b8a3f1b6540d7eb99858066e68aa72651b6cf
+        codeSamplesNamespace: code-samples-typescript-my-first-target
+        codeSamplesRevisionDigest: sha256:46ea350032e48dacc340572d75ce52bc829fe0f9854bf1ceb0b140819b67406c
+        outLocation: /Users/rachidflih/Panora/python-sdk
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        openapi-main:
+            inputs:
+                - location: https://raw.githubusercontent.com/panoratech/Panora/main/packages/api/swagger/swagger-spec.yaml
+            registry:
+                location: registry.speakeasyapi.dev/panora/panora/openapi-main
+    targets:
+        python:
+            target: python
+            source: openapi-main
+            codeSamples:
+                output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/panora/panora/code-samples-typescript-my-first-target

@@ -14,10 +14,10 @@ Define target Field
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -53,10 +53,10 @@ Create Custom Field
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -95,10 +95,10 @@ Map Custom Field
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 

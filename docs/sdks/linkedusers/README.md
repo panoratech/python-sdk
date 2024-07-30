@@ -16,10 +16,10 @@ Add Linked User
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -53,10 +53,10 @@ Retrieve Linked Users
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -86,10 +86,10 @@ Add Batch Linked Users
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -125,10 +125,10 @@ Retrieve a Linked User
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -159,10 +159,10 @@ Retrieve a Linked User From A Remote Id
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 

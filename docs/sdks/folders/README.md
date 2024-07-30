@@ -14,10 +14,10 @@ List  Folders
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -57,10 +57,10 @@ Create Folders in any supported Filestorage software
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
@@ -109,10 +109,10 @@ Retrieve Folders from any connected Filestorage software
 ### Example Usage
 
 ```python
-from openapi import SDK
 import os
+from panora_sdk import Panora
 
-s = SDK(
+s = Panora(
     bearer=os.getenv("BEARER", ""),
 )
 
