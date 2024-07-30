@@ -1,0 +1,10 @@
+# Phone
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `phone_number`                                                                                        | *str*                                                                                                 | :heavy_check_mark:                                                                                    | The phone number starting with a plus (+) followed by the country code (e.g +336676778890 for France) |
+| `phone_type`                                                                                          | *str*                                                                                                 | :heavy_check_mark:                                                                                    | The phone type. Authorized values are either MOBILE or WORK                                           |
+| `owner_type`                                                                                          | *Optional[str]*                                                                                       | :heavy_minus_sign:                                                                                    | The owner type of a phone number                                                                      |

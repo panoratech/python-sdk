@@ -1,0 +1,16 @@
+# WebhookResponse
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `id_webhook_endpoint`                                                | *str*                                                                | :heavy_check_mark:                                                   | The unique UUID of the webhook.                                      |
+| `endpoint_description`                                               | *str*                                                                | :heavy_check_mark:                                                   | The description of the webhook.                                      |
+| `url`                                                                | *str*                                                                | :heavy_check_mark:                                                   | The endpoint url of the webhook.                                     |
+| `secret`                                                             | *str*                                                                | :heavy_check_mark:                                                   | The secret of the webhook.                                           |
+| `active`                                                             | *bool*                                                               | :heavy_check_mark:                                                   | The status of the webhook.                                           |
+| `created_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | The created date  of the webhook.                                    |
+| `scope`                                                              | List[*str*]                                                          | :heavy_check_mark:                                                   | The events that the webhook listen to.                               |
+| `id_project`                                                         | *str*                                                                | :heavy_check_mark:                                                   | The project id tied to the webhook.                                  |
+| `last_update`                                                        | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | The last update date of the webhook.                                 |
