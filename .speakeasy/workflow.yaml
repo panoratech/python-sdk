@@ -1,0 +1,6 @@
+workflowVersion: 1.0.0
+sources:
+    openapi-main:
+        inputs:
+            - location: https://raw.githubusercontent.com/panoratech/Panora/main/packages/api/swagger/swagger-spec.yaml
+targets: {}
