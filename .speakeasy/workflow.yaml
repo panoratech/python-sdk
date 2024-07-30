@@ -13,4 +13,4 @@ targets:
         codeSamples:
             output: codeSamples.yaml
             registry:
-                location: registry.speakeasyapi.dev/panora/panora/code-samples-typescript-my-first-target
+                location: registry.speakeasyapi.dev/panora/panora/code-samples-python
