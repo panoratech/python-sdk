@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 115d0df7-1198-46c9-9d03-a640abffed12
 management:
-  docChecksum: 9a90e56f39162805896ae234e3c0001b
+  docChecksum: 2dc62da46437fe24fc79b9affc4eea75
   docVersion: "1.0"
-  speakeasyVersion: 1.348.2
-  generationVersion: 2.380.2
-  releaseVersion: 0.0.4
-  configChecksum: fd74a5166b202bc870901fbcf0e3c0b4
+  speakeasyVersion: 1.351.2
+  generationVersion: 2.384.4
+  releaseVersion: 0.1.0
+  configChecksum: af3a46dd0a6139882a155c14707b28bc
   repoURL: https://github.com/panoratech/python-sdk.git
   installationURL: https://github.com/panoratech/python-sdk.git
   published: true
@@ -14,7 +14,7 @@ features:
   python:
     additionalDependencies: 1.0.0
     constsAndDefaults: 1.0.1
-    core: 5.2.4
+    core: 5.3.2
     defaultEnabledRetries: 0.2.0
     envVarSecurityUsage: 0.2.1
     flattening: 3.0.0
@@ -29,7 +29,9 @@ features:
     sdkHooks: 1.0.0
 generatedFiles:
   - src/panora_sdk/sdkconfiguration.py
-  - src/panora_sdk/webhook.py
+  - src/panora_sdk/id_.py
+  - src/panora_sdk/verifyevent.py
+  - src/panora_sdk/webhooks.py
   - src/panora_sdk/tickets.py
   - src/panora_sdk/users.py
   - src/panora_sdk/accounts.py
@@ -50,8 +52,13 @@ generatedFiles:
   - src/panora_sdk/tasks.py
   - src/panora_sdk/panora_users.py
   - src/panora_sdk/crm.py
+  - src/panora_sdk/batch.py
+  - src/panora_sdk/single.py
+  - src/panora_sdk/fromremoteid.py
   - src/panora_sdk/linkedusers.py
-  - src/panora_sdk/fieldmappings.py
+  - src/panora_sdk/define.py
+  - src/panora_sdk/map.py
+  - src/panora_sdk/field_mappings.py
   - src/panora_sdk/passthrough.py
   - src/panora_sdk/bankinfos.py
   - src/panora_sdk/benefits.py
@@ -140,6 +147,7 @@ generatedFiles:
   - src/panora_sdk/utils/eventstreaming.py
   - src/panora_sdk/utils/forms.py
   - src/panora_sdk/utils/headers.py
+  - src/panora_sdk/utils/logger.py
   - src/panora_sdk/utils/metadata.py
   - src/panora_sdk/utils/queryparams.py
   - src/panora_sdk/utils/requestbodies.py
@@ -232,8 +240,8 @@ generatedFiles:
   - src/panora_sdk/models/createbatchlinkeduserdto.py
   - src/panora_sdk/models/retrievelinkeduserop.py
   - src/panora_sdk/models/remoteidop.py
-  - src/panora_sdk/models/definetargetfielddto.py
   - src/panora_sdk/models/customfieldcreatedto.py
+  - src/panora_sdk/models/definetargetfielddto.py
   - src/panora_sdk/models/mapfieldtoproviderdto.py
   - src/panora_sdk/models/passthroughresponse.py
   - src/panora_sdk/models/requestop.py
@@ -654,8 +662,8 @@ generatedFiles:
   - docs/models/createbatchlinkeduserdto.md
   - docs/models/retrievelinkeduserrequest.md
   - docs/models/remoteidrequest.md
-  - docs/models/definetargetfielddto.md
   - docs/models/customfieldcreatedto.md
+  - docs/models/definetargetfielddto.md
   - docs/models/mapfieldtoproviderdto.md
   - docs/models/passthroughresponsedata.md
   - docs/models/passthroughresponse.md
@@ -1053,7 +1061,9 @@ generatedFiles:
   - docs/models/security.md
   - docs/models/utils/retryconfig.md
   - docs/sdks/panora/README.md
-  - docs/sdks/webhook/README.md
+  - docs/sdks/webhooks/README.md
+  - docs/sdks/id/README.md
+  - docs/sdks/verifyevent/README.md
   - docs/sdks/ticketing/README.md
   - docs/sdks/tickets/README.md
   - docs/sdks/users/README.md
@@ -1075,7 +1085,12 @@ generatedFiles:
   - docs/sdks/tasks/README.md
   - docs/sdks/panorausers/README.md
   - docs/sdks/linkedusers/README.md
+  - docs/sdks/batch/README.md
+  - docs/sdks/single/README.md
+  - docs/sdks/fromremoteid/README.md
   - docs/sdks/fieldmappings/README.md
+  - docs/sdks/define/README.md
+  - docs/sdks/map/README.md
   - docs/sdks/passthrough/README.md
   - docs/sdks/hris/README.md
   - docs/sdks/bankinfos/README.md

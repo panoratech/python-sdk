@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from panora_sdk import models
 from panora_sdk._hooks import HookContext
-from panora_sdk.types import BaseModel, OptionalNullable, UNSET
+from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
 from typing import Optional, Union
 
@@ -42,7 +42,7 @@ class Passthrough(BaseSDK):
             integration_id=integration_id,
             linked_user_id=linked_user_id,
             vertical=vertical,
-            pass_through_request_dto=utils.unmarshal(pass_through_request_dto, models.PassThroughRequestDto) if not isinstance(pass_through_request_dto, BaseModel) else pass_through_request_dto,
+            pass_through_request_dto=utils.get_pydantic_model(pass_through_request_dto, models.PassThroughRequestDto),
         )
         
         req = self.build_request(
@@ -124,7 +124,7 @@ class Passthrough(BaseSDK):
             integration_id=integration_id,
             linked_user_id=linked_user_id,
             vertical=vertical,
-            pass_through_request_dto=utils.unmarshal(pass_through_request_dto, models.PassThroughRequestDto) if not isinstance(pass_through_request_dto, BaseModel) else pass_through_request_dto,
+            pass_through_request_dto=utils.get_pydantic_model(pass_through_request_dto, models.PassThroughRequestDto),
         )
         
         req = self.build_request(

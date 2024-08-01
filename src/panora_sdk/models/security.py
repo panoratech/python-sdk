@@ -3,14 +3,14 @@
 from __future__ import annotations
 from panora_sdk.types import BaseModel
 from panora_sdk.utils import FieldMetadata, SecurityMetadata
-from typing import Optional, TypedDict
-from typing_extensions import Annotated, NotRequired
+from typing import TypedDict
+from typing_extensions import Annotated
 
 
 class SecurityTypedDict(TypedDict):
-    bearer: NotRequired[str]
+    bearer: str
     
 
 class Security(BaseModel):
-    bearer: Annotated[Optional[str], FieldMetadata(security=SecurityMetadata(scheme=True, scheme_type="http", sub_type="bearer", field_name="Authorization"))] = None
+    bearer: Annotated[str, FieldMetadata(security=SecurityMetadata(scheme=True, scheme_type="http", sub_type="bearer", field_name="Authorization"))]
     

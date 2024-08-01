@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from panora_sdk import models
 from panora_sdk._hooks import HookContext
-from panora_sdk.types import BaseModel, OptionalNullable, UNSET
+from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
 from typing import Optional, Union
 
@@ -203,7 +203,7 @@ class PanoraTicketingAttachments(BaseSDK):
         request = models.CreateTicketingAttachmentRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_ticketing_attachment_input=utils.unmarshal(unified_ticketing_attachment_input, models.UnifiedTicketingAttachmentInput) if not isinstance(unified_ticketing_attachment_input, BaseModel) else unified_ticketing_attachment_input,
+            unified_ticketing_attachment_input=utils.get_pydantic_model(unified_ticketing_attachment_input, models.UnifiedTicketingAttachmentInput),
         )
         
         req = self.build_request(
@@ -284,7 +284,7 @@ class PanoraTicketingAttachments(BaseSDK):
         request = models.CreateTicketingAttachmentRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_ticketing_attachment_input=utils.unmarshal(unified_ticketing_attachment_input, models.UnifiedTicketingAttachmentInput) if not isinstance(unified_ticketing_attachment_input, BaseModel) else unified_ticketing_attachment_input,
+            unified_ticketing_attachment_input=utils.get_pydantic_model(unified_ticketing_attachment_input, models.UnifiedTicketingAttachmentInput),
         )
         
         req = self.build_request(

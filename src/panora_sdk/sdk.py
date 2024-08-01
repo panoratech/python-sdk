@@ -3,6 +3,7 @@
 from .basesdk import BaseSDK
 from .httpclient import AsyncHttpClient, HttpClient
 from .sdkconfiguration import SDKConfiguration
+from .utils.logger import Logger, NoOpLogger
 from .utils.retries import RetryConfig
 import httpx
 from panora_sdk import models
@@ -10,7 +11,7 @@ from panora_sdk._hooks import HookContext, SDKHooks
 from panora_sdk.accounting import Accounting
 from panora_sdk.ats import Ats
 from panora_sdk.crm import Crm
-from panora_sdk.fieldmappings import FieldMappings
+from panora_sdk.field_mappings import FieldMappings
 from panora_sdk.filestorage import Filestorage
 from panora_sdk.hris import Hris
 from panora_sdk.linkedusers import LinkedUsers
@@ -20,12 +21,12 @@ from panora_sdk.sync import Sync
 from panora_sdk.ticketing import Ticketing
 from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
-from panora_sdk.webhook import Webhook
+from panora_sdk.webhooks import Webhooks
 from typing import Any, Callable, Dict, Optional, Union
 
 class Panora(BaseSDK):
     r"""Panora API: A unified API to ship integrations"""
-    webhook: Webhook
+    webhooks: Webhooks
     ticketing: Ticketing
     sync: Sync
     crm: Crm
@@ -39,14 +40,15 @@ class Panora(BaseSDK):
     filestorage: Filestorage
     def __init__(
         self,
-        bearer: Optional[Union[Optional[str], Callable[[], Optional[str]]]] = None,
+        bearer: Union[str, Callable[[], str]],
         server_idx: Optional[int] = None,
         server_url: Optional[str] = None,
         url_params: Optional[Dict[str, str]] = None,
         client: Optional[HttpClient] = None,
         async_client: Optional[AsyncHttpClient] = None,
         retry_config: OptionalNullable[RetryConfig] = UNSET,
-        timeout_ms: Optional[int] = None
+        timeout_ms: Optional[int] = None,
+        debug_logger: Optional[Logger] = None
     ) -> None:
         r"""Instantiates the SDK configuring it with the provided parameters.
 
@@ -68,6 +70,9 @@ class Panora(BaseSDK):
 
         if async_client is None:
             async_client = httpx.AsyncClient()
+
+        if debug_logger is None:
+            debug_logger = NoOpLogger()
 
         assert issubclass(
             type(async_client), AsyncHttpClient
@@ -91,7 +96,8 @@ class Panora(BaseSDK):
             server_url=server_url,
             server_idx=server_idx,
             retry_config=retry_config,
-            timeout_ms=timeout_ms
+            timeout_ms=timeout_ms,
+            debug_logger=debug_logger
         ))
 
         hooks = SDKHooks()
@@ -108,7 +114,7 @@ class Panora(BaseSDK):
 
 
     def _init_sdks(self):
-        self.webhook = Webhook(self.sdk_configuration)
+        self.webhooks = Webhooks(self.sdk_configuration)
         self.ticketing = Ticketing(self.sdk_configuration)
         self.sync = Sync(self.sdk_configuration)
         self.crm = Crm(self.sdk_configuration)

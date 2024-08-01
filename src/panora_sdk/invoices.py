@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from panora_sdk import models
 from panora_sdk._hooks import HookContext
-from panora_sdk.types import BaseModel, OptionalNullable, UNSET
+from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
 from typing import Optional, Union
 
@@ -203,7 +203,7 @@ class Invoices(BaseSDK):
         request = models.CreateAccountingInvoiceRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_accounting_invoice_input=utils.unmarshal(unified_accounting_invoice_input, models.UnifiedAccountingInvoiceInput) if not isinstance(unified_accounting_invoice_input, BaseModel) else unified_accounting_invoice_input,
+            unified_accounting_invoice_input=utils.get_pydantic_model(unified_accounting_invoice_input, models.UnifiedAccountingInvoiceInput),
         )
         
         req = self.build_request(
@@ -284,7 +284,7 @@ class Invoices(BaseSDK):
         request = models.CreateAccountingInvoiceRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_accounting_invoice_input=utils.unmarshal(unified_accounting_invoice_input, models.UnifiedAccountingInvoiceInput) if not isinstance(unified_accounting_invoice_input, BaseModel) else unified_accounting_invoice_input,
+            unified_accounting_invoice_input=utils.get_pydantic_model(unified_accounting_invoice_input, models.UnifiedAccountingInvoiceInput),
         )
         
         req = self.build_request(

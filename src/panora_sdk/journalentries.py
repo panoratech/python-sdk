@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from panora_sdk import models
 from panora_sdk._hooks import HookContext
-from panora_sdk.types import BaseModel, OptionalNullable, UNSET
+from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
 from typing import Optional, Union
 
@@ -203,7 +203,7 @@ class Journalentries(BaseSDK):
         request = models.CreateAccountingJournalEntryRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_accounting_journalentry_input=utils.unmarshal(unified_accounting_journalentry_input, models.UnifiedAccountingJournalentryInput) if not isinstance(unified_accounting_journalentry_input, BaseModel) else unified_accounting_journalentry_input,
+            unified_accounting_journalentry_input=utils.get_pydantic_model(unified_accounting_journalentry_input, models.UnifiedAccountingJournalentryInput),
         )
         
         req = self.build_request(
@@ -284,7 +284,7 @@ class Journalentries(BaseSDK):
         request = models.CreateAccountingJournalEntryRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_accounting_journalentry_input=utils.unmarshal(unified_accounting_journalentry_input, models.UnifiedAccountingJournalentryInput) if not isinstance(unified_accounting_journalentry_input, BaseModel) else unified_accounting_journalentry_input,
+            unified_accounting_journalentry_input=utils.get_pydantic_model(unified_accounting_journalentry_input, models.UnifiedAccountingJournalentryInput),
         )
         
         req = self.build_request(

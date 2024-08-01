@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from panora_sdk import models
 from panora_sdk._hooks import HookContext
-from panora_sdk.types import BaseModel, OptionalNullable, UNSET
+from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
 from typing import Optional, Union
 
@@ -203,7 +203,7 @@ class Timeoffs(BaseSDK):
         request = models.CreateHrisTimeoffRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_hris_timeoff_input=utils.unmarshal(unified_hris_timeoff_input, models.UnifiedHrisTimeoffInput) if not isinstance(unified_hris_timeoff_input, BaseModel) else unified_hris_timeoff_input,
+            unified_hris_timeoff_input=utils.get_pydantic_model(unified_hris_timeoff_input, models.UnifiedHrisTimeoffInput),
         )
         
         req = self.build_request(
@@ -284,7 +284,7 @@ class Timeoffs(BaseSDK):
         request = models.CreateHrisTimeoffRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_hris_timeoff_input=utils.unmarshal(unified_hris_timeoff_input, models.UnifiedHrisTimeoffInput) if not isinstance(unified_hris_timeoff_input, BaseModel) else unified_hris_timeoff_input,
+            unified_hris_timeoff_input=utils.get_pydantic_model(unified_hris_timeoff_input, models.UnifiedHrisTimeoffInput),
         )
         
         req = self.build_request(
