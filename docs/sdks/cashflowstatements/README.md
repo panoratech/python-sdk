@@ -13,12 +13,9 @@ List  CashflowStatements
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.cashflowstatements.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Cashflow Statements from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.cashflowstatements.retrieve(x_connection_token="<value>", id="<value>")

@@ -13,12 +13,9 @@ List all Contacts
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.contacts.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Contacts from any connected Ticketing software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.contacts.retrieve(x_connection_token="<value>", id="<value>")

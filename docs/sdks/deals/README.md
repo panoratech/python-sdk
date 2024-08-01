@@ -14,12 +14,9 @@ List  Deals
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.deals.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Deals in any supported Crm software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.deals.create(x_connection_token="<value>", unified_crm_deal_input={
@@ -104,12 +98,9 @@ Retrieve Deals from any connected Crm software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.deals.retrieve(x_connection_token="<value>", id="<value>")

@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import BaseModel
+from panora_sdk.types import BaseModel, Nullable, UNSET_SENTINEL
+from pydantic import model_serializer
 from typing import List, TypedDict
 
 
 class WebhookResponseTypedDict(TypedDict):
     id_webhook_endpoint: str
     r"""The unique UUID of the webhook."""
-    endpoint_description: str
+    endpoint_description: Nullable[str]
     r"""The description of the webhook."""
     url: str
     r"""The endpoint url of the webhook."""
@@ -23,14 +24,14 @@ class WebhookResponseTypedDict(TypedDict):
     r"""The events that the webhook listen to."""
     id_project: str
     r"""The project id tied to the webhook."""
-    last_update: datetime
+    last_update: Nullable[datetime]
     r"""The last update date of the webhook."""
     
 
 class WebhookResponse(BaseModel):
     id_webhook_endpoint: str
     r"""The unique UUID of the webhook."""
-    endpoint_description: str
+    endpoint_description: Nullable[str]
     r"""The description of the webhook."""
     url: str
     r"""The endpoint url of the webhook."""
@@ -44,6 +45,37 @@ class WebhookResponse(BaseModel):
     r"""The events that the webhook listen to."""
     id_project: str
     r"""The project id tied to the webhook."""
-    last_update: datetime
+    last_update: Nullable[datetime]
     r"""The last update date of the webhook."""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = []
+        nullable_fields = ["endpoint_description", "last_update"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

@@ -14,12 +14,9 @@ List  Applications
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.applications.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Applications in any supported Ats software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.applications.create(x_connection_token="<value>", unified_ats_application_input={
@@ -101,12 +95,9 @@ Retrieve Applications from any connected Ats software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.applications.retrieve(x_connection_token="<value>", id="<value>")

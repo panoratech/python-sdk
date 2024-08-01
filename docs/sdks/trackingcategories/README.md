@@ -13,12 +13,9 @@ List  TrackingCategorys
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.trackingcategories.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Tracking Categories from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.trackingcategories.retrieve(x_connection_token="<value>", id="<value>")

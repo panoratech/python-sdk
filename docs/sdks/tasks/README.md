@@ -14,12 +14,9 @@ List  Tasks
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.tasks.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Tasks in any supported Crm software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.tasks.create(x_connection_token="<value>", unified_crm_task_input={
@@ -104,12 +98,9 @@ Retrieve Tasks from any connected Crm software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.tasks.retrieve(x_connection_token="<value>", id="<value>")

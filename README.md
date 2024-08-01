@@ -37,17 +37,16 @@ poetry add panora-sdk
 
 ```python
 # Synchronous Example
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
-s.hello()
+res = s.hello()
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 ```
 
 </br>
@@ -56,15 +55,14 @@ The same SDK client can also be used to make asychronous requests by importing a
 ```python
 # Asynchronous Example
 import asyncio
-import os
 from panora_sdk import Panora
 
 async def main():
-    s = Panora(
-        bearer=os.getenv("BEARER", ""),
-    )
-    await s.hello_async()
-    # Use the SDK ...
+    s = Panora()
+    res = await s.hello_async()
+    if res is not None:
+        # handle response
+        pass
 
 asyncio.run(main())
 ```
@@ -78,13 +76,19 @@ asyncio.run(main())
 * [hello](docs/sdks/panora/README.md#hello)
 * [health](docs/sdks/panora/README.md#health)
 
-### [webhook](docs/sdks/webhook/README.md)
+### [webhooks](docs/sdks/webhooks/README.md)
 
-* [list](docs/sdks/webhook/README.md#list) - List webhooks 
-* [create](docs/sdks/webhook/README.md#create) - Add webhook metadata
-* [delete](docs/sdks/webhook/README.md#delete) - Delete Webhook
-* [update_status](docs/sdks/webhook/README.md#update_status) - Update webhook status
-* [verify_event](docs/sdks/webhook/README.md#verify_event) - Verify payload signature of the webhook
+* [list](docs/sdks/webhooks/README.md#list) - List webhooks
+* [create](docs/sdks/webhooks/README.md#create) - Add webhook metadata
+
+### [webhooks.id](docs/sdks/id/README.md)
+
+* [delete](docs/sdks/id/README.md#delete) - Delete Webhook
+* [update_status](docs/sdks/id/README.md#update_status) - Update webhook status
+
+### [webhooks.verifyevent](docs/sdks/verifyevent/README.md)
+
+* [verify_event](docs/sdks/verifyevent/README.md#verify_event) - Verify payload signature of the webhook
 
 
 ### [ticketing.tickets](docs/sdks/tickets/README.md)
@@ -189,17 +193,32 @@ asyncio.run(main())
 
 ### [linked_users](docs/sdks/linkedusers/README.md)
 
-* [create](docs/sdks/linkedusers/README.md#create) - Add Linked User
-* [list](docs/sdks/linkedusers/README.md#list) - Retrieve Linked Users
-* [import_batch](docs/sdks/linkedusers/README.md#import_batch) - Add Batch Linked Users
-* [retrieve](docs/sdks/linkedusers/README.md#retrieve) - Retrieve a Linked User
-* [remote_id](docs/sdks/linkedusers/README.md#remote_id) - Retrieve a Linked User From A Remote Id
+* [create](docs/sdks/linkedusers/README.md#create) - Create Linked Users
+* [list](docs/sdks/linkedusers/README.md#list) - List Linked Users
+
+### [linked_users.batch](docs/sdks/batch/README.md)
+
+* [import_batch](docs/sdks/batch/README.md#import_batch) - Add Batch Linked Users
+
+### [linked_users.single](docs/sdks/single/README.md)
+
+* [retrieve](docs/sdks/single/README.md#retrieve) - Retrieve Linked Users
+
+### [linked_users.fromremoteid](docs/sdks/fromremoteid/README.md)
+
+* [remote_id](docs/sdks/fromremoteid/README.md#remote_id) - Retrieve a Linked User From A Remote Id
 
 ### [field_mappings](docs/sdks/fieldmappings/README.md)
 
-* [define](docs/sdks/fieldmappings/README.md#define) - Define target Field
-* [create](docs/sdks/fieldmappings/README.md#create) - Create Custom Field
-* [map](docs/sdks/fieldmappings/README.md#map) - Map Custom Field
+* [define_custom_field](docs/sdks/fieldmappings/README.md#define_custom_field) - Create Custom Field
+
+### [field_mappings.define](docs/sdks/define/README.md)
+
+* [definitions](docs/sdks/define/README.md#definitions) - Define target Field
+
+### [field_mappings.map](docs/sdks/map/README.md)
+
+* [map](docs/sdks/map/README.md#map) - Map Custom Field
 
 ### [passthrough](docs/sdks/passthrough/README.md)
 
@@ -559,37 +578,36 @@ Some of the endpoints in this SDK support retries. If you use the SDK without an
 
 To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
 ```python
-import os
 from panora.utils import BackoffStrategy, RetryConfig
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
-s.hello(,
+res = s.hello(,
     RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 
 ```
 
 If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
 ```python
-import os
 from panora.utils import BackoffStrategy, RetryConfig
 from panora_sdk import Panora
 
 s = Panora(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
-    bearer=os.getenv("BEARER", ""),
 )
 
 
-s.hello()
+res = s.hello()
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 
 ```
 <!-- End Retries [retries] -->
@@ -606,22 +624,21 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ### Example
 
 ```python
-import os
 from panora_sdk import Panora, models
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
-
+res = None
 try:
-    s.hello()
+    res = s.hello()
 
 except models.SDKError as e:
     # handle exception
     raise(e)
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 
 ```
 <!-- End Error Handling [errors] -->
@@ -642,18 +659,18 @@ You can override the default server globally by passing a server index to the `s
 #### Example
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
     server_idx=2,
-    bearer=os.getenv("BEARER", ""),
 )
 
 
-s.hello()
+res = s.hello()
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 
 ```
 
@@ -662,18 +679,18 @@ s.hello()
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
     server_url="https://api.panora.dev",
-    bearer=os.getenv("BEARER", ""),
 )
 
 
-s.hello()
+res = s.hello()
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 
 ```
 <!-- End Server Selection [server] -->
@@ -759,33 +776,19 @@ s = Panora(async_client=CustomClient(httpx.AsyncClient()))
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
-<!-- Start Authentication [security] -->
-## Authentication
+<!-- Start Debugging [debug] -->
+## Debugging
 
-### Per-Client Security Schemes
+To emit debug logs for SDK requests and responses you can pass a logger object directly into your SDK object.
 
-This SDK supports the following security scheme globally:
-
-| Name        | Type        | Scheme      |
-| ----------- | ----------- | ----------- |
-| `bearer`    | http        | HTTP Bearer |
-
-To authenticate with the API the `bearer` parameter must be set when initializing the SDK client instance. For example:
 ```python
-import os
 from panora_sdk import Panora
+import logging
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
-
-
-s.hello()
-
-# Use the SDK ...
-
+logging.basicConfig(level=logging.DEBUG)
+s = Panora(debug_logger=logging.getLogger("panora_sdk"))
 ```
-<!-- End Authentication [security] -->
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

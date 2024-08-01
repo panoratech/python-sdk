@@ -13,12 +13,9 @@ List  Messages
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.marketingautomation.messages.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Messages from any connected Marketingautomation software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.marketingautomation.messages.retrieve(x_connection_token="<value>", id="<value>")

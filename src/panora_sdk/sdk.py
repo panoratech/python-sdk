@@ -3,6 +3,7 @@
 from .basesdk import BaseSDK
 from .httpclient import AsyncHttpClient, HttpClient
 from .sdkconfiguration import SDKConfiguration
+from .utils.logger import Logger, NoOpLogger
 from .utils.retries import RetryConfig
 import httpx
 from panora_sdk import models
@@ -10,7 +11,7 @@ from panora_sdk._hooks import HookContext, SDKHooks
 from panora_sdk.accounting import Accounting
 from panora_sdk.ats import Ats
 from panora_sdk.crm import Crm
-from panora_sdk.fieldmappings import FieldMappings
+from panora_sdk.field_mappings import FieldMappings
 from panora_sdk.filestorage import Filestorage
 from panora_sdk.hris import Hris
 from panora_sdk.linkedusers import LinkedUsers
@@ -20,12 +21,12 @@ from panora_sdk.sync import Sync
 from panora_sdk.ticketing import Ticketing
 from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
-from panora_sdk.webhook import Webhook
-from typing import Any, Callable, Dict, Optional, Union
+from panora_sdk.webhooks import Webhooks
+from typing import Dict, Optional
 
 class Panora(BaseSDK):
     r"""Panora API: A unified API to ship integrations"""
-    webhook: Webhook
+    webhooks: Webhooks
     ticketing: Ticketing
     sync: Sync
     crm: Crm
@@ -39,18 +40,17 @@ class Panora(BaseSDK):
     filestorage: Filestorage
     def __init__(
         self,
-        bearer: Optional[Union[Optional[str], Callable[[], Optional[str]]]] = None,
         server_idx: Optional[int] = None,
         server_url: Optional[str] = None,
         url_params: Optional[Dict[str, str]] = None,
         client: Optional[HttpClient] = None,
         async_client: Optional[AsyncHttpClient] = None,
         retry_config: OptionalNullable[RetryConfig] = UNSET,
-        timeout_ms: Optional[int] = None
+        timeout_ms: Optional[int] = None,
+        debug_logger: Optional[Logger] = None
     ) -> None:
         r"""Instantiates the SDK configuring it with the provided parameters.
 
-        :param bearer: The bearer required for authentication
         :param server_idx: The index of the server to use for all methods
         :param server_url: The server URL to use for all methods
         :param url_params: Parameters to optionally template the server URL with
@@ -69,15 +69,12 @@ class Panora(BaseSDK):
         if async_client is None:
             async_client = httpx.AsyncClient()
 
+        if debug_logger is None:
+            debug_logger = NoOpLogger()
+
         assert issubclass(
             type(async_client), AsyncHttpClient
         ), "The provided async_client must implement the AsyncHttpClient protocol."
-        
-        security: Any = None
-        if callable(bearer):
-            security = lambda: models.Security(bearer = bearer()) # pylint: disable=unnecessary-lambda-assignment
-        else:
-            security = models.Security(bearer = bearer)
 
         if server_url is not None:
             if url_params is not None:
@@ -87,11 +84,11 @@ class Panora(BaseSDK):
         BaseSDK.__init__(self, SDKConfiguration(
             client=client,
             async_client=async_client,
-            security=security,
             server_url=server_url,
             server_idx=server_idx,
             retry_config=retry_config,
-            timeout_ms=timeout_ms
+            timeout_ms=timeout_ms,
+            debug_logger=debug_logger
         ))
 
         hooks = SDKHooks()
@@ -108,7 +105,7 @@ class Panora(BaseSDK):
 
 
     def _init_sdks(self):
-        self.webhook = Webhook(self.sdk_configuration)
+        self.webhooks = Webhooks(self.sdk_configuration)
         self.ticketing = Ticketing(self.sdk_configuration)
         self.sync = Sync(self.sdk_configuration)
         self.crm = Crm(self.sdk_configuration)
@@ -127,7 +124,7 @@ class Panora(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[str]:
         r"""
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -148,10 +145,9 @@ class Panora(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=True,
+            request_has_query_params=False,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
-            security=self.sdk_configuration.security,
+            accept_header_value="application/json",
             timeout_ms=timeout_ms,
         )
         
@@ -170,14 +166,14 @@ class Panora(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return
+        if utils.match_response(http_res, "200", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[str])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -191,7 +187,7 @@ class Panora(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[str]:
         r"""
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -212,10 +208,9 @@ class Panora(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=True,
+            request_has_query_params=False,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
-            security=self.sdk_configuration.security,
+            accept_header_value="application/json",
             timeout_ms=timeout_ms,
         )
         
@@ -234,14 +229,14 @@ class Panora(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return
+        if utils.match_response(http_res, "200", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[str])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -255,7 +250,7 @@ class Panora(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[float]:
         r"""
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -276,10 +271,9 @@ class Panora(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=True,
+            request_has_query_params=False,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
-            security=self.sdk_configuration.security,
+            accept_header_value="application/json",
             timeout_ms=timeout_ms,
         )
         
@@ -298,14 +292,14 @@ class Panora(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return
+        if utils.match_response(http_res, "200", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[float])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -319,7 +313,7 @@ class Panora(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[float]:
         r"""
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -340,10 +334,9 @@ class Panora(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=True,
+            request_has_query_params=False,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
-            security=self.sdk_configuration.security,
+            accept_header_value="application/json",
             timeout_ms=timeout_ms,
         )
         
@@ -362,14 +355,14 @@ class Panora(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return
+        if utils.match_response(http_res, "200", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[float])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         

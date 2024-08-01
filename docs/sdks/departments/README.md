@@ -13,12 +13,9 @@ List  Departments
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.departments.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Departments from any connected Ats software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.departments.retrieve(x_connection_token="<value>", id="<value>")

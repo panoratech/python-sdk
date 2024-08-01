@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from panora_sdk import models
 from panora_sdk._hooks import HookContext
-from panora_sdk.types import BaseModel, OptionalNullable, UNSET
+from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
 from typing import Optional, Union
 
@@ -56,7 +56,6 @@ class Interviews(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -75,7 +74,7 @@ class Interviews(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="listAtsInterview", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listAtsInterview", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -137,7 +136,6 @@ class Interviews(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -156,7 +154,7 @@ class Interviews(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="listAtsInterview", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listAtsInterview", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -203,7 +201,7 @@ class Interviews(BaseSDK):
         request = models.CreateAtsInterviewRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_ats_interview_input=utils.unmarshal(unified_ats_interview_input, models.UnifiedAtsInterviewInput) if not isinstance(unified_ats_interview_input, BaseModel) else unified_ats_interview_input,
+            unified_ats_interview_input=utils.get_pydantic_model(unified_ats_interview_input, models.UnifiedAtsInterviewInput),
         )
         
         req = self.build_request(
@@ -217,7 +215,6 @@ class Interviews(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(request.unified_ats_interview_input, False, False, "json", models.UnifiedAtsInterviewInput),
             timeout_ms=timeout_ms,
         )
@@ -237,7 +234,7 @@ class Interviews(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="createAtsInterview", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="createAtsInterview", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -284,7 +281,7 @@ class Interviews(BaseSDK):
         request = models.CreateAtsInterviewRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_ats_interview_input=utils.unmarshal(unified_ats_interview_input, models.UnifiedAtsInterviewInput) if not isinstance(unified_ats_interview_input, BaseModel) else unified_ats_interview_input,
+            unified_ats_interview_input=utils.get_pydantic_model(unified_ats_interview_input, models.UnifiedAtsInterviewInput),
         )
         
         req = self.build_request(
@@ -298,7 +295,6 @@ class Interviews(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(request.unified_ats_interview_input, False, False, "json", models.UnifiedAtsInterviewInput),
             timeout_ms=timeout_ms,
         )
@@ -318,7 +314,7 @@ class Interviews(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="createAtsInterview", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="createAtsInterview", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -379,7 +375,6 @@ class Interviews(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -398,7 +393,7 @@ class Interviews(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="retrieveAtsInterview", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="retrieveAtsInterview", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -459,7 +454,6 @@ class Interviews(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -478,7 +472,7 @@ class Interviews(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="retrieveAtsInterview", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="retrieveAtsInterview", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config

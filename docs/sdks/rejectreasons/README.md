@@ -13,12 +13,9 @@ List  RejectReasons
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.rejectreasons.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Reject Reasons from any connected Ats software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.rejectreasons.retrieve(x_connection_token="<value>", id="<value>")

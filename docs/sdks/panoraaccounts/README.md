@@ -14,12 +14,9 @@ List  Accounts
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.accounts.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create accounts in any supported Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.accounts.create(x_connection_token="<value>", unified_accounting_account_input={})
@@ -99,12 +93,9 @@ Retrieve Accounts from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.accounts.retrieve(x_connection_token="<value>", id="<value>")

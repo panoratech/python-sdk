@@ -14,12 +14,9 @@ List CRM Contacts
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.contacts.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Contacts in any supported CRM
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.contacts.create(x_connection_token="<value>", unified_crm_contact_input={
@@ -103,12 +97,9 @@ Retrieve Contacts from any connected CRM
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.contacts.retrieve(x_connection_token="<value>", id="<value>")

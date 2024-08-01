@@ -14,12 +14,9 @@ List  Comments
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.comments.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Comments in any supported Ticketing software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.comments.create(x_connection_token="<value>", unified_ticketing_comment_input={
@@ -101,12 +95,9 @@ Retrieve Comments from any connected Ticketing software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.comments.retrieve(x_connection_token="<value>", id="<value>")

@@ -13,12 +13,9 @@ List  CreditNotes
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.creditnotes.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Credit Notes from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.creditnotes.retrieve(x_connection_token="<value>", id="<value>")

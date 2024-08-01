@@ -13,12 +13,9 @@ Retrieve sync status of a certain vertical
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 s.sync.status(vertical="<value>")
@@ -47,12 +44,9 @@ Resync common objects across a vertical
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 s.sync.resync()

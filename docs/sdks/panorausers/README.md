@@ -13,12 +13,9 @@ List  Users
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.users.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Users from any connected Crm software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.users.retrieve(x_connection_token="<value>", id="<value>")

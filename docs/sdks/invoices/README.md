@@ -14,12 +14,9 @@ List  Invoices
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.invoices.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create invoices in any supported Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.invoices.create(x_connection_token="<value>", unified_accounting_invoice_input={})
@@ -99,12 +93,9 @@ Retrieve Invoices from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.invoices.retrieve(x_connection_token="<value>", id="<value>")

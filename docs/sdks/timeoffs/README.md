@@ -14,12 +14,9 @@ List  Timeoffs
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.timeoffs.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Timeoffs in any supported Hris software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.timeoffs.create(x_connection_token="<value>", unified_hris_timeoff_input={})
@@ -99,12 +93,9 @@ Retrieve Timeoffs from any connected Hris software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.timeoffs.retrieve(x_connection_token="<value>", id="<value>")

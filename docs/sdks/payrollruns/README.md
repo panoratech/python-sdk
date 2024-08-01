@@ -12,12 +12,9 @@ List  PayrollRuns
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.payrollruns.list(x_connection_token="<value>")
