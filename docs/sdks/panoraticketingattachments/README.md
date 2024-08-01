@@ -14,12 +14,9 @@ List  Attachments
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.attachments.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Attachments in any supported Ticketing software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.attachments.create(x_connection_token="<value>", unified_ticketing_attachment_input={
@@ -104,12 +98,9 @@ Retrieve Attachments from any connected Ticketing software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.attachments.retrieve(x_connection_token="<value>", id="<value>")

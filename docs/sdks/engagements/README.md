@@ -14,12 +14,9 @@ List  Engagements
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.engagements.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Engagements in any supported Crm software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.engagements.create(x_connection_token="<value>", unified_crm_engagement_input={
@@ -102,12 +96,9 @@ Retrieve Engagements from any connected Crm software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.engagements.retrieve(x_connection_token="<value>", id="<value>")

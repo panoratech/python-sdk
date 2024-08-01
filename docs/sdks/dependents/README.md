@@ -13,12 +13,9 @@ List  Dependents
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.dependents.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Dependents from any connected Hris software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.dependents.retrieve(x_connection_token="<value>", id="<value>")

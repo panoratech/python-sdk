@@ -14,12 +14,9 @@ List  Employees
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.employees.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Employees in any supported Hris software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.employees.create(x_connection_token="<value>", unified_hris_employee_input={})
@@ -99,12 +93,9 @@ Retrieven Employees from any connected Hris software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.employees.retrieve(x_connection_token="<value>", id="<value>")

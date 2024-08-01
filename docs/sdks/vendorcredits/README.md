@@ -13,12 +13,9 @@ List  VendorCredits
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.vendorcredits.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Vendor Credits from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.vendorcredits.retrieve(x_connection_token="<value>", id="<value>")

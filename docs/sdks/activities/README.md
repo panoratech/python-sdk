@@ -14,12 +14,9 @@ List  Activities
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.activities.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Activities in any supported Ats software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.activities.create(x_connection_token="<value>", unified_ats_activity_input={
@@ -101,12 +95,9 @@ Retrieve Activities from any connected Ats software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.activities.retrieve(x_connection_token="<value>", id="<value>")

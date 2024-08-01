@@ -14,12 +14,9 @@ List  Folders
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.filestorage.folders.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Folders in any supported Filestorage software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.filestorage.folders.create(x_connection_token="<value>", remote_data=False, unified_filestorage_folder_input={
@@ -109,12 +103,9 @@ Retrieve Folders from any connected Filestorage software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.filestorage.folders.retrieve(x_connection_token="<value>", id="<value>")

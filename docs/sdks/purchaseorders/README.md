@@ -14,12 +14,9 @@ List  PurchaseOrders
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.purchaseorders.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Purchase Orders in any supported Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.purchaseorders.create(x_connection_token="<value>", unified_accounting_purchaseorder_input={})
@@ -99,12 +93,9 @@ Retrieve Purchase Orders from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.purchaseorders.retrieve(x_connection_token="<value>", id="<value>")

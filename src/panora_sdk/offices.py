@@ -56,7 +56,6 @@ class Offices(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -75,7 +74,7 @@ class Offices(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="listAtsOffice", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listAtsOffice", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -137,7 +136,6 @@ class Offices(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -156,7 +154,7 @@ class Offices(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="listAtsOffice", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listAtsOffice", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -217,7 +215,6 @@ class Offices(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -236,7 +233,7 @@ class Offices(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="retrieveAtsOffice", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="retrieveAtsOffice", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -297,7 +294,6 @@ class Offices(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -316,7 +312,7 @@ class Offices(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="retrieveAtsOffice", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="retrieveAtsOffice", oauth2_scopes=[], security_source=None),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config

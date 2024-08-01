@@ -13,12 +13,9 @@ List  BalanceSheets
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.balancesheets.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve BalanceSheets from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.balancesheets.retrieve(x_connection_token="<value>", id="<value>")

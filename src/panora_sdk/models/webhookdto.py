@@ -2,23 +2,24 @@
 
 from __future__ import annotations
 from panora_sdk.types import BaseModel
-from typing import List, TypedDict
+from typing import List, Optional, TypedDict
+from typing_extensions import NotRequired
 
 
 class WebhookDtoTypedDict(TypedDict):
     url: str
     r"""The endpoint url of the webhook."""
-    description: str
-    r"""The description of the webhook."""
     scope: List[str]
     r"""The events that the webhook listen to."""
+    description: NotRequired[str]
+    r"""The description of the webhook."""
     
 
 class WebhookDto(BaseModel):
     url: str
     r"""The endpoint url of the webhook."""
-    description: str
-    r"""The description of the webhook."""
     scope: List[str]
     r"""The events that the webhook listen to."""
+    description: Optional[str] = None
+    r"""The description of the webhook."""
     

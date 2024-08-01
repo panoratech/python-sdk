@@ -14,12 +14,9 @@ List  Companies
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.companies.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Companies in any supported CRM software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.companies.create(x_connection_token="<value>", unified_crm_company_input={
@@ -102,12 +96,9 @@ Retrieve Companies from any connected Crm software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.crm.companies.retrieve(x_connection_token="<value>", id="<value>")

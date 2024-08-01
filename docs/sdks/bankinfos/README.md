@@ -13,12 +13,9 @@ List  Bankinfos
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.bankinfos.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Bank Infos from any connected Hris software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.bankinfos.retrieve(x_connection_token="<value>", id="<value>")

@@ -13,12 +13,9 @@ List  Groups
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.groups.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Groups from any connected Hris software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.hris.groups.retrieve(x_connection_token="<value>", id="<value>")

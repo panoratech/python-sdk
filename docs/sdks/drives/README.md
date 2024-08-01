@@ -13,12 +13,9 @@ List  Drives
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.filestorage.drives.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Drives from any connected Filestorage software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.filestorage.drives.retrieve(x_connection_token="<value>", id="<value>")

@@ -13,12 +13,9 @@ List  Items
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.items.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Items from any connected Accounting software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.accounting.items.retrieve(x_connection_token="<value>", id="<value>")

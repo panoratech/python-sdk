@@ -14,12 +14,9 @@ List  Tickets
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.tickets.list(x_connection_token="<value>")
@@ -57,12 +54,9 @@ Create Tickets in any supported Ticketing software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.tickets.create(x_connection_token="<value>", unified_ticketing_ticket_input={
@@ -103,12 +97,9 @@ Retrieve Tickets from any connected Ticketing software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ticketing.tickets.retrieve(x_connection_token="<value>", id="<value>")

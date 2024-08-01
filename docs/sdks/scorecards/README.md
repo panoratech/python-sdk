@@ -13,12 +13,9 @@ List  ScoreCards
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.scorecards.list(x_connection_token="<value>")
@@ -56,12 +53,9 @@ Retrieve Score Cards from any connected Ats software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
-s = Panora(
-    bearer=os.getenv("BEARER", ""),
-)
+s = Panora()
 
 
 res = s.ats.scorecards.retrieve(x_connection_token="<value>", id="<value>")
