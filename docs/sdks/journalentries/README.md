@@ -14,9 +14,12 @@ List  JournalEntrys
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.journalentries.list(x_connection_token="<value>")
@@ -54,9 +57,12 @@ Create Journal Entries in any supported Accounting software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.journalentries.create(x_connection_token="<value>", unified_accounting_journalentry_input={})
@@ -93,9 +99,12 @@ Retrieve Journal Entries from any connected Accounting software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.journalentries.retrieve(x_connection_token="<value>", id="<value>")

@@ -1,0 +1,17 @@
+# UnifiedTicketingTicketInputComment
+
+The comment of the ticket
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `body`                                                                         | *Nullable[str]*                                                                | :heavy_check_mark:                                                             | The body of the comment                                                        |
+| `html_body`                                                                    | *OptionalNullable[str]*                                                        | :heavy_minus_sign:                                                             | The html body of the comment                                                   |
+| `is_private`                                                                   | *OptionalNullable[bool]*                                                       | :heavy_minus_sign:                                                             | The public status of the comment                                               |
+| `creator_type`                                                                 | *OptionalNullable[str]*                                                        | :heavy_minus_sign:                                                             | The creator type of the comment. Authorized values are either USER or CONTACT  |
+| `ticket_id`                                                                    | *OptionalNullable[str]*                                                        | :heavy_minus_sign:                                                             | The UUID of the ticket the comment is tied to                                  |
+| `contact_id`                                                                   | *OptionalNullable[str]*                                                        | :heavy_minus_sign:                                                             | The UUID of the contact which the comment belongs to (if no user_id specified) |
+| `user_id`                                                                      | *OptionalNullable[str]*                                                        | :heavy_minus_sign:                                                             | The UUID of the user which the comment belongs to (if no contact_id specified) |
+| `attachments`                                                                  | List[*str*]                                                                    | :heavy_minus_sign:                                                             | The attachements UUIDs tied to the comment                                     |

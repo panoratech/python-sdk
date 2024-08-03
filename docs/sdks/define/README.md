@@ -12,19 +12,24 @@ Define target Field
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
-s.field_mappings.define.definitions(request={
+res = s.field_mappings.define.definitions(request={
     "object_type_owner": "<value>",
     "name": "<value>",
     "description": "Universal heuristic matrices",
     "data_type": "decimal",
 })
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 
 ```
 
@@ -35,6 +40,10 @@ s.field_mappings.define.definitions(request={
 | `request`                                                           | [models.DefineTargetFieldDto](../../models/definetargetfielddto.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
+### Response
+
+**[models.CustomFieldResponse](../../models/customfieldresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

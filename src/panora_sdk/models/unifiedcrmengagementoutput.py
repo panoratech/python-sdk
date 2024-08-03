@@ -2,97 +2,105 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import BaseModel
-from typing import List, Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedCrmEngagementOutputFieldMappingsTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedCrmEngagementOutputFieldMappings(BaseModel):
-    pass
-    
-
-class UnifiedCrmEngagementOutputRemoteDataTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedCrmEngagementOutputRemoteData(BaseModel):
-    pass
-    
-
-class UnifiedCrmEngagementOutputCreatedAtTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedCrmEngagementOutputCreatedAt(BaseModel):
-    pass
-    
-
-class UnifiedCrmEngagementOutputModifiedAtTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedCrmEngagementOutputModifiedAt(BaseModel):
-    pass
-    
-
 class UnifiedCrmEngagementOutputTypedDict(TypedDict):
-    type: str
+    type: Nullable[str]
     r"""The type of the engagement. Authorized values are EMAIL, CALL or MEETING"""
-    field_mappings: UnifiedCrmEngagementOutputFieldMappingsTypedDict
-    remote_data: UnifiedCrmEngagementOutputRemoteDataTypedDict
-    created_at: UnifiedCrmEngagementOutputCreatedAtTypedDict
-    modified_at: UnifiedCrmEngagementOutputModifiedAtTypedDict
-    content: NotRequired[str]
+    content: NotRequired[Nullable[str]]
     r"""The content of the engagement"""
-    direction: NotRequired[str]
+    direction: NotRequired[Nullable[str]]
     r"""The direction of the engagement. Authorized values are INBOUND or OUTBOUND"""
-    subject: NotRequired[str]
+    subject: NotRequired[Nullable[str]]
     r"""The subject of the engagement"""
-    start_at: NotRequired[datetime]
+    start_at: NotRequired[Nullable[datetime]]
     r"""The start time of the engagement"""
-    end_time: NotRequired[datetime]
+    end_time: NotRequired[Nullable[datetime]]
     r"""The end time of the engagement"""
-    user_id: NotRequired[str]
+    user_id: NotRequired[Nullable[str]]
     r"""The UUID of the user tied to the engagement"""
-    company_id: NotRequired[str]
+    company_id: NotRequired[Nullable[str]]
     r"""The UUID of the company tied to the engagement"""
-    contacts: NotRequired[List[str]]
+    contacts: NotRequired[Nullable[List[str]]]
     r"""The UUIDs of contacts tied to the engagement object"""
-    id: NotRequired[str]
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the engagement between the remote 3rd party & Panora"""
+    id: NotRequired[Nullable[str]]
     r"""The UUID of the engagement"""
-    remote_id: NotRequired[str]
+    remote_id: NotRequired[Nullable[str]]
     r"""The id of the engagement in the context of the Crm 3rd Party"""
+    remote_data: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The remote data of the engagement in the context of the Crm 3rd Party"""
+    created_at: NotRequired[Nullable[datetime]]
+    r"""The created date of the object"""
+    modified_at: NotRequired[Nullable[datetime]]
+    r"""The modified date of the object"""
     
 
 class UnifiedCrmEngagementOutput(BaseModel):
-    type: str
+    type: Nullable[str]
     r"""The type of the engagement. Authorized values are EMAIL, CALL or MEETING"""
-    field_mappings: UnifiedCrmEngagementOutputFieldMappings
-    remote_data: UnifiedCrmEngagementOutputRemoteData
-    created_at: UnifiedCrmEngagementOutputCreatedAt
-    modified_at: UnifiedCrmEngagementOutputModifiedAt
-    content: Optional[str] = None
+    content: OptionalNullable[str] = UNSET
     r"""The content of the engagement"""
-    direction: Optional[str] = None
+    direction: OptionalNullable[str] = UNSET
     r"""The direction of the engagement. Authorized values are INBOUND or OUTBOUND"""
-    subject: Optional[str] = None
+    subject: OptionalNullable[str] = UNSET
     r"""The subject of the engagement"""
-    start_at: Optional[datetime] = None
+    start_at: OptionalNullable[datetime] = UNSET
     r"""The start time of the engagement"""
-    end_time: Optional[datetime] = None
+    end_time: OptionalNullable[datetime] = UNSET
     r"""The end time of the engagement"""
-    user_id: Optional[str] = None
+    user_id: OptionalNullable[str] = UNSET
     r"""The UUID of the user tied to the engagement"""
-    company_id: Optional[str] = None
+    company_id: OptionalNullable[str] = UNSET
     r"""The UUID of the company tied to the engagement"""
-    contacts: Optional[List[str]] = None
+    contacts: OptionalNullable[List[str]] = UNSET
     r"""The UUIDs of contacts tied to the engagement object"""
-    id: Optional[str] = None
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the engagement between the remote 3rd party & Panora"""
+    id: OptionalNullable[str] = UNSET
     r"""The UUID of the engagement"""
-    remote_id: Optional[str] = None
+    remote_id: OptionalNullable[str] = UNSET
     r"""The id of the engagement in the context of the Crm 3rd Party"""
+    remote_data: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The remote data of the engagement in the context of the Crm 3rd Party"""
+    created_at: OptionalNullable[datetime] = UNSET
+    r"""The created date of the object"""
+    modified_at: OptionalNullable[datetime] = UNSET
+    r"""The modified date of the object"""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["content", "direction", "subject", "start_at", "end_time", "user_id", "company_id", "contacts", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        nullable_fields = ["type", "content", "direction", "subject", "start_at", "end_time", "user_id", "company_id", "contacts", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

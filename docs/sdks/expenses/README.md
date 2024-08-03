@@ -14,9 +14,12 @@ List  Expenses
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.expenses.list(x_connection_token="<value>")
@@ -54,9 +57,12 @@ Create Expenses in any supported Accounting software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.expenses.create(x_connection_token="<value>", unified_accounting_expense_input={})
@@ -93,9 +99,12 @@ Retrieve Expenses from any connected Accounting software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.expenses.retrieve(x_connection_token="<value>", id="<value>")

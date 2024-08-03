@@ -5,87 +5,113 @@ from .email import Email, EmailTypedDict
 from .phone import Phone, PhoneTypedDict
 from .url import URL, URLTypedDict
 from datetime import datetime
-from panora_sdk.types import BaseModel
-from typing import List, Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedAtsCandidateInputFieldMappingsTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsCandidateInputFieldMappings(BaseModel):
-    pass
-    
-
 class UnifiedAtsCandidateInputTypedDict(TypedDict):
-    field_mappings: UnifiedAtsCandidateInputFieldMappingsTypedDict
-    first_name: NotRequired[str]
+    first_name: NotRequired[Nullable[str]]
     r"""The first name of the candidate"""
-    last_name: NotRequired[str]
+    last_name: NotRequired[Nullable[str]]
     r"""The last name of the candidate"""
-    company: NotRequired[str]
+    company: NotRequired[Nullable[str]]
     r"""The company of the candidate"""
-    title: NotRequired[str]
+    title: NotRequired[Nullable[str]]
     r"""The title of the candidate"""
-    locations: NotRequired[str]
+    locations: NotRequired[Nullable[str]]
     r"""The locations of the candidate"""
-    is_private: NotRequired[bool]
+    is_private: NotRequired[Nullable[bool]]
     r"""Whether the candidate is private"""
-    email_reachable: NotRequired[bool]
+    email_reachable: NotRequired[Nullable[bool]]
     r"""Whether the candidate is reachable by email"""
-    remote_created_at: NotRequired[datetime]
+    remote_created_at: NotRequired[Nullable[datetime]]
     r"""The remote creation date of the candidate"""
-    remote_modified_at: NotRequired[datetime]
+    remote_modified_at: NotRequired[Nullable[datetime]]
     r"""The remote modification date of the candidate"""
-    last_interaction_at: NotRequired[datetime]
+    last_interaction_at: NotRequired[Nullable[datetime]]
     r"""The last interaction date with the candidate"""
-    attachments: NotRequired[List[str]]
+    attachments: NotRequired[Nullable[List[str]]]
     r"""The attachments UUIDs of the candidate"""
-    applications: NotRequired[List[str]]
+    applications: NotRequired[Nullable[List[str]]]
     r"""The applications UUIDs of the candidate"""
-    tags: NotRequired[List[str]]
+    tags: NotRequired[Nullable[List[str]]]
     r"""The tags of the candidate"""
-    urls: NotRequired[List[URLTypedDict]]
+    urls: NotRequired[Nullable[List[URLTypedDict]]]
     r"""The urls of the candidate, possible values for Url type are WEBSITE, BLOG, LINKEDIN, GITHUB, or OTHER"""
-    phone_numbers: NotRequired[List[PhoneTypedDict]]
+    phone_numbers: NotRequired[Nullable[List[PhoneTypedDict]]]
     r"""The phone numbers of the candidate"""
-    email_addresses: NotRequired[List[EmailTypedDict]]
+    email_addresses: NotRequired[Nullable[List[EmailTypedDict]]]
     r"""The email addresses of the candidate"""
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     
 
 class UnifiedAtsCandidateInput(BaseModel):
-    field_mappings: UnifiedAtsCandidateInputFieldMappings
-    first_name: Optional[str] = None
+    first_name: OptionalNullable[str] = UNSET
     r"""The first name of the candidate"""
-    last_name: Optional[str] = None
+    last_name: OptionalNullable[str] = UNSET
     r"""The last name of the candidate"""
-    company: Optional[str] = None
+    company: OptionalNullable[str] = UNSET
     r"""The company of the candidate"""
-    title: Optional[str] = None
+    title: OptionalNullable[str] = UNSET
     r"""The title of the candidate"""
-    locations: Optional[str] = None
+    locations: OptionalNullable[str] = UNSET
     r"""The locations of the candidate"""
-    is_private: Optional[bool] = None
+    is_private: OptionalNullable[bool] = UNSET
     r"""Whether the candidate is private"""
-    email_reachable: Optional[bool] = None
+    email_reachable: OptionalNullable[bool] = UNSET
     r"""Whether the candidate is reachable by email"""
-    remote_created_at: Optional[datetime] = None
+    remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote creation date of the candidate"""
-    remote_modified_at: Optional[datetime] = None
+    remote_modified_at: OptionalNullable[datetime] = UNSET
     r"""The remote modification date of the candidate"""
-    last_interaction_at: Optional[datetime] = None
+    last_interaction_at: OptionalNullable[datetime] = UNSET
     r"""The last interaction date with the candidate"""
-    attachments: Optional[List[str]] = None
+    attachments: OptionalNullable[List[str]] = UNSET
     r"""The attachments UUIDs of the candidate"""
-    applications: Optional[List[str]] = None
+    applications: OptionalNullable[List[str]] = UNSET
     r"""The applications UUIDs of the candidate"""
-    tags: Optional[List[str]] = None
+    tags: OptionalNullable[List[str]] = UNSET
     r"""The tags of the candidate"""
-    urls: Optional[List[URL]] = None
+    urls: OptionalNullable[List[URL]] = UNSET
     r"""The urls of the candidate, possible values for Url type are WEBSITE, BLOG, LINKEDIN, GITHUB, or OTHER"""
-    phone_numbers: Optional[List[Phone]] = None
+    phone_numbers: OptionalNullable[List[Phone]] = UNSET
     r"""The phone numbers of the candidate"""
-    email_addresses: Optional[List[Email]] = None
+    email_addresses: OptionalNullable[List[Email]] = UNSET
     r"""The email addresses of the candidate"""
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["first_name", "last_name", "company", "title", "locations", "is_private", "email_reachable", "remote_created_at", "remote_modified_at", "last_interaction_at", "attachments", "applications", "tags", "urls", "phone_numbers", "email_addresses", "field_mappings"]
+        nullable_fields = ["first_name", "last_name", "company", "title", "locations", "is_private", "email_reachable", "remote_created_at", "remote_modified_at", "last_interaction_at", "attachments", "applications", "tags", "urls", "phone_numbers", "email_addresses", "field_mappings"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

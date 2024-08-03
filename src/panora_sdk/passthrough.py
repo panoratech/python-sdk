@@ -56,6 +56,7 @@ class Passthrough(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(request.pass_through_request_dto, False, False, "json", models.PassThroughRequestDto),
             timeout_ms=timeout_ms,
         )
@@ -75,13 +76,13 @@ class Passthrough(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="request", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="request", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, ["200","201"], "application/json"):
+        if utils.match_response(http_res, "201", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[models.PassThroughResponse])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
@@ -137,6 +138,7 @@ class Passthrough(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(request.pass_through_request_dto, False, False, "json", models.PassThroughRequestDto),
             timeout_ms=timeout_ms,
         )
@@ -156,13 +158,13 @@ class Passthrough(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="request", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="request", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, ["200","201"], "application/json"):
+        if utils.match_response(http_res, "201", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[models.PassThroughResponse])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)

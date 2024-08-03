@@ -14,9 +14,12 @@ List  Payments
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.payments.list(x_connection_token="<value>")
@@ -54,9 +57,12 @@ Create Payments in any supported Accounting software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.payments.create(x_connection_token="<value>", unified_accounting_payment_input={})
@@ -93,9 +99,12 @@ Retrieve Payments from any connected Accounting software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.payments.retrieve(x_connection_token="<value>", id="<value>")

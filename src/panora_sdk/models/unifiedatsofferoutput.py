@@ -2,89 +2,117 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import BaseModel
-from typing import Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedAtsOfferOutputFieldMappingsTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsOfferOutputFieldMappings(BaseModel):
-    pass
-    
-
-class UnifiedAtsOfferOutputRemoteDataTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsOfferOutputRemoteData(BaseModel):
-    pass
-    
-
 class UnifiedAtsOfferOutputCreatedAtTypedDict(TypedDict):
-    pass
+    r"""The created date of the object"""
+    
     
 
 class UnifiedAtsOfferOutputCreatedAt(BaseModel):
-    pass
+    r"""The created date of the object"""
+    
     
 
 class UnifiedAtsOfferOutputModifiedAtTypedDict(TypedDict):
-    pass
+    r"""The modified date of the object"""
+    
     
 
 class UnifiedAtsOfferOutputModifiedAt(BaseModel):
-    pass
+    r"""The modified date of the object"""
+    
     
 
 class UnifiedAtsOfferOutputTypedDict(TypedDict):
-    field_mappings: UnifiedAtsOfferOutputFieldMappingsTypedDict
-    remote_data: UnifiedAtsOfferOutputRemoteDataTypedDict
-    created_at: UnifiedAtsOfferOutputCreatedAtTypedDict
-    modified_at: UnifiedAtsOfferOutputModifiedAtTypedDict
-    created_by: NotRequired[str]
+    created_by: NotRequired[Nullable[str]]
     r"""The UUID of the creator"""
-    remote_created_at: NotRequired[datetime]
+    remote_created_at: NotRequired[Nullable[datetime]]
     r"""The remote creation date of the offer"""
-    closed_at: NotRequired[datetime]
+    closed_at: NotRequired[Nullable[datetime]]
     r"""The closing date of the offer"""
-    sent_at: NotRequired[datetime]
+    sent_at: NotRequired[Nullable[datetime]]
     r"""The sending date of the offer"""
-    start_date: NotRequired[datetime]
+    start_date: NotRequired[Nullable[datetime]]
     r"""The start date of the offer"""
-    status: NotRequired[str]
+    status: NotRequired[Nullable[str]]
     r"""The status of the offer"""
-    application_id: NotRequired[str]
+    application_id: NotRequired[Nullable[str]]
     r"""The UUID of the application"""
-    id: NotRequired[str]
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
+    id: NotRequired[Nullable[str]]
     r"""The UUID of the offer"""
-    remote_id: NotRequired[str]
+    remote_id: NotRequired[Nullable[str]]
     r"""The remote ID of the offer in the context of the 3rd Party"""
+    remote_data: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The remote data of the offer in the context of the 3rd Party"""
+    created_at: NotRequired[Nullable[UnifiedAtsOfferOutputCreatedAtTypedDict]]
+    r"""The created date of the object"""
+    modified_at: NotRequired[Nullable[UnifiedAtsOfferOutputModifiedAtTypedDict]]
+    r"""The modified date of the object"""
     
 
 class UnifiedAtsOfferOutput(BaseModel):
-    field_mappings: UnifiedAtsOfferOutputFieldMappings
-    remote_data: UnifiedAtsOfferOutputRemoteData
-    created_at: UnifiedAtsOfferOutputCreatedAt
-    modified_at: UnifiedAtsOfferOutputModifiedAt
-    created_by: Optional[str] = None
+    created_by: OptionalNullable[str] = UNSET
     r"""The UUID of the creator"""
-    remote_created_at: Optional[datetime] = None
+    remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote creation date of the offer"""
-    closed_at: Optional[datetime] = None
+    closed_at: OptionalNullable[datetime] = UNSET
     r"""The closing date of the offer"""
-    sent_at: Optional[datetime] = None
+    sent_at: OptionalNullable[datetime] = UNSET
     r"""The sending date of the offer"""
-    start_date: Optional[datetime] = None
+    start_date: OptionalNullable[datetime] = UNSET
     r"""The start date of the offer"""
-    status: Optional[str] = None
+    status: OptionalNullable[str] = UNSET
     r"""The status of the offer"""
-    application_id: Optional[str] = None
+    application_id: OptionalNullable[str] = UNSET
     r"""The UUID of the application"""
-    id: Optional[str] = None
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
+    id: OptionalNullable[str] = UNSET
     r"""The UUID of the offer"""
-    remote_id: Optional[str] = None
+    remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the offer in the context of the 3rd Party"""
+    remote_data: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The remote data of the offer in the context of the 3rd Party"""
+    created_at: OptionalNullable[UnifiedAtsOfferOutputCreatedAt] = UNSET
+    r"""The created date of the object"""
+    modified_at: OptionalNullable[UnifiedAtsOfferOutputModifiedAt] = UNSET
+    r"""The modified date of the object"""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["created_by", "remote_created_at", "closed_at", "sent_at", "start_date", "status", "application_id", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        nullable_fields = ["created_by", "remote_created_at", "closed_at", "sent_at", "start_date", "status", "application_id", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

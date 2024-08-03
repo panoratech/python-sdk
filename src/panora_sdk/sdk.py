@@ -22,7 +22,7 @@ from panora_sdk.ticketing import Ticketing
 from panora_sdk.types import OptionalNullable, UNSET
 import panora_sdk.utils as utils
 from panora_sdk.webhooks import Webhooks
-from typing import Dict, Optional
+from typing import Any, Callable, Dict, Optional, Union
 
 class Panora(BaseSDK):
     r"""Panora API: A unified API to ship integrations"""
@@ -40,6 +40,7 @@ class Panora(BaseSDK):
     filestorage: Filestorage
     def __init__(
         self,
+        api_key: Union[str, Callable[[], str]],
         server_idx: Optional[int] = None,
         server_url: Optional[str] = None,
         url_params: Optional[Dict[str, str]] = None,
@@ -51,6 +52,7 @@ class Panora(BaseSDK):
     ) -> None:
         r"""Instantiates the SDK configuring it with the provided parameters.
 
+        :param api_key: The api_key required for authentication
         :param server_idx: The index of the server to use for all methods
         :param server_url: The server URL to use for all methods
         :param url_params: Parameters to optionally template the server URL with
@@ -75,6 +77,12 @@ class Panora(BaseSDK):
         assert issubclass(
             type(async_client), AsyncHttpClient
         ), "The provided async_client must implement the AsyncHttpClient protocol."
+        
+        security: Any = None
+        if callable(api_key):
+            security = lambda: models.Security(api_key = api_key()) # pylint: disable=unnecessary-lambda-assignment
+        else:
+            security = models.Security(api_key = api_key)
 
         if server_url is not None:
             if url_params is not None:
@@ -84,6 +92,7 @@ class Panora(BaseSDK):
         BaseSDK.__init__(self, SDKConfiguration(
             client=client,
             async_client=async_client,
+            security=security,
             server_url=server_url,
             server_idx=server_idx,
             retry_config=retry_config,
@@ -145,9 +154,10 @@ class Panora(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="application/json",
+            accept_header_value="text/plain",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -166,14 +176,14 @@ class Panora(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[str])
+        if utils.match_response(http_res, "200", "text/plain"):
+            return http_res.text
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -208,9 +218,10 @@ class Panora(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="application/json",
+            accept_header_value="text/plain",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -229,14 +240,14 @@ class Panora(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[str])
+        if utils.match_response(http_res, "200", "text/plain"):
+            return http_res.text
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -271,9 +282,10 @@ class Panora(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -292,7 +304,7 @@ class Panora(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -334,9 +346,10 @@ class Panora(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -355,7 +368,7 @@ class Panora(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config

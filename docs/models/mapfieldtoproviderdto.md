@@ -5,7 +5,7 @@
 
 | Field                    | Type                     | Required                 | Description              |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `attribute_id`           | *str*                    | :heavy_check_mark:       | N/A                      |
-| `source_custom_field_id` | *str*                    | :heavy_check_mark:       | N/A                      |
-| `source_provider`        | *str*                    | :heavy_check_mark:       | N/A                      |
-| `linked_user_id`         | *str*                    | :heavy_check_mark:       | N/A                      |
+| `attribute_id`           | *Nullable[str]*          | :heavy_check_mark:       | Attribute Id             |
+| `source_custom_field_id` | *Nullable[str]*          | :heavy_check_mark:       | Attribute Id             |
+| `source_provider`        | *Nullable[str]*          | :heavy_check_mark:       | Attribute Id             |
+| `linked_user_id`         | *Nullable[str]*          | :heavy_check_mark:       | Attribute Id             |

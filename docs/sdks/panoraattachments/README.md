@@ -14,9 +14,12 @@ List  Attachments
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.attachments.list(x_connection_token="<value>")
@@ -54,9 +57,12 @@ Create attachments in any supported Accounting software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.attachments.create(x_connection_token="<value>", unified_accounting_attachment_input={})
@@ -93,9 +99,12 @@ Retrieve attachments from any connected Accounting software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.accounting.attachments.retrieve(x_connection_token="<value>", id="<value>")

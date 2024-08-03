@@ -14,9 +14,12 @@ List  Attachments
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ats.attachments.list(x_connection_token="<value>")
@@ -54,14 +57,15 @@ Create Attachments in any supported ATS software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
-res = s.ats.attachments.create(x_connection_token="<value>", unified_ats_attachment_input={
-    "field_mappings": {},
-})
+res = s.ats.attachments.create(x_connection_token="<value>", unified_ats_attachment_input={})
 
 if res is not None:
     # handle response
@@ -95,9 +99,12 @@ Retrieve Attachments from any connected Ats software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ats.attachments.retrieve(x_connection_token="<value>", id="<value>")

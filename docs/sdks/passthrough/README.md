@@ -12,10 +12,13 @@ Make a passthrough request
 ### Example Usage
 
 ```python
+import os
 import panora_sdk
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.passthrough.request(integration_id="<value>", linked_user_id="<value>", vertical="<value>", pass_through_request_dto={

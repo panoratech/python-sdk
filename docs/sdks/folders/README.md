@@ -14,9 +14,12 @@ List  Folders
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.filestorage.folders.list(x_connection_token="<value>")
@@ -54,9 +57,12 @@ Create Folders in any supported Filestorage software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.filestorage.folders.create(x_connection_token="<value>", remote_data=False, unified_filestorage_folder_input={
@@ -68,7 +74,6 @@ res = s.filestorage.folders.create(x_connection_token="<value>", remote_data=Fal
     "parent_folder_id": "<value>",
     "shared_link": "<value>",
     "permission": "<value>",
-    "field_mappings": {},
 })
 
 if res is not None:
@@ -103,9 +108,12 @@ Retrieve Folders from any connected Filestorage software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.filestorage.folders.retrieve(x_connection_token="<value>", id="<value>")

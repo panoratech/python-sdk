@@ -37,9 +37,12 @@ poetry add panora-sdk
 
 ```python
 # Synchronous Example
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.hello()
@@ -55,10 +58,13 @@ The same SDK client can also be used to make asychronous requests by importing a
 ```python
 # Asynchronous Example
 import asyncio
+import os
 from panora_sdk import Panora
 
 async def main():
-    s = Panora()
+    s = Panora(
+        api_key=os.getenv("API_KEY", ""),
+    )
     res = await s.hello_async()
     if res is not None:
         # handle response
@@ -80,15 +86,9 @@ asyncio.run(main())
 
 * [list](docs/sdks/webhooks/README.md#list) - List webhooks
 * [create](docs/sdks/webhooks/README.md#create) - Add webhook metadata
-
-### [webhooks.id](docs/sdks/id/README.md)
-
-* [delete](docs/sdks/id/README.md#delete) - Delete Webhook
-* [update_status](docs/sdks/id/README.md#update_status) - Update webhook status
-
-### [webhooks.verifyevent](docs/sdks/verifyevent/README.md)
-
-* [verify_event](docs/sdks/verifyevent/README.md#verify_event) - Verify payload signature of the webhook
+* [delete](docs/sdks/webhooks/README.md#delete) - Delete Webhook
+* [update_status](docs/sdks/webhooks/README.md#update_status) - Update webhook status
+* [verify_event](docs/sdks/webhooks/README.md#verify_event) - Verify payload signature of the webhook
 
 
 ### [ticketing.tickets](docs/sdks/tickets/README.md)
@@ -147,7 +147,7 @@ asyncio.run(main())
 
 ### [crm.companies](docs/sdks/companies/README.md)
 
-* [list](docs/sdks/companies/README.md#list) - List  Companies
+* [list](docs/sdks/companies/README.md#list) - List Companies
 * [create](docs/sdks/companies/README.md#create) - Create Companies
 * [retrieve](docs/sdks/companies/README.md#retrieve) - Retrieve Companies
 
@@ -578,10 +578,13 @@ Some of the endpoints in this SDK support retries. If you use the SDK without an
 
 To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
 ```python
+import os
 from panora.utils import BackoffStrategy, RetryConfig
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.hello(,
@@ -595,11 +598,13 @@ if res is not None:
 
 If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
 ```python
+import os
 from panora.utils import BackoffStrategy, RetryConfig
 from panora_sdk import Panora
 
 s = Panora(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
+    api_key=os.getenv("API_KEY", ""),
 )
 
 
@@ -624,9 +629,12 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ### Example
 
 ```python
+import os
 from panora_sdk import Panora, models
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 res = None
 try:
@@ -659,10 +667,12 @@ You can override the default server globally by passing a server index to the `s
 #### Example
 
 ```python
+import os
 from panora_sdk import Panora
 
 s = Panora(
     server_idx=2,
+    api_key=os.getenv("API_KEY", ""),
 )
 
 
@@ -679,10 +689,12 @@ if res is not None:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
+import os
 from panora_sdk import Panora
 
 s = Panora(
     server_url="https://api.panora.dev",
+    api_key=os.getenv("API_KEY", ""),
 )
 
 
@@ -789,6 +801,36 @@ logging.basicConfig(level=logging.DEBUG)
 s = Panora(debug_logger=logging.getLogger("panora_sdk"))
 ```
 <!-- End Debugging [debug] -->
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name      | Type      | Scheme    |
+| --------- | --------- | --------- |
+| `api_key` | apiKey    | API key   |
+
+To authenticate with the API the `api_key` parameter must be set when initializing the SDK client instance. For example:
+```python
+import os
+from panora_sdk import Panora
+
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
+
+
+res = s.hello()
+
+if res is not None:
+    # handle response
+    pass
+
+```
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

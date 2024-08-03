@@ -13,9 +13,12 @@ List  Collections
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ticketing.collections.list(x_connection_token="<value>")
@@ -53,9 +56,12 @@ Retrieve Collections from any connected Ticketing software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ticketing.collections.retrieve(x_connection_token="<value>", id="<value>")

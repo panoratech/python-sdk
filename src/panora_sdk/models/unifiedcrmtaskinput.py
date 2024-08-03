@@ -2,55 +2,81 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import BaseModel
-from typing import Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedCrmTaskInputFieldMappingsTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedCrmTaskInputFieldMappings(BaseModel):
-    pass
-    
-
 class UnifiedCrmTaskInputTypedDict(TypedDict):
-    subject: str
+    subject: Nullable[str]
     r"""The subject of the task"""
-    content: str
+    content: Nullable[str]
     r"""The content of the task"""
-    status: str
+    status: Nullable[str]
     r"""The status of the task. Authorized values are PENDING, COMPLETED."""
-    field_mappings: UnifiedCrmTaskInputFieldMappingsTypedDict
-    due_date: NotRequired[datetime]
+    due_date: NotRequired[Nullable[datetime]]
     r"""The due date of the task"""
-    finished_date: NotRequired[datetime]
+    finished_date: NotRequired[Nullable[datetime]]
     r"""The finished date of the task"""
-    user_id: NotRequired[str]
+    user_id: NotRequired[Nullable[str]]
     r"""The UUID of the user tied to the task"""
-    company_id: NotRequired[str]
-    r"""The UUID fo the company tied to the task"""
-    deal_id: NotRequired[str]
+    company_id: NotRequired[Nullable[str]]
+    r"""The UUID of the company tied to the task"""
+    deal_id: NotRequired[Nullable[str]]
     r"""The UUID of the deal tied to the task"""
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the task between the remote 3rd party & Panora"""
     
 
 class UnifiedCrmTaskInput(BaseModel):
-    subject: str
+    subject: Nullable[str]
     r"""The subject of the task"""
-    content: str
+    content: Nullable[str]
     r"""The content of the task"""
-    status: str
+    status: Nullable[str]
     r"""The status of the task. Authorized values are PENDING, COMPLETED."""
-    field_mappings: UnifiedCrmTaskInputFieldMappings
-    due_date: Optional[datetime] = None
+    due_date: OptionalNullable[datetime] = UNSET
     r"""The due date of the task"""
-    finished_date: Optional[datetime] = None
+    finished_date: OptionalNullable[datetime] = UNSET
     r"""The finished date of the task"""
-    user_id: Optional[str] = None
+    user_id: OptionalNullable[str] = UNSET
     r"""The UUID of the user tied to the task"""
-    company_id: Optional[str] = None
-    r"""The UUID fo the company tied to the task"""
-    deal_id: Optional[str] = None
+    company_id: OptionalNullable[str] = UNSET
+    r"""The UUID of the company tied to the task"""
+    deal_id: OptionalNullable[str] = UNSET
     r"""The UUID of the deal tied to the task"""
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the task between the remote 3rd party & Panora"""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["due_date", "finished_date", "user_id", "company_id", "deal_id", "field_mappings"]
+        nullable_fields = ["subject", "content", "status", "due_date", "finished_date", "user_id", "company_id", "deal_id", "field_mappings"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

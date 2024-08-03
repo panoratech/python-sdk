@@ -13,9 +13,12 @@ List  Events
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.marketingautomation.events.list(x_connection_token="<value>")
@@ -53,9 +56,12 @@ Retrieve Events from any connected Marketingautomation software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.marketingautomation.events.retrieve(x_connection_token="<value>", id="<value>")

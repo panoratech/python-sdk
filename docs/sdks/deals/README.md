@@ -14,9 +14,12 @@ List  Deals
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.deals.list(x_connection_token="<value>")
@@ -54,16 +57,18 @@ Create Deals in any supported Crm software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.deals.create(x_connection_token="<value>", unified_crm_deal_input={
     "name": "<value>",
     "description": "Multi-tiered human-resource model",
     "amount": 8592.13,
-    "field_mappings": {},
 })
 
 if res is not None:
@@ -98,9 +103,12 @@ Retrieve Deals from any connected Crm software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.deals.retrieve(x_connection_token="<value>", id="<value>")

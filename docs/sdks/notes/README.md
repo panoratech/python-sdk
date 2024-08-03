@@ -14,9 +14,12 @@ List  Notes
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.notes.list(x_connection_token="<value>")
@@ -54,14 +57,16 @@ Create Notes in any supported Crm software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.notes.create(x_connection_token="<value>", unified_crm_note_input={
     "content": "<value>",
-    "field_mappings": {},
 })
 
 if res is not None:
@@ -96,9 +101,12 @@ Retrieve Notes from any connected Crm software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.notes.retrieve(x_connection_token="<value>", id="<value>")

@@ -13,9 +13,12 @@ List  TimeoffBalances
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.hris.timeoffbalances.list(x_connection_token="<value>")
@@ -53,9 +56,12 @@ Retrieve Time off Balances from any connected Hris software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.hris.timeoffbalances.retrieve(x_connection_token="<value>", id="<value>")

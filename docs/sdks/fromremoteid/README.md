@@ -12,14 +12,19 @@ Retrieve a Linked User From A Remote Id
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
-s.linked_users.fromremoteid.remote_id(remote_id="<value>")
+res = s.linked_users.fromremoteid.remote_id(remote_id="<value>")
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 
 ```
 
@@ -30,6 +35,10 @@ s.linked_users.fromremoteid.remote_id(remote_id="<value>")
 | `remote_id`                                                         | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
+### Response
+
+**[models.LinkedUserResponse](../../models/linkeduserresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

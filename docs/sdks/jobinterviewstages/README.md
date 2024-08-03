@@ -13,9 +13,12 @@ List  JobInterviewStages
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ats.jobinterviewstages.list(x_connection_token="<value>")
@@ -53,9 +56,12 @@ Retrieve Job Interview Stages from any connected Ats software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ats.jobinterviewstages.retrieve(x_connection_token="<value>", id="<value>")

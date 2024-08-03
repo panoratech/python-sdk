@@ -5,7 +5,7 @@ from panora_sdk import models
 from panora_sdk._hooks import HookContext
 from panora_sdk.types import BaseModel, OptionalNullable, UNSET
 import panora_sdk.utils as utils
-from typing import Optional, Union, cast
+from typing import List, Optional, Union, cast
 
 class Batch(BaseSDK):
     
@@ -16,7 +16,7 @@ class Batch(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[List[models.LinkedUserResponse]]:
         r"""Add Batch Linked Users
 
         :param request: The request object to send.
@@ -44,9 +44,10 @@ class Batch(BaseSDK):
             request=request,
             request_body_required=True,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", models.CreateBatchLinkedUserDto),
             timeout_ms=timeout_ms,
         )
@@ -66,14 +67,14 @@ class Batch(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="importBatch", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="importBatch", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "201", "*"):
-            return
+        if utils.match_response(http_res, "201", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[List[models.LinkedUserResponse]])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -88,7 +89,7 @@ class Batch(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[List[models.LinkedUserResponse]]:
         r"""Add Batch Linked Users
 
         :param request: The request object to send.
@@ -116,9 +117,10 @@ class Batch(BaseSDK):
             request=request,
             request_body_required=True,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", models.CreateBatchLinkedUserDto),
             timeout_ms=timeout_ms,
         )
@@ -138,14 +140,14 @@ class Batch(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="importBatch", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="importBatch", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "201", "*"):
-            return
+        if utils.match_response(http_res, "201", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[List[models.LinkedUserResponse]])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
