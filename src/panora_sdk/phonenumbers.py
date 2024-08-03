@@ -56,6 +56,7 @@ class Phonenumbers(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -74,7 +75,7 @@ class Phonenumbers(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="listAccountingPhonenumber", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="listAccountingPhonenumber", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -136,6 +137,7 @@ class Phonenumbers(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -154,7 +156,7 @@ class Phonenumbers(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="listAccountingPhonenumber", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="listAccountingPhonenumber", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -215,6 +217,7 @@ class Phonenumbers(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -233,7 +236,7 @@ class Phonenumbers(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="retrieveAccountingPhonenumber", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="retrieveAccountingPhonenumber", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -294,6 +297,7 @@ class Phonenumbers(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -312,7 +316,7 @@ class Phonenumbers(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="retrieveAccountingPhonenumber", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="retrieveAccountingPhonenumber", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config

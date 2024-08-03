@@ -2,109 +2,117 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import BaseModel
-from typing import List, Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedAtsJobOutputFieldMappingsTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsJobOutputFieldMappings(BaseModel):
-    pass
-    
-
-class UnifiedAtsJobOutputRemoteDataTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsJobOutputRemoteData(BaseModel):
-    pass
-    
-
-class UnifiedAtsJobOutputCreatedAtTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsJobOutputCreatedAt(BaseModel):
-    pass
-    
-
-class UnifiedAtsJobOutputModifiedAtTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsJobOutputModifiedAt(BaseModel):
-    pass
-    
-
 class UnifiedAtsJobOutputTypedDict(TypedDict):
-    field_mappings: UnifiedAtsJobOutputFieldMappingsTypedDict
-    remote_data: UnifiedAtsJobOutputRemoteDataTypedDict
-    created_at: UnifiedAtsJobOutputCreatedAtTypedDict
-    modified_at: UnifiedAtsJobOutputModifiedAtTypedDict
-    name: NotRequired[str]
+    name: NotRequired[Nullable[str]]
     r"""The name of the job"""
-    description: NotRequired[str]
+    description: NotRequired[Nullable[str]]
     r"""The description of the job"""
-    code: NotRequired[str]
+    code: NotRequired[Nullable[str]]
     r"""The code of the job"""
-    status: NotRequired[str]
+    status: NotRequired[Nullable[str]]
     r"""The status of the job"""
-    type: NotRequired[str]
+    type: NotRequired[Nullable[str]]
     r"""The type of the job"""
-    confidential: NotRequired[bool]
+    confidential: NotRequired[Nullable[bool]]
     r"""Whether the job is confidential"""
-    departments: NotRequired[List[str]]
+    departments: NotRequired[Nullable[List[str]]]
     r"""The departments UUIDs associated with the job"""
-    offices: NotRequired[List[str]]
+    offices: NotRequired[Nullable[List[str]]]
     r"""The offices UUIDs associated with the job"""
-    managers: NotRequired[List[str]]
+    managers: NotRequired[Nullable[List[str]]]
     r"""The managers UUIDs associated with the job"""
-    recruiters: NotRequired[List[str]]
+    recruiters: NotRequired[Nullable[List[str]]]
     r"""The recruiters UUIDs associated with the job"""
-    remote_created_at: NotRequired[datetime]
+    remote_created_at: NotRequired[Nullable[datetime]]
     r"""The remote creation date of the job"""
-    remote_updated_at: NotRequired[datetime]
+    remote_updated_at: NotRequired[Nullable[datetime]]
     r"""The remote modification date of the job"""
-    id: NotRequired[str]
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
+    id: NotRequired[Nullable[str]]
     r"""The UUID of the job"""
-    remote_id: NotRequired[str]
+    remote_id: NotRequired[Nullable[str]]
     r"""The remote ID of the job in the context of the 3rd Party"""
+    remote_data: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The remote data of the job in the context of the 3rd Party"""
+    created_at: NotRequired[Nullable[datetime]]
+    r"""The created date of the object"""
+    modified_at: NotRequired[Nullable[datetime]]
+    r"""The modified date of the object"""
     
 
 class UnifiedAtsJobOutput(BaseModel):
-    field_mappings: UnifiedAtsJobOutputFieldMappings
-    remote_data: UnifiedAtsJobOutputRemoteData
-    created_at: UnifiedAtsJobOutputCreatedAt
-    modified_at: UnifiedAtsJobOutputModifiedAt
-    name: Optional[str] = None
+    name: OptionalNullable[str] = UNSET
     r"""The name of the job"""
-    description: Optional[str] = None
+    description: OptionalNullable[str] = UNSET
     r"""The description of the job"""
-    code: Optional[str] = None
+    code: OptionalNullable[str] = UNSET
     r"""The code of the job"""
-    status: Optional[str] = None
+    status: OptionalNullable[str] = UNSET
     r"""The status of the job"""
-    type: Optional[str] = None
+    type: OptionalNullable[str] = UNSET
     r"""The type of the job"""
-    confidential: Optional[bool] = None
+    confidential: OptionalNullable[bool] = UNSET
     r"""Whether the job is confidential"""
-    departments: Optional[List[str]] = None
+    departments: OptionalNullable[List[str]] = UNSET
     r"""The departments UUIDs associated with the job"""
-    offices: Optional[List[str]] = None
+    offices: OptionalNullable[List[str]] = UNSET
     r"""The offices UUIDs associated with the job"""
-    managers: Optional[List[str]] = None
+    managers: OptionalNullable[List[str]] = UNSET
     r"""The managers UUIDs associated with the job"""
-    recruiters: Optional[List[str]] = None
+    recruiters: OptionalNullable[List[str]] = UNSET
     r"""The recruiters UUIDs associated with the job"""
-    remote_created_at: Optional[datetime] = None
+    remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote creation date of the job"""
-    remote_updated_at: Optional[datetime] = None
+    remote_updated_at: OptionalNullable[datetime] = UNSET
     r"""The remote modification date of the job"""
-    id: Optional[str] = None
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
+    id: OptionalNullable[str] = UNSET
     r"""The UUID of the job"""
-    remote_id: Optional[str] = None
+    remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the job in the context of the 3rd Party"""
+    remote_data: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The remote data of the job in the context of the 3rd Party"""
+    created_at: OptionalNullable[datetime] = UNSET
+    r"""The created date of the object"""
+    modified_at: OptionalNullable[datetime] = UNSET
+    r"""The modified date of the object"""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["name", "description", "code", "status", "type", "confidential", "departments", "offices", "managers", "recruiters", "remote_created_at", "remote_updated_at", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        nullable_fields = ["name", "description", "code", "status", "type", "confidential", "departments", "offices", "managers", "recruiters", "remote_created_at", "remote_updated_at", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

@@ -13,9 +13,12 @@ List  Groups
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.filestorage.groups.list(x_connection_token="<value>")
@@ -53,9 +56,12 @@ Retrieve Groups from any connected Filestorage software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.filestorage.groups.retrieve(x_connection_token="<value>", id="<value>")

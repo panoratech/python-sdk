@@ -4,51 +4,77 @@ from __future__ import annotations
 from .address import Address, AddressTypedDict
 from .email import Email, EmailTypedDict
 from .phone import Phone, PhoneTypedDict
-from panora_sdk.types import BaseModel
-from typing import List, Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedCrmCompanyInputFieldMappingsTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedCrmCompanyInputFieldMappings(BaseModel):
-    pass
-    
-
 class UnifiedCrmCompanyInputTypedDict(TypedDict):
-    name: str
+    name: Nullable[str]
     r"""The name of the company"""
-    field_mappings: UnifiedCrmCompanyInputFieldMappingsTypedDict
-    industry: NotRequired[str]
+    industry: NotRequired[Nullable[str]]
     r"""The industry of the company. Authorized values can be found in the Industry enum."""
-    number_of_employees: NotRequired[float]
+    number_of_employees: NotRequired[Nullable[float]]
     r"""The number of employees of the company"""
-    user_id: NotRequired[str]
+    user_id: NotRequired[Nullable[str]]
     r"""The UUID of the user who owns the company"""
-    email_addresses: NotRequired[List[EmailTypedDict]]
+    email_addresses: NotRequired[Nullable[List[EmailTypedDict]]]
     r"""The email addresses of the company"""
-    addresses: NotRequired[List[AddressTypedDict]]
+    addresses: NotRequired[Nullable[List[AddressTypedDict]]]
     r"""The addresses of the company"""
-    phone_numbers: NotRequired[List[PhoneTypedDict]]
+    phone_numbers: NotRequired[Nullable[List[PhoneTypedDict]]]
     r"""The phone numbers of the company"""
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the company between the remote 3rd party & Panora"""
     
 
 class UnifiedCrmCompanyInput(BaseModel):
-    name: str
+    name: Nullable[str]
     r"""The name of the company"""
-    field_mappings: UnifiedCrmCompanyInputFieldMappings
-    industry: Optional[str] = None
+    industry: OptionalNullable[str] = UNSET
     r"""The industry of the company. Authorized values can be found in the Industry enum."""
-    number_of_employees: Optional[float] = None
+    number_of_employees: OptionalNullable[float] = UNSET
     r"""The number of employees of the company"""
-    user_id: Optional[str] = None
+    user_id: OptionalNullable[str] = UNSET
     r"""The UUID of the user who owns the company"""
-    email_addresses: Optional[List[Email]] = None
+    email_addresses: OptionalNullable[List[Email]] = UNSET
     r"""The email addresses of the company"""
-    addresses: Optional[List[Address]] = None
+    addresses: OptionalNullable[List[Address]] = UNSET
     r"""The addresses of the company"""
-    phone_numbers: Optional[List[Phone]] = None
+    phone_numbers: OptionalNullable[List[Phone]] = UNSET
     r"""The phone numbers of the company"""
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the company between the remote 3rd party & Panora"""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["industry", "number_of_employees", "user_id", "email_addresses", "addresses", "phone_numbers", "field_mappings"]
+        nullable_fields = ["name", "industry", "number_of_employees", "user_id", "email_addresses", "addresses", "phone_numbers", "field_mappings"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

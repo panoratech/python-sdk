@@ -14,9 +14,12 @@ List CRM Contacts
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.contacts.list(x_connection_token="<value>")
@@ -54,15 +57,17 @@ Create Contacts in any supported CRM
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.contacts.create(x_connection_token="<value>", unified_crm_contact_input={
     "first_name": "Jed",
     "last_name": "Kuhn",
-    "field_mappings": {},
 })
 
 if res is not None:
@@ -97,9 +102,12 @@ Retrieve Contacts from any connected CRM
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.contacts.retrieve(x_connection_token="<value>", id="<value>")

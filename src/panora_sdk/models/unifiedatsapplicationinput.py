@@ -2,59 +2,85 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import BaseModel
-from typing import List, Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, List, Optional, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedAtsApplicationInputFieldMappingsTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsApplicationInputFieldMappings(BaseModel):
-    pass
-    
-
 class UnifiedAtsApplicationInputTypedDict(TypedDict):
-    field_mappings: UnifiedAtsApplicationInputFieldMappingsTypedDict
-    applied_at: NotRequired[datetime]
+    applied_at: NotRequired[Nullable[datetime]]
     r"""The application date"""
-    rejected_at: NotRequired[datetime]
+    rejected_at: NotRequired[Nullable[datetime]]
     r"""The rejection date"""
-    offers: NotRequired[List[str]]
+    offers: NotRequired[Nullable[List[str]]]
     r"""The offers UUIDs for the application"""
-    source: NotRequired[str]
+    source: NotRequired[Nullable[str]]
     r"""The source of the application"""
-    credited_to: NotRequired[str]
+    credited_to: NotRequired[Nullable[str]]
     r"""The UUID of the person credited for the application"""
-    current_stage: NotRequired[str]
+    current_stage: NotRequired[Nullable[str]]
     r"""The UUID of the current stage of the application"""
-    reject_reason: NotRequired[str]
+    reject_reason: NotRequired[Nullable[str]]
     r"""The rejection reason for the application"""
-    candidate_id: NotRequired[str]
+    candidate_id: NotRequired[Nullable[str]]
     r"""The UUID of the candidate"""
     job_id: NotRequired[str]
     r"""The UUID of the job"""
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     
 
 class UnifiedAtsApplicationInput(BaseModel):
-    field_mappings: UnifiedAtsApplicationInputFieldMappings
-    applied_at: Optional[datetime] = None
+    applied_at: OptionalNullable[datetime] = UNSET
     r"""The application date"""
-    rejected_at: Optional[datetime] = None
+    rejected_at: OptionalNullable[datetime] = UNSET
     r"""The rejection date"""
-    offers: Optional[List[str]] = None
+    offers: OptionalNullable[List[str]] = UNSET
     r"""The offers UUIDs for the application"""
-    source: Optional[str] = None
+    source: OptionalNullable[str] = UNSET
     r"""The source of the application"""
-    credited_to: Optional[str] = None
+    credited_to: OptionalNullable[str] = UNSET
     r"""The UUID of the person credited for the application"""
-    current_stage: Optional[str] = None
+    current_stage: OptionalNullable[str] = UNSET
     r"""The UUID of the current stage of the application"""
-    reject_reason: Optional[str] = None
+    reject_reason: OptionalNullable[str] = UNSET
     r"""The rejection reason for the application"""
-    candidate_id: Optional[str] = None
+    candidate_id: OptionalNullable[str] = UNSET
     r"""The UUID of the candidate"""
     job_id: Optional[str] = None
     r"""The UUID of the job"""
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["applied_at", "rejected_at", "offers", "source", "credited_to", "current_stage", "reject_reason", "candidate_id", "job_id", "field_mappings"]
+        nullable_fields = ["applied_at", "rejected_at", "offers", "source", "credited_to", "current_stage", "reject_reason", "candidate_id", "field_mappings"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

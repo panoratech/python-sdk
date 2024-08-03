@@ -2,81 +2,89 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import BaseModel
-from typing import Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, Optional, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedAtsScorecardOutputFieldMappingsTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsScorecardOutputFieldMappings(BaseModel):
-    pass
-    
-
-class UnifiedAtsScorecardOutputRemoteDataTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsScorecardOutputRemoteData(BaseModel):
-    pass
-    
-
-class UnifiedAtsScorecardOutputCreatedAtTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsScorecardOutputCreatedAt(BaseModel):
-    pass
-    
-
-class UnifiedAtsScorecardOutputModifiedAtTypedDict(TypedDict):
-    pass
-    
-
-class UnifiedAtsScorecardOutputModifiedAt(BaseModel):
-    pass
-    
-
 class UnifiedAtsScorecardOutputTypedDict(TypedDict):
-    field_mappings: UnifiedAtsScorecardOutputFieldMappingsTypedDict
-    remote_data: UnifiedAtsScorecardOutputRemoteDataTypedDict
-    created_at: UnifiedAtsScorecardOutputCreatedAtTypedDict
-    modified_at: UnifiedAtsScorecardOutputModifiedAtTypedDict
-    overall_recommendation: NotRequired[str]
+    overall_recommendation: NotRequired[Nullable[str]]
     r"""The overall recommendation"""
-    application_id: NotRequired[str]
+    application_id: NotRequired[Nullable[str]]
     r"""The UUID of the application"""
-    interview_id: NotRequired[str]
+    interview_id: NotRequired[Nullable[str]]
     r"""The UUID of the interview"""
-    remote_created_at: NotRequired[datetime]
+    remote_created_at: NotRequired[Nullable[str]]
     r"""The remote creation date of the scorecard"""
-    submitted_at: NotRequired[datetime]
+    submitted_at: NotRequired[Nullable[str]]
     r"""The submission date of the scorecard"""
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     id: NotRequired[str]
     r"""The UUID of the scorecard"""
-    remote_id: NotRequired[str]
+    remote_id: NotRequired[Nullable[str]]
     r"""The remote ID of the scorecard in the context of the 3rd Party"""
+    remote_data: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The remote data of the scorecard in the context of the 3rd Party"""
+    created_at: NotRequired[Nullable[datetime]]
+    r"""The created date of the object"""
+    modified_at: NotRequired[Nullable[datetime]]
+    r"""The modified date of the object"""
     
 
 class UnifiedAtsScorecardOutput(BaseModel):
-    field_mappings: UnifiedAtsScorecardOutputFieldMappings
-    remote_data: UnifiedAtsScorecardOutputRemoteData
-    created_at: UnifiedAtsScorecardOutputCreatedAt
-    modified_at: UnifiedAtsScorecardOutputModifiedAt
-    overall_recommendation: Optional[str] = None
+    overall_recommendation: OptionalNullable[str] = UNSET
     r"""The overall recommendation"""
-    application_id: Optional[str] = None
+    application_id: OptionalNullable[str] = UNSET
     r"""The UUID of the application"""
-    interview_id: Optional[str] = None
+    interview_id: OptionalNullable[str] = UNSET
     r"""The UUID of the interview"""
-    remote_created_at: Optional[datetime] = None
+    remote_created_at: OptionalNullable[str] = UNSET
     r"""The remote creation date of the scorecard"""
-    submitted_at: Optional[datetime] = None
+    submitted_at: OptionalNullable[str] = UNSET
     r"""The submission date of the scorecard"""
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     id: Optional[str] = None
     r"""The UUID of the scorecard"""
-    remote_id: Optional[str] = None
+    remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the scorecard in the context of the 3rd Party"""
+    remote_data: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The remote data of the scorecard in the context of the 3rd Party"""
+    created_at: OptionalNullable[datetime] = UNSET
+    r"""The created date of the object"""
+    modified_at: OptionalNullable[datetime] = UNSET
+    r"""The modified date of the object"""
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["overall_recommendation", "application_id", "interview_id", "remote_created_at", "submitted_at", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        nullable_fields = ["overall_recommendation", "application_id", "interview_id", "remote_created_at", "submitted_at", "field_mappings", "remote_id", "remote_data", "created_at", "modified_at"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        

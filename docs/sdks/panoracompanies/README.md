@@ -12,9 +12,12 @@ List  Companys
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.hris.companies.list(x_connection_token="<value>")

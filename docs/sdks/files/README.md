@@ -14,9 +14,12 @@ List  Files
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.filestorage.files.list(x_connection_token="<value>")
@@ -54,9 +57,12 @@ Create Files in any supported Filestorage software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.filestorage.files.create(x_connection_token="<value>", remote_data=False, unified_filestorage_file_input={
@@ -67,7 +73,6 @@ res = s.filestorage.files.create(x_connection_token="<value>", remote_data=False
     "folder_id": "<value>",
     "permission": "<value>",
     "shared_link": "<value>",
-    "field_mappings": {},
 })
 
 if res is not None:
@@ -102,9 +107,12 @@ Retrieve Files from any connected Filestorage software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.filestorage.files.retrieve(x_connection_token="<value>", id="<value>")

@@ -14,9 +14,12 @@ List  Tickets
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ticketing.tickets.list(x_connection_token="<value>")
@@ -54,15 +57,17 @@ Create Tickets in any supported Ticketing software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ticketing.tickets.create(x_connection_token="<value>", unified_ticketing_ticket_input={
     "name": "<value>",
     "description": "Multi-tiered human-resource model",
-    "field_mappings": {},
 })
 
 if res is not None:
@@ -97,9 +102,12 @@ Retrieve Tickets from any connected Ticketing software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ticketing.tickets.retrieve(x_connection_token="<value>", id="<value>")

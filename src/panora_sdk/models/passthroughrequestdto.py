@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 from enum import Enum
-from panora_sdk.types import BaseModel
-from typing import Optional, TypedDict
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from pydantic import model_serializer
+from typing import Any, Dict, List, TypedDict, Union
 from typing_extensions import NotRequired
 
 
@@ -14,32 +15,53 @@ class Method(str, Enum):
     DELETE = "DELETE"
     PUT = "PUT"
 
-class DataTypedDict(TypedDict):
-    pass
-    
-
-class Data(BaseModel):
-    pass
-    
-
-class HeadersTypedDict(TypedDict):
-    pass
-    
-
-class Headers(BaseModel):
-    pass
-    
-
 class PassThroughRequestDtoTypedDict(TypedDict):
     method: Method
-    path: str
-    data: NotRequired[DataTypedDict]
-    headers: NotRequired[HeadersTypedDict]
+    path: Nullable[str]
+    data: NotRequired[Nullable[DataTypedDict]]
+    headers: NotRequired[Nullable[Dict[str, Any]]]
     
 
 class PassThroughRequestDto(BaseModel):
     method: Method
-    path: str
-    data: Optional[Data] = None
-    headers: Optional[Headers] = None
+    path: Nullable[str]
+    data: OptionalNullable[Data] = UNSET
+    headers: OptionalNullable[Dict[str, Any]] = UNSET
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["data", "headers"]
+        nullable_fields = ["path", "data", "headers"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        
+
+DataTypedDict = Union[Dict[str, Any], List[Dict[str, Any]]]
+
+
+Data = Union[Dict[str, Any], List[Dict[str, Any]]]
+

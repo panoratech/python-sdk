@@ -13,9 +13,12 @@ Retrieve sync status of a certain vertical
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 s.sync.status(vertical="<value>")
@@ -44,14 +47,19 @@ Resync common objects across a vertical
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
-s.sync.resync()
+res = s.sync.resync()
 
-# Use the SDK ...
+if res is not None:
+    # handle response
+    pass
 
 ```
 
@@ -61,6 +69,10 @@ s.sync.resync()
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
+### Response
+
+**[models.ResyncStatusDto](../../models/resyncstatusdto.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

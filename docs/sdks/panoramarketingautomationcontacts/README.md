@@ -14,9 +14,12 @@ List  Contacts
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.marketingautomation.contacts.list(x_connection_token="<value>")
@@ -54,9 +57,12 @@ Create a contact in any supported Marketingautomation software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.marketingautomation.contacts.create(x_connection_token="<value>", unified_marketingautomation_contact_input={})
@@ -93,9 +99,12 @@ Retrieve Contacts from any connected Marketingautomation software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.marketingautomation.contacts.retrieve(x_connection_token="<value>", id="<value>")

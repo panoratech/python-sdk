@@ -14,9 +14,12 @@ List  Candidates
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ats.candidates.list(x_connection_token="<value>")
@@ -54,14 +57,15 @@ Create Candidates in any supported Ats software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
-res = s.ats.candidates.create(x_connection_token="<value>", unified_ats_candidate_input={
-    "field_mappings": {},
-})
+res = s.ats.candidates.create(x_connection_token="<value>", unified_ats_candidate_input={})
 
 if res is not None:
     # handle response
@@ -95,9 +99,12 @@ Retrieve Candidates from any connected Ats software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ats.candidates.retrieve(x_connection_token="<value>", id="<value>")

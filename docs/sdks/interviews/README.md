@@ -14,9 +14,12 @@ List  Interviews
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ats.interviews.list(x_connection_token="<value>")
@@ -54,14 +57,15 @@ Create Interviews in any supported Ats software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
-res = s.ats.interviews.create(x_connection_token="<value>", unified_ats_interview_input={
-    "field_mappings": {},
-})
+res = s.ats.interviews.create(x_connection_token="<value>", unified_ats_interview_input={})
 
 if res is not None:
     # handle response
@@ -95,9 +99,12 @@ Retrieve Interviews from any connected Ats software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.ats.interviews.retrieve(x_connection_token="<value>", id="<value>")

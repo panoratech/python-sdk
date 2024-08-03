@@ -9,7 +9,7 @@ from panora_sdk.fromremoteid import Fromremoteid
 from panora_sdk.single import Single
 from panora_sdk.types import BaseModel, OptionalNullable, UNSET
 import panora_sdk.utils as utils
-from typing import Optional, Union, cast
+from typing import List, Optional, Union, cast
 
 class LinkedUsers(BaseSDK):
     batch: Batch
@@ -32,7 +32,7 @@ class LinkedUsers(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[models.LinkedUserResponse]:
         r"""Create Linked Users
 
         :param request: The request object to send.
@@ -60,9 +60,10 @@ class LinkedUsers(BaseSDK):
             request=request,
             request_body_required=True,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", models.CreateLinkedUserDto),
             timeout_ms=timeout_ms,
         )
@@ -82,14 +83,14 @@ class LinkedUsers(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="createLinkedUser", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="createLinkedUser", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "201", "*"):
-            return
+        if utils.match_response(http_res, "201", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[models.LinkedUserResponse])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -104,7 +105,7 @@ class LinkedUsers(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[models.LinkedUserResponse]:
         r"""Create Linked Users
 
         :param request: The request object to send.
@@ -132,9 +133,10 @@ class LinkedUsers(BaseSDK):
             request=request,
             request_body_required=True,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", models.CreateLinkedUserDto),
             timeout_ms=timeout_ms,
         )
@@ -154,14 +156,14 @@ class LinkedUsers(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="createLinkedUser", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="createLinkedUser", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "201", "*"):
-            return
+        if utils.match_response(http_res, "201", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[models.LinkedUserResponse])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -175,7 +177,7 @@ class LinkedUsers(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[List[models.LinkedUserResponse]]:
         r"""List Linked Users
 
         :param retries: Override the default retry configuration for this method
@@ -197,9 +199,10 @@ class LinkedUsers(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -218,14 +221,14 @@ class LinkedUsers(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="listLinkedUsers", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="listLinkedUsers", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return
+        if utils.match_response(http_res, "200", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[List[models.LinkedUserResponse]])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -239,7 +242,7 @@ class LinkedUsers(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[List[models.LinkedUserResponse]]:
         r"""List Linked Users
 
         :param retries: Override the default retry configuration for this method
@@ -261,9 +264,10 @@ class LinkedUsers(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -282,14 +286,14 @@ class LinkedUsers(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="listLinkedUsers", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="listLinkedUsers", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return
+        if utils.match_response(http_res, "200", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[List[models.LinkedUserResponse]])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         

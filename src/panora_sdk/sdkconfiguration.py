@@ -5,9 +5,10 @@ from ._hooks import SDKHooks
 from .httpclient import AsyncHttpClient, HttpClient
 from .utils import Logger, RetryConfig, remove_suffix
 from dataclasses import dataclass
+from panora_sdk import models
 from panora_sdk.types import OptionalNullable, UNSET
 from pydantic import Field
-from typing import Dict, Optional, Tuple
+from typing import Callable, Dict, Optional, Tuple, Union
 
 
 SERVERS = [
@@ -24,16 +25,17 @@ SERVERS = [
 class SDKConfiguration:
     client: HttpClient
     async_client: AsyncHttpClient
+    debug_logger: Logger
+    security: Optional[Union[models.Security,Callable[[], models.Security]]] = None
     server_url: Optional[str] = ""
     server_idx: Optional[int] = 0
     language: str = "python"
     openapi_doc_version: str = "1.0"
-    sdk_version: str = "0.1.0"
-    gen_version: str = "2.384.4"
-    user_agent: str = "speakeasy-sdk/python 0.1.0 2.384.4 1.0 panora-sdk"
+    sdk_version: str = "0.2.0"
+    gen_version: str = "2.385.1"
+    user_agent: str = "speakeasy-sdk/python 0.2.0 2.385.1 1.0 panora-sdk"
     retry_config: OptionalNullable[RetryConfig] = Field(default_factory=lambda: UNSET)
     timeout_ms: Optional[int] = None
-    debug_logger: Optional[Logger] = None
 
     def __post_init__(self):
         self._hooks = SDKHooks()

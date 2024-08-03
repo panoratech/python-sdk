@@ -14,9 +14,12 @@ List  Actions
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.marketingautomation.actions.list(x_connection_token="<value>")
@@ -54,9 +57,12 @@ Create a action in any supported Marketingautomation software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.marketingautomation.actions.create(x_connection_token="<value>", unified_marketingautomation_action_input={})
@@ -93,9 +99,12 @@ Retrieve Actions from any connected Marketingautomation software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.marketingautomation.actions.retrieve(x_connection_token="<value>", id="<value>")

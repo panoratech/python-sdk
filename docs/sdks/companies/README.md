@@ -3,20 +3,23 @@
 
 ### Available Operations
 
-* [list](#list) - List  Companies
+* [list](#list) - List Companies
 * [create](#create) - Create Companies
 * [retrieve](#retrieve) - Retrieve Companies
 
 ## list
 
-List  Companies
+List Companies
 
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.companies.list(x_connection_token="<value>")
@@ -54,14 +57,16 @@ Create Companies in any supported CRM software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.companies.create(x_connection_token="<value>", unified_crm_company_input={
     "name": "<value>",
-    "field_mappings": {},
 })
 
 if res is not None:
@@ -96,9 +101,12 @@ Retrieve Companies from any connected Crm software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.companies.retrieve(x_connection_token="<value>", id="<value>")

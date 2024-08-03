@@ -44,9 +44,10 @@ class Sync(BaseSDK):
             request=request,
             request_body_required=False,
             request_has_path_params=True,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="*/*",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -65,7 +66,7 @@ class Sync(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="status", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="status", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -115,9 +116,10 @@ class Sync(BaseSDK):
             request=request,
             request_body_required=False,
             request_has_path_params=True,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="*/*",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -136,7 +138,7 @@ class Sync(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="status", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="status", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
@@ -157,7 +159,7 @@ class Sync(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[models.ResyncStatusDto]:
         r"""Resync common objects across a vertical
 
         :param retries: Override the default retry configuration for this method
@@ -179,9 +181,10 @@ class Sync(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -200,14 +203,14 @@ class Sync(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="resync", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="resync", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, ["200","201"], "*"):
-            return
+        if utils.match_response(http_res, "201", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[models.ResyncStatusDto])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -221,7 +224,7 @@ class Sync(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ):
+    ) -> Optional[models.ResyncStatusDto]:
         r"""Resync common objects across a vertical
 
         :param retries: Override the default retry configuration for this method
@@ -243,9 +246,10 @@ class Sync(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=False,
+            request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
+            security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
         
@@ -264,14 +268,14 @@ class Sync(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="resync", oauth2_scopes=[], security_source=None),
+            hook_ctx=HookContext(operation_id="resync", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, ["200","201"], "*"):
-            return
+        if utils.match_response(http_res, "201", "application/json"):
+            return utils.unmarshal_json(http_res.text, Optional[models.ResyncStatusDto])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         

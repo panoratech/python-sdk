@@ -13,9 +13,12 @@ List  Stages
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.stages.list(x_connection_token="<value>")
@@ -53,9 +56,12 @@ Retrieve Stages from any connected Crm software
 ### Example Usage
 
 ```python
+import os
 from panora_sdk import Panora
 
-s = Panora()
+s = Panora(
+    api_key=os.getenv("API_KEY", ""),
+)
 
 
 res = s.crm.stages.retrieve(x_connection_token="<value>", id="<value>")

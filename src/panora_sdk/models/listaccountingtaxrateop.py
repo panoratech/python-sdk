@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 from .unifiedaccountingtaxrateoutput import UnifiedAccountingTaxrateOutput, UnifiedAccountingTaxrateOutputTypedDict
-from panora_sdk.types import BaseModel
+from panora_sdk.types import BaseModel, Nullable, UNSET_SENTINEL
 from panora_sdk.utils import FieldMetadata, HeaderMetadata, QueryParamMetadata
 import pydantic
+from pydantic import model_serializer
 from typing import List, Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
@@ -32,13 +33,44 @@ class ListAccountingTaxRateRequest(BaseModel):
     
 
 class ListAccountingTaxRateResponseBodyTypedDict(TypedDict):
-    prev_cursor: str
-    next_cursor: str
+    prev_cursor: Nullable[str]
+    next_cursor: Nullable[str]
     data: List[UnifiedAccountingTaxrateOutputTypedDict]
     
 
 class ListAccountingTaxRateResponseBody(BaseModel):
-    prev_cursor: str
-    next_cursor: str
+    prev_cursor: Nullable[str]
+    next_cursor: Nullable[str]
     data: List[UnifiedAccountingTaxrateOutput]
     
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = []
+        nullable_fields = ["prev_cursor", "next_cursor"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        
