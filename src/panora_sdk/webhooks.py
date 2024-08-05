@@ -147,7 +147,7 @@ class Webhooks(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.WebhookResponse]:
-        r"""Add webhook metadata
+        r"""Create webhook
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -220,7 +220,7 @@ class Webhooks(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.WebhookResponse]:
-        r"""Add webhook metadata
+        r"""Create webhook
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -295,7 +295,7 @@ class Webhooks(BaseSDK):
     ) -> Optional[models.WebhookResponse]:
         r"""Delete Webhook
 
-        :param id: 
+        :param id: id of the webhook to delete.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -348,8 +348,6 @@ class Webhooks(BaseSDK):
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return None
         if utils.match_response(http_res, "201", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[models.WebhookResponse])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
@@ -369,7 +367,7 @@ class Webhooks(BaseSDK):
     ) -> Optional[models.WebhookResponse]:
         r"""Delete Webhook
 
-        :param id: 
+        :param id: id of the webhook to delete.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -422,8 +420,6 @@ class Webhooks(BaseSDK):
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return None
         if utils.match_response(http_res, "201", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[models.WebhookResponse])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
@@ -443,7 +439,7 @@ class Webhooks(BaseSDK):
     ) -> Optional[models.WebhookResponse]:
         r"""Update webhook status
 
-        :param id: 
+        :param id: id of the webhook to update.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -496,8 +492,6 @@ class Webhooks(BaseSDK):
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return None
         if utils.match_response(http_res, "201", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[models.WebhookResponse])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
@@ -517,7 +511,7 @@ class Webhooks(BaseSDK):
     ) -> Optional[models.WebhookResponse]:
         r"""Update webhook status
 
-        :param id: 
+        :param id: id of the webhook to update.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -570,8 +564,6 @@ class Webhooks(BaseSDK):
             retry_config=retry_config
         )
         
-        if utils.match_response(http_res, "200", "*"):
-            return None
         if utils.match_response(http_res, "201", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[models.WebhookResponse])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
@@ -647,8 +639,6 @@ class Webhooks(BaseSDK):
         
         if utils.match_response(http_res, "200", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[models.VerifyEventResponseBody])
-        if utils.match_response(http_res, "201", "*"):
-            return None
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -722,8 +712,6 @@ class Webhooks(BaseSDK):
         
         if utils.match_response(http_res, "200", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[models.VerifyEventResponseBody])
-        if utils.match_response(http_res, "201", "*"):
-            return None
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         

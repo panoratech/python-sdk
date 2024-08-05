@@ -22,7 +22,7 @@ class UnifiedTicketingContactOutputTypedDict(TypedDict):
     id: NotRequired[str]
     r"""The UUID of the contact"""
     remote_id: NotRequired[Nullable[str]]
-    r"""The id of the contact in the context of the 3rd Party"""
+    r"""The remote ID of the contact in the context of the 3rd Party"""
     remote_data: NotRequired[Nullable[Dict[str, Any]]]
     r"""The remote data of the contact in the context of the 3rd Party"""
     created_at: NotRequired[Nullable[datetime]]
@@ -45,7 +45,7 @@ class UnifiedTicketingContactOutput(BaseModel):
     id: Optional[str] = None
     r"""The UUID of the contact"""
     remote_id: OptionalNullable[str] = UNSET
-    r"""The id of the contact in the context of the 3rd Party"""
+    r"""The remote ID of the contact in the context of the 3rd Party"""
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the contact in the context of the 3rd Party"""
     created_at: OptionalNullable[datetime] = UNSET

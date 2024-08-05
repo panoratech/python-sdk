@@ -2,14 +2,21 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
 
+class UnifiedAtsInterviewOutputStatus(str, Enum):
+    r"""The status of the interview"""
+    SCHEDULED = "SCHEDULED"
+    AWAITING_FEEDBACK = "AWAITING_FEEDBACK"
+    COMPLETED = "COMPLETED"
+
 class UnifiedAtsInterviewOutputTypedDict(TypedDict):
-    status: NotRequired[Nullable[str]]
+    status: NotRequired[Nullable[UnifiedAtsInterviewOutputStatus]]
     r"""The status of the interview"""
     application_id: NotRequired[Nullable[str]]
     r"""The UUID of the application"""
@@ -44,7 +51,7 @@ class UnifiedAtsInterviewOutputTypedDict(TypedDict):
     
 
 class UnifiedAtsInterviewOutput(BaseModel):
-    status: OptionalNullable[str] = UNSET
+    status: OptionalNullable[UnifiedAtsInterviewOutputStatus] = UNSET
     r"""The status of the interview"""
     application_id: OptionalNullable[str] = UNSET
     r"""The UUID of the application"""

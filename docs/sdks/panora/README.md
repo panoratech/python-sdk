@@ -15,11 +15,10 @@ Panora API: A unified API to ship integrations
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -52,11 +51,10 @@ if res is not None:
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 

@@ -14,12 +14,12 @@ class Timeoffbalances(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[models.ListHrisTimeoffbalanceResponseBody]:
+    ) -> Optional[models.ListHrisTimeoffbalancesResponseBody]:
         r"""List  TimeoffBalances
 
         :param x_connection_token: The connection token
@@ -38,7 +38,7 @@ class Timeoffbalances(BaseSDK):
         if server_url is not None:
             base_url = server_url
         
-        request = models.ListHrisTimeoffbalanceRequest(
+        request = models.ListHrisTimeoffbalancesRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
             limit=limit,
@@ -75,14 +75,14 @@ class Timeoffbalances(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="listHrisTimeoffbalance", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listHrisTimeoffbalances", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
         if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisTimeoffbalanceResponseBody])
+            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisTimeoffbalancesResponseBody])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -95,12 +95,12 @@ class Timeoffbalances(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[models.ListHrisTimeoffbalanceResponseBody]:
+    ) -> Optional[models.ListHrisTimeoffbalancesResponseBody]:
         r"""List  TimeoffBalances
 
         :param x_connection_token: The connection token
@@ -119,7 +119,7 @@ class Timeoffbalances(BaseSDK):
         if server_url is not None:
             base_url = server_url
         
-        request = models.ListHrisTimeoffbalanceRequest(
+        request = models.ListHrisTimeoffbalancesRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
             limit=limit,
@@ -156,14 +156,14 @@ class Timeoffbalances(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="listHrisTimeoffbalance", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listHrisTimeoffbalances", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
         if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisTimeoffbalanceResponseBody])
+            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisTimeoffbalancesResponseBody])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         

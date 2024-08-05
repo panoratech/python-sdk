@@ -3,22 +3,21 @@
 
 ### Available Operations
 
-* [list](#list) - List  Comments
+* [list](#list) - List Comments
 * [create](#create) - Create Comments
-* [retrieve](#retrieve) - Retrieve Comments
+* [retrieve](#retrieve) - Retrieve Comment
 
 ## list
 
-List  Comments
+List Comments
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -57,16 +56,25 @@ Create Comments in any supported Ticketing software
 ### Example Usage
 
 ```python
-import os
+import panora_sdk
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
 res = s.ticketing.comments.create(x_connection_token="<value>", unified_ticketing_comment_input={
-    "body": "<value>",
+    "body": "Assigned to Eric !",
+    "html_body": "<p>Assigned to Eric !</p>",
+    "is_private": False,
+    "creator_type": panora_sdk.UnifiedTicketingCommentInputCreatorType.USER,
+    "ticket_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "contact_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "user_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "attachments": [
+        "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    ],
 })
 
 if res is not None:
@@ -96,16 +104,15 @@ if res is not None:
 
 ## retrieve
 
-Retrieve Comments from any connected Ticketing software
+Retrieve a Comment from any connected Ticketing software
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 

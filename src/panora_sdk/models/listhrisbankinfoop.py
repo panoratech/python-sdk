@@ -10,7 +10,7 @@ from typing import List, Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
 
-class ListHrisBankinfoRequestTypedDict(TypedDict):
+class ListHrisBankInfoRequestTypedDict(TypedDict):
     x_connection_token: str
     r"""The connection token"""
     remote_data: NotRequired[bool]
@@ -21,24 +21,24 @@ class ListHrisBankinfoRequestTypedDict(TypedDict):
     r"""Set to get the number of records after this cursor."""
     
 
-class ListHrisBankinfoRequest(BaseModel):
+class ListHrisBankInfoRequest(BaseModel):
     x_connection_token: Annotated[str, pydantic.Field(alias="x-connection-token"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
     r"""The connection token"""
     remote_data: Annotated[Optional[bool], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Set to true to include data from the original software."""
-    limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = 50
+    limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Set to get the number of records."""
     cursor: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Set to get the number of records after this cursor."""
     
 
-class ListHrisBankinfoResponseBodyTypedDict(TypedDict):
+class ListHrisBankInfoResponseBodyTypedDict(TypedDict):
     prev_cursor: Nullable[str]
     next_cursor: Nullable[str]
     data: List[UnifiedHrisBankinfoOutputTypedDict]
     
 
-class ListHrisBankinfoResponseBody(BaseModel):
+class ListHrisBankInfoResponseBody(BaseModel):
     prev_cursor: Nullable[str]
     next_cursor: Nullable[str]
     data: List[UnifiedHrisBankinfoOutput]

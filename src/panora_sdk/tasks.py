@@ -14,13 +14,13 @@ class Tasks(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListCrmTaskResponseBody]:
-        r"""List  Tasks
+        r"""List Tasks
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -95,13 +95,13 @@ class Tasks(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListCrmTaskResponseBody]:
-        r"""List  Tasks
+        r"""List Tasks
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.

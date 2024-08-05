@@ -12,7 +12,7 @@ class RetrieveHrisEmployerBenefitRequestTypedDict(TypedDict):
     x_connection_token: str
     r"""The connection token"""
     id: str
-    r"""id of the employerbenefit you want to retrieve."""
+    r"""id of the employer benefit you want to retrieve."""
     remote_data: NotRequired[bool]
     r"""Set to true to include data from the original Hris software."""
     
@@ -21,7 +21,7 @@ class RetrieveHrisEmployerBenefitRequest(BaseModel):
     x_connection_token: Annotated[str, pydantic.Field(alias="x-connection-token"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
     r"""The connection token"""
     id: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""id of the employerbenefit you want to retrieve."""
+    r"""id of the employer benefit you want to retrieve."""
     remote_data: Annotated[Optional[bool], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Set to true to include data from the original Hris software."""
     

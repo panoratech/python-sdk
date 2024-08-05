@@ -14,11 +14,10 @@ List  Candidates
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -57,15 +56,59 @@ Create Candidates in any supported Ats software
 ### Example Usage
 
 ```python
-import os
+import dateutil.parser
+import panora_sdk
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-res = s.ats.candidates.create(x_connection_token="<value>", unified_ats_candidate_input={})
+res = s.ats.candidates.create(x_connection_token="<value>", unified_ats_candidate_input={
+    "first_name": "Joe",
+    "last_name": "Doe",
+    "company": "Acme",
+    "title": "Analyst",
+    "locations": "New York",
+    "is_private": False,
+    "email_reachable": True,
+    "remote_created_at": dateutil.parser.isoparse("2024-10-01T12:00:00Z"),
+    "remote_modified_at": dateutil.parser.isoparse("2024-10-01T12:00:00Z"),
+    "last_interaction_at": dateutil.parser.isoparse("2024-10-01T12:00:00Z"),
+    "attachments": [
+        "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    ],
+    "applications": [
+        "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    ],
+    "tags": [
+        "tag_1",
+        "tag_2",
+    ],
+    "urls": [
+        {
+            "url": "mywebsite.com",
+            "url_type": "WEBSITE",
+        },
+    ],
+    "phone_numbers": [
+        {
+            "phone_number": "+33660688899",
+            "phone_type": panora_sdk.PhoneType.WORK,
+        },
+    ],
+    "email_addresses": [
+        {
+            "email_address": "joedoe@gmail.com",
+            "email_address_type": panora_sdk.EmailAddressType.WORK,
+        },
+    ],
+    "field_mappings": {
+        "fav_dish": "broccoli",
+        "fav_color": "red",
+    },
+}, remote_data=False)
 
 if res is not None:
     # handle response
@@ -75,12 +118,12 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `x_connection_token`                                                        | *str*                                                                       | :heavy_check_mark:                                                          | The connection token                                                        |
-| `unified_ats_candidate_input`                                               | [models.UnifiedAtsCandidateInput](../../models/unifiedatscandidateinput.md) | :heavy_check_mark:                                                          | N/A                                                                         |
-| `remote_data`                                                               | *Optional[bool]*                                                            | :heavy_minus_sign:                                                          | Set to true to include data from the original Ats software.                 |
-| `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `x_connection_token`                                                        | *str*                                                                       | :heavy_check_mark:                                                          | The connection token                                                        |                                                                             |
+| `unified_ats_candidate_input`                                               | [models.UnifiedAtsCandidateInput](../../models/unifiedatscandidateinput.md) | :heavy_check_mark:                                                          | N/A                                                                         |                                                                             |
+| `remote_data`                                                               | *Optional[bool]*                                                            | :heavy_minus_sign:                                                          | Set to true to include data from the original Ats software.                 | false                                                                       |
+| `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |                                                                             |
 
 
 ### Response
@@ -99,15 +142,14 @@ Retrieve Candidates from any connected Ats software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-res = s.ats.candidates.retrieve(x_connection_token="<value>", id="<value>")
+res = s.ats.candidates.retrieve(x_connection_token="<value>", id="801f9ede-c698-4e66-a7fc-48d19eebaa4f", remote_data=False)
 
 if res is not None:
     # handle response
@@ -117,12 +159,12 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `x_connection_token`                                                | *str*                                                               | :heavy_check_mark:                                                  | The connection token                                                |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the candidate you want to retrieve.                           |
-| `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Ats software.         |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `x_connection_token`                                                | *str*                                                               | :heavy_check_mark:                                                  | The connection token                                                |                                                                     |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the candidate you want to retrieve.                           | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                |
+| `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Ats software.         | false                                                               |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
 
 ### Response

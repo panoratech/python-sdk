@@ -2,18 +2,30 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
 
+class Direction(str, Enum):
+    r"""The direction of the engagement. Authorized values are INBOUND or OUTBOUND"""
+    INBOUND = "INBOUND"
+    OUTBOUND = "OUTBOUND"
+
+class UnifiedCrmEngagementOutputType(str, Enum):
+    r"""The type of the engagement. Authorized values are EMAIL, CALL or MEETING"""
+    EMAIL = "EMAIL"
+    CALL = "CALL"
+    MEETING = "MEETING"
+
 class UnifiedCrmEngagementOutputTypedDict(TypedDict):
-    type: Nullable[str]
+    type: Nullable[UnifiedCrmEngagementOutputType]
     r"""The type of the engagement. Authorized values are EMAIL, CALL or MEETING"""
     content: NotRequired[Nullable[str]]
     r"""The content of the engagement"""
-    direction: NotRequired[Nullable[str]]
+    direction: NotRequired[Nullable[Direction]]
     r"""The direction of the engagement. Authorized values are INBOUND or OUTBOUND"""
     subject: NotRequired[Nullable[str]]
     r"""The subject of the engagement"""
@@ -42,11 +54,11 @@ class UnifiedCrmEngagementOutputTypedDict(TypedDict):
     
 
 class UnifiedCrmEngagementOutput(BaseModel):
-    type: Nullable[str]
+    type: Nullable[UnifiedCrmEngagementOutputType]
     r"""The type of the engagement. Authorized values are EMAIL, CALL or MEETING"""
     content: OptionalNullable[str] = UNSET
     r"""The content of the engagement"""
-    direction: OptionalNullable[str] = UNSET
+    direction: OptionalNullable[Direction] = UNSET
     r"""The direction of the engagement. Authorized values are INBOUND or OUTBOUND"""
     subject: OptionalNullable[str] = UNSET
     r"""The subject of the engagement"""

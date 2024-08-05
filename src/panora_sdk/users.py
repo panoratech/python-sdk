@@ -14,13 +14,13 @@ class Users(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListTicketingUsersResponseBody]:
-        r"""List  Users
+        r"""List Users
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -95,13 +95,13 @@ class Users(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListTicketingUsersResponseBody]:
-        r"""List  Users
+        r"""List Users
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -181,9 +181,9 @@ class Users(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedTicketingUserOutput]:
-        r"""Retrieve Users
+        r"""Retrieve User
 
-        Retrieve Users from any connected Ticketing software
+        Retrieve a User from any connected Ticketing software
 
         :param x_connection_token: The connection token
         :param id: id of the user you want to retrieve.
@@ -261,9 +261,9 @@ class Users(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedTicketingUserOutput]:
-        r"""Retrieve Users
+        r"""Retrieve User
 
-        Retrieve Users from any connected Ticketing software
+        Retrieve a User from any connected Ticketing software
 
         :param x_connection_token: The connection token
         :param id: id of the user you want to retrieve.

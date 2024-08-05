@@ -12,18 +12,23 @@ Make a passthrough request
 ### Example Usage
 
 ```python
-import os
 import panora_sdk
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
 res = s.passthrough.request(integration_id="<value>", linked_user_id="<value>", vertical="<value>", pass_through_request_dto={
-    "method": panora_sdk.Method.GET,
+    "method": panora_sdk.PassThroughRequestDtoMethod.GET,
     "path": "/dev",
+    "data": {
+        "key": "<value>",
+    },
+    "headers": {
+        "key": "<value>",
+    },
 })
 
 if res is not None:

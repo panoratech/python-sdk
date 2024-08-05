@@ -3,21 +3,20 @@
 
 ### Available Operations
 
-* [list](#list) - List  Users
-* [retrieve](#retrieve) - Retrieve Users
+* [list](#list) - List Users
+* [retrieve](#retrieve) - Retrieve User
 
 ## list
 
-List  Users
+List Users
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -51,20 +50,19 @@ if res is not None:
 
 ## retrieve
 
-Retrieve Users from any connected Ticketing software
+Retrieve a User from any connected Ticketing software
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-res = s.ticketing.users.retrieve(x_connection_token="<value>", id="<value>")
+res = s.ticketing.users.retrieve(x_connection_token="<value>", id="801f9ede-c698-4e66-a7fc-48d19eebaa4f", remote_data=False)
 
 if res is not None:
     # handle response
@@ -74,12 +72,12 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `x_connection_token`                                                | *str*                                                               | :heavy_check_mark:                                                  | The connection token                                                |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the user you want to retrieve.                                |
-| `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Ticketing software.   |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `x_connection_token`                                                | *str*                                                               | :heavy_check_mark:                                                  | The connection token                                                |                                                                     |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the user you want to retrieve.                                | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                |
+| `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Ticketing software.   | false                                                               |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
 
 ### Response

@@ -12,7 +12,7 @@ class Sync(BaseSDK):
     
     def status(
         self, *,
-        vertical: str,
+        vertical: models.PathParamVertical,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -84,7 +84,7 @@ class Sync(BaseSDK):
     
     async def status_async(
         self, *,
-        vertical: str,
+        vertical: models.PathParamVertical,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,

@@ -13,15 +13,15 @@ Retrieve sync status of a certain vertical
 ### Example Usage
 
 ```python
-import os
+import panora_sdk
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-s.sync.status(vertical="<value>")
+s.sync.status(vertical=panora_sdk.PathParamVertical.TICKETING)
 
 # Use the SDK ...
 
@@ -29,10 +29,10 @@ s.sync.status(vertical="<value>")
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `vertical`                                                          | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `vertical`                                                          | [models.PathParamVertical](../../models/pathparamvertical.md)       | :heavy_check_mark:                                                  | N/A                                                                 | ticketing                                                           |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
 ### Errors
 
@@ -47,11 +47,10 @@ Resync common objects across a vertical
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 

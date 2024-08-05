@@ -14,12 +14,12 @@ class UnifiedTicketingAttachmentInputTypedDict(TypedDict):
     r"""The file url of the attachment"""
     uploader: Nullable[str]
     r"""The uploader's UUID of the attachment"""
-    field_mappings: Nullable[Dict[str, Any]]
-    r"""The custom field mappings of the attachment between the remote 3rd party & Panora"""
     ticket_id: NotRequired[Nullable[str]]
     r"""The UUID of the ticket the attachment is tied to"""
     comment_id: NotRequired[Nullable[str]]
     r"""The UUID of the comment the attachment is tied to"""
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the attachment between the remote 3rd party & Panora"""
     
 
 class UnifiedTicketingAttachmentInput(BaseModel):
@@ -29,17 +29,17 @@ class UnifiedTicketingAttachmentInput(BaseModel):
     r"""The file url of the attachment"""
     uploader: Nullable[str]
     r"""The uploader's UUID of the attachment"""
-    field_mappings: Nullable[Dict[str, Any]]
-    r"""The custom field mappings of the attachment between the remote 3rd party & Panora"""
     ticket_id: OptionalNullable[str] = UNSET
     r"""The UUID of the ticket the attachment is tied to"""
     comment_id: OptionalNullable[str] = UNSET
     r"""The UUID of the comment the attachment is tied to"""
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the attachment between the remote 3rd party & Panora"""
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["ticket_id", "comment_id"]
-        nullable_fields = ["file_name", "file_url", "uploader", "field_mappings", "ticket_id", "comment_id"]
+        optional_fields = ["ticket_id", "comment_id", "field_mappings"]
+        nullable_fields = ["file_name", "file_url", "uploader", "ticket_id", "comment_id", "field_mappings"]
         null_default_fields = []
 
         serialized = handler(self)

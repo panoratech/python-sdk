@@ -8,12 +8,16 @@ from typing import List, TypedDict
 
 class CreateBatchLinkedUserDtoTypedDict(TypedDict):
     linked_user_origin_ids: Nullable[List[str]]
+    r"""The ids of the users in the context of your own software"""
     alias: Nullable[str]
+    r"""Your company alias"""
     
 
 class CreateBatchLinkedUserDto(BaseModel):
     linked_user_origin_ids: Nullable[List[str]]
+    r"""The ids of the users in the context of your own software"""
     alias: Nullable[str]
+    r"""Your company alias"""
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

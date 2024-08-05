@@ -6,14 +6,14 @@ from panora_sdk import models
 from panora_sdk._hooks import HookContext
 from panora_sdk.batch import Batch
 from panora_sdk.fromremoteid import Fromremoteid
-from panora_sdk.single import Single
+from panora_sdk.id_ import ID
 from panora_sdk.types import BaseModel, OptionalNullable, UNSET
 import panora_sdk.utils as utils
 from typing import List, Optional, Union, cast
 
 class LinkedUsers(BaseSDK):
     batch: Batch
-    single: Single
+    id: ID
     fromremoteid: Fromremoteid
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -22,7 +22,7 @@ class LinkedUsers(BaseSDK):
     
     def _init_sdks(self):
         self.batch = Batch(self.sdk_configuration)
-        self.single = Single(self.sdk_configuration)
+        self.id = ID(self.sdk_configuration)
         self.fromremoteid = Fromremoteid(self.sdk_configuration)
     
     

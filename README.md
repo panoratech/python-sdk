@@ -37,11 +37,10 @@ poetry add panora-sdk
 
 ```python
 # Synchronous Example
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -58,12 +57,11 @@ The same SDK client can also be used to make asychronous requests by importing a
 ```python
 # Asynchronous Example
 import asyncio
-import os
 from panora_sdk import Panora
 
 async def main():
     s = Panora(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     )
     res = await s.hello_async()
     if res is not None:
@@ -82,10 +80,19 @@ asyncio.run(main())
 * [hello](docs/sdks/panora/README.md#hello)
 * [health](docs/sdks/panora/README.md#health)
 
+
+### [auth.login](docs/sdks/login/README.md)
+
+* [sign_in](docs/sdks/login/README.md#sign_in) - Log In
+
+### [connections](docs/sdks/connections/README.md)
+
+* [get_connections](docs/sdks/connections/README.md#get_connections) - List Connections
+
 ### [webhooks](docs/sdks/webhooks/README.md)
 
 * [list](docs/sdks/webhooks/README.md#list) - List webhooks
-* [create](docs/sdks/webhooks/README.md#create) - Add webhook metadata
+* [create](docs/sdks/webhooks/README.md#create) - Create webhook
 * [delete](docs/sdks/webhooks/README.md#delete) - Delete Webhook
 * [update_status](docs/sdks/webhooks/README.md#update_status) - Update webhook status
 * [verify_event](docs/sdks/webhooks/README.md#verify_event) - Verify payload signature of the webhook
@@ -99,8 +106,8 @@ asyncio.run(main())
 
 ### [ticketing.users](docs/sdks/users/README.md)
 
-* [list](docs/sdks/users/README.md#list) - List  Users
-* [retrieve](docs/sdks/users/README.md#retrieve) - Retrieve Users
+* [list](docs/sdks/users/README.md#list) - List Users
+* [retrieve](docs/sdks/users/README.md#retrieve) - Retrieve User
 
 ### [ticketing.accounts](docs/sdks/accounts/README.md)
 
@@ -109,24 +116,24 @@ asyncio.run(main())
 
 ### [ticketing.contacts](docs/sdks/contacts/README.md)
 
-* [list](docs/sdks/contacts/README.md#list) - List all Contacts
-* [retrieve](docs/sdks/contacts/README.md#retrieve) - Retrieve Contacts
+* [list](docs/sdks/contacts/README.md#list) - List Contacts
+* [retrieve](docs/sdks/contacts/README.md#retrieve) - Retrieve Contact
 
 ### [ticketing.collections](docs/sdks/collections/README.md)
 
-* [list](docs/sdks/collections/README.md#list) - List  Collections
+* [list](docs/sdks/collections/README.md#list) - List Collections
 * [retrieve](docs/sdks/collections/README.md#retrieve) - Retrieve Collections
 
 ### [ticketing.comments](docs/sdks/comments/README.md)
 
-* [list](docs/sdks/comments/README.md#list) - List  Comments
+* [list](docs/sdks/comments/README.md#list) - List Comments
 * [create](docs/sdks/comments/README.md#create) - Create Comments
-* [retrieve](docs/sdks/comments/README.md#retrieve) - Retrieve Comments
+* [retrieve](docs/sdks/comments/README.md#retrieve) - Retrieve Comment
 
 ### [ticketing.tags](docs/sdks/tags/README.md)
 
-* [list](docs/sdks/tags/README.md#list) - List  Tags
-* [retrieve](docs/sdks/tags/README.md#retrieve) - Retrieve Tags
+* [list](docs/sdks/tags/README.md#list) - List Tags
+* [retrieve](docs/sdks/tags/README.md#retrieve) - Retrieve Tag
 
 ### [ticketing.teams](docs/sdks/teams/README.md)
 
@@ -159,19 +166,19 @@ asyncio.run(main())
 
 ### [crm.deals](docs/sdks/deals/README.md)
 
-* [list](docs/sdks/deals/README.md#list) - List  Deals
+* [list](docs/sdks/deals/README.md#list) - List Deals
 * [create](docs/sdks/deals/README.md#create) - Create Deals
 * [retrieve](docs/sdks/deals/README.md#retrieve) - Retrieve Deals
 
 ### [crm.engagements](docs/sdks/engagements/README.md)
 
-* [list](docs/sdks/engagements/README.md#list) - List  Engagements
+* [list](docs/sdks/engagements/README.md#list) - List Engagements
 * [create](docs/sdks/engagements/README.md#create) - Create Engagements
 * [retrieve](docs/sdks/engagements/README.md#retrieve) - Retrieve Engagements
 
 ### [crm.notes](docs/sdks/notes/README.md)
 
-* [list](docs/sdks/notes/README.md#list) - List  Notes
+* [list](docs/sdks/notes/README.md#list) - List Notes
 * [create](docs/sdks/notes/README.md#create) - Create Notes
 * [retrieve](docs/sdks/notes/README.md#retrieve) - Retrieve Notes
 
@@ -182,7 +189,7 @@ asyncio.run(main())
 
 ### [crm.tasks](docs/sdks/tasks/README.md)
 
-* [list](docs/sdks/tasks/README.md#list) - List  Tasks
+* [list](docs/sdks/tasks/README.md#list) - List Tasks
 * [create](docs/sdks/tasks/README.md#create) - Create Tasks
 * [retrieve](docs/sdks/tasks/README.md#retrieve) - Retrieve Tasks
 
@@ -200,13 +207,18 @@ asyncio.run(main())
 
 * [import_batch](docs/sdks/batch/README.md#import_batch) - Add Batch Linked Users
 
-### [linked_users.single](docs/sdks/single/README.md)
+### [linked_users.id](docs/sdks/id/README.md)
 
-* [retrieve](docs/sdks/single/README.md#retrieve) - Retrieve Linked Users
+* [retrieve](docs/sdks/id/README.md#retrieve) - Retrieve Linked Users
 
 ### [linked_users.fromremoteid](docs/sdks/fromremoteid/README.md)
 
 * [remote_id](docs/sdks/fromremoteid/README.md#remote_id) - Retrieve a Linked User From A Remote Id
+
+### [projects](docs/sdks/projects/README.md)
+
+* [get_projects](docs/sdks/projects/README.md#get_projects) - Retrieve projects
+* [create](docs/sdks/projects/README.md#create) - Create a project
 
 ### [field_mappings](docs/sdks/fieldmappings/README.md)
 
@@ -220,6 +232,10 @@ asyncio.run(main())
 
 * [map](docs/sdks/map/README.md#map) - Map Custom Field
 
+### [events](docs/sdks/events/README.md)
+
+* [get_panora_core_events](docs/sdks/events/README.md#get_panora_core_events) - List Events
+
 ### [passthrough](docs/sdks/passthrough/README.md)
 
 * [request](docs/sdks/passthrough/README.md#request) - Make a passthrough request
@@ -227,68 +243,70 @@ asyncio.run(main())
 
 ### [hris.bankinfos](docs/sdks/bankinfos/README.md)
 
-* [list](docs/sdks/bankinfos/README.md#list) - List  Bankinfos
-* [retrieve](docs/sdks/bankinfos/README.md#retrieve) - Retrieve Bank Infos
+* [list](docs/sdks/bankinfos/README.md#list) - List Bank Info
+* [retrieve](docs/sdks/bankinfos/README.md#retrieve) - Retrieve Bank Info
 
 ### [hris.benefits](docs/sdks/benefits/README.md)
 
-* [list](docs/sdks/benefits/README.md#list) - List  Benefits
-* [retrieve](docs/sdks/benefits/README.md#retrieve) - Retrieve Benefits
+* [list](docs/sdks/benefits/README.md#list) - List Benefits
+* [retrieve](docs/sdks/benefits/README.md#retrieve) - Retrieve Benefit
 
 ### [hris.companies](docs/sdks/panoracompanies/README.md)
 
-* [list](docs/sdks/panoracompanies/README.md#list) - List  Companys
+* [list](docs/sdks/panoracompanies/README.md#list) - List Companies
+* [retrieve](docs/sdks/panoracompanies/README.md#retrieve) - Retrieve Company
 
 ### [hris.dependents](docs/sdks/dependents/README.md)
 
-* [list](docs/sdks/dependents/README.md#list) - List  Dependents
-* [retrieve](docs/sdks/dependents/README.md#retrieve) - Retrieve Dependents
+* [list](docs/sdks/dependents/README.md#list) - List Dependents
+* [retrieve](docs/sdks/dependents/README.md#retrieve) - Retrieve Dependent
 
 ### [hris.employeepayrollruns](docs/sdks/employeepayrollruns/README.md)
 
-* [list](docs/sdks/employeepayrollruns/README.md#list) - List  EmployeePayrollRuns
-* [retrieve](docs/sdks/employeepayrollruns/README.md#retrieve) - Retrieve Employee Payroll Runs
+* [list](docs/sdks/employeepayrollruns/README.md#list) - List Employee Payroll Runs
+* [retrieve](docs/sdks/employeepayrollruns/README.md#retrieve) - Retrieve Employee Payroll Run
 
 ### [hris.employees](docs/sdks/employees/README.md)
 
-* [list](docs/sdks/employees/README.md#list) - List  Employees
+* [list](docs/sdks/employees/README.md#list) - List Employees
 * [create](docs/sdks/employees/README.md#create) - Create Employees
-* [retrieve](docs/sdks/employees/README.md#retrieve) - Retrieven Employees
+* [retrieve](docs/sdks/employees/README.md#retrieve) - Retrieve Employee
 
 ### [hris.employerbenefits](docs/sdks/employerbenefits/README.md)
 
-* [list](docs/sdks/employerbenefits/README.md#list) - List  EmployerBenefits
-* [retrieve](docs/sdks/employerbenefits/README.md#retrieve) - Retrieve Employer Benefits
+* [list](docs/sdks/employerbenefits/README.md#list) - List Employer Benefits
+* [retrieve](docs/sdks/employerbenefits/README.md#retrieve) - Retrieve Employer Benefit
 
 ### [hris.employments](docs/sdks/employments/README.md)
 
-* [list](docs/sdks/employments/README.md#list) - List  Employments
-* [retrieve](docs/sdks/employments/README.md#retrieve) - Retrieve Employments
+* [list](docs/sdks/employments/README.md#list) - List Employments
+* [retrieve](docs/sdks/employments/README.md#retrieve) - Retrieve Employment
 
 ### [hris.groups](docs/sdks/groups/README.md)
 
-* [list](docs/sdks/groups/README.md#list) - List  Groups
-* [retrieve](docs/sdks/groups/README.md#retrieve) - Retrieve Groups
+* [list](docs/sdks/groups/README.md#list) - List Groups
+* [retrieve](docs/sdks/groups/README.md#retrieve) - Retrieve Group
 
 ### [hris.locations](docs/sdks/locations/README.md)
 
-* [list](docs/sdks/locations/README.md#list) - List  Locations
-* [retrieve](docs/sdks/locations/README.md#retrieve) - Retrieve Locations
+* [list](docs/sdks/locations/README.md#list) - List Locations
+* [retrieve](docs/sdks/locations/README.md#retrieve) - Retrieve Location
 
 ### [hris.paygroups](docs/sdks/paygroups/README.md)
 
-* [list](docs/sdks/paygroups/README.md#list) - List  PayGroups
-* [retrieve](docs/sdks/paygroups/README.md#retrieve) - Retrieve Pay Groups
+* [list](docs/sdks/paygroups/README.md#list) - List Pay Groups
+* [retrieve](docs/sdks/paygroups/README.md#retrieve) - Retrieve Pay Group
 
 ### [hris.payrollruns](docs/sdks/payrollruns/README.md)
 
-* [list](docs/sdks/payrollruns/README.md#list) - List  PayrollRuns
+* [list](docs/sdks/payrollruns/README.md#list) - List Payroll Runs
+* [retrieve](docs/sdks/payrollruns/README.md#retrieve) - Retrieve Payroll Run
 
 ### [hris.timeoffs](docs/sdks/timeoffs/README.md)
 
-* [list](docs/sdks/timeoffs/README.md#list) - List  Timeoffs
+* [list](docs/sdks/timeoffs/README.md#list) - List Time Offs
 * [create](docs/sdks/timeoffs/README.md#create) - Create Timeoffs
-* [retrieve](docs/sdks/timeoffs/README.md#retrieve) - Retrieve Timeoffs
+* [retrieve](docs/sdks/timeoffs/README.md#retrieve) - Retrieve Time Off
 
 ### [hris.timeoffbalances](docs/sdks/timeoffbalances/README.md)
 
@@ -298,21 +316,21 @@ asyncio.run(main())
 
 ### [marketingautomation.actions](docs/sdks/actions/README.md)
 
-* [list](docs/sdks/actions/README.md#list) - List  Actions
+* [list](docs/sdks/actions/README.md#list) - List Actions
 * [create](docs/sdks/actions/README.md#create) - Create Action
 * [retrieve](docs/sdks/actions/README.md#retrieve) - Retrieve Actions
 
 ### [marketingautomation.automations](docs/sdks/automations/README.md)
 
-* [list](docs/sdks/automations/README.md#list) - List  Automations
+* [list](docs/sdks/automations/README.md#list) - List Automations
 * [create](docs/sdks/automations/README.md#create) - Create Automation
-* [retrieve](docs/sdks/automations/README.md#retrieve) - Retrieve Automations
+* [retrieve](docs/sdks/automations/README.md#retrieve) - Retrieve Automation
 
 ### [marketingautomation.campaigns](docs/sdks/campaigns/README.md)
 
-* [list](docs/sdks/campaigns/README.md#list) - List  Campaigns
+* [list](docs/sdks/campaigns/README.md#list) - List Campaigns
 * [create](docs/sdks/campaigns/README.md#create) - Create Campaign
-* [retrieve](docs/sdks/campaigns/README.md#retrieve) - Retrieve Campaigns
+* [retrieve](docs/sdks/campaigns/README.md#retrieve) - Retrieve Campaign
 
 ### [marketingautomation.contacts](docs/sdks/panoramarketingautomationcontacts/README.md)
 
@@ -322,30 +340,30 @@ asyncio.run(main())
 
 ### [marketingautomation.emails](docs/sdks/emails/README.md)
 
-* [list](docs/sdks/emails/README.md#list) - List  Emails
-* [retrieve](docs/sdks/emails/README.md#retrieve) - Retrieve Emails
+* [list](docs/sdks/emails/README.md#list) - List Emails
+* [retrieve](docs/sdks/emails/README.md#retrieve) - Retrieve Email
 
-### [marketingautomation.events](docs/sdks/events/README.md)
+### [marketingautomation.events](docs/sdks/panoraevents/README.md)
 
-* [list](docs/sdks/events/README.md#list) - List  Events
-* [retrieve](docs/sdks/events/README.md#retrieve) - Retrieve Events
+* [list](docs/sdks/panoraevents/README.md#list) - List Events
+* [retrieve](docs/sdks/panoraevents/README.md#retrieve) - Retrieve Event
 
 ### [marketingautomation.lists](docs/sdks/lists/README.md)
 
-* [list](docs/sdks/lists/README.md#list) - List  Lists
+* [list](docs/sdks/lists/README.md#list) - List Lists
 * [create](docs/sdks/lists/README.md#create) - Create Lists
-* [retrieve](docs/sdks/lists/README.md#retrieve) - Retrieve Lists
+* [retrieve](docs/sdks/lists/README.md#retrieve) - Retrieve List
 
 ### [marketingautomation.messages](docs/sdks/messages/README.md)
 
-* [list](docs/sdks/messages/README.md#list) - List  Messages
+* [list](docs/sdks/messages/README.md#list) - List Messages
 * [retrieve](docs/sdks/messages/README.md#retrieve) - Retrieve Messages
 
 ### [marketingautomation.templates](docs/sdks/templates/README.md)
 
-* [list](docs/sdks/templates/README.md#list) - List  Templates
+* [list](docs/sdks/templates/README.md#list) - List Templates
 * [create](docs/sdks/templates/README.md#create) - Create Template
-* [retrieve](docs/sdks/templates/README.md#retrieve) - Retrieve Templates
+* [retrieve](docs/sdks/templates/README.md#retrieve) - Retrieve Template
 
 ### [marketingautomation.users](docs/sdks/panoramarketingautomationusers/README.md)
 
@@ -545,8 +563,8 @@ asyncio.run(main())
 
 ### [filestorage.drives](docs/sdks/drives/README.md)
 
-* [list](docs/sdks/drives/README.md#list) - List  Drives
-* [retrieve](docs/sdks/drives/README.md#retrieve) - Retrieve Drives
+* [list](docs/sdks/drives/README.md#list) - List Drives
+* [retrieve](docs/sdks/drives/README.md#retrieve) - Retrieve Drive
 
 ### [filestorage.files](docs/sdks/files/README.md)
 
@@ -567,7 +585,7 @@ asyncio.run(main())
 
 ### [filestorage.users](docs/sdks/panorafilestorageusers/README.md)
 
-* [list](docs/sdks/panorafilestorageusers/README.md#list) - List  Users
+* [list](docs/sdks/panorafilestorageusers/README.md#list) - List Users
 * [retrieve](docs/sdks/panorafilestorageusers/README.md#retrieve) - Retrieve Users
 <!-- End Available Resources and Operations [operations] -->
 
@@ -578,12 +596,11 @@ Some of the endpoints in this SDK support retries. If you use the SDK without an
 
 To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
 ```python
-import os
 from panora.utils import BackoffStrategy, RetryConfig
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -598,13 +615,12 @@ if res is not None:
 
 If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
 ```python
-import os
 from panora.utils import BackoffStrategy, RetryConfig
 from panora_sdk import Panora
 
 s = Panora(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -629,11 +645,10 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ### Example
 
 ```python
-import os
 from panora_sdk import Panora, models
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 res = None
@@ -667,12 +682,11 @@ You can override the default server globally by passing a server index to the `s
 #### Example
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
     server_idx=2,
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -689,12 +703,11 @@ if res is not None:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
     server_url="https://api.panora.dev",
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -813,13 +826,12 @@ This SDK supports the following security scheme globally:
 | --------- | --------- | --------- |
 | `api_key` | apiKey    | API key   |
 
-To authenticate with the API the `api_key` parameter must be set when initializing the SDK client instance. For example:
+To authenticate with the API the `null` parameter must be set when initializing the SDK client instance. For example:
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 

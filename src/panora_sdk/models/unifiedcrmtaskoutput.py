@@ -2,42 +2,28 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedCrmTaskOutputCreatedAtTypedDict(TypedDict):
-    r"""The created date of the object"""
-    
-    
-
-class UnifiedCrmTaskOutputCreatedAt(BaseModel):
-    r"""The created date of the object"""
-    
-    
-
-class UnifiedCrmTaskOutputModifiedAtTypedDict(TypedDict):
-    r"""The modified date of the object"""
-    
-    
-
-class UnifiedCrmTaskOutputModifiedAt(BaseModel):
-    r"""The modified date of the object"""
-    
-    
+class UnifiedCrmTaskOutputStatus(str, Enum):
+    r"""The status of the task. Authorized values are PENDING, COMPLETED."""
+    PENDING = "PENDING"
+    COMPLETED = "COMPLETED"
 
 class UnifiedCrmTaskOutputTypedDict(TypedDict):
     subject: Nullable[str]
     r"""The subject of the task"""
     content: Nullable[str]
     r"""The content of the task"""
-    status: Nullable[str]
+    status: Nullable[UnifiedCrmTaskOutputStatus]
     r"""The status of the task. Authorized values are PENDING, COMPLETED."""
-    due_date: NotRequired[Nullable[datetime]]
+    due_date: NotRequired[Nullable[str]]
     r"""The due date of the task"""
-    finished_date: NotRequired[Nullable[datetime]]
+    finished_date: NotRequired[Nullable[str]]
     r"""The finished date of the task"""
     user_id: NotRequired[Nullable[str]]
     r"""The UUID of the user tied to the task"""
@@ -50,12 +36,12 @@ class UnifiedCrmTaskOutputTypedDict(TypedDict):
     id: NotRequired[Nullable[str]]
     r"""The UUID of the task"""
     remote_id: NotRequired[Nullable[str]]
-    r"""The id of the task in the context of the Crm 3rd Party"""
+    r"""The ID of the task in the context of the Crm 3rd Party"""
     remote_data: NotRequired[Nullable[Dict[str, Any]]]
     r"""The remote data of the task in the context of the Crm 3rd Party"""
-    created_at: NotRequired[Nullable[UnifiedCrmTaskOutputCreatedAtTypedDict]]
+    created_at: NotRequired[Nullable[datetime]]
     r"""The created date of the object"""
-    modified_at: NotRequired[Nullable[UnifiedCrmTaskOutputModifiedAtTypedDict]]
+    modified_at: NotRequired[Nullable[datetime]]
     r"""The modified date of the object"""
     
 
@@ -64,11 +50,11 @@ class UnifiedCrmTaskOutput(BaseModel):
     r"""The subject of the task"""
     content: Nullable[str]
     r"""The content of the task"""
-    status: Nullable[str]
+    status: Nullable[UnifiedCrmTaskOutputStatus]
     r"""The status of the task. Authorized values are PENDING, COMPLETED."""
-    due_date: OptionalNullable[datetime] = UNSET
+    due_date: OptionalNullable[str] = UNSET
     r"""The due date of the task"""
-    finished_date: OptionalNullable[datetime] = UNSET
+    finished_date: OptionalNullable[str] = UNSET
     r"""The finished date of the task"""
     user_id: OptionalNullable[str] = UNSET
     r"""The UUID of the user tied to the task"""
@@ -81,12 +67,12 @@ class UnifiedCrmTaskOutput(BaseModel):
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the task"""
     remote_id: OptionalNullable[str] = UNSET
-    r"""The id of the task in the context of the Crm 3rd Party"""
+    r"""The ID of the task in the context of the Crm 3rd Party"""
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the task in the context of the Crm 3rd Party"""
-    created_at: OptionalNullable[UnifiedCrmTaskOutputCreatedAt] = UNSET
+    created_at: OptionalNullable[datetime] = UNSET
     r"""The created date of the object"""
-    modified_at: OptionalNullable[UnifiedCrmTaskOutputModifiedAt] = UNSET
+    modified_at: OptionalNullable[datetime] = UNSET
     r"""The modified date of the object"""
     
     @model_serializer(mode="wrap")

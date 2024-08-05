@@ -2,18 +2,26 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
+class UnifiedAtsAttachmentInputAttachmentType(str, Enum):
+    r"""The type of the file"""
+    RESUME = "RESUME"
+    COVER_LETTER = "COVER_LETTER"
+    OFFER_LETTER = "OFFER_LETTER"
+    OTHER = "OTHER"
+
 class UnifiedAtsAttachmentInputTypedDict(TypedDict):
     file_url: NotRequired[Nullable[str]]
     r"""The URL of the file"""
     file_name: NotRequired[Nullable[str]]
     r"""The name of the file"""
-    attachment_type: NotRequired[Nullable[str]]
+    attachment_type: NotRequired[Nullable[UnifiedAtsAttachmentInputAttachmentType]]
     r"""The type of the file"""
     remote_created_at: NotRequired[Nullable[datetime]]
     r"""The remote creation date of the attachment"""
@@ -30,7 +38,7 @@ class UnifiedAtsAttachmentInput(BaseModel):
     r"""The URL of the file"""
     file_name: OptionalNullable[str] = UNSET
     r"""The name of the file"""
-    attachment_type: OptionalNullable[str] = UNSET
+    attachment_type: OptionalNullable[UnifiedAtsAttachmentInputAttachmentType] = UNSET
     r"""The type of the file"""
     remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote creation date of the attachment"""

@@ -18,13 +18,13 @@ class UnifiedTicketingAccountOutputTypedDict(TypedDict):
     id: NotRequired[Nullable[str]]
     r"""The UUID of the account"""
     remote_id: NotRequired[Nullable[str]]
-    r"""The id of the account in the context of the 3rd Party"""
+    r"""The remote ID of the account in the context of the 3rd Party"""
     remote_data: NotRequired[Nullable[Dict[str, Any]]]
     r"""The remote data of the account in the context of the 3rd Party"""
     created_at: NotRequired[Nullable[datetime]]
-    r"""The created date of the object"""
+    r"""The created date of the account"""
     modified_at: NotRequired[Nullable[datetime]]
-    r"""The modified date of the object"""
+    r"""The modified date of the account"""
     
 
 class UnifiedTicketingAccountOutput(BaseModel):
@@ -37,13 +37,13 @@ class UnifiedTicketingAccountOutput(BaseModel):
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the account"""
     remote_id: OptionalNullable[str] = UNSET
-    r"""The id of the account in the context of the 3rd Party"""
+    r"""The remote ID of the account in the context of the 3rd Party"""
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the account in the context of the 3rd Party"""
     created_at: OptionalNullable[datetime] = UNSET
-    r"""The created date of the object"""
+    r"""The created date of the account"""
     modified_at: OptionalNullable[datetime] = UNSET
-    r"""The modified date of the object"""
+    r"""The modified date of the account"""
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -14,13 +14,13 @@ class Employeepayrollruns(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListHrisEmployeePayrollRunResponseBody]:
-        r"""List  EmployeePayrollRuns
+        r"""List Employee Payroll Runs
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -95,13 +95,13 @@ class Employeepayrollruns(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListHrisEmployeePayrollRunResponseBody]:
-        r"""List  EmployeePayrollRuns
+        r"""List Employee Payroll Runs
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -181,9 +181,9 @@ class Employeepayrollruns(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedHrisEmployeepayrollrunOutput]:
-        r"""Retrieve Employee Payroll Runs
+        r"""Retrieve Employee Payroll Run
 
-        Retrieve Employee Payroll Runs from any connected Hris software
+        Retrieve Employee Payroll Run from any connected Hris software
 
         :param x_connection_token: The connection token
         :param id: id of the employeepayrollrun you want to retrieve.
@@ -261,9 +261,9 @@ class Employeepayrollruns(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedHrisEmployeepayrollrunOutput]:
-        r"""Retrieve Employee Payroll Runs
+        r"""Retrieve Employee Payroll Run
 
-        Retrieve Employee Payroll Runs from any connected Hris software
+        Retrieve Employee Payroll Run from any connected Hris software
 
         :param x_connection_token: The connection token
         :param id: id of the employeepayrollrun you want to retrieve.

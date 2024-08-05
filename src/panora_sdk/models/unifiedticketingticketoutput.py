@@ -2,11 +2,35 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
+
+class Status(str, Enum):
+    r"""The status of the ticket. Authorized values are OPEN or CLOSED."""
+    OPEN = "OPEN"
+    CLOSED = "CLOSED"
+
+class Type(str, Enum):
+    r"""The type of the ticket. Authorized values are PROBLEM, QUESTION, or TASK"""
+    BUG = "BUG"
+    SUBTASK = "SUBTASK"
+    TASK = "TASK"
+    TO_DO = "TO-DO"
+
+class Priority(str, Enum):
+    r"""The priority of the ticket. Authorized values are HIGH, MEDIUM or LOW."""
+    HIGH = "HIGH"
+    MEDIUM = "MEDIUM"
+    LOW = "LOW"
+
+class UnifiedTicketingTicketOutputCreatorType(str, Enum):
+    r"""The creator type of the comment. Authorized values are either USER or CONTACT"""
+    USER = "USER"
+    CONTACT = "CONTACT"
 
 class CommentTypedDict(TypedDict):
     r"""The comment of the ticket"""
@@ -17,7 +41,7 @@ class CommentTypedDict(TypedDict):
     r"""The html body of the comment"""
     is_private: NotRequired[Nullable[bool]]
     r"""The public status of the comment"""
-    creator_type: NotRequired[Nullable[str]]
+    creator_type: NotRequired[Nullable[UnifiedTicketingTicketOutputCreatorType]]
     r"""The creator type of the comment. Authorized values are either USER or CONTACT"""
     ticket_id: NotRequired[Nullable[str]]
     r"""The UUID of the ticket the comment is tied to"""
@@ -38,7 +62,7 @@ class Comment(BaseModel):
     r"""The html body of the comment"""
     is_private: OptionalNullable[bool] = UNSET
     r"""The public status of the comment"""
-    creator_type: OptionalNullable[str] = UNSET
+    creator_type: OptionalNullable[UnifiedTicketingTicketOutputCreatorType] = UNSET
     r"""The creator type of the comment. Authorized values are either USER or CONTACT"""
     ticket_id: OptionalNullable[str] = UNSET
     r"""The UUID of the ticket the comment is tied to"""
@@ -86,11 +110,11 @@ class UnifiedTicketingTicketOutputTypedDict(TypedDict):
     r"""The name of the ticket"""
     description: Nullable[str]
     r"""The description of the ticket"""
-    status: NotRequired[Nullable[str]]
+    status: NotRequired[Nullable[Status]]
     r"""The status of the ticket. Authorized values are OPEN or CLOSED."""
     due_date: NotRequired[Nullable[datetime]]
     r"""The date the ticket is due"""
-    type: NotRequired[Nullable[str]]
+    type: NotRequired[Nullable[Type]]
     r"""The type of the ticket. Authorized values are PROBLEM, QUESTION, or TASK"""
     parent_ticket: NotRequired[Nullable[str]]
     r"""The UUID of the parent ticket"""
@@ -100,7 +124,7 @@ class UnifiedTicketingTicketOutputTypedDict(TypedDict):
     r"""The tags names of the ticket"""
     completed_at: NotRequired[Nullable[datetime]]
     r"""The date the ticket has been completed"""
-    priority: NotRequired[Nullable[str]]
+    priority: NotRequired[Nullable[Priority]]
     r"""The priority of the ticket. Authorized values are HIGH, MEDIUM or LOW."""
     assigned_to: NotRequired[Nullable[List[str]]]
     r"""The users UUIDs the ticket is assigned to"""
@@ -111,7 +135,7 @@ class UnifiedTicketingTicketOutputTypedDict(TypedDict):
     contact_id: NotRequired[Nullable[str]]
     r"""The UUID of the contact which the ticket belongs to"""
     attachments: NotRequired[Nullable[List[str]]]
-    r"""The attachments UUIDs tied to the ticket"""
+    r"""The attachements UUIDs tied to the ticket"""
     field_mappings: NotRequired[Nullable[Dict[str, Any]]]
     r"""The custom field mappings of the ticket between the remote 3rd party & Panora"""
     id: NotRequired[Nullable[str]]
@@ -131,11 +155,11 @@ class UnifiedTicketingTicketOutput(BaseModel):
     r"""The name of the ticket"""
     description: Nullable[str]
     r"""The description of the ticket"""
-    status: OptionalNullable[str] = UNSET
+    status: OptionalNullable[Status] = UNSET
     r"""The status of the ticket. Authorized values are OPEN or CLOSED."""
     due_date: OptionalNullable[datetime] = UNSET
     r"""The date the ticket is due"""
-    type: OptionalNullable[str] = UNSET
+    type: OptionalNullable[Type] = UNSET
     r"""The type of the ticket. Authorized values are PROBLEM, QUESTION, or TASK"""
     parent_ticket: OptionalNullable[str] = UNSET
     r"""The UUID of the parent ticket"""
@@ -145,7 +169,7 @@ class UnifiedTicketingTicketOutput(BaseModel):
     r"""The tags names of the ticket"""
     completed_at: OptionalNullable[datetime] = UNSET
     r"""The date the ticket has been completed"""
-    priority: OptionalNullable[str] = UNSET
+    priority: OptionalNullable[Priority] = UNSET
     r"""The priority of the ticket. Authorized values are HIGH, MEDIUM or LOW."""
     assigned_to: OptionalNullable[List[str]] = UNSET
     r"""The users UUIDs the ticket is assigned to"""
@@ -156,7 +180,7 @@ class UnifiedTicketingTicketOutput(BaseModel):
     contact_id: OptionalNullable[str] = UNSET
     r"""The UUID of the contact which the ticket belongs to"""
     attachments: OptionalNullable[List[str]] = UNSET
-    r"""The attachments UUIDs tied to the ticket"""
+    r"""The attachements UUIDs tied to the ticket"""
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the ticket between the remote 3rd party & Panora"""
     id: OptionalNullable[str] = UNSET

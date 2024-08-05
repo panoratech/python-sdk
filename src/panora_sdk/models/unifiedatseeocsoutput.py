@@ -2,24 +2,56 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
+class Race(str, Enum):
+    r"""The race of the candidate"""
+    AMERICAN_INDIAN_OR_ALASKAN_NATIVE = "AMERICAN_INDIAN_OR_ALASKAN_NATIVE"
+    ASIAN = "ASIAN"
+    BLACK_OR_AFRICAN_AMERICAN = "BLACK_OR_AFRICAN_AMERICAN"
+    HISPANIC_OR_LATINO = "HISPANIC_OR_LATINO"
+    WHITE = "WHITE"
+    NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER = "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER"
+    TWO_OR_MORE_RACES = "TWO_OR_MORE_RACES"
+    DECLINE_TO_SELF_IDENTIFY = "DECLINE_TO_SELF_IDENTIFY"
+
+class Gender(str, Enum):
+    r"""The gender of the candidate"""
+    MALE = "MALE"
+    FEMALE = "FEMALE"
+    NON_BINARY = "NON_BINARY"
+    OTHER = "OTHER"
+    DECLINE_TO_SELF_IDENTIFY = "DECLINE_TO_SELF_IDENTIFY"
+
+class VeteranStatus(str, Enum):
+    r"""The veteran status of the candidate"""
+    I_AM_NOT_A_PROTECTED_VETERAN = "I_AM_NOT_A_PROTECTED_VETERAN"
+    I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN = "I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN"
+    I_DONT_WISH_TO_ANSWER = "I_DONT_WISH_TO_ANSWER"
+
+class DisabilityStatus(str, Enum):
+    r"""The disability status of the candidate"""
+    YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY = "YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY"
+    NO_I_DONT_HAVE_A_DISABILITY = "NO_I_DONT_HAVE_A_DISABILITY"
+    I_DONT_WISH_TO_ANSWER = "I_DONT_WISH_TO_ANSWER"
+
 class UnifiedAtsEeocsOutputTypedDict(TypedDict):
     candidate_id: NotRequired[Nullable[str]]
     r"""The UUID of the candidate"""
     submitted_at: NotRequired[Nullable[datetime]]
     r"""The submission date of the EEOC"""
-    race: NotRequired[Nullable[str]]
+    race: NotRequired[Nullable[Race]]
     r"""The race of the candidate"""
-    gender: NotRequired[Nullable[str]]
+    gender: NotRequired[Nullable[Gender]]
     r"""The gender of the candidate"""
-    veteran_status: NotRequired[Nullable[str]]
+    veteran_status: NotRequired[Nullable[VeteranStatus]]
     r"""The veteran status of the candidate"""
-    disability_status: NotRequired[Nullable[str]]
+    disability_status: NotRequired[Nullable[DisabilityStatus]]
     r"""The disability status of the candidate"""
     field_mappings: NotRequired[Nullable[Dict[str, Any]]]
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
@@ -40,13 +72,13 @@ class UnifiedAtsEeocsOutput(BaseModel):
     r"""The UUID of the candidate"""
     submitted_at: OptionalNullable[datetime] = UNSET
     r"""The submission date of the EEOC"""
-    race: OptionalNullable[str] = UNSET
+    race: OptionalNullable[Race] = UNSET
     r"""The race of the candidate"""
-    gender: OptionalNullable[str] = UNSET
+    gender: OptionalNullable[Gender] = UNSET
     r"""The gender of the candidate"""
-    veteran_status: OptionalNullable[str] = UNSET
+    veteran_status: OptionalNullable[VeteranStatus] = UNSET
     r"""The veteran status of the candidate"""
-    disability_status: OptionalNullable[str] = UNSET
+    disability_status: OptionalNullable[DisabilityStatus] = UNSET
     r"""The disability status of the candidate"""
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""

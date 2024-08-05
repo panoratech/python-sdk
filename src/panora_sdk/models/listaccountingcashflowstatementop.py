@@ -26,7 +26,7 @@ class ListAccountingCashflowStatementRequest(BaseModel):
     r"""The connection token"""
     remote_data: Annotated[Optional[bool], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Set to true to include data from the original software."""
-    limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = 50
+    limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Set to get the number of records."""
     cursor: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Set to get the number of records after this cursor."""

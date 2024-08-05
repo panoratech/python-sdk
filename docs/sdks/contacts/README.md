@@ -3,21 +3,20 @@
 
 ### Available Operations
 
-* [list](#list) - List all Contacts
-* [retrieve](#retrieve) - Retrieve Contacts
+* [list](#list) - List Contacts
+* [retrieve](#retrieve) - Retrieve Contact
 
 ## list
 
-List all Contacts
+List Contacts
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -51,16 +50,15 @@ if res is not None:
 
 ## retrieve
 
-Retrieve Contacts from any connected Ticketing software
+Retrieve a Contact from any connected Ticketing software
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 

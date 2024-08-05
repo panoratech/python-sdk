@@ -2,23 +2,38 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import TypedDict
 
 
+class Vertical(str, Enum):
+    TICKETING = "ticketing"
+    ATS = "ats"
+    ACCOUNTING = "accounting"
+    HRIS = "hris"
+    CRM = "crm"
+    FILESTORAGE = "filestorage"
+    ECOMMERCE = "ecommerce"
+    MARKETINGAUTOMATION = "marketingautomation"
+
+class ResyncStatusDtoStatus(str, Enum):
+    SUCCESS = "success"
+    FAIL = "fail"
+
 class ResyncStatusDtoTypedDict(TypedDict):
     timestamp: Nullable[datetime]
-    vertical: Nullable[str]
+    vertical: Nullable[Vertical]
     provider: Nullable[str]
-    status: Nullable[str]
+    status: Nullable[ResyncStatusDtoStatus]
     
 
 class ResyncStatusDto(BaseModel):
     timestamp: Nullable[datetime]
-    vertical: Nullable[str]
+    vertical: Nullable[Vertical]
     provider: Nullable[str]
-    status: Nullable[str]
+    status: Nullable[ResyncStatusDtoStatus]
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

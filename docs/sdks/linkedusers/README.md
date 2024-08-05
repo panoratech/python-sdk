@@ -13,17 +13,16 @@ Create Linked Users
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
 res = s.linked_users.create(request={
-    "linked_user_origin_id": "<value>",
-    "alias": "<value>",
+    "linked_user_origin_id": "id_1",
+    "alias": "acme",
 })
 
 if res is not None:
@@ -56,11 +55,10 @@ List Linked Users
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 

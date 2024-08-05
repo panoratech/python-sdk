@@ -10,13 +10,17 @@ from panora_sdk import models
 from panora_sdk._hooks import HookContext, SDKHooks
 from panora_sdk.accounting import Accounting
 from panora_sdk.ats import Ats
+from panora_sdk.auth import Auth
+from panora_sdk.connections import Connections
 from panora_sdk.crm import Crm
+from panora_sdk.events import Events
 from panora_sdk.field_mappings import FieldMappings
 from panora_sdk.filestorage import Filestorage
 from panora_sdk.hris import Hris
 from panora_sdk.linkedusers import LinkedUsers
 from panora_sdk.marketingautomation import Marketingautomation
 from panora_sdk.passthrough import Passthrough
+from panora_sdk.projects import Projects
 from panora_sdk.sync import Sync
 from panora_sdk.ticketing import Ticketing
 from panora_sdk.types import OptionalNullable, UNSET
@@ -26,12 +30,16 @@ from typing import Any, Callable, Dict, Optional, Union
 
 class Panora(BaseSDK):
     r"""Panora API: A unified API to ship integrations"""
+    auth: Auth
+    connections: Connections
     webhooks: Webhooks
     ticketing: Ticketing
     sync: Sync
     crm: Crm
     linked_users: LinkedUsers
+    projects: Projects
     field_mappings: FieldMappings
+    events: Events
     passthrough: Passthrough
     hris: Hris
     marketingautomation: Marketingautomation
@@ -114,12 +122,16 @@ class Panora(BaseSDK):
 
 
     def _init_sdks(self):
+        self.auth = Auth(self.sdk_configuration)
+        self.connections = Connections(self.sdk_configuration)
         self.webhooks = Webhooks(self.sdk_configuration)
         self.ticketing = Ticketing(self.sdk_configuration)
         self.sync = Sync(self.sdk_configuration)
         self.crm = Crm(self.sdk_configuration)
         self.linked_users = LinkedUsers(self.sdk_configuration)
+        self.projects = Projects(self.sdk_configuration)
         self.field_mappings = FieldMappings(self.sdk_configuration)
+        self.events = Events(self.sdk_configuration)
         self.passthrough = Passthrough(self.sdk_configuration)
         self.hris = Hris(self.sdk_configuration)
         self.marketingautomation = Marketingautomation(self.sdk_configuration)

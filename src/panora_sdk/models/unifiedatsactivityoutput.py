@@ -2,20 +2,33 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
+class ActivityType(str, Enum):
+    r"""The type of activity"""
+    NOTE = "NOTE"
+    EMAIL = "EMAIL"
+    OTHER = "OTHER"
+
+class Visibility(str, Enum):
+    r"""The visibility of the activity"""
+    ADMIN_ONLY = "ADMIN_ONLY"
+    PUBLIC = "PUBLIC"
+    PRIVATE = "PRIVATE"
+
 class UnifiedAtsActivityOutputTypedDict(TypedDict):
-    activity_type: NotRequired[Nullable[str]]
+    activity_type: NotRequired[Nullable[ActivityType]]
     r"""The type of activity"""
     subject: NotRequired[Nullable[str]]
     r"""The subject of the activity"""
     body: NotRequired[Nullable[str]]
     r"""The body of the activity"""
-    visibility: NotRequired[Nullable[str]]
+    visibility: NotRequired[Nullable[Visibility]]
     r"""The visibility of the activity"""
     candidate_id: NotRequired[Nullable[str]]
     r"""The UUID of the candidate"""
@@ -36,13 +49,13 @@ class UnifiedAtsActivityOutputTypedDict(TypedDict):
     
 
 class UnifiedAtsActivityOutput(BaseModel):
-    activity_type: OptionalNullable[str] = UNSET
+    activity_type: OptionalNullable[ActivityType] = UNSET
     r"""The type of activity"""
     subject: OptionalNullable[str] = UNSET
     r"""The subject of the activity"""
     body: OptionalNullable[str] = UNSET
     r"""The body of the activity"""
-    visibility: OptionalNullable[str] = UNSET
+    visibility: OptionalNullable[Visibility] = UNSET
     r"""The visibility of the activity"""
     candidate_id: OptionalNullable[str] = UNSET
     r"""The UUID of the candidate"""

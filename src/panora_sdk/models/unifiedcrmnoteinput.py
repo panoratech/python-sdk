@@ -11,11 +11,11 @@ class UnifiedCrmNoteInputTypedDict(TypedDict):
     content: Nullable[str]
     r"""The content of the note"""
     user_id: NotRequired[Nullable[str]]
-    r"""The UUID of the user tied the note"""
+    r"""The UUID of the user tied to the note"""
     company_id: NotRequired[Nullable[str]]
     r"""The UUID of the company tied to the note"""
     contact_id: NotRequired[Nullable[str]]
-    r"""The UUID fo the contact tied to the note"""
+    r"""The UUID of the contact tied to the note"""
     deal_id: NotRequired[Nullable[str]]
     r"""The UUID of the deal tied to the note"""
     field_mappings: NotRequired[Nullable[Dict[str, Any]]]
@@ -26,11 +26,11 @@ class UnifiedCrmNoteInput(BaseModel):
     content: Nullable[str]
     r"""The content of the note"""
     user_id: OptionalNullable[str] = UNSET
-    r"""The UUID of the user tied the note"""
+    r"""The UUID of the user tied to the note"""
     company_id: OptionalNullable[str] = UNSET
     r"""The UUID of the company tied to the note"""
     contact_id: OptionalNullable[str] = UNSET
-    r"""The UUID fo the contact tied to the note"""
+    r"""The UUID of the contact tied to the note"""
     deal_id: OptionalNullable[str] = UNSET
     r"""The UUID of the deal tied to the note"""
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET

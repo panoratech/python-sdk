@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from panora_sdk.types import BaseModel
-from panora_sdk.utils import FieldMetadata, QueryParamMetadata
+from panora_sdk.utils import FieldMetadata, PathParamMetadata
 from typing import TypedDict
 from typing_extensions import Annotated
 
@@ -12,5 +12,5 @@ class RetrieveLinkedUserRequestTypedDict(TypedDict):
     
 
 class RetrieveLinkedUserRequest(BaseModel):
-    id: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
+    id: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     
