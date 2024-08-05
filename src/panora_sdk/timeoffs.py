@@ -14,13 +14,13 @@ class Timeoffs(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListHrisTimeoffsResponseBody]:
-        r"""List  Timeoffs
+        r"""List Time Offs
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -95,13 +95,13 @@ class Timeoffs(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListHrisTimeoffsResponseBody]:
-        r"""List  Timeoffs
+        r"""List Time Offs
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -343,12 +343,12 @@ class Timeoffs(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedHrisTimeoffOutput]:
-        r"""Retrieve Timeoffs
+        r"""Retrieve Time Off
 
-        Retrieve Timeoffs from any connected Hris software
+        Retrieve a Time Off from any connected Hris software
 
         :param x_connection_token: The connection token
-        :param id: id of the timeoff you want to retrieve.
+        :param id: id of the time off you want to retrieve.
         :param remote_data: Set to true to include data from the original Hris software.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -423,12 +423,12 @@ class Timeoffs(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedHrisTimeoffOutput]:
-        r"""Retrieve Timeoffs
+        r"""Retrieve Time Off
 
-        Retrieve Timeoffs from any connected Hris software
+        Retrieve a Time Off from any connected Hris software
 
         :param x_connection_token: The connection token
-        :param id: id of the timeoff you want to retrieve.
+        :param id: id of the time off you want to retrieve.
         :param remote_data: Set to true to include data from the original Hris software.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method

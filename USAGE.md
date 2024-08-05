@@ -1,11 +1,10 @@
 <!-- Start SDK Example Usage [usage] -->
 ```python
 # Synchronous Example
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -22,12 +21,11 @@ The same SDK client can also be used to make asychronous requests by importing a
 ```python
 # Asynchronous Example
 import asyncio
-import os
 from panora_sdk import Panora
 
 async def main():
     s = Panora(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     )
     res = await s.hello_async()
     if res is not None:

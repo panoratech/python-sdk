@@ -7,18 +7,22 @@ from typing import TypedDict
 
 
 class CreateLinkedUserDtoTypedDict(TypedDict):
-    linked_user_origin_id: Nullable[str]
+    linked_user_origin_id: str
+    r"""The id of the user in the context of your own software"""
     alias: Nullable[str]
+    r"""Your company alias"""
     
 
 class CreateLinkedUserDto(BaseModel):
-    linked_user_origin_id: Nullable[str]
+    linked_user_origin_id: str
+    r"""The id of the user in the context of your own software"""
     alias: Nullable[str]
+    r"""Your company alias"""
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = []
-        nullable_fields = ["linked_user_origin_id", "alias"]
+        nullable_fields = ["alias"]
         null_default_fields = []
 
         serialized = handler(self)

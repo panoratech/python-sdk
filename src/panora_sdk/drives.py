@@ -14,13 +14,13 @@ class Drives(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListFilestorageDrivesResponseBody]:
-        r"""List  Drives
+        r"""List Drives
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -95,13 +95,13 @@ class Drives(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListFilestorageDrivesResponseBody]:
-        r"""List  Drives
+        r"""List Drives
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -181,13 +181,13 @@ class Drives(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedFilestorageDriveOutput]:
-        r"""Retrieve Drives
+        r"""Retrieve Drive
 
-        Retrieve Drives from any connected Filestorage software
+        Retrieve a Drive from any connected file storage service
 
         :param x_connection_token: The connection token
         :param id: id of the drive you want to retrieve.
-        :param remote_data: Set to true to include data from the original File Storage software.
+        :param remote_data: Set to true to include data from the original file storage service.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -261,13 +261,13 @@ class Drives(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedFilestorageDriveOutput]:
-        r"""Retrieve Drives
+        r"""Retrieve Drive
 
-        Retrieve Drives from any connected Filestorage software
+        Retrieve a Drive from any connected file storage service
 
         :param x_connection_token: The connection token
         :param id: id of the drive you want to retrieve.
-        :param remote_data: Set to true to include data from the original File Storage software.
+        :param remote_data: Set to true to include data from the original file storage service.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

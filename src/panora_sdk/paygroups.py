@@ -14,13 +14,13 @@ class Paygroups(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[models.ListHrisPaygroupResponseBody]:
-        r"""List  PayGroups
+    ) -> Optional[models.ListHrisPaygroupsResponseBody]:
+        r"""List Pay Groups
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -38,7 +38,7 @@ class Paygroups(BaseSDK):
         if server_url is not None:
             base_url = server_url
         
-        request = models.ListHrisPaygroupRequest(
+        request = models.ListHrisPaygroupsRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
             limit=limit,
@@ -75,14 +75,14 @@ class Paygroups(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="listHrisPaygroup", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listHrisPaygroups", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
         if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisPaygroupResponseBody])
+            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisPaygroupsResponseBody])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -95,13 +95,13 @@ class Paygroups(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[models.ListHrisPaygroupResponseBody]:
-        r"""List  PayGroups
+    ) -> Optional[models.ListHrisPaygroupsResponseBody]:
+        r"""List Pay Groups
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -119,7 +119,7 @@ class Paygroups(BaseSDK):
         if server_url is not None:
             base_url = server_url
         
-        request = models.ListHrisPaygroupRequest(
+        request = models.ListHrisPaygroupsRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
             limit=limit,
@@ -156,14 +156,14 @@ class Paygroups(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="listHrisPaygroup", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listHrisPaygroups", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
         if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisPaygroupResponseBody])
+            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisPaygroupsResponseBody])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -181,9 +181,9 @@ class Paygroups(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedHrisPaygroupOutput]:
-        r"""Retrieve Pay Groups
+        r"""Retrieve Pay Group
 
-        Retrieve Pay Groups from any connected Hris software
+        Retrieve a Pay Group from any connected Hris software
 
         :param x_connection_token: The connection token
         :param id: id of the paygroup you want to retrieve.
@@ -261,9 +261,9 @@ class Paygroups(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedHrisPaygroupOutput]:
-        r"""Retrieve Pay Groups
+        r"""Retrieve Pay Group
 
-        Retrieve Pay Groups from any connected Hris software
+        Retrieve a Pay Group from any connected Hris software
 
         :param x_connection_token: The connection token
         :param id: id of the paygroup you want to retrieve.

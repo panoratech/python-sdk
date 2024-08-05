@@ -12,19 +12,18 @@ Map Custom Field
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
 res = s.field_mappings.map.map(request={
-    "attribute_id": "<value>",
-    "source_custom_field_id": "<value>",
-    "source_provider": "<value>",
-    "linked_user_id": "<value>",
+    "attribute_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "source_custom_field_id": "id_1",
+    "source_provider": "hubspot",
+    "linked_user_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
 })
 
 if res is not None:

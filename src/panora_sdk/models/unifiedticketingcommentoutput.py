@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
+
+class CreatorType(str, Enum):
+    r"""The creator type of the comment. Authorized values are either USER or CONTACT"""
+    USER = "USER"
+    CONTACT = "CONTACT"
 
 class UnifiedTicketingCommentOutputTypedDict(TypedDict):
     body: Nullable[str]
@@ -15,7 +21,7 @@ class UnifiedTicketingCommentOutputTypedDict(TypedDict):
     r"""The html body of the comment"""
     is_private: NotRequired[Nullable[bool]]
     r"""The public status of the comment"""
-    creator_type: NotRequired[Nullable[str]]
+    creator_type: NotRequired[Nullable[CreatorType]]
     r"""The creator type of the comment. Authorized values are either USER or CONTACT"""
     ticket_id: NotRequired[Nullable[str]]
     r"""The UUID of the ticket the comment is tied to"""
@@ -44,7 +50,7 @@ class UnifiedTicketingCommentOutput(BaseModel):
     r"""The html body of the comment"""
     is_private: OptionalNullable[bool] = UNSET
     r"""The public status of the comment"""
-    creator_type: OptionalNullable[str] = UNSET
+    creator_type: OptionalNullable[CreatorType] = UNSET
     r"""The creator type of the comment. Authorized values are either USER or CONTACT"""
     ticket_id: OptionalNullable[str] = UNSET
     r"""The UUID of the ticket the comment is tied to"""

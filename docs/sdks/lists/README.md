@@ -3,22 +3,21 @@
 
 ### Available Operations
 
-* [list](#list) - List  Lists
+* [list](#list) - List Lists
 * [create](#create) - Create Lists
-* [retrieve](#retrieve) - Retrieve Lists
+* [retrieve](#retrieve) - Retrieve List
 
 ## list
 
-List  Lists
+List Lists
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -57,11 +56,10 @@ Create Lists in any supported Marketingautomation software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -94,20 +92,19 @@ if res is not None:
 
 ## retrieve
 
-Retrieve Lists from any connected Marketingautomation software
+Retrieve a List from any connected Marketingautomation software
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-res = s.marketingautomation.lists.retrieve(x_connection_token="<value>", id="<value>")
+res = s.marketingautomation.lists.retrieve(x_connection_token="<value>", id="801f9ede-c698-4e66-a7fc-48d19eebaa4f", remote_data=False)
 
 if res is not None:
     # handle response
@@ -117,12 +114,12 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `x_connection_token`                                                        | *str*                                                                       | :heavy_check_mark:                                                          | The connection token                                                        |
-| `id`                                                                        | *str*                                                                       | :heavy_check_mark:                                                          | id of the list you want to retrieve.                                        |
-| `remote_data`                                                               | *Optional[bool]*                                                            | :heavy_minus_sign:                                                          | Set to true to include data from the original Marketingautomation software. |
-| `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `x_connection_token`                                                        | *str*                                                                       | :heavy_check_mark:                                                          | The connection token                                                        |                                                                             |
+| `id`                                                                        | *str*                                                                       | :heavy_check_mark:                                                          | id of the list you want to retrieve.                                        | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                        |
+| `remote_data`                                                               | *Optional[bool]*                                                            | :heavy_minus_sign:                                                          | Set to true to include data from the original Marketingautomation software. | false                                                                       |
+| `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |                                                                             |
 
 
 ### Response

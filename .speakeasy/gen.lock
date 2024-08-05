@@ -1,24 +1,23 @@
 lockVersion: 2.0.0
 id: 115d0df7-1198-46c9-9d03-a640abffed12
 management:
-  docChecksum: 60112bba1ada46f22ab482e42dd98db2
+  docChecksum: 73ce3778a891c9bdb1d0d00c8a42490f
   docVersion: "1.0"
-  speakeasyVersion: 1.352.1
-  generationVersion: 2.385.1
-  releaseVersion: 0.2.0
-  configChecksum: 19ec9856efea8b2c10297af853e16716
+  speakeasyVersion: 1.352.2
+  generationVersion: 2.385.2
+  releaseVersion: 0.3.0
+  configChecksum: 789b7e1f290c0acdc2c6b0438211aa65
   repoURL: https://github.com/panoratech/python-sdk.git
   installationURL: https://github.com/panoratech/python-sdk.git
   published: true
 features:
   python:
     additionalDependencies: 1.0.0
-    constsAndDefaults: 1.0.1
     core: 5.3.3
     defaultEnabledRetries: 0.2.0
     envVarSecurityUsage: 0.3.1
     flattening: 3.0.0
-    globalSecurity: 3.0.0
+    globalSecurity: 3.0.1
     globalSecurityCallbacks: 1.0.0
     globalSecurityFlattening: 1.0.0
     globalServerURLs: 3.0.0
@@ -31,6 +30,9 @@ features:
     unions: 3.0.1
 generatedFiles:
   - src/panora_sdk/sdkconfiguration.py
+  - src/panora_sdk/login.py
+  - src/panora_sdk/auth.py
+  - src/panora_sdk/connections.py
   - src/panora_sdk/webhooks.py
   - src/panora_sdk/tickets.py
   - src/panora_sdk/users.py
@@ -53,12 +55,14 @@ generatedFiles:
   - src/panora_sdk/panora_users.py
   - src/panora_sdk/crm.py
   - src/panora_sdk/batch.py
-  - src/panora_sdk/single.py
+  - src/panora_sdk/id_.py
   - src/panora_sdk/fromremoteid.py
   - src/panora_sdk/linkedusers.py
+  - src/panora_sdk/projects.py
   - src/panora_sdk/define.py
   - src/panora_sdk/map.py
   - src/panora_sdk/field_mappings.py
+  - src/panora_sdk/events.py
   - src/panora_sdk/passthrough.py
   - src/panora_sdk/bankinfos.py
   - src/panora_sdk/benefits.py
@@ -80,7 +84,7 @@ generatedFiles:
   - src/panora_sdk/campaigns.py
   - src/panora_sdk/panora_marketingautomation_contacts.py
   - src/panora_sdk/emails.py
-  - src/panora_sdk/events.py
+  - src/panora_sdk/panora_events.py
   - src/panora_sdk/lists.py
   - src/panora_sdk/messages.py
   - src/panora_sdk/templates.py
@@ -159,6 +163,8 @@ generatedFiles:
   - src/panora_sdk/utils/url.py
   - src/panora_sdk/utils/values.py
   - src/panora_sdk/models/sdkerror.py
+  - src/panora_sdk/models/logindto.py
+  - src/panora_sdk/models/connection.py
   - src/panora_sdk/models/webhookresponse.py
   - src/panora_sdk/models/webhookdto.py
   - src/panora_sdk/models/deleteop.py
@@ -244,55 +250,61 @@ generatedFiles:
   - src/panora_sdk/models/createbatchlinkeduserdto.py
   - src/panora_sdk/models/retrievelinkeduserop.py
   - src/panora_sdk/models/remoteidop.py
+  - src/panora_sdk/models/projectresponse.py
+  - src/panora_sdk/models/createprojectdto.py
   - src/panora_sdk/models/customfieldresponse.py
   - src/panora_sdk/models/customfieldcreatedto.py
   - src/panora_sdk/models/definetargetfielddto.py
   - src/panora_sdk/models/mapfieldtoproviderdto.py
+  - src/panora_sdk/models/eventresponse.py
+  - src/panora_sdk/models/getpanoracoreeventsop.py
   - src/panora_sdk/models/passthroughresponse.py
   - src/panora_sdk/models/requestop.py
   - src/panora_sdk/models/passthroughrequestdto.py
   - src/panora_sdk/models/listhrisbankinfoop.py
   - src/panora_sdk/models/unifiedhrisbankinfooutput.py
   - src/panora_sdk/models/retrievehrisbankinfoop.py
-  - src/panora_sdk/models/listhrisbenefitop.py
+  - src/panora_sdk/models/listhrisbenefitsop.py
   - src/panora_sdk/models/unifiedhrisbenefitoutput.py
   - src/panora_sdk/models/retrievehrisbenefitop.py
-  - src/panora_sdk/models/listhriscompanysop.py
+  - src/panora_sdk/models/listhriscompaniesop.py
   - src/panora_sdk/models/unifiedhriscompanyoutput.py
+  - src/panora_sdk/models/retrievehriscompanyop.py
   - src/panora_sdk/models/listhrisdependentsop.py
   - src/panora_sdk/models/unifiedhrisdependentoutput.py
   - src/panora_sdk/models/retrievehrisdependentop.py
   - src/panora_sdk/models/listhrisemployeepayrollrunop.py
   - src/panora_sdk/models/unifiedhrisemployeepayrollrunoutput.py
   - src/panora_sdk/models/retrievehrisemployeepayrollrunop.py
-  - src/panora_sdk/models/listhrisemployeeop.py
+  - src/panora_sdk/models/listhrisemployeesop.py
   - src/panora_sdk/models/unifiedhrisemployeeoutput.py
   - src/panora_sdk/models/createhrisemployeeop.py
   - src/panora_sdk/models/unifiedhrisemployeeinput.py
   - src/panora_sdk/models/retrievehrisemployeeop.py
-  - src/panora_sdk/models/listhrisemployerbenefitop.py
+  - src/panora_sdk/models/listhrisemployerbenefitsop.py
   - src/panora_sdk/models/unifiedhrisemployerbenefitoutput.py
   - src/panora_sdk/models/retrievehrisemployerbenefitop.py
-  - src/panora_sdk/models/listhrisemploymentop.py
+  - src/panora_sdk/models/listhrisemploymentsop.py
   - src/panora_sdk/models/unifiedhrisemploymentoutput.py
   - src/panora_sdk/models/retrievehrisemploymentop.py
-  - src/panora_sdk/models/listhrisgroupop.py
+  - src/panora_sdk/models/listhrisgroupsop.py
   - src/panora_sdk/models/unifiedhrisgroupoutput.py
   - src/panora_sdk/models/retrievehrisgroupop.py
-  - src/panora_sdk/models/listhrislocationop.py
+  - src/panora_sdk/models/listhrislocationsop.py
   - src/panora_sdk/models/unifiedhrislocationoutput.py
   - src/panora_sdk/models/retrievehrislocationop.py
-  - src/panora_sdk/models/listhrispaygroupop.py
+  - src/panora_sdk/models/listhrispaygroupsop.py
   - src/panora_sdk/models/unifiedhrispaygroupoutput.py
   - src/panora_sdk/models/retrievehrispaygroupop.py
   - src/panora_sdk/models/listhrispayrollrunsop.py
   - src/panora_sdk/models/unifiedhrispayrollrunoutput.py
+  - src/panora_sdk/models/retrievehrispayrollrunop.py
   - src/panora_sdk/models/listhristimeoffsop.py
   - src/panora_sdk/models/unifiedhristimeoffoutput.py
   - src/panora_sdk/models/createhristimeoffop.py
   - src/panora_sdk/models/unifiedhristimeoffinput.py
   - src/panora_sdk/models/retrievehristimeoffop.py
-  - src/panora_sdk/models/listhristimeoffbalanceop.py
+  - src/panora_sdk/models/listhristimeoffbalancesop.py
   - src/panora_sdk/models/unifiedhristimeoffbalanceoutput.py
   - src/panora_sdk/models/retrievehristimeoffbalanceop.py
   - src/panora_sdk/models/listmarketingautomationactionop.py
@@ -300,13 +312,13 @@ generatedFiles:
   - src/panora_sdk/models/createmarketingautomationactionop.py
   - src/panora_sdk/models/unifiedmarketingautomationactioninput.py
   - src/panora_sdk/models/retrievemarketingautomationactionop.py
-  - src/panora_sdk/models/listmarketingautomationautomationop.py
+  - src/panora_sdk/models/listmarketingautomationautomationsop.py
   - src/panora_sdk/models/unifiedmarketingautomationautomationoutput.py
   - src/panora_sdk/models/createmarketingautomationautomationop.py
   - src/panora_sdk/models/unifiedmarketingautomationautomationinput.py
   - src/panora_sdk/models/retrievemarketingautomationautomationop.py
-  - src/panora_sdk/models/listmarketingautomationcampaignop.py
-  - src/panora_sdk/models/unifiedcampaignoutput.py
+  - src/panora_sdk/models/listmarketingautomationcampaignsop.py
+  - src/panora_sdk/models/unifiedmarketingautomationcampaignoutput.py
   - src/panora_sdk/models/createmarketingautomationcampaignop.py
   - src/panora_sdk/models/unifiedmarketingautomationcampaigninput.py
   - src/panora_sdk/models/retrievemarketingautomationcampaignop.py
@@ -486,10 +498,13 @@ generatedFiles:
   - src/panora_sdk/models/unifiedfilestoragegroupoutput.py
   - src/panora_sdk/models/retrievefilestoragegroupop.py
   - src/panora_sdk/models/listfilestorageusersop.py
-  - src/panora_sdk/models/unifieduseroutput.py
+  - src/panora_sdk/models/unifiedfilestorageuseroutput.py
   - src/panora_sdk/models/retrievefilestorageuserop.py
   - src/panora_sdk/models/security.py
   - src/panora_sdk/models/__init__.py
+  - docs/models/logindto.md
+  - docs/models/tokentype.md
+  - docs/models/connection.md
   - docs/models/webhookresponse.md
   - docs/models/webhookdto.md
   - docs/models/deleterequest.md
@@ -498,9 +513,17 @@ generatedFiles:
   - docs/models/signatureverificationdto.md
   - docs/models/listticketingticketrequest.md
   - docs/models/listticketingticketresponsebody.md
+  - docs/models/status.md
+  - docs/models/type.md
+  - docs/models/priority.md
+  - docs/models/unifiedticketingticketoutputcreatortype.md
   - docs/models/comment.md
   - docs/models/unifiedticketingticketoutput.md
   - docs/models/createticketingticketrequest.md
+  - docs/models/unifiedticketingticketinputstatus.md
+  - docs/models/unifiedticketingticketinputtype.md
+  - docs/models/unifiedticketingticketinputpriority.md
+  - docs/models/unifiedticketingticketinputcreatortype.md
   - docs/models/unifiedticketingticketinputcomment.md
   - docs/models/unifiedticketingticketinput.md
   - docs/models/retrieveticketingticketrequest.md
@@ -519,12 +542,15 @@ generatedFiles:
   - docs/models/retrieveticketingcontactresponsebody.md
   - docs/models/listticketingcollectionsrequest.md
   - docs/models/listticketingcollectionsresponsebody.md
+  - docs/models/collectiontype.md
   - docs/models/unifiedticketingcollectionoutput.md
   - docs/models/retrievecollectionrequest.md
   - docs/models/listticketingcommentsrequest.md
   - docs/models/listticketingcommentsresponsebody.md
+  - docs/models/creatortype.md
   - docs/models/unifiedticketingcommentoutput.md
   - docs/models/createticketingcommentrequest.md
+  - docs/models/unifiedticketingcommentinputcreatortype.md
   - docs/models/unifiedticketingcommentinput.md
   - docs/models/retrieveticketingcommentrequest.md
   - docs/models/retrieveticketingcommentresponsebody.md
@@ -542,17 +568,26 @@ generatedFiles:
   - docs/models/createticketingattachmentrequest.md
   - docs/models/unifiedticketingattachmentinput.md
   - docs/models/retrieveticketingattachmentrequest.md
+  - docs/models/pathparamvertical.md
   - docs/models/statusrequest.md
+  - docs/models/vertical.md
+  - docs/models/resyncstatusdtostatus.md
   - docs/models/resyncstatusdto.md
   - docs/models/listcrmcompanyrequest.md
   - docs/models/listcrmcompanyresponsebody.md
+  - docs/models/industry.md
   - docs/models/createdat.md
   - docs/models/modifiedat.md
   - docs/models/unifiedcrmcompanyoutput.md
+  - docs/models/phonetype.md
   - docs/models/phone.md
+  - docs/models/addresstype.md
   - docs/models/address.md
+  - docs/models/emailaddresstype.md
+  - docs/models/ownertype.md
   - docs/models/email.md
   - docs/models/createcrmcompanyrequest.md
+  - docs/models/unifiedcrmcompanyinputindustry.md
   - docs/models/unifiedcrmcompanyinput.md
   - docs/models/retrievecrmcompanyrequest.md
   - docs/models/listcrmcontactsrequest.md
@@ -569,8 +604,12 @@ generatedFiles:
   - docs/models/retrievecrmdealrequest.md
   - docs/models/listcrmengagementsrequest.md
   - docs/models/listcrmengagementsresponsebody.md
+  - docs/models/direction.md
+  - docs/models/unifiedcrmengagementoutputtype.md
   - docs/models/unifiedcrmengagementoutput.md
   - docs/models/createcrmengagementrequest.md
+  - docs/models/unifiedcrmengagementinputdirection.md
+  - docs/models/unifiedcrmengagementinputtype.md
   - docs/models/unifiedcrmengagementinput.md
   - docs/models/retrievecrmengagementrequest.md
   - docs/models/listcrmnoterequest.md
@@ -587,10 +626,10 @@ generatedFiles:
   - docs/models/retrievecrmstagerequest.md
   - docs/models/listcrmtaskrequest.md
   - docs/models/listcrmtaskresponsebody.md
-  - docs/models/unifiedcrmtaskoutputcreatedat.md
-  - docs/models/unifiedcrmtaskoutputmodifiedat.md
+  - docs/models/unifiedcrmtaskoutputstatus.md
   - docs/models/unifiedcrmtaskoutput.md
   - docs/models/createcrmtaskrequest.md
+  - docs/models/unifiedcrmtaskinputstatus.md
   - docs/models/unifiedcrmtaskinput.md
   - docs/models/retrievecrmtaskrequest.md
   - docs/models/listcrmusersrequest.md
@@ -602,27 +641,40 @@ generatedFiles:
   - docs/models/createbatchlinkeduserdto.md
   - docs/models/retrievelinkeduserrequest.md
   - docs/models/remoteidrequest.md
+  - docs/models/projectresponse.md
+  - docs/models/createprojectdto.md
+  - docs/models/customfieldresponsedatatype.md
   - docs/models/customfieldresponse.md
+  - docs/models/customfieldcreatedtoobjecttypeowner.md
+  - docs/models/customfieldcreatedtodatatype.md
   - docs/models/customfieldcreatedto.md
+  - docs/models/objecttypeowner.md
+  - docs/models/datatype.md
   - docs/models/definetargetfielddto.md
   - docs/models/mapfieldtoproviderdto.md
+  - docs/models/eventresponsetype.md
+  - docs/models/eventresponsestatus.md
+  - docs/models/method.md
+  - docs/models/eventresponse.md
+  - docs/models/getpanoracoreeventsrequest.md
   - docs/models/passthroughresponsedata.md
   - docs/models/passthroughresponse.md
   - docs/models/requestrequest.md
-  - docs/models/method.md
+  - docs/models/passthroughrequestdtomethod.md
   - docs/models/data.md
   - docs/models/passthroughrequestdto.md
   - docs/models/listhrisbankinforequest.md
   - docs/models/listhrisbankinforesponsebody.md
   - docs/models/unifiedhrisbankinfooutput.md
   - docs/models/retrievehrisbankinforequest.md
-  - docs/models/listhrisbenefitrequest.md
-  - docs/models/listhrisbenefitresponsebody.md
+  - docs/models/listhrisbenefitsrequest.md
+  - docs/models/listhrisbenefitsresponsebody.md
   - docs/models/unifiedhrisbenefitoutput.md
   - docs/models/retrievehrisbenefitrequest.md
-  - docs/models/listhriscompanysrequest.md
-  - docs/models/listhriscompanysresponsebody.md
+  - docs/models/listhriscompaniesrequest.md
+  - docs/models/listhriscompaniesresponsebody.md
   - docs/models/unifiedhriscompanyoutput.md
+  - docs/models/retrievehriscompanyrequest.md
   - docs/models/listhrisdependentsrequest.md
   - docs/models/listhrisdependentsresponsebody.md
   - docs/models/unifiedhrisdependentoutput.md
@@ -631,43 +683,44 @@ generatedFiles:
   - docs/models/listhrisemployeepayrollrunresponsebody.md
   - docs/models/unifiedhrisemployeepayrollrunoutput.md
   - docs/models/retrievehrisemployeepayrollrunrequest.md
-  - docs/models/listhrisemployeerequest.md
-  - docs/models/listhrisemployeeresponsebody.md
+  - docs/models/listhrisemployeesrequest.md
+  - docs/models/listhrisemployeesresponsebody.md
   - docs/models/unifiedhrisemployeeoutput.md
   - docs/models/createhrisemployeerequest.md
   - docs/models/unifiedhrisemployeeinput.md
   - docs/models/retrievehrisemployeerequest.md
-  - docs/models/listhrisemployerbenefitrequest.md
-  - docs/models/listhrisemployerbenefitresponsebody.md
+  - docs/models/listhrisemployerbenefitsrequest.md
+  - docs/models/listhrisemployerbenefitsresponsebody.md
   - docs/models/unifiedhrisemployerbenefitoutput.md
   - docs/models/retrievehrisemployerbenefitrequest.md
-  - docs/models/listhrisemploymentrequest.md
-  - docs/models/listhrisemploymentresponsebody.md
+  - docs/models/listhrisemploymentsrequest.md
+  - docs/models/listhrisemploymentsresponsebody.md
   - docs/models/unifiedhrisemploymentoutput.md
   - docs/models/retrievehrisemploymentrequest.md
-  - docs/models/listhrisgrouprequest.md
-  - docs/models/listhrisgroupresponsebody.md
+  - docs/models/listhrisgroupsrequest.md
+  - docs/models/listhrisgroupsresponsebody.md
   - docs/models/unifiedhrisgroupoutput.md
   - docs/models/retrievehrisgrouprequest.md
-  - docs/models/listhrislocationrequest.md
-  - docs/models/listhrislocationresponsebody.md
+  - docs/models/listhrislocationsrequest.md
+  - docs/models/listhrislocationsresponsebody.md
   - docs/models/unifiedhrislocationoutput.md
   - docs/models/retrievehrislocationrequest.md
-  - docs/models/listhrispaygrouprequest.md
-  - docs/models/listhrispaygroupresponsebody.md
+  - docs/models/listhrispaygroupsrequest.md
+  - docs/models/listhrispaygroupsresponsebody.md
   - docs/models/unifiedhrispaygroupoutput.md
   - docs/models/retrievehrispaygrouprequest.md
   - docs/models/listhrispayrollrunsrequest.md
   - docs/models/listhrispayrollrunsresponsebody.md
   - docs/models/unifiedhrispayrollrunoutput.md
+  - docs/models/retrievehrispayrollrunrequest.md
   - docs/models/listhristimeoffsrequest.md
   - docs/models/listhristimeoffsresponsebody.md
   - docs/models/unifiedhristimeoffoutput.md
   - docs/models/createhristimeoffrequest.md
   - docs/models/unifiedhristimeoffinput.md
   - docs/models/retrievehristimeoffrequest.md
-  - docs/models/listhristimeoffbalancerequest.md
-  - docs/models/listhristimeoffbalanceresponsebody.md
+  - docs/models/listhristimeoffbalancesrequest.md
+  - docs/models/listhristimeoffbalancesresponsebody.md
   - docs/models/unifiedhristimeoffbalanceoutput.md
   - docs/models/retrievehristimeoffbalancerequest.md
   - docs/models/listmarketingautomationactionrequest.md
@@ -676,15 +729,15 @@ generatedFiles:
   - docs/models/createmarketingautomationactionrequest.md
   - docs/models/unifiedmarketingautomationactioninput.md
   - docs/models/retrievemarketingautomationactionrequest.md
-  - docs/models/listmarketingautomationautomationrequest.md
-  - docs/models/listmarketingautomationautomationresponsebody.md
+  - docs/models/listmarketingautomationautomationsrequest.md
+  - docs/models/listmarketingautomationautomationsresponsebody.md
   - docs/models/unifiedmarketingautomationautomationoutput.md
   - docs/models/createmarketingautomationautomationrequest.md
   - docs/models/unifiedmarketingautomationautomationinput.md
   - docs/models/retrievemarketingautomationautomationrequest.md
-  - docs/models/listmarketingautomationcampaignrequest.md
-  - docs/models/listmarketingautomationcampaignresponsebody.md
-  - docs/models/unifiedcampaignoutput.md
+  - docs/models/listmarketingautomationcampaignsrequest.md
+  - docs/models/listmarketingautomationcampaignsresponsebody.md
+  - docs/models/unifiedmarketingautomationcampaignoutput.md
   - docs/models/createmarketingautomationcampaignrequest.md
   - docs/models/unifiedmarketingautomationcampaigninput.md
   - docs/models/retrievemarketingautomationcampaignrequest.md
@@ -724,8 +777,12 @@ generatedFiles:
   - docs/models/retrievemarketingautomationuserrequest.md
   - docs/models/listatsactivityrequest.md
   - docs/models/listatsactivityresponsebody.md
+  - docs/models/activitytype.md
+  - docs/models/visibility.md
   - docs/models/unifiedatsactivityoutput.md
   - docs/models/createatsactivityrequest.md
+  - docs/models/unifiedatsactivityinputactivitytype.md
+  - docs/models/unifiedatsactivityinputvisibility.md
   - docs/models/unifiedatsactivityinput.md
   - docs/models/retrieveatsactivityrequest.md
   - docs/models/listatsapplicationrequest.md
@@ -736,8 +793,10 @@ generatedFiles:
   - docs/models/retrieveatsapplicationrequest.md
   - docs/models/listatsattachmentrequest.md
   - docs/models/listatsattachmentresponsebody.md
+  - docs/models/attachmenttype.md
   - docs/models/unifiedatsattachmentoutput.md
   - docs/models/createatsattachmentrequest.md
+  - docs/models/unifiedatsattachmentinputattachmenttype.md
   - docs/models/unifiedatsattachmentinput.md
   - docs/models/retrieveatsattachmentrequest.md
   - docs/models/listatscandidaterequest.md
@@ -753,8 +812,10 @@ generatedFiles:
   - docs/models/retrieveatsdepartmentrequest.md
   - docs/models/listatsinterviewrequest.md
   - docs/models/listatsinterviewresponsebody.md
+  - docs/models/unifiedatsinterviewoutputstatus.md
   - docs/models/unifiedatsinterviewoutput.md
   - docs/models/createatsinterviewrequest.md
+  - docs/models/unifiedatsinterviewinputstatus.md
   - docs/models/unifiedatsinterviewinput.md
   - docs/models/retrieveatsinterviewrequest.md
   - docs/models/listatsjobinterviewstagerequest.md
@@ -763,10 +824,13 @@ generatedFiles:
   - docs/models/retrieveatsjobinterviewstagerequest.md
   - docs/models/listatsjobrequest.md
   - docs/models/listatsjobresponsebody.md
+  - docs/models/unifiedatsjoboutputstatus.md
+  - docs/models/unifiedatsjoboutputtype.md
   - docs/models/unifiedatsjoboutput.md
   - docs/models/retrieveatsjobrequest.md
   - docs/models/listatsofferrequest.md
   - docs/models/listatsofferresponsebody.md
+  - docs/models/unifiedatsofferoutputstatus.md
   - docs/models/unifiedatsofferoutputcreatedat.md
   - docs/models/unifiedatsofferoutputmodifiedat.md
   - docs/models/unifiedatsofferoutput.md
@@ -781,6 +845,7 @@ generatedFiles:
   - docs/models/retrieveatsrejectreasonrequest.md
   - docs/models/listatsscorecardrequest.md
   - docs/models/listatsscorecardresponsebody.md
+  - docs/models/overallrecommendation.md
   - docs/models/unifiedatsscorecardoutput.md
   - docs/models/retrieveatsscorecardrequest.md
   - docs/models/listatstagsrequest.md
@@ -789,10 +854,15 @@ generatedFiles:
   - docs/models/retrieveatstagrequest.md
   - docs/models/listatsusersrequest.md
   - docs/models/listatsusersresponsebody.md
+  - docs/models/accessrole.md
   - docs/models/unifiedatsuseroutput.md
   - docs/models/retrieveatsuserrequest.md
   - docs/models/listatseeocsrequest.md
   - docs/models/listatseeocsresponsebody.md
+  - docs/models/race.md
+  - docs/models/gender.md
+  - docs/models/veteranstatus.md
+  - docs/models/disabilitystatus.md
   - docs/models/unifiedatseeocsoutput.md
   - docs/models/retrieveatseeocsrequest.md
   - docs/models/listaccountingaccountsrequest.md
@@ -913,11 +983,14 @@ generatedFiles:
   - docs/models/retrievefilestoragegrouprequest.md
   - docs/models/listfilestorageusersrequest.md
   - docs/models/listfilestorageusersresponsebody.md
-  - docs/models/unifieduseroutput.md
+  - docs/models/unifiedfilestorageuseroutput.md
   - docs/models/retrievefilestorageuserrequest.md
   - docs/models/security.md
   - docs/models/utils/retryconfig.md
   - docs/sdks/panora/README.md
+  - docs/sdks/auth/README.md
+  - docs/sdks/login/README.md
+  - docs/sdks/connections/README.md
   - docs/sdks/webhooks/README.md
   - docs/sdks/ticketing/README.md
   - docs/sdks/tickets/README.md
@@ -941,11 +1014,13 @@ generatedFiles:
   - docs/sdks/panorausers/README.md
   - docs/sdks/linkedusers/README.md
   - docs/sdks/batch/README.md
-  - docs/sdks/single/README.md
+  - docs/sdks/id/README.md
   - docs/sdks/fromremoteid/README.md
+  - docs/sdks/projects/README.md
   - docs/sdks/fieldmappings/README.md
   - docs/sdks/define/README.md
   - docs/sdks/map/README.md
+  - docs/sdks/events/README.md
   - docs/sdks/passthrough/README.md
   - docs/sdks/hris/README.md
   - docs/sdks/bankinfos/README.md
@@ -968,7 +1043,7 @@ generatedFiles:
   - docs/sdks/campaigns/README.md
   - docs/sdks/panoramarketingautomationcontacts/README.md
   - docs/sdks/emails/README.md
-  - docs/sdks/events/README.md
+  - docs/sdks/panoraevents/README.md
   - docs/sdks/lists/README.md
   - docs/sdks/messages/README.md
   - docs/sdks/templates/README.md

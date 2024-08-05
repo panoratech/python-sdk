@@ -14,11 +14,10 @@ List  Folders
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -57,23 +56,26 @@ Create Folders in any supported Filestorage software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
 res = s.filestorage.folders.create(x_connection_token="<value>", remote_data=False, unified_filestorage_folder_input={
-    "name": "<value>",
-    "size": "<value>",
-    "folder_url": "<value>",
-    "description": "Multi-tiered human-resource model",
-    "drive_id": "<value>",
-    "parent_folder_id": "<value>",
-    "shared_link": "<value>",
-    "permission": "<value>",
+    "name": "school",
+    "size": "2048",
+    "folder_url": "https://example.com/school",
+    "description": "All things school related",
+    "drive_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "parent_folder_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "shared_link": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "permission": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "field_mappings": {
+        "fav_dish": "broccoli",
+        "fav_color": "red",
+    },
 })
 
 if res is not None:
@@ -108,15 +110,14 @@ Retrieve Folders from any connected Filestorage software
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-res = s.filestorage.folders.retrieve(x_connection_token="<value>", id="<value>")
+res = s.filestorage.folders.retrieve(x_connection_token="<value>", id="801f9ede-c698-4e66-a7fc-48d19eebaa4f", remote_data=False)
 
 if res is not None:
     # handle response
@@ -126,12 +127,12 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `x_connection_token`                                                 | *str*                                                                | :heavy_check_mark:                                                   | The connection token                                                 |
-| `id`                                                                 | *str*                                                                | :heavy_check_mark:                                                   | id of the folder you want to retrieve.                               |
-| `remote_data`                                                        | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | Set to true to include data from the original File Storage software. |
-| `retries`                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)     | :heavy_minus_sign:                                                   | Configuration to override the default retry behavior of the client.  |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `x_connection_token`                                                 | *str*                                                                | :heavy_check_mark:                                                   | The connection token                                                 |                                                                      |
+| `id`                                                                 | *str*                                                                | :heavy_check_mark:                                                   | id of the folder you want to retrieve.                               | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                 |
+| `remote_data`                                                        | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | Set to true to include data from the original File Storage software. | false                                                                |
+| `retries`                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)     | :heavy_minus_sign:                                                   | Configuration to override the default retry behavior of the client.  |                                                                      |
 
 
 ### Response

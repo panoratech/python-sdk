@@ -1,5 +1,7 @@
 # Method
 
+HTTP method used for the event
+
 
 ## Values
 
@@ -7,6 +9,5 @@
 | -------- | -------- |
 | `GET`    | GET      |
 | `POST`   | POST     |
-| `PATCH`  | PATCH    |
-| `DELETE` | DELETE   |
 | `PUT`    | PUT      |
+| `DELETE` | DELETE   |

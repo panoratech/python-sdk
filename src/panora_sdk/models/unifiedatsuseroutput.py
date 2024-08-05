@@ -2,11 +2,20 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
+
+class AccessRole(str, Enum):
+    r"""The access role of the user"""
+    SUPER_ADMIN = "SUPER_ADMIN"
+    ADMIN = "ADMIN"
+    TEAM_MEMBER = "TEAM_MEMBER"
+    LIMITED_TEAM_MEMBER = "LIMITED_TEAM_MEMBER"
+    INTERVIEWER = "INTERVIEWER"
 
 class UnifiedAtsUserOutputTypedDict(TypedDict):
     first_name: NotRequired[Nullable[str]]
@@ -17,7 +26,7 @@ class UnifiedAtsUserOutputTypedDict(TypedDict):
     r"""The email of the user"""
     disabled: NotRequired[Nullable[bool]]
     r"""Whether the user is disabled"""
-    access_role: NotRequired[Nullable[str]]
+    access_role: NotRequired[Nullable[AccessRole]]
     r"""The access role of the user"""
     remote_created_at: NotRequired[Nullable[datetime]]
     r"""The remote creation date of the user"""
@@ -46,7 +55,7 @@ class UnifiedAtsUserOutput(BaseModel):
     r"""The email of the user"""
     disabled: OptionalNullable[bool] = UNSET
     r"""Whether the user is disabled"""
-    access_role: OptionalNullable[str] = UNSET
+    access_role: OptionalNullable[AccessRole] = UNSET
     r"""The access role of the user"""
     remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote creation date of the user"""

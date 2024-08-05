@@ -13,12 +13,12 @@ class UnifiedTicketingUserOutputTypedDict(TypedDict):
     r"""The name of the user"""
     email_address: Nullable[str]
     r"""The email address of the user"""
-    field_mappings: Nullable[Dict[str, Any]]
-    r"""The custom field mappings of the user between the remote 3rd party & Panora"""
     teams: NotRequired[Nullable[List[str]]]
     r"""The teams whose the user is part of"""
     account_id: NotRequired[Nullable[str]]
     r"""The account or organization the user is part of"""
+    field_mappings: NotRequired[Nullable[Dict[str, Any]]]
+    r"""The custom field mappings of the user between the remote 3rd party & Panora"""
     id: NotRequired[Nullable[str]]
     r"""The UUID of the user"""
     remote_id: NotRequired[Nullable[str]]
@@ -36,12 +36,12 @@ class UnifiedTicketingUserOutput(BaseModel):
     r"""The name of the user"""
     email_address: Nullable[str]
     r"""The email address of the user"""
-    field_mappings: Nullable[Dict[str, Any]]
-    r"""The custom field mappings of the user between the remote 3rd party & Panora"""
     teams: OptionalNullable[List[str]] = UNSET
     r"""The teams whose the user is part of"""
     account_id: OptionalNullable[str] = UNSET
     r"""The account or organization the user is part of"""
+    field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""The custom field mappings of the user between the remote 3rd party & Panora"""
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the user"""
     remote_id: OptionalNullable[str] = UNSET
@@ -55,8 +55,8 @@ class UnifiedTicketingUserOutput(BaseModel):
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["teams", "account_id", "id", "remote_id", "remote_data", "created_at", "modified_at"]
-        nullable_fields = ["name", "email_address", "field_mappings", "teams", "account_id", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        optional_fields = ["teams", "account_id", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        nullable_fields = ["name", "email_address", "teams", "account_id", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
         null_default_fields = []
 
         serialized = handler(self)

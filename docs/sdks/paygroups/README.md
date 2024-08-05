@@ -3,21 +3,20 @@
 
 ### Available Operations
 
-* [list](#list) - List  PayGroups
-* [retrieve](#retrieve) - Retrieve Pay Groups
+* [list](#list) - List Pay Groups
+* [retrieve](#retrieve) - Retrieve Pay Group
 
 ## list
 
-List  PayGroups
+List Pay Groups
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -42,7 +41,7 @@ if res is not None:
 
 ### Response
 
-**[models.ListHrisPaygroupResponseBody](../../models/listhrispaygroupresponsebody.md)**
+**[models.ListHrisPaygroupsResponseBody](../../models/listhrispaygroupsresponsebody.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -51,20 +50,19 @@ if res is not None:
 
 ## retrieve
 
-Retrieve Pay Groups from any connected Hris software
+Retrieve a Pay Group from any connected Hris software
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-res = s.hris.paygroups.retrieve(x_connection_token="<value>", id="<value>")
+res = s.hris.paygroups.retrieve(x_connection_token="<value>", id="801f9ede-c698-4e66-a7fc-48d19eebaa4f", remote_data=False)
 
 if res is not None:
     # handle response
@@ -74,12 +72,12 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `x_connection_token`                                                | *str*                                                               | :heavy_check_mark:                                                  | The connection token                                                |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the paygroup you want to retrieve.                            |
-| `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Hris software.        |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `x_connection_token`                                                | *str*                                                               | :heavy_check_mark:                                                  | The connection token                                                |                                                                     |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the paygroup you want to retrieve.                            | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                |
+| `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Hris software.        | false                                                               |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
 
 ### Response

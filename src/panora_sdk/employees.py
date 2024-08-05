@@ -14,13 +14,13 @@ class Employees(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[models.ListHrisEmployeeResponseBody]:
-        r"""List  Employees
+    ) -> Optional[models.ListHrisEmployeesResponseBody]:
+        r"""List Employees
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -38,7 +38,7 @@ class Employees(BaseSDK):
         if server_url is not None:
             base_url = server_url
         
-        request = models.ListHrisEmployeeRequest(
+        request = models.ListHrisEmployeesRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
             limit=limit,
@@ -75,14 +75,14 @@ class Employees(BaseSDK):
             ])                
         
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="listHrisEmployee", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listHrisEmployees", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
         if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisEmployeeResponseBody])
+            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisEmployeesResponseBody])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -95,13 +95,13 @@ class Employees(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[models.ListHrisEmployeeResponseBody]:
-        r"""List  Employees
+    ) -> Optional[models.ListHrisEmployeesResponseBody]:
+        r"""List Employees
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -119,7 +119,7 @@ class Employees(BaseSDK):
         if server_url is not None:
             base_url = server_url
         
-        request = models.ListHrisEmployeeRequest(
+        request = models.ListHrisEmployeesRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
             limit=limit,
@@ -156,14 +156,14 @@ class Employees(BaseSDK):
             ])                
         
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="listHrisEmployee", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(operation_id="listHrisEmployees", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
             retry_config=retry_config
         )
         
         if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisEmployeeResponseBody])
+            return utils.unmarshal_json(http_res.text, Optional[models.ListHrisEmployeesResponseBody])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -343,9 +343,9 @@ class Employees(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedHrisEmployeeOutput]:
-        r"""Retrieven Employees
+        r"""Retrieve Employee
 
-        Retrieven Employees from any connected Hris software
+        Retrieve an Employee from any connected Hris software
 
         :param x_connection_token: The connection token
         :param id: id of the employee you want to retrieve.
@@ -423,9 +423,9 @@ class Employees(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.UnifiedHrisEmployeeOutput]:
-        r"""Retrieven Employees
+        r"""Retrieve Employee
 
-        Retrieven Employees from any connected Hris software
+        Retrieve an Employee from any connected Hris software
 
         :param x_connection_token: The connection token
         :param id: id of the employee you want to retrieve.

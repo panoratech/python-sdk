@@ -14,7 +14,7 @@ class RetrieveFilestorageDriveRequestTypedDict(TypedDict):
     id: str
     r"""id of the drive you want to retrieve."""
     remote_data: NotRequired[bool]
-    r"""Set to true to include data from the original File Storage software."""
+    r"""Set to true to include data from the original file storage service."""
     
 
 class RetrieveFilestorageDriveRequest(BaseModel):
@@ -23,5 +23,5 @@ class RetrieveFilestorageDriveRequest(BaseModel):
     id: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""id of the drive you want to retrieve."""
     remote_data: Annotated[Optional[bool], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
-    r"""Set to true to include data from the original File Storage software."""
+    r"""Set to true to include data from the original file storage service."""
     

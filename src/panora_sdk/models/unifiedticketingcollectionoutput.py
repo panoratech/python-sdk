@@ -2,18 +2,24 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
+class CollectionType(str, Enum):
+    r"""The type of the collection. Authorized values are either PROJECT or LIST"""
+    PROJECT = "PROJECT"
+    LIST = "LIST"
+
 class UnifiedTicketingCollectionOutputTypedDict(TypedDict):
     name: Nullable[str]
     r"""The name of the collection"""
     description: NotRequired[Nullable[str]]
     r"""The description of the collection"""
-    collection_type: NotRequired[Nullable[str]]
+    collection_type: NotRequired[Nullable[CollectionType]]
     r"""The type of the collection. Authorized values are either PROJECT or LIST"""
     id: NotRequired[Nullable[str]]
     r"""The UUID of the collection"""
@@ -32,7 +38,7 @@ class UnifiedTicketingCollectionOutput(BaseModel):
     r"""The name of the collection"""
     description: OptionalNullable[str] = UNSET
     r"""The description of the collection"""
-    collection_type: OptionalNullable[str] = UNSET
+    collection_type: OptionalNullable[CollectionType] = UNSET
     r"""The type of the collection. Authorized values are either PROJECT or LIST"""
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the collection"""

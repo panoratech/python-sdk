@@ -35,7 +35,7 @@ class UnifiedCrmStageOutputTypedDict(TypedDict):
     id: NotRequired[Nullable[str]]
     r"""The UUID of the stage"""
     remote_id: NotRequired[Nullable[str]]
-    r"""The id of the stage in the context of the Crm 3rd Party"""
+    r"""The ID of the stage in the context of the Crm 3rd Party"""
     remote_data: NotRequired[Nullable[Dict[str, Any]]]
     r"""The remote data of the stage in the context of the Crm 3rd Party"""
     created_at: NotRequired[Nullable[UnifiedCrmStageOutputCreatedAtTypedDict]]
@@ -52,7 +52,7 @@ class UnifiedCrmStageOutput(BaseModel):
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the stage"""
     remote_id: OptionalNullable[str] = UNSET
-    r"""The id of the stage in the context of the Crm 3rd Party"""
+    r"""The ID of the stage in the context of the Crm 3rd Party"""
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the stage in the context of the Crm 3rd Party"""
     created_at: OptionalNullable[UnifiedCrmStageOutputCreatedAt] = UNSET

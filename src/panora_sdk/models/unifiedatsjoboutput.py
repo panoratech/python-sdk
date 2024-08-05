@@ -2,11 +2,26 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
+
+class UnifiedAtsJobOutputStatus(str, Enum):
+    r"""The status of the job"""
+    OPEN = "OPEN"
+    CLOSED = "CLOSED"
+    DRAFT = "DRAFT"
+    ARCHIVED = "ARCHIVED"
+    PENDING = "PENDING"
+
+class UnifiedAtsJobOutputType(str, Enum):
+    r"""The type of the job"""
+    POSTING = "POSTING"
+    REQUISITION = "REQUISITION"
+    PROFILE = "PROFILE"
 
 class UnifiedAtsJobOutputTypedDict(TypedDict):
     name: NotRequired[Nullable[str]]
@@ -15,9 +30,9 @@ class UnifiedAtsJobOutputTypedDict(TypedDict):
     r"""The description of the job"""
     code: NotRequired[Nullable[str]]
     r"""The code of the job"""
-    status: NotRequired[Nullable[str]]
+    status: NotRequired[Nullable[UnifiedAtsJobOutputStatus]]
     r"""The status of the job"""
-    type: NotRequired[Nullable[str]]
+    type: NotRequired[Nullable[UnifiedAtsJobOutputType]]
     r"""The type of the job"""
     confidential: NotRequired[Nullable[bool]]
     r"""Whether the job is confidential"""
@@ -54,9 +69,9 @@ class UnifiedAtsJobOutput(BaseModel):
     r"""The description of the job"""
     code: OptionalNullable[str] = UNSET
     r"""The code of the job"""
-    status: OptionalNullable[str] = UNSET
+    status: OptionalNullable[UnifiedAtsJobOutputStatus] = UNSET
     r"""The status of the job"""
-    type: OptionalNullable[str] = UNSET
+    type: OptionalNullable[UnifiedAtsJobOutputType] = UNSET
     r"""The type of the job"""
     confidential: OptionalNullable[bool] = UNSET
     r"""Whether the job is confidential"""

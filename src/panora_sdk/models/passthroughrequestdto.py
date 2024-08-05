@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 from enum import Enum
-from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from panora_sdk.types import BaseModel, Nullable, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict, Union
-from typing_extensions import NotRequired
 
 
-class Method(str, Enum):
+class PassThroughRequestDtoMethod(str, Enum):
     GET = "GET"
     POST = "POST"
     PATCH = "PATCH"
@@ -16,21 +15,21 @@ class Method(str, Enum):
     PUT = "PUT"
 
 class PassThroughRequestDtoTypedDict(TypedDict):
-    method: Method
+    method: PassThroughRequestDtoMethod
     path: Nullable[str]
-    data: NotRequired[Nullable[DataTypedDict]]
-    headers: NotRequired[Nullable[Dict[str, Any]]]
+    data: Nullable[DataTypedDict]
+    headers: Nullable[Dict[str, Any]]
     
 
 class PassThroughRequestDto(BaseModel):
-    method: Method
+    method: PassThroughRequestDtoMethod
     path: Nullable[str]
-    data: OptionalNullable[Data] = UNSET
-    headers: OptionalNullable[Dict[str, Any]] = UNSET
+    data: Nullable[Data]
+    headers: Nullable[Dict[str, Any]]
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["data", "headers"]
+        optional_fields = []
         nullable_fields = ["path", "data", "headers"]
         null_default_fields = []
 

@@ -14,13 +14,13 @@ class PanoraFilestorageUsers(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListFilestorageUsersResponseBody]:
-        r"""List  Users
+        r"""List Users
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -95,13 +95,13 @@ class PanoraFilestorageUsers(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 50,
+        limit: Optional[float] = None,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
     ) -> Optional[models.ListFilestorageUsersResponseBody]:
-        r"""List  Users
+        r"""List Users
 
         :param x_connection_token: The connection token
         :param remote_data: Set to true to include data from the original software.
@@ -180,7 +180,7 @@ class PanoraFilestorageUsers(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[models.UnifiedUserOutput]:
+    ) -> Optional[models.UnifiedFilestorageUserOutput]:
         r"""Retrieve Users
 
         Retrieve Users from any connected Filestorage software
@@ -243,7 +243,7 @@ class PanoraFilestorageUsers(BaseSDK):
         )
         
         if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.UnifiedUserOutput])
+            return utils.unmarshal_json(http_res.text, Optional[models.UnifiedFilestorageUserOutput])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -260,7 +260,7 @@ class PanoraFilestorageUsers(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[models.UnifiedUserOutput]:
+    ) -> Optional[models.UnifiedFilestorageUserOutput]:
         r"""Retrieve Users
 
         Retrieve Users from any connected Filestorage software
@@ -323,7 +323,7 @@ class PanoraFilestorageUsers(BaseSDK):
         )
         
         if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.UnifiedUserOutput])
+            return utils.unmarshal_json(http_res.text, Optional[models.UnifiedFilestorageUserOutput])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         

@@ -12,11 +12,11 @@ class UnifiedCrmNoteOutputTypedDict(TypedDict):
     content: Nullable[str]
     r"""The content of the note"""
     user_id: NotRequired[Nullable[str]]
-    r"""The UUID of the user tied the note"""
+    r"""The UUID of the user tied to the note"""
     company_id: NotRequired[Nullable[str]]
     r"""The UUID of the company tied to the note"""
     contact_id: NotRequired[Nullable[str]]
-    r"""The UUID fo the contact tied to the note"""
+    r"""The UUID of the contact tied to the note"""
     deal_id: NotRequired[Nullable[str]]
     r"""The UUID of the deal tied to the note"""
     field_mappings: NotRequired[Nullable[Dict[str, Any]]]
@@ -24,7 +24,7 @@ class UnifiedCrmNoteOutputTypedDict(TypedDict):
     id: NotRequired[Nullable[str]]
     r"""The UUID of the note"""
     remote_id: NotRequired[Nullable[str]]
-    r"""The id of the note in the context of the Crm 3rd Party"""
+    r"""The ID of the note in the context of the Crm 3rd Party"""
     remote_data: NotRequired[Nullable[Dict[str, Any]]]
     r"""The remote data of the note in the context of the Crm 3rd Party"""
     created_at: NotRequired[Nullable[datetime]]
@@ -37,11 +37,11 @@ class UnifiedCrmNoteOutput(BaseModel):
     content: Nullable[str]
     r"""The content of the note"""
     user_id: OptionalNullable[str] = UNSET
-    r"""The UUID of the user tied the note"""
+    r"""The UUID of the user tied to the note"""
     company_id: OptionalNullable[str] = UNSET
     r"""The UUID of the company tied to the note"""
     contact_id: OptionalNullable[str] = UNSET
-    r"""The UUID fo the contact tied to the note"""
+    r"""The UUID of the contact tied to the note"""
     deal_id: OptionalNullable[str] = UNSET
     r"""The UUID of the deal tied to the note"""
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
@@ -49,7 +49,7 @@ class UnifiedCrmNoteOutput(BaseModel):
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the note"""
     remote_id: OptionalNullable[str] = UNSET
-    r"""The id of the note in the context of the Crm 3rd Party"""
+    r"""The ID of the note in the context of the Crm 3rd Party"""
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the note in the context of the Crm 3rd Party"""
     created_at: OptionalNullable[datetime] = UNSET

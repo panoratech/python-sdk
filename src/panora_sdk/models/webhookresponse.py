@@ -14,12 +14,12 @@ class WebhookResponseTypedDict(TypedDict):
     r"""The description of the webhook."""
     url: Nullable[str]
     r"""The endpoint url of the webhook."""
-    secret: Nullable[str]
+    secret: str
     r"""The secret of the webhook."""
     active: Nullable[bool]
     r"""The status of the webhook."""
     created_at: Nullable[datetime]
-    r"""The created date  of the webhook."""
+    r"""The created date of the webhook."""
     scope: Nullable[List[str]]
     r"""The events that the webhook listen to."""
     id_project: Nullable[str]
@@ -35,12 +35,12 @@ class WebhookResponse(BaseModel):
     r"""The description of the webhook."""
     url: Nullable[str]
     r"""The endpoint url of the webhook."""
-    secret: Nullable[str]
+    secret: str
     r"""The secret of the webhook."""
     active: Nullable[bool]
     r"""The status of the webhook."""
     created_at: Nullable[datetime]
-    r"""The created date  of the webhook."""
+    r"""The created date of the webhook."""
     scope: Nullable[List[str]]
     r"""The events that the webhook listen to."""
     id_project: Nullable[str]
@@ -51,7 +51,7 @@ class WebhookResponse(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = []
-        nullable_fields = ["id_webhook_endpoint", "endpoint_description", "url", "secret", "active", "created_at", "scope", "id_project", "last_update"]
+        nullable_fields = ["id_webhook_endpoint", "endpoint_description", "url", "active", "created_at", "scope", "id_project", "last_update"]
         null_default_fields = []
 
         serialized = handler(self)

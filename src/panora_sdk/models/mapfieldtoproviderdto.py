@@ -10,24 +10,24 @@ from typing_extensions import Annotated
 
 class MapFieldToProviderDtoTypedDict(TypedDict):
     attribute_id: Nullable[str]
-    r"""Attribute Id"""
+    r"""The attribute ID"""
     source_custom_field_id: Nullable[str]
-    r"""Attribute Id"""
+    r"""The source custom field ID"""
     source_provider: Nullable[str]
-    r"""Attribute Id"""
+    r"""The source provider"""
     linked_user_id: Nullable[str]
-    r"""Attribute Id"""
+    r"""The linked user ID"""
     
 
 class MapFieldToProviderDto(BaseModel):
     attribute_id: Annotated[Nullable[str], pydantic.Field(alias="attributeId")]
-    r"""Attribute Id"""
+    r"""The attribute ID"""
     source_custom_field_id: Nullable[str]
-    r"""Attribute Id"""
+    r"""The source custom field ID"""
     source_provider: Nullable[str]
-    r"""Attribute Id"""
+    r"""The source provider"""
     linked_user_id: Nullable[str]
-    r"""Attribute Id"""
+    r"""The linked user ID"""
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

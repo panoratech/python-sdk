@@ -4,7 +4,7 @@
 ### Available Operations
 
 * [list](#list) - List webhooks
-* [create](#create) - Add webhook metadata
+* [create](#create) - Create webhook
 * [delete](#delete) - Delete Webhook
 * [update_status](#update_status) - Update webhook status
 * [verify_event](#verify_event) - Verify payload signature of the webhook
@@ -16,11 +16,10 @@ List webhooks
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -50,23 +49,23 @@ if res is not None:
 
 ## create
 
-Add webhook metadata
+Create webhook
 
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
 res = s.webhooks.create(request={
-    "url": "http://limp-pastry.org",
+    "url": "https://acme.com/webhook_receiver",
+    "description": "Webhook to receive connection events",
     "scope": [
-        "<value>",
+        "connection.created",
     ],
 })
 
@@ -100,15 +99,14 @@ Delete Webhook
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-res = s.webhooks.delete(id="<value>")
+res = s.webhooks.delete(id="801f9ede-c698-4e66-a7fc-48d19eebaa4f")
 
 if res is not None:
     # handle response
@@ -118,10 +116,10 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the webhook to delete.                                        | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
 
 ### Response
@@ -140,15 +138,14 @@ Update webhook status
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 
-res = s.webhooks.update_status(id="<value>")
+res = s.webhooks.update_status(id="801f9ede-c698-4e66-a7fc-48d19eebaa4f")
 
 if res is not None:
     # handle response
@@ -158,10 +155,10 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the webhook to update.                                        | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
 
 ### Response
@@ -180,11 +177,10 @@ Verify payload signature of the webhook
 ### Example Usage
 
 ```python
-import os
 from panora_sdk import Panora
 
 s = Panora(
-    api_key=os.getenv("API_KEY", ""),
+    api_key="<YOUR_API_KEY_HERE>",
 )
 
 

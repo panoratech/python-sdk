@@ -3,9 +3,9 @@
 
 ## Fields
 
-| Field               | Type                | Required            | Description         |
-| ------------------- | ------------------- | ------------------- | ------------------- |
-| `object_type_owner` | *Nullable[str]*     | :heavy_check_mark:  | N/A                 |
-| `name`              | *Nullable[str]*     | :heavy_check_mark:  | N/A                 |
-| `description`       | *Nullable[str]*     | :heavy_check_mark:  | N/A                 |
-| `data_type`         | *Nullable[str]*     | :heavy_check_mark:  | N/A                 |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `object_type_owner`                                              | [Nullable[models.ObjectTypeOwner]](../models/objecttypeowner.md) | :heavy_check_mark:                                               | N/A                                                              | company                                                          |
+| `name`                                                           | *Nullable[str]*                                                  | :heavy_check_mark:                                               | The name of the target field                                     | fav_dish                                                         |
+| `description`                                                    | *Nullable[str]*                                                  | :heavy_check_mark:                                               | The description of the target field                              | My favorite dish                                                 |
+| `data_type`                                                      | [Nullable[models.DataType]](../models/datatype.md)               | :heavy_check_mark:                                               | The data type of the target field                                | string                                                           |

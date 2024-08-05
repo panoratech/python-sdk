@@ -2,22 +2,31 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, Optional, TypedDict
 from typing_extensions import NotRequired
 
 
+class OverallRecommendation(str, Enum):
+    r"""The overall recommendation"""
+    DEFINITELY_NO = "DEFINITELY_NO"
+    NO = "NO"
+    YES = "YES"
+    STRONG_YES = "STRONG_YES"
+    NO_DECISION = "NO_DECISION"
+
 class UnifiedAtsScorecardOutputTypedDict(TypedDict):
-    overall_recommendation: NotRequired[Nullable[str]]
+    overall_recommendation: NotRequired[Nullable[OverallRecommendation]]
     r"""The overall recommendation"""
     application_id: NotRequired[Nullable[str]]
     r"""The UUID of the application"""
     interview_id: NotRequired[Nullable[str]]
     r"""The UUID of the interview"""
-    remote_created_at: NotRequired[Nullable[str]]
+    remote_created_at: NotRequired[Nullable[datetime]]
     r"""The remote creation date of the scorecard"""
-    submitted_at: NotRequired[Nullable[str]]
+    submitted_at: NotRequired[Nullable[datetime]]
     r"""The submission date of the scorecard"""
     field_mappings: NotRequired[Nullable[Dict[str, Any]]]
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
@@ -34,15 +43,15 @@ class UnifiedAtsScorecardOutputTypedDict(TypedDict):
     
 
 class UnifiedAtsScorecardOutput(BaseModel):
-    overall_recommendation: OptionalNullable[str] = UNSET
+    overall_recommendation: OptionalNullable[OverallRecommendation] = UNSET
     r"""The overall recommendation"""
     application_id: OptionalNullable[str] = UNSET
     r"""The UUID of the application"""
     interview_id: OptionalNullable[str] = UNSET
     r"""The UUID of the interview"""
-    remote_created_at: OptionalNullable[str] = UNSET
+    remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote creation date of the scorecard"""
-    submitted_at: OptionalNullable[str] = UNSET
+    submitted_at: OptionalNullable[datetime] = UNSET
     r"""The submission date of the scorecard"""
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""

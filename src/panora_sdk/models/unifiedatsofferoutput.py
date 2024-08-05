@@ -2,11 +2,24 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
+
+class UnifiedAtsOfferOutputStatus(str, Enum):
+    r"""The status of the offer"""
+    DRAFT = "DRAFT"
+    APPROVAL_SENT = "APPROVAL_SENT"
+    APPROVED = "APPROVED"
+    SENT = "SENT"
+    SENT_MANUALLY = "SENT_MANUALLY"
+    OPENED = "OPENED"
+    DENIED = "DENIED"
+    SIGNED = "SIGNED"
+    DEPRECATED = "DEPRECATED"
 
 class UnifiedAtsOfferOutputCreatedAtTypedDict(TypedDict):
     r"""The created date of the object"""
@@ -39,7 +52,7 @@ class UnifiedAtsOfferOutputTypedDict(TypedDict):
     r"""The sending date of the offer"""
     start_date: NotRequired[Nullable[datetime]]
     r"""The start date of the offer"""
-    status: NotRequired[Nullable[str]]
+    status: NotRequired[Nullable[UnifiedAtsOfferOutputStatus]]
     r"""The status of the offer"""
     application_id: NotRequired[Nullable[str]]
     r"""The UUID of the application"""
@@ -68,7 +81,7 @@ class UnifiedAtsOfferOutput(BaseModel):
     r"""The sending date of the offer"""
     start_date: OptionalNullable[datetime] = UNSET
     r"""The start date of the offer"""
-    status: OptionalNullable[str] = UNSET
+    status: OptionalNullable[UnifiedAtsOfferOutputStatus] = UNSET
     r"""The status of the offer"""
     application_id: OptionalNullable[str] = UNSET
     r"""The UUID of the application"""

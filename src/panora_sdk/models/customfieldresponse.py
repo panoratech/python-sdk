@@ -2,10 +2,16 @@
 
 from __future__ import annotations
 from datetime import datetime
+from enum import Enum
 from panora_sdk.types import BaseModel, Nullable, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import TypedDict
 
+
+class CustomFieldResponseDataType(str, Enum):
+    r"""Attribute Data Type"""
+    STRING = "string"
+    NUMBER = "number"
 
 class CustomFieldResponseTypedDict(TypedDict):
     id_attribute: Nullable[str]
@@ -18,20 +24,20 @@ class CustomFieldResponseTypedDict(TypedDict):
     r"""Attribute Slug"""
     description: Nullable[str]
     r"""Attribute Description"""
-    data_type: Nullable[str]
+    data_type: Nullable[CustomFieldResponseDataType]
     r"""Attribute Data Type"""
     remote_id: Nullable[str]
     r"""Attribute Remote Id"""
     source: Nullable[str]
     r"""Attribute Source"""
     id_entity: Nullable[str]
-    r"""Attribute Id Entity"""
+    r"""Attribute Entity Id"""
     id_project: Nullable[str]
-    r"""Attribute Id Project"""
+    r"""Attribute Project Id"""
     scope: Nullable[str]
     r"""Attribute Scope"""
     id_consumer: Nullable[str]
-    r"""Attribute Id Consumer"""
+    r"""Attribute Consumer Id"""
     created_at: Nullable[datetime]
     r"""Attribute Created Date"""
     modified_at: Nullable[datetime]
@@ -49,20 +55,20 @@ class CustomFieldResponse(BaseModel):
     r"""Attribute Slug"""
     description: Nullable[str]
     r"""Attribute Description"""
-    data_type: Nullable[str]
+    data_type: Nullable[CustomFieldResponseDataType]
     r"""Attribute Data Type"""
     remote_id: Nullable[str]
     r"""Attribute Remote Id"""
     source: Nullable[str]
     r"""Attribute Source"""
     id_entity: Nullable[str]
-    r"""Attribute Id Entity"""
+    r"""Attribute Entity Id"""
     id_project: Nullable[str]
-    r"""Attribute Id Project"""
+    r"""Attribute Project Id"""
     scope: Nullable[str]
     r"""Attribute Scope"""
     id_consumer: Nullable[str]
-    r"""Attribute Id Consumer"""
+    r"""Attribute Consumer Id"""
     created_at: Nullable[datetime]
     r"""Attribute Created Date"""
     modified_at: Nullable[datetime]
