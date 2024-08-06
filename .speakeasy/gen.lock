@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 115d0df7-1198-46c9-9d03-a640abffed12
 management:
-  docChecksum: 73ce3778a891c9bdb1d0d00c8a42490f
+  docChecksum: f31581b6c385b4f8f05068b0f2598833
   docVersion: "1.0"
   speakeasyVersion: 1.352.2
   generationVersion: 2.385.2
-  releaseVersion: 0.3.0
-  configChecksum: 789b7e1f290c0acdc2c6b0438211aa65
+  releaseVersion: 0.4.0
+  configChecksum: bb4c19c1412ab90de258dd2494ec1b99
   repoURL: https://github.com/panoratech/python-sdk.git
   installationURL: https://github.com/panoratech/python-sdk.git
   published: true
@@ -24,6 +24,7 @@ features:
     groups: 3.0.0
     nameOverrides: 3.0.0
     nullables: 1.0.0
+    pagination: 3.0.1
     responseFormat: 1.0.0
     retries: 3.0.0
     sdkHooks: 1.0.0
@@ -54,14 +55,9 @@ generatedFiles:
   - src/panora_sdk/tasks.py
   - src/panora_sdk/panora_users.py
   - src/panora_sdk/crm.py
-  - src/panora_sdk/batch.py
-  - src/panora_sdk/id_.py
-  - src/panora_sdk/fromremoteid.py
   - src/panora_sdk/linkedusers.py
   - src/panora_sdk/projects.py
-  - src/panora_sdk/define.py
-  - src/panora_sdk/map.py
-  - src/panora_sdk/field_mappings.py
+  - src/panora_sdk/fieldmappings.py
   - src/panora_sdk/events.py
   - src/panora_sdk/passthrough.py
   - src/panora_sdk/bankinfos.py
@@ -173,6 +169,10 @@ generatedFiles:
   - src/panora_sdk/models/signatureverificationdto.py
   - src/panora_sdk/models/listticketingticketop.py
   - src/panora_sdk/models/unifiedticketingticketoutput.py
+  - src/panora_sdk/models/unifiedticketingattachmentinput.py
+  - src/panora_sdk/models/unifiedticketingattachmentoutput.py
+  - src/panora_sdk/models/unifiedticketingtagoutput.py
+  - src/panora_sdk/models/unifiedticketingcollectionoutput.py
   - src/panora_sdk/models/createticketingticketop.py
   - src/panora_sdk/models/unifiedticketingticketinput.py
   - src/panora_sdk/models/retrieveticketingticketop.py
@@ -186,7 +186,6 @@ generatedFiles:
   - src/panora_sdk/models/unifiedticketingcontactoutput.py
   - src/panora_sdk/models/retrieveticketingcontactop.py
   - src/panora_sdk/models/listticketingcollectionsop.py
-  - src/panora_sdk/models/unifiedticketingcollectionoutput.py
   - src/panora_sdk/models/retrievecollectionop.py
   - src/panora_sdk/models/listticketingcommentsop.py
   - src/panora_sdk/models/unifiedticketingcommentoutput.py
@@ -194,15 +193,12 @@ generatedFiles:
   - src/panora_sdk/models/unifiedticketingcommentinput.py
   - src/panora_sdk/models/retrieveticketingcommentop.py
   - src/panora_sdk/models/listticketingtagsop.py
-  - src/panora_sdk/models/unifiedticketingtagoutput.py
   - src/panora_sdk/models/retrieveticketingtagop.py
   - src/panora_sdk/models/listticketingteamsop.py
   - src/panora_sdk/models/unifiedticketingteamoutput.py
   - src/panora_sdk/models/retrieveticketingteamop.py
   - src/panora_sdk/models/listticketingattachmentsop.py
-  - src/panora_sdk/models/unifiedticketingattachmentoutput.py
   - src/panora_sdk/models/createticketingattachmentop.py
-  - src/panora_sdk/models/unifiedticketingattachmentinput.py
   - src/panora_sdk/models/retrieveticketingattachmentop.py
   - src/panora_sdk/models/statusop.py
   - src/panora_sdk/models/resyncstatusdto.py
@@ -253,8 +249,8 @@ generatedFiles:
   - src/panora_sdk/models/projectresponse.py
   - src/panora_sdk/models/createprojectdto.py
   - src/panora_sdk/models/customfieldresponse.py
-  - src/panora_sdk/models/customfieldcreatedto.py
   - src/panora_sdk/models/definetargetfielddto.py
+  - src/panora_sdk/models/customfieldcreatedto.py
   - src/panora_sdk/models/mapfieldtoproviderdto.py
   - src/panora_sdk/models/eventresponse.py
   - src/panora_sdk/models/getpanoracoreeventsop.py
@@ -367,6 +363,7 @@ generatedFiles:
   - src/panora_sdk/models/listatscandidateop.py
   - src/panora_sdk/models/unifiedatscandidateoutput.py
   - src/panora_sdk/models/url.py
+  - src/panora_sdk/models/unifiedatstagoutput.py
   - src/panora_sdk/models/createatscandidateop.py
   - src/panora_sdk/models/unifiedatscandidateinput.py
   - src/panora_sdk/models/retrieveatscandidateop.py
@@ -397,7 +394,6 @@ generatedFiles:
   - src/panora_sdk/models/unifiedatsscorecardoutput.py
   - src/panora_sdk/models/retrieveatsscorecardop.py
   - src/panora_sdk/models/listatstagsop.py
-  - src/panora_sdk/models/unifiedatstagoutput.py
   - src/panora_sdk/models/retrieveatstagop.py
   - src/panora_sdk/models/listatsusersop.py
   - src/panora_sdk/models/unifiedatsuseroutput.py
@@ -496,9 +492,9 @@ generatedFiles:
   - src/panora_sdk/models/retrievefilestoragefolderop.py
   - src/panora_sdk/models/listfilestoragegroupop.py
   - src/panora_sdk/models/unifiedfilestoragegroupoutput.py
+  - src/panora_sdk/models/unifiedfilestorageuseroutput.py
   - src/panora_sdk/models/retrievefilestoragegroupop.py
   - src/panora_sdk/models/listfilestorageusersop.py
-  - src/panora_sdk/models/unifiedfilestorageuseroutput.py
   - src/panora_sdk/models/retrievefilestorageuserop.py
   - src/panora_sdk/models/security.py
   - src/panora_sdk/models/__init__.py
@@ -513,60 +509,79 @@ generatedFiles:
   - docs/models/signatureverificationdto.md
   - docs/models/listticketingticketrequest.md
   - docs/models/listticketingticketresponsebody.md
+  - docs/models/listticketingticketresponse.md
   - docs/models/status.md
   - docs/models/type.md
+  - docs/models/collectionsmodel.md
+  - docs/models/tagsmodel.md
   - docs/models/priority.md
   - docs/models/unifiedticketingticketoutputcreatortype.md
+  - docs/models/unifiedticketingticketoutputattachments.md
   - docs/models/comment.md
+  - docs/models/attachmentsmodel.md
   - docs/models/unifiedticketingticketoutput.md
+  - docs/models/unifiedticketingattachmentinput.md
+  - docs/models/unifiedticketingattachmentoutput.md
+  - docs/models/unifiedticketingtagoutput.md
+  - docs/models/collectiontype.md
+  - docs/models/unifiedticketingcollectionoutput.md
   - docs/models/createticketingticketrequest.md
   - docs/models/unifiedticketingticketinputstatus.md
   - docs/models/unifiedticketingticketinputtype.md
+  - docs/models/unifiedticketingticketinputcollections.md
+  - docs/models/unifiedticketingticketinputtags.md
   - docs/models/unifiedticketingticketinputpriority.md
   - docs/models/unifiedticketingticketinputcreatortype.md
+  - docs/models/unifiedticketingticketinputcommentattachments.md
   - docs/models/unifiedticketingticketinputcomment.md
+  - docs/models/unifiedticketingticketinputattachments.md
   - docs/models/unifiedticketingticketinput.md
   - docs/models/retrieveticketingticketrequest.md
   - docs/models/listticketingusersrequest.md
   - docs/models/listticketingusersresponsebody.md
+  - docs/models/listticketingusersresponse.md
   - docs/models/unifiedticketinguseroutput.md
   - docs/models/retrieveticketinguserrequest.md
   - docs/models/listticketingaccountrequest.md
   - docs/models/listticketingaccountresponsebody.md
+  - docs/models/listticketingaccountresponse.md
   - docs/models/unifiedticketingaccountoutput.md
   - docs/models/retrieveticketingaccountrequest.md
   - docs/models/listticketingcontactsrequest.md
   - docs/models/listticketingcontactsresponsebody.md
+  - docs/models/listticketingcontactsresponse.md
   - docs/models/unifiedticketingcontactoutput.md
   - docs/models/retrieveticketingcontactrequest.md
   - docs/models/retrieveticketingcontactresponsebody.md
   - docs/models/listticketingcollectionsrequest.md
   - docs/models/listticketingcollectionsresponsebody.md
-  - docs/models/collectiontype.md
-  - docs/models/unifiedticketingcollectionoutput.md
+  - docs/models/listticketingcollectionsresponse.md
   - docs/models/retrievecollectionrequest.md
   - docs/models/listticketingcommentsrequest.md
   - docs/models/listticketingcommentsresponsebody.md
+  - docs/models/listticketingcommentsresponse.md
   - docs/models/creatortype.md
+  - docs/models/unifiedticketingcommentoutputattachments.md
   - docs/models/unifiedticketingcommentoutput.md
   - docs/models/createticketingcommentrequest.md
   - docs/models/unifiedticketingcommentinputcreatortype.md
+  - docs/models/unifiedticketingcommentinputattachments.md
   - docs/models/unifiedticketingcommentinput.md
   - docs/models/retrieveticketingcommentrequest.md
   - docs/models/retrieveticketingcommentresponsebody.md
   - docs/models/listticketingtagsrequest.md
   - docs/models/listticketingtagsresponsebody.md
-  - docs/models/unifiedticketingtagoutput.md
+  - docs/models/listticketingtagsresponse.md
   - docs/models/retrieveticketingtagrequest.md
   - docs/models/listticketingteamsrequest.md
   - docs/models/listticketingteamsresponsebody.md
+  - docs/models/listticketingteamsresponse.md
   - docs/models/unifiedticketingteamoutput.md
   - docs/models/retrieveticketingteamrequest.md
   - docs/models/listticketingattachmentsrequest.md
   - docs/models/listticketingattachmentsresponsebody.md
-  - docs/models/unifiedticketingattachmentoutput.md
+  - docs/models/listticketingattachmentsresponse.md
   - docs/models/createticketingattachmentrequest.md
-  - docs/models/unifiedticketingattachmentinput.md
   - docs/models/retrieveticketingattachmentrequest.md
   - docs/models/pathparamvertical.md
   - docs/models/statusrequest.md
@@ -575,6 +590,7 @@ generatedFiles:
   - docs/models/resyncstatusdto.md
   - docs/models/listcrmcompanyrequest.md
   - docs/models/listcrmcompanyresponsebody.md
+  - docs/models/listcrmcompanyresponse.md
   - docs/models/industry.md
   - docs/models/createdat.md
   - docs/models/modifiedat.md
@@ -592,18 +608,21 @@ generatedFiles:
   - docs/models/retrievecrmcompanyrequest.md
   - docs/models/listcrmcontactsrequest.md
   - docs/models/listcrmcontactsresponsebody.md
+  - docs/models/listcrmcontactsresponse.md
   - docs/models/unifiedcrmcontactoutput.md
   - docs/models/createcrmcontactrequest.md
   - docs/models/unifiedcrmcontactinput.md
   - docs/models/retrievecrmcontactrequest.md
   - docs/models/listcrmdealsrequest.md
   - docs/models/listcrmdealsresponsebody.md
+  - docs/models/listcrmdealsresponse.md
   - docs/models/unifiedcrmdealoutput.md
   - docs/models/createcrmdealrequest.md
   - docs/models/unifiedcrmdealinput.md
   - docs/models/retrievecrmdealrequest.md
   - docs/models/listcrmengagementsrequest.md
   - docs/models/listcrmengagementsresponsebody.md
+  - docs/models/listcrmengagementsresponse.md
   - docs/models/direction.md
   - docs/models/unifiedcrmengagementoutputtype.md
   - docs/models/unifiedcrmengagementoutput.md
@@ -614,18 +633,21 @@ generatedFiles:
   - docs/models/retrievecrmengagementrequest.md
   - docs/models/listcrmnoterequest.md
   - docs/models/listcrmnoteresponsebody.md
+  - docs/models/listcrmnoteresponse.md
   - docs/models/unifiedcrmnoteoutput.md
   - docs/models/createcrmnoterequest.md
   - docs/models/unifiedcrmnoteinput.md
   - docs/models/retrievecrmnoterequest.md
   - docs/models/listcrmstagesrequest.md
   - docs/models/listcrmstagesresponsebody.md
+  - docs/models/listcrmstagesresponse.md
   - docs/models/unifiedcrmstageoutputcreatedat.md
   - docs/models/unifiedcrmstageoutputmodifiedat.md
   - docs/models/unifiedcrmstageoutput.md
   - docs/models/retrievecrmstagerequest.md
   - docs/models/listcrmtaskrequest.md
   - docs/models/listcrmtaskresponsebody.md
+  - docs/models/listcrmtaskresponse.md
   - docs/models/unifiedcrmtaskoutputstatus.md
   - docs/models/unifiedcrmtaskoutput.md
   - docs/models/createcrmtaskrequest.md
@@ -634,6 +656,7 @@ generatedFiles:
   - docs/models/retrievecrmtaskrequest.md
   - docs/models/listcrmusersrequest.md
   - docs/models/listcrmusersresponsebody.md
+  - docs/models/listcrmusersresponse.md
   - docs/models/unifiedcrmuseroutput.md
   - docs/models/retrievecrmuserrequest.md
   - docs/models/linkeduserresponse.md
@@ -645,12 +668,12 @@ generatedFiles:
   - docs/models/createprojectdto.md
   - docs/models/customfieldresponsedatatype.md
   - docs/models/customfieldresponse.md
-  - docs/models/customfieldcreatedtoobjecttypeowner.md
-  - docs/models/customfieldcreatedtodatatype.md
-  - docs/models/customfieldcreatedto.md
   - docs/models/objecttypeowner.md
   - docs/models/datatype.md
   - docs/models/definetargetfielddto.md
+  - docs/models/customfieldcreatedtoobjecttypeowner.md
+  - docs/models/customfieldcreatedtodatatype.md
+  - docs/models/customfieldcreatedto.md
   - docs/models/mapfieldtoproviderdto.md
   - docs/models/eventresponsetype.md
   - docs/models/eventresponsestatus.md
@@ -665,118 +688,143 @@ generatedFiles:
   - docs/models/passthroughrequestdto.md
   - docs/models/listhrisbankinforequest.md
   - docs/models/listhrisbankinforesponsebody.md
+  - docs/models/listhrisbankinforesponse.md
   - docs/models/unifiedhrisbankinfooutput.md
   - docs/models/retrievehrisbankinforequest.md
   - docs/models/listhrisbenefitsrequest.md
   - docs/models/listhrisbenefitsresponsebody.md
+  - docs/models/listhrisbenefitsresponse.md
   - docs/models/unifiedhrisbenefitoutput.md
   - docs/models/retrievehrisbenefitrequest.md
   - docs/models/listhriscompaniesrequest.md
   - docs/models/listhriscompaniesresponsebody.md
+  - docs/models/listhriscompaniesresponse.md
   - docs/models/unifiedhriscompanyoutput.md
   - docs/models/retrievehriscompanyrequest.md
   - docs/models/listhrisdependentsrequest.md
   - docs/models/listhrisdependentsresponsebody.md
+  - docs/models/listhrisdependentsresponse.md
   - docs/models/unifiedhrisdependentoutput.md
   - docs/models/retrievehrisdependentrequest.md
   - docs/models/listhrisemployeepayrollrunrequest.md
   - docs/models/listhrisemployeepayrollrunresponsebody.md
+  - docs/models/listhrisemployeepayrollrunresponse.md
   - docs/models/unifiedhrisemployeepayrollrunoutput.md
   - docs/models/retrievehrisemployeepayrollrunrequest.md
   - docs/models/listhrisemployeesrequest.md
   - docs/models/listhrisemployeesresponsebody.md
+  - docs/models/listhrisemployeesresponse.md
   - docs/models/unifiedhrisemployeeoutput.md
   - docs/models/createhrisemployeerequest.md
   - docs/models/unifiedhrisemployeeinput.md
   - docs/models/retrievehrisemployeerequest.md
   - docs/models/listhrisemployerbenefitsrequest.md
   - docs/models/listhrisemployerbenefitsresponsebody.md
+  - docs/models/listhrisemployerbenefitsresponse.md
   - docs/models/unifiedhrisemployerbenefitoutput.md
   - docs/models/retrievehrisemployerbenefitrequest.md
   - docs/models/listhrisemploymentsrequest.md
   - docs/models/listhrisemploymentsresponsebody.md
+  - docs/models/listhrisemploymentsresponse.md
   - docs/models/unifiedhrisemploymentoutput.md
   - docs/models/retrievehrisemploymentrequest.md
   - docs/models/listhrisgroupsrequest.md
   - docs/models/listhrisgroupsresponsebody.md
+  - docs/models/listhrisgroupsresponse.md
   - docs/models/unifiedhrisgroupoutput.md
   - docs/models/retrievehrisgrouprequest.md
   - docs/models/listhrislocationsrequest.md
   - docs/models/listhrislocationsresponsebody.md
+  - docs/models/listhrislocationsresponse.md
   - docs/models/unifiedhrislocationoutput.md
   - docs/models/retrievehrislocationrequest.md
   - docs/models/listhrispaygroupsrequest.md
   - docs/models/listhrispaygroupsresponsebody.md
+  - docs/models/listhrispaygroupsresponse.md
   - docs/models/unifiedhrispaygroupoutput.md
   - docs/models/retrievehrispaygrouprequest.md
   - docs/models/listhrispayrollrunsrequest.md
   - docs/models/listhrispayrollrunsresponsebody.md
+  - docs/models/listhrispayrollrunsresponse.md
   - docs/models/unifiedhrispayrollrunoutput.md
   - docs/models/retrievehrispayrollrunrequest.md
   - docs/models/listhristimeoffsrequest.md
   - docs/models/listhristimeoffsresponsebody.md
+  - docs/models/listhristimeoffsresponse.md
   - docs/models/unifiedhristimeoffoutput.md
   - docs/models/createhristimeoffrequest.md
   - docs/models/unifiedhristimeoffinput.md
   - docs/models/retrievehristimeoffrequest.md
   - docs/models/listhristimeoffbalancesrequest.md
   - docs/models/listhristimeoffbalancesresponsebody.md
+  - docs/models/listhristimeoffbalancesresponse.md
   - docs/models/unifiedhristimeoffbalanceoutput.md
   - docs/models/retrievehristimeoffbalancerequest.md
   - docs/models/listmarketingautomationactionrequest.md
   - docs/models/listmarketingautomationactionresponsebody.md
+  - docs/models/listmarketingautomationactionresponse.md
   - docs/models/unifiedmarketingautomationactionoutput.md
   - docs/models/createmarketingautomationactionrequest.md
   - docs/models/unifiedmarketingautomationactioninput.md
   - docs/models/retrievemarketingautomationactionrequest.md
   - docs/models/listmarketingautomationautomationsrequest.md
   - docs/models/listmarketingautomationautomationsresponsebody.md
+  - docs/models/listmarketingautomationautomationsresponse.md
   - docs/models/unifiedmarketingautomationautomationoutput.md
   - docs/models/createmarketingautomationautomationrequest.md
   - docs/models/unifiedmarketingautomationautomationinput.md
   - docs/models/retrievemarketingautomationautomationrequest.md
   - docs/models/listmarketingautomationcampaignsrequest.md
   - docs/models/listmarketingautomationcampaignsresponsebody.md
+  - docs/models/listmarketingautomationcampaignsresponse.md
   - docs/models/unifiedmarketingautomationcampaignoutput.md
   - docs/models/createmarketingautomationcampaignrequest.md
   - docs/models/unifiedmarketingautomationcampaigninput.md
   - docs/models/retrievemarketingautomationcampaignrequest.md
   - docs/models/listmarketingautomationcontactsrequest.md
   - docs/models/listmarketingautomationcontactsresponsebody.md
+  - docs/models/listmarketingautomationcontactsresponse.md
   - docs/models/unifiedmarketingautomationcontactoutput.md
   - docs/models/createmarketingautomationcontactrequest.md
   - docs/models/unifiedmarketingautomationcontactinput.md
   - docs/models/retrievemarketingautomationcontactrequest.md
   - docs/models/listmarketingautomationemailsrequest.md
   - docs/models/listmarketingautomationemailsresponsebody.md
+  - docs/models/listmarketingautomationemailsresponse.md
   - docs/models/unifiedmarketingautomationemailoutput.md
   - docs/models/retrievemarketingautomationemailrequest.md
   - docs/models/listmarketingautomationeventsrequest.md
   - docs/models/listmarketingautomationeventsresponsebody.md
+  - docs/models/listmarketingautomationeventsresponse.md
   - docs/models/unifiedmarketingautomationeventoutput.md
   - docs/models/retrievemarketingautomationeventrequest.md
   - docs/models/listmarketingautomationlistsrequest.md
   - docs/models/listmarketingautomationlistsresponsebody.md
+  - docs/models/listmarketingautomationlistsresponse.md
   - docs/models/unifiedmarketingautomationlistoutput.md
   - docs/models/createmarketingautomationlistrequest.md
   - docs/models/unifiedmarketingautomationlistinput.md
   - docs/models/retrievemarketingautomationlistrequest.md
   - docs/models/listmarketingautomationmessagesrequest.md
   - docs/models/listmarketingautomationmessagesresponsebody.md
+  - docs/models/listmarketingautomationmessagesresponse.md
   - docs/models/unifiedmarketingautomationmessageoutput.md
   - docs/models/retrievemarketingautomationmessagerequest.md
   - docs/models/listmarketingautomationtemplatesrequest.md
   - docs/models/listmarketingautomationtemplatesresponsebody.md
+  - docs/models/listmarketingautomationtemplatesresponse.md
   - docs/models/unifiedmarketingautomationtemplateoutput.md
   - docs/models/createmarketingautomationtemplaterequest.md
   - docs/models/unifiedmarketingautomationtemplateinput.md
   - docs/models/retrievemarketingautomationtemplaterequest.md
   - docs/models/listmarketingautomationusersrequest.md
   - docs/models/listmarketingautomationusersresponsebody.md
+  - docs/models/listmarketingautomationusersresponse.md
   - docs/models/unifiedmarketingautomationuseroutput.md
   - docs/models/retrievemarketingautomationuserrequest.md
   - docs/models/listatsactivityrequest.md
   - docs/models/listatsactivityresponsebody.md
+  - docs/models/listatsactivityresponse.md
   - docs/models/activitytype.md
   - docs/models/visibility.md
   - docs/models/unifiedatsactivityoutput.md
@@ -787,12 +835,14 @@ generatedFiles:
   - docs/models/retrieveatsactivityrequest.md
   - docs/models/listatsapplicationrequest.md
   - docs/models/listatsapplicationresponsebody.md
+  - docs/models/listatsapplicationresponse.md
   - docs/models/unifiedatsapplicationoutput.md
   - docs/models/createatsapplicationrequest.md
   - docs/models/unifiedatsapplicationinput.md
   - docs/models/retrieveatsapplicationrequest.md
   - docs/models/listatsattachmentrequest.md
   - docs/models/listatsattachmentresponsebody.md
+  - docs/models/listatsattachmentresponse.md
   - docs/models/attachmenttype.md
   - docs/models/unifiedatsattachmentoutput.md
   - docs/models/createatsattachmentrequest.md
@@ -801,17 +851,27 @@ generatedFiles:
   - docs/models/retrieveatsattachmentrequest.md
   - docs/models/listatscandidaterequest.md
   - docs/models/listatscandidateresponsebody.md
+  - docs/models/listatscandidateresponse.md
+  - docs/models/unifiedatscandidateoutputattachments.md
+  - docs/models/applicationsmodel.md
+  - docs/models/unifiedatscandidateoutputtags.md
   - docs/models/unifiedatscandidateoutput.md
   - docs/models/url.md
+  - docs/models/unifiedatstagoutput.md
   - docs/models/createatscandidaterequest.md
+  - docs/models/unifiedatscandidateinputattachments.md
+  - docs/models/unifiedatscandidateinputapplications.md
+  - docs/models/unifiedatscandidateinputtags.md
   - docs/models/unifiedatscandidateinput.md
   - docs/models/retrieveatscandidaterequest.md
   - docs/models/listatsdepartmentsrequest.md
   - docs/models/listatsdepartmentsresponsebody.md
+  - docs/models/listatsdepartmentsresponse.md
   - docs/models/unifiedatsdepartmentoutput.md
   - docs/models/retrieveatsdepartmentrequest.md
   - docs/models/listatsinterviewrequest.md
   - docs/models/listatsinterviewresponsebody.md
+  - docs/models/listatsinterviewresponse.md
   - docs/models/unifiedatsinterviewoutputstatus.md
   - docs/models/unifiedatsinterviewoutput.md
   - docs/models/createatsinterviewrequest.md
@@ -820,16 +880,19 @@ generatedFiles:
   - docs/models/retrieveatsinterviewrequest.md
   - docs/models/listatsjobinterviewstagerequest.md
   - docs/models/listatsjobinterviewstageresponsebody.md
+  - docs/models/listatsjobinterviewstageresponse.md
   - docs/models/unifiedatsjobinterviewstageoutput.md
   - docs/models/retrieveatsjobinterviewstagerequest.md
   - docs/models/listatsjobrequest.md
   - docs/models/listatsjobresponsebody.md
+  - docs/models/listatsjobresponse.md
   - docs/models/unifiedatsjoboutputstatus.md
   - docs/models/unifiedatsjoboutputtype.md
   - docs/models/unifiedatsjoboutput.md
   - docs/models/retrieveatsjobrequest.md
   - docs/models/listatsofferrequest.md
   - docs/models/listatsofferresponsebody.md
+  - docs/models/listatsofferresponse.md
   - docs/models/unifiedatsofferoutputstatus.md
   - docs/models/unifiedatsofferoutputcreatedat.md
   - docs/models/unifiedatsofferoutputmodifiedat.md
@@ -837,28 +900,33 @@ generatedFiles:
   - docs/models/retrieveatsofferrequest.md
   - docs/models/listatsofficerequest.md
   - docs/models/listatsofficeresponsebody.md
+  - docs/models/listatsofficeresponse.md
   - docs/models/unifiedatsofficeoutput.md
   - docs/models/retrieveatsofficerequest.md
   - docs/models/listatsrejectreasonsrequest.md
   - docs/models/listatsrejectreasonsresponsebody.md
+  - docs/models/listatsrejectreasonsresponse.md
   - docs/models/unifiedatsrejectreasonoutput.md
   - docs/models/retrieveatsrejectreasonrequest.md
   - docs/models/listatsscorecardrequest.md
   - docs/models/listatsscorecardresponsebody.md
+  - docs/models/listatsscorecardresponse.md
   - docs/models/overallrecommendation.md
   - docs/models/unifiedatsscorecardoutput.md
   - docs/models/retrieveatsscorecardrequest.md
   - docs/models/listatstagsrequest.md
   - docs/models/listatstagsresponsebody.md
-  - docs/models/unifiedatstagoutput.md
+  - docs/models/listatstagsresponse.md
   - docs/models/retrieveatstagrequest.md
   - docs/models/listatsusersrequest.md
   - docs/models/listatsusersresponsebody.md
+  - docs/models/listatsusersresponse.md
   - docs/models/accessrole.md
   - docs/models/unifiedatsuseroutput.md
   - docs/models/retrieveatsuserrequest.md
   - docs/models/listatseeocsrequest.md
   - docs/models/listatseeocsresponsebody.md
+  - docs/models/listatseeocsresponse.md
   - docs/models/race.md
   - docs/models/gender.md
   - docs/models/veteranstatus.md
@@ -867,123 +935,149 @@ generatedFiles:
   - docs/models/retrieveatseeocsrequest.md
   - docs/models/listaccountingaccountsrequest.md
   - docs/models/listaccountingaccountsresponsebody.md
+  - docs/models/listaccountingaccountsresponse.md
   - docs/models/unifiedaccountingaccountoutput.md
   - docs/models/createaccountingaccountrequest.md
   - docs/models/unifiedaccountingaccountinput.md
   - docs/models/retrieveaccountingaccountrequest.md
   - docs/models/listaccountingaddressrequest.md
   - docs/models/listaccountingaddressresponsebody.md
+  - docs/models/listaccountingaddressresponse.md
   - docs/models/unifiedaccountingaddressoutput.md
   - docs/models/retrieveaccountingaddressrequest.md
   - docs/models/listaccountingattachmentsrequest.md
   - docs/models/listaccountingattachmentsresponsebody.md
+  - docs/models/listaccountingattachmentsresponse.md
   - docs/models/unifiedaccountingattachmentoutput.md
   - docs/models/createaccountingattachmentrequest.md
   - docs/models/unifiedaccountingattachmentinput.md
   - docs/models/retrieveaccountingattachmentrequest.md
   - docs/models/listaccountingbalancesheetsrequest.md
   - docs/models/listaccountingbalancesheetsresponsebody.md
+  - docs/models/listaccountingbalancesheetsresponse.md
   - docs/models/unifiedaccountingbalancesheetoutput.md
   - docs/models/retrieveaccountingbalancesheetrequest.md
   - docs/models/listaccountingcashflowstatementrequest.md
   - docs/models/listaccountingcashflowstatementresponsebody.md
+  - docs/models/listaccountingcashflowstatementresponse.md
   - docs/models/unifiedaccountingcashflowstatementoutput.md
   - docs/models/retrieveaccountingcashflowstatementrequest.md
   - docs/models/listaccountingcompanyinfosrequest.md
   - docs/models/listaccountingcompanyinfosresponsebody.md
+  - docs/models/listaccountingcompanyinfosresponse.md
   - docs/models/unifiedaccountingcompanyinfooutput.md
   - docs/models/retrieveaccountingcompanyinforequest.md
   - docs/models/listaccountingcontactsrequest.md
   - docs/models/listaccountingcontactsresponsebody.md
+  - docs/models/listaccountingcontactsresponse.md
   - docs/models/unifiedaccountingcontactoutput.md
   - docs/models/createaccountingcontactrequest.md
   - docs/models/unifiedaccountingcontactinput.md
   - docs/models/retrieveaccountingcontactrequest.md
   - docs/models/listaccountingcreditnoterequest.md
   - docs/models/listaccountingcreditnoteresponsebody.md
+  - docs/models/listaccountingcreditnoteresponse.md
   - docs/models/unifiedaccountingcreditnoteoutput.md
   - docs/models/retrieveaccountingcreditnoterequest.md
   - docs/models/listaccountingexpenserequest.md
   - docs/models/listaccountingexpenseresponsebody.md
+  - docs/models/listaccountingexpenseresponse.md
   - docs/models/unifiedaccountingexpenseoutput.md
   - docs/models/createaccountingexpenserequest.md
   - docs/models/unifiedaccountingexpenseinput.md
   - docs/models/retrieveaccountingexpenserequest.md
   - docs/models/listaccountingincomestatementrequest.md
   - docs/models/listaccountingincomestatementresponsebody.md
+  - docs/models/listaccountingincomestatementresponse.md
   - docs/models/unifiedaccountingincomestatementoutput.md
   - docs/models/retrieveaccountingincomestatementrequest.md
   - docs/models/listaccountinginvoicerequest.md
   - docs/models/listaccountinginvoiceresponsebody.md
+  - docs/models/listaccountinginvoiceresponse.md
   - docs/models/unifiedaccountinginvoiceoutput.md
   - docs/models/createaccountinginvoicerequest.md
   - docs/models/unifiedaccountinginvoiceinput.md
   - docs/models/retrieveaccountinginvoicerequest.md
   - docs/models/listaccountingitemrequest.md
   - docs/models/listaccountingitemresponsebody.md
+  - docs/models/listaccountingitemresponse.md
   - docs/models/unifiedaccountingitemoutput.md
   - docs/models/retrieveaccountingitemrequest.md
   - docs/models/listaccountingjournalentryrequest.md
   - docs/models/listaccountingjournalentryresponsebody.md
+  - docs/models/listaccountingjournalentryresponse.md
   - docs/models/unifiedaccountingjournalentryoutput.md
   - docs/models/createaccountingjournalentryrequest.md
   - docs/models/unifiedaccountingjournalentryinput.md
   - docs/models/retrieveaccountingjournalentryrequest.md
   - docs/models/listaccountingpaymentrequest.md
   - docs/models/listaccountingpaymentresponsebody.md
+  - docs/models/listaccountingpaymentresponse.md
   - docs/models/unifiedaccountingpaymentoutput.md
   - docs/models/createaccountingpaymentrequest.md
   - docs/models/unifiedaccountingpaymentinput.md
   - docs/models/retrieveaccountingpaymentrequest.md
   - docs/models/listaccountingphonenumberrequest.md
   - docs/models/listaccountingphonenumberresponsebody.md
+  - docs/models/listaccountingphonenumberresponse.md
   - docs/models/unifiedaccountingphonenumberoutput.md
   - docs/models/retrieveaccountingphonenumberrequest.md
   - docs/models/listaccountingpurchaseorderrequest.md
   - docs/models/listaccountingpurchaseorderresponsebody.md
+  - docs/models/listaccountingpurchaseorderresponse.md
   - docs/models/unifiedaccountingpurchaseorderoutput.md
   - docs/models/createaccountingpurchaseorderrequest.md
   - docs/models/unifiedaccountingpurchaseorderinput.md
   - docs/models/retrieveaccountingpurchaseorderrequest.md
   - docs/models/listaccountingtaxraterequest.md
   - docs/models/listaccountingtaxrateresponsebody.md
+  - docs/models/listaccountingtaxrateresponse.md
   - docs/models/unifiedaccountingtaxrateoutput.md
   - docs/models/retrieveaccountingtaxraterequest.md
   - docs/models/listaccountingtrackingcategorysrequest.md
   - docs/models/listaccountingtrackingcategorysresponsebody.md
+  - docs/models/listaccountingtrackingcategorysresponse.md
   - docs/models/unifiedaccountingtrackingcategoryoutput.md
   - docs/models/retrieveaccountingtrackingcategoryrequest.md
   - docs/models/listaccountingtransactionrequest.md
   - docs/models/listaccountingtransactionresponsebody.md
+  - docs/models/listaccountingtransactionresponse.md
   - docs/models/unifiedaccountingtransactionoutput.md
   - docs/models/retrieveaccountingtransactionrequest.md
   - docs/models/listaccountingvendorcreditrequest.md
   - docs/models/listaccountingvendorcreditresponsebody.md
+  - docs/models/listaccountingvendorcreditresponse.md
   - docs/models/unifiedaccountingvendorcreditoutput.md
   - docs/models/retrieveaccountingvendorcreditrequest.md
   - docs/models/listfilestoragedrivesrequest.md
   - docs/models/listfilestoragedrivesresponsebody.md
+  - docs/models/listfilestoragedrivesresponse.md
   - docs/models/unifiedfilestoragedriveoutput.md
   - docs/models/retrievefilestoragedriverequest.md
   - docs/models/listfilestoragefilerequest.md
   - docs/models/listfilestoragefileresponsebody.md
+  - docs/models/listfilestoragefileresponse.md
   - docs/models/unifiedfilestoragefileoutput.md
   - docs/models/createfilestoragefilerequest.md
   - docs/models/unifiedfilestoragefileinput.md
   - docs/models/retrievefilestoragefilerequest.md
   - docs/models/listfilestoragefolderrequest.md
   - docs/models/listfilestoragefolderresponsebody.md
+  - docs/models/listfilestoragefolderresponse.md
   - docs/models/unifiedfilestoragefolderoutput.md
   - docs/models/createfilestoragefolderrequest.md
   - docs/models/unifiedfilestoragefolderinput.md
   - docs/models/retrievefilestoragefolderrequest.md
   - docs/models/listfilestoragegrouprequest.md
   - docs/models/listfilestoragegroupresponsebody.md
+  - docs/models/listfilestoragegroupresponse.md
+  - docs/models/usersmodel.md
   - docs/models/unifiedfilestoragegroupoutput.md
+  - docs/models/unifiedfilestorageuseroutput.md
   - docs/models/retrievefilestoragegrouprequest.md
   - docs/models/listfilestorageusersrequest.md
   - docs/models/listfilestorageusersresponsebody.md
-  - docs/models/unifiedfilestorageuseroutput.md
+  - docs/models/listfilestorageusersresponse.md
   - docs/models/retrievefilestorageuserrequest.md
   - docs/models/security.md
   - docs/models/utils/retryconfig.md
@@ -1013,13 +1107,8 @@ generatedFiles:
   - docs/sdks/tasks/README.md
   - docs/sdks/panorausers/README.md
   - docs/sdks/linkedusers/README.md
-  - docs/sdks/batch/README.md
-  - docs/sdks/id/README.md
-  - docs/sdks/fromremoteid/README.md
   - docs/sdks/projects/README.md
   - docs/sdks/fieldmappings/README.md
-  - docs/sdks/define/README.md
-  - docs/sdks/map/README.md
   - docs/sdks/events/README.md
   - docs/sdks/passthrough/README.md
   - docs/sdks/hris/README.md
