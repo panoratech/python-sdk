@@ -6,7 +6,7 @@ from panora_sdk.types import BaseModel, Nullable, UNSET_SENTINEL
 from panora_sdk.utils import FieldMetadata, HeaderMetadata, QueryParamMetadata
 import pydantic
 from pydantic import model_serializer
-from typing import List, Optional, TypedDict
+from typing import Callable, List, Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
 
@@ -74,3 +74,13 @@ class ListMarketingautomationCampaignsResponseBody(BaseModel):
 
         return m
         
+
+class ListMarketingautomationCampaignsResponseTypedDict(TypedDict):
+    result: ListMarketingautomationCampaignsResponseBodyTypedDict
+    
+
+class ListMarketingautomationCampaignsResponse(BaseModel):
+    next: Callable[[], Optional[ListMarketingautomationCampaignsResponse]]
+    
+    result: ListMarketingautomationCampaignsResponseBody
+    

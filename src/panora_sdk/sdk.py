@@ -14,7 +14,7 @@ from panora_sdk.auth import Auth
 from panora_sdk.connections import Connections
 from panora_sdk.crm import Crm
 from panora_sdk.events import Events
-from panora_sdk.field_mappings import FieldMappings
+from panora_sdk.fieldmappings import FieldMappings
 from panora_sdk.filestorage import Filestorage
 from panora_sdk.hris import Hris
 from panora_sdk.linkedusers import LinkedUsers

@@ -202,18 +202,9 @@ asyncio.run(main())
 
 * [create](docs/sdks/linkedusers/README.md#create) - Create Linked Users
 * [list](docs/sdks/linkedusers/README.md#list) - List Linked Users
-
-### [linked_users.batch](docs/sdks/batch/README.md)
-
-* [import_batch](docs/sdks/batch/README.md#import_batch) - Add Batch Linked Users
-
-### [linked_users.id](docs/sdks/id/README.md)
-
-* [retrieve](docs/sdks/id/README.md#retrieve) - Retrieve Linked Users
-
-### [linked_users.fromremoteid](docs/sdks/fromremoteid/README.md)
-
-* [remote_id](docs/sdks/fromremoteid/README.md#remote_id) - Retrieve a Linked User From A Remote Id
+* [import_batch](docs/sdks/linkedusers/README.md#import_batch) - Add Batch Linked Users
+* [retrieve](docs/sdks/linkedusers/README.md#retrieve) - Retrieve Linked Users
+* [remote_id](docs/sdks/linkedusers/README.md#remote_id) - Retrieve a Linked User From A Remote Id
 
 ### [projects](docs/sdks/projects/README.md)
 
@@ -222,15 +213,9 @@ asyncio.run(main())
 
 ### [field_mappings](docs/sdks/fieldmappings/README.md)
 
+* [definitions](docs/sdks/fieldmappings/README.md#definitions) - Define target Field
 * [define_custom_field](docs/sdks/fieldmappings/README.md#define_custom_field) - Create Custom Field
-
-### [field_mappings.define](docs/sdks/define/README.md)
-
-* [definitions](docs/sdks/define/README.md#definitions) - Define target Field
-
-### [field_mappings.map](docs/sdks/map/README.md)
-
-* [map](docs/sdks/map/README.md#map) - Map Custom Field
+* [map](docs/sdks/fieldmappings/README.md#map) - Map Custom Field
 
 ### [events](docs/sdks/events/README.md)
 
@@ -843,6 +828,36 @@ if res is not None:
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `None`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```python
+from panora_sdk import Panora
+
+s = Panora(
+    api_key="<YOUR_API_KEY_HERE>",
+)
+
+
+res = s.ticketing.tickets.list(x_connection_token="<value>", remote_data=True, limit=10, cursor="1b8b05bb-5273-4012-b520-8657b0b90874")
+
+if res is not None:
+    while True:
+        # handle items
+
+        res = res.Next()
+        if res is None:
+            break
+
+
+```
+<!-- End Pagination [pagination] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

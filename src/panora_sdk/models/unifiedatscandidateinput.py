@@ -3,11 +3,14 @@
 from __future__ import annotations
 from .email import Email, EmailTypedDict
 from .phone import Phone, PhoneTypedDict
+from .unifiedatsapplicationoutput import UnifiedAtsApplicationOutput, UnifiedAtsApplicationOutputTypedDict
+from .unifiedatsattachmentoutput import UnifiedAtsAttachmentOutput, UnifiedAtsAttachmentOutputTypedDict
+from .unifiedatstagoutput import UnifiedAtsTagOutput, UnifiedAtsTagOutputTypedDict
 from .url import URL, URLTypedDict
 from datetime import datetime
 from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
-from typing import Any, Dict, List, TypedDict
+from typing import Any, Dict, List, TypedDict, Union
 from typing_extensions import NotRequired
 
 
@@ -32,11 +35,11 @@ class UnifiedAtsCandidateInputTypedDict(TypedDict):
     r"""The remote modification date of the candidate"""
     last_interaction_at: NotRequired[Nullable[datetime]]
     r"""The last interaction date with the candidate"""
-    attachments: NotRequired[Nullable[List[str]]]
+    attachments: NotRequired[Nullable[List[UnifiedAtsCandidateInputAttachmentsTypedDict]]]
     r"""The attachments UUIDs of the candidate"""
-    applications: NotRequired[Nullable[List[str]]]
+    applications: NotRequired[Nullable[List[UnifiedAtsCandidateInputApplicationsTypedDict]]]
     r"""The applications UUIDs of the candidate"""
-    tags: NotRequired[Nullable[List[str]]]
+    tags: NotRequired[Nullable[List[UnifiedAtsCandidateInputTagsTypedDict]]]
     r"""The tags of the candidate"""
     urls: NotRequired[Nullable[List[URLTypedDict]]]
     r"""The urls of the candidate, possible values for Url type are WEBSITE, BLOG, LINKEDIN, GITHUB, or OTHER"""
@@ -69,11 +72,11 @@ class UnifiedAtsCandidateInput(BaseModel):
     r"""The remote modification date of the candidate"""
     last_interaction_at: OptionalNullable[datetime] = UNSET
     r"""The last interaction date with the candidate"""
-    attachments: OptionalNullable[List[str]] = UNSET
+    attachments: OptionalNullable[List[UnifiedAtsCandidateInputAttachments]] = UNSET
     r"""The attachments UUIDs of the candidate"""
-    applications: OptionalNullable[List[str]] = UNSET
+    applications: OptionalNullable[List[UnifiedAtsCandidateInputApplications]] = UNSET
     r"""The applications UUIDs of the candidate"""
-    tags: OptionalNullable[List[str]] = UNSET
+    tags: OptionalNullable[List[UnifiedAtsCandidateInputTags]] = UNSET
     r"""The tags of the candidate"""
     urls: OptionalNullable[List[URL]] = UNSET
     r"""The urls of the candidate, possible values for Url type are WEBSITE, BLOG, LINKEDIN, GITHUB, or OTHER"""
@@ -115,3 +118,21 @@ class UnifiedAtsCandidateInput(BaseModel):
 
         return m
         
+
+UnifiedAtsCandidateInputAttachmentsTypedDict = Union[UnifiedAtsAttachmentOutputTypedDict, str]
+
+
+UnifiedAtsCandidateInputAttachments = Union[UnifiedAtsAttachmentOutput, str]
+
+
+UnifiedAtsCandidateInputApplicationsTypedDict = Union[UnifiedAtsApplicationOutputTypedDict, str]
+
+
+UnifiedAtsCandidateInputApplications = Union[UnifiedAtsApplicationOutput, str]
+
+
+UnifiedAtsCandidateInputTagsTypedDict = Union[UnifiedAtsTagOutputTypedDict, str]
+
+
+UnifiedAtsCandidateInputTags = Union[UnifiedAtsTagOutput, str]
+
