@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 from panora_sdk.types import BaseModel
-from typing import TypedDict
+from typing import Optional, TypedDict
+from typing_extensions import NotRequired
 
 
 class ProjectResponseTypedDict(TypedDict):
@@ -12,14 +13,14 @@ class ProjectResponseTypedDict(TypedDict):
     r"""Name of the project"""
     sync_mode: str
     r"""Synchronization mode of the project"""
-    pull_frequency: float
-    r"""Frequency of pulling data in seconds"""
-    redirect_url: str
-    r"""Redirect URL for the project"""
     id_user: str
     r"""User ID associated with the project"""
     id_connector_set: str
     r"""Connector set ID associated with the project"""
+    pull_frequency: NotRequired[float]
+    r"""Frequency of pulling data in seconds"""
+    redirect_url: NotRequired[str]
+    r"""Redirect URL for the project"""
     
 
 class ProjectResponse(BaseModel):
@@ -29,12 +30,12 @@ class ProjectResponse(BaseModel):
     r"""Name of the project"""
     sync_mode: str
     r"""Synchronization mode of the project"""
-    pull_frequency: float
-    r"""Frequency of pulling data in seconds"""
-    redirect_url: str
-    r"""Redirect URL for the project"""
     id_user: str
     r"""User ID associated with the project"""
     id_connector_set: str
     r"""Connector set ID associated with the project"""
+    pull_frequency: Optional[float] = None
+    r"""Frequency of pulling data in seconds"""
+    redirect_url: Optional[str] = None
+    r"""Redirect URL for the project"""
     

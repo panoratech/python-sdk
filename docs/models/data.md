@@ -1,17 +1,7 @@
 # Data
 
 
-## Supported Types
+## Fields
 
-### `Dict[str, Any]`
-
-```python
-value: Dict[str, Any] = /* values here */
-```
-
-### `List[Dict[str, Any]]`
-
-```python
-value: List[Dict[str, Any]] = /* values here */
-```
-
+| Field       | Type        | Required    | Description |
+| ----------- | ----------- | ----------- | ----------- |

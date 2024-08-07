@@ -63,10 +63,10 @@ s = Panora(
 
 res = s.webhooks.create(request={
     "url": "https://acme.com/webhook_receiver",
-    "description": "Webhook to receive connection events",
     "scope": [
         "connection.created",
     ],
+    "description": "Webhook to receive connection events",
 })
 
 if res is not None:

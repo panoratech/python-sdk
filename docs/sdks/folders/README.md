@@ -68,7 +68,7 @@ s = Panora(
 )
 
 
-res = s.filestorage.folders.create(x_connection_token="<value>", remote_data=False, unified_filestorage_folder_input={
+res = s.filestorage.folders.create(x_connection_token="<value>", unified_filestorage_folder_input={
     "name": "school",
     "size": "2048",
     "folder_url": "https://example.com/school",
@@ -81,7 +81,7 @@ res = s.filestorage.folders.create(x_connection_token="<value>", remote_data=Fal
         "fav_dish": "broccoli",
         "fav_color": "red",
     },
-})
+}, remote_data=False)
 
 if res is not None:
     # handle response
@@ -91,12 +91,12 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `x_connection_token`                                                                  | *str*                                                                                 | :heavy_check_mark:                                                                    | The connection token                                                                  |
-| `remote_data`                                                                         | *bool*                                                                                | :heavy_check_mark:                                                                    | N/A                                                                                   |
-| `unified_filestorage_folder_input`                                                    | [models.UnifiedFilestorageFolderInput](../../models/unifiedfilestoragefolderinput.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |
-| `retries`                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                      | :heavy_minus_sign:                                                                    | Configuration to override the default retry behavior of the client.                   |
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `x_connection_token`                                                                  | *str*                                                                                 | :heavy_check_mark:                                                                    | The connection token                                                                  |                                                                                       |
+| `unified_filestorage_folder_input`                                                    | [models.UnifiedFilestorageFolderInput](../../models/unifiedfilestoragefolderinput.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
+| `remote_data`                                                                         | *Optional[bool]*                                                                      | :heavy_minus_sign:                                                                    | Set to true to include data from the original Accounting software.                    | false                                                                                 |
+| `retries`                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                      | :heavy_minus_sign:                                                                    | Configuration to override the default retry behavior of the client.                   |                                                                                       |
 
 
 ### Response

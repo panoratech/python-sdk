@@ -1,0 +1,10 @@
+# CreateEcommerceOrderRequest
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `x_connection_token`                                                         | *str*                                                                        | :heavy_check_mark:                                                           | The connection token                                                         |                                                                              |
+| `unified_ecommerce_order_input`                                              | [models.UnifiedEcommerceOrderInput](../models/unifiedecommerceorderinput.md) | :heavy_check_mark:                                                           | N/A                                                                          |                                                                              |
+| `remote_data`                                                                | *Optional[bool]*                                                             | :heavy_minus_sign:                                                           | Set to true to include data from the original Accounting software.           | false                                                                        |

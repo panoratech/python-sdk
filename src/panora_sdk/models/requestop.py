@@ -3,22 +3,40 @@
 from __future__ import annotations
 from .passthroughrequestdto import PassThroughRequestDto, PassThroughRequestDtoTypedDict
 from panora_sdk.types import BaseModel
-from panora_sdk.utils import FieldMetadata, QueryParamMetadata, RequestMetadata
+from panora_sdk.utils import FieldMetadata, HeaderMetadata, RequestMetadata
 import pydantic
-from typing import TypedDict
+from typing import TypedDict, Union
 from typing_extensions import Annotated
 
 
 class RequestRequestTypedDict(TypedDict):
-    integration_id: str
-    linked_user_id: str
-    vertical: str
+    x_connection_token: str
     pass_through_request_dto: PassThroughRequestDtoTypedDict
     
 
 class RequestRequest(BaseModel):
-    integration_id: Annotated[str, pydantic.Field(alias="integrationId"), FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    linked_user_id: Annotated[str, pydantic.Field(alias="linkedUserId"), FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    vertical: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
+    x_connection_token: Annotated[str, pydantic.Field(alias="x-connection-token"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
     pass_through_request_dto: Annotated[PassThroughRequestDto, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
     
+
+class RequestPassthroughResponseBodyTypedDict(TypedDict):
+    pass
+    
+
+class RequestPassthroughResponseBody(BaseModel):
+    pass
+    
+
+class RequestResponseBodyTypedDict(TypedDict):
+    pass
+    
+
+class RequestResponseBody(BaseModel):
+    pass
+    
+
+RequestResponseTypedDict = Union[RequestResponseBodyTypedDict, RequestPassthroughResponseBodyTypedDict]
+
+
+RequestResponse = Union[RequestResponseBody, RequestPassthroughResponseBody]
+

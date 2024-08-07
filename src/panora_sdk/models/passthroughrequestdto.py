@@ -2,35 +2,54 @@
 
 from __future__ import annotations
 from enum import Enum
-from panora_sdk.types import BaseModel, Nullable, UNSET_SENTINEL
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+import pydantic
 from pydantic import model_serializer
-from typing import Any, Dict, List, TypedDict, Union
+from typing import Any, Dict, List, Optional, TypedDict, Union
+from typing_extensions import Annotated, NotRequired
 
 
 class PassThroughRequestDtoMethod(str, Enum):
     GET = "GET"
     POST = "POST"
-    PATCH = "PATCH"
-    DELETE = "DELETE"
-    PUT = "PUT"
+
+class DataTypedDict(TypedDict):
+    pass
+    
+
+class Data(BaseModel):
+    pass
+    
+
+class HeadersTypedDict(TypedDict):
+    pass
+    
+
+class Headers(BaseModel):
+    pass
+    
 
 class PassThroughRequestDtoTypedDict(TypedDict):
     method: PassThroughRequestDtoMethod
     path: Nullable[str]
-    data: Nullable[DataTypedDict]
-    headers: Nullable[Dict[str, Any]]
+    data: NotRequired[DataTypedDict]
+    request_format: NotRequired[Nullable[RequestFormatTypedDict]]
+    override_base_url: NotRequired[Nullable[Dict[str, Any]]]
+    headers: NotRequired[HeadersTypedDict]
     
 
 class PassThroughRequestDto(BaseModel):
     method: PassThroughRequestDtoMethod
     path: Nullable[str]
-    data: Nullable[Data]
-    headers: Nullable[Dict[str, Any]]
+    data: Optional[Data] = None
+    request_format: OptionalNullable[RequestFormat] = UNSET
+    override_base_url: Annotated[OptionalNullable[Dict[str, Any]], pydantic.Field(alias="overrideBaseUrl")] = UNSET
+    headers: Optional[Headers] = None
     
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = []
-        nullable_fields = ["path", "data", "headers"]
+        optional_fields = ["data", "request_format", "overrideBaseUrl", "headers"]
+        nullable_fields = ["path", "request_format", "overrideBaseUrl"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -59,8 +78,8 @@ class PassThroughRequestDto(BaseModel):
         return m
         
 
-DataTypedDict = Union[Dict[str, Any], List[Dict[str, Any]]]
+RequestFormatTypedDict = Union[Dict[str, Any], List[Dict[str, Any]]]
 
 
-Data = Union[Dict[str, Any], List[Dict[str, Any]]]
+RequestFormat = Union[Dict[str, Any], List[Dict[str, Any]]]
 

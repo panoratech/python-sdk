@@ -1,18 +1,19 @@
 lockVersion: 2.0.0
 id: 115d0df7-1198-46c9-9d03-a640abffed12
 management:
-  docChecksum: f31581b6c385b4f8f05068b0f2598833
+  docChecksum: 0ec320fe6c4af64ca01910309ed024e7
   docVersion: "1.0"
   speakeasyVersion: 1.352.2
   generationVersion: 2.385.2
-  releaseVersion: 0.4.0
-  configChecksum: bb4c19c1412ab90de258dd2494ec1b99
+  releaseVersion: 0.5.1
+  configChecksum: a817f31acdf8b555f996d85f2c8d13be
   repoURL: https://github.com/panoratech/python-sdk.git
   installationURL: https://github.com/panoratech/python-sdk.git
   published: true
 features:
   python:
     additionalDependencies: 1.0.0
+    constsAndDefaults: 1.0.1
     core: 5.3.3
     defaultEnabledRetries: 0.2.0
     envVarSecurityUsage: 0.3.1
@@ -59,6 +60,7 @@ generatedFiles:
   - src/panora_sdk/projects.py
   - src/panora_sdk/fieldmappings.py
   - src/panora_sdk/events.py
+  - src/panora_sdk/retryid_.py
   - src/panora_sdk/passthrough.py
   - src/panora_sdk/bankinfos.py
   - src/panora_sdk/benefits.py
@@ -129,6 +131,11 @@ generatedFiles:
   - src/panora_sdk/panora_groups.py
   - src/panora_sdk/panora_filestorage_users.py
   - src/panora_sdk/filestorage.py
+  - src/panora_sdk/products.py
+  - src/panora_sdk/orders.py
+  - src/panora_sdk/customers.py
+  - src/panora_sdk/fulfillments.py
+  - src/panora_sdk/ecommerce.py
   - src/panora_sdk/sdk.py
   - .vscode/settings.json
   - poetry.toml
@@ -254,9 +261,9 @@ generatedFiles:
   - src/panora_sdk/models/mapfieldtoproviderdto.py
   - src/panora_sdk/models/eventresponse.py
   - src/panora_sdk/models/getpanoracoreeventsop.py
-  - src/panora_sdk/models/passthroughresponse.py
   - src/panora_sdk/models/requestop.py
   - src/panora_sdk/models/passthroughrequestdto.py
+  - src/panora_sdk/models/getretriedrequestresponseop.py
   - src/panora_sdk/models/listhrisbankinfoop.py
   - src/panora_sdk/models/unifiedhrisbankinfooutput.py
   - src/panora_sdk/models/retrievehrisbankinfoop.py
@@ -496,6 +503,22 @@ generatedFiles:
   - src/panora_sdk/models/retrievefilestoragegroupop.py
   - src/panora_sdk/models/listfilestorageusersop.py
   - src/panora_sdk/models/retrievefilestorageuserop.py
+  - src/panora_sdk/models/listecommerceproductsop.py
+  - src/panora_sdk/models/unifiedecommerceproductoutput.py
+  - src/panora_sdk/models/createecommerceproductop.py
+  - src/panora_sdk/models/unifiedecommerceproductinput.py
+  - src/panora_sdk/models/retrieveecommerceproductop.py
+  - src/panora_sdk/models/listecommerceordersop.py
+  - src/panora_sdk/models/unifiedecommerceorderoutput.py
+  - src/panora_sdk/models/createecommerceorderop.py
+  - src/panora_sdk/models/unifiedecommerceorderinput.py
+  - src/panora_sdk/models/retrieveecommerceorderop.py
+  - src/panora_sdk/models/listecommercecustomersop.py
+  - src/panora_sdk/models/unifiedecommercecustomeroutput.py
+  - src/panora_sdk/models/retrieveecommercecustomerop.py
+  - src/panora_sdk/models/listecommercefulfillmentsop.py
+  - src/panora_sdk/models/unifiedecommercefulfillmentoutput.py
+  - src/panora_sdk/models/retrieveecommercefulfillmentop.py
   - src/panora_sdk/models/security.py
   - src/panora_sdk/models/__init__.py
   - docs/models/logindto.md
@@ -680,12 +703,16 @@ generatedFiles:
   - docs/models/method.md
   - docs/models/eventresponse.md
   - docs/models/getpanoracoreeventsrequest.md
-  - docs/models/passthroughresponsedata.md
-  - docs/models/passthroughresponse.md
   - docs/models/requestrequest.md
+  - docs/models/requestpassthroughresponsebody.md
+  - docs/models/requestresponsebody.md
+  - docs/models/requestresponse.md
   - docs/models/passthroughrequestdtomethod.md
   - docs/models/data.md
+  - docs/models/requestformat.md
+  - docs/models/headers.md
   - docs/models/passthroughrequestdto.md
+  - docs/models/getretriedrequestresponserequest.md
   - docs/models/listhrisbankinforequest.md
   - docs/models/listhrisbankinforesponsebody.md
   - docs/models/listhrisbankinforesponse.md
@@ -1079,6 +1106,46 @@ generatedFiles:
   - docs/models/listfilestorageusersresponsebody.md
   - docs/models/listfilestorageusersresponse.md
   - docs/models/retrievefilestorageuserrequest.md
+  - docs/models/listecommerceproductsrequest.md
+  - docs/models/listecommerceproductsresponsebody.md
+  - docs/models/listecommerceproductsresponse.md
+  - docs/models/variants.md
+  - docs/models/fieldmappingsmodel.md
+  - docs/models/remotedata.md
+  - docs/models/unifiedecommerceproductoutput.md
+  - docs/models/createecommerceproductrequest.md
+  - docs/models/unifiedecommerceproductinputvariants.md
+  - docs/models/unifiedecommerceproductinputfieldmappings.md
+  - docs/models/unifiedecommerceproductinput.md
+  - docs/models/retrieveecommerceproductrequest.md
+  - docs/models/listecommerceordersrequest.md
+  - docs/models/listecommerceordersresponsebody.md
+  - docs/models/listecommerceordersresponse.md
+  - docs/models/itemsmodel.md
+  - docs/models/unifiedecommerceorderoutputfieldmappings.md
+  - docs/models/unifiedecommerceorderoutputremotedata.md
+  - docs/models/unifiedecommerceorderoutput.md
+  - docs/models/createecommerceorderrequest.md
+  - docs/models/unifiedecommerceorderinputitems.md
+  - docs/models/unifiedecommerceorderinputfieldmappings.md
+  - docs/models/unifiedecommerceorderinput.md
+  - docs/models/retrieveecommerceorderrequest.md
+  - docs/models/listecommercecustomersrequest.md
+  - docs/models/listecommercecustomersresponsebody.md
+  - docs/models/listecommercecustomersresponse.md
+  - docs/models/addressesmodel.md
+  - docs/models/unifiedecommercecustomeroutputfieldmappings.md
+  - docs/models/unifiedecommercecustomeroutputremotedata.md
+  - docs/models/unifiedecommercecustomeroutput.md
+  - docs/models/retrieveecommercecustomerrequest.md
+  - docs/models/listecommercefulfillmentsrequest.md
+  - docs/models/listecommercefulfillmentsresponsebody.md
+  - docs/models/listecommercefulfillmentsresponse.md
+  - docs/models/unifiedecommercefulfillmentoutputitems.md
+  - docs/models/unifiedecommercefulfillmentoutputfieldmappings.md
+  - docs/models/unifiedecommercefulfillmentoutputremotedata.md
+  - docs/models/unifiedecommercefulfillmentoutput.md
+  - docs/models/retrieveecommercefulfillmentrequest.md
   - docs/models/security.md
   - docs/models/utils/retryconfig.md
   - docs/sdks/panora/README.md
@@ -1111,6 +1178,7 @@ generatedFiles:
   - docs/sdks/fieldmappings/README.md
   - docs/sdks/events/README.md
   - docs/sdks/passthrough/README.md
+  - docs/sdks/retryid/README.md
   - docs/sdks/hris/README.md
   - docs/sdks/bankinfos/README.md
   - docs/sdks/benefits/README.md
@@ -1180,6 +1248,11 @@ generatedFiles:
   - docs/sdks/folders/README.md
   - docs/sdks/panoragroups/README.md
   - docs/sdks/panorafilestorageusers/README.md
+  - docs/sdks/ecommerce/README.md
+  - docs/sdks/products/README.md
+  - docs/sdks/orders/README.md
+  - docs/sdks/customers/README.md
+  - docs/sdks/fulfillments/README.md
   - USAGE.md
   - .gitattributes
   - src/panora_sdk/_hooks/sdkhooks.py

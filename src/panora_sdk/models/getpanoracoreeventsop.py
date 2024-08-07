@@ -13,6 +13,6 @@ class GetPanoraCoreEventsRequestTypedDict(TypedDict):
     
 
 class GetPanoraCoreEventsRequest(BaseModel):
-    page: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
-    limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    page: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = 1
+    limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = 10
     

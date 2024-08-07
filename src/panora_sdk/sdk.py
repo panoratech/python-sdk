@@ -13,6 +13,7 @@ from panora_sdk.ats import Ats
 from panora_sdk.auth import Auth
 from panora_sdk.connections import Connections
 from panora_sdk.crm import Crm
+from panora_sdk.ecommerce import Ecommerce
 from panora_sdk.events import Events
 from panora_sdk.fieldmappings import FieldMappings
 from panora_sdk.filestorage import Filestorage
@@ -46,6 +47,7 @@ class Panora(BaseSDK):
     ats: Ats
     accounting: Accounting
     filestorage: Filestorage
+    ecommerce: Ecommerce
     def __init__(
         self,
         api_key: Union[str, Callable[[], str]],
@@ -138,6 +140,7 @@ class Panora(BaseSDK):
         self.ats = Ats(self.sdk_configuration)
         self.accounting = Accounting(self.sdk_configuration)
         self.filestorage = Filestorage(self.sdk_configuration)
+        self.ecommerce = Ecommerce(self.sdk_configuration)
     
     
     def hello(

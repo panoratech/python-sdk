@@ -20,15 +20,9 @@ s = Panora(
 )
 
 
-res = s.passthrough.request(integration_id="<value>", linked_user_id="<value>", vertical="<value>", pass_through_request_dto={
+res = s.passthrough.request(x_connection_token="<value>", pass_through_request_dto={
     "method": panora_sdk.PassThroughRequestDtoMethod.GET,
     "path": "/dev",
-    "data": {
-        "key": "<value>",
-    },
-    "headers": {
-        "key": "<value>",
-    },
 })
 
 if res is not None:
@@ -41,16 +35,14 @@ if res is not None:
 
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `integration_id`                                                      | *str*                                                                 | :heavy_check_mark:                                                    | N/A                                                                   |
-| `linked_user_id`                                                      | *str*                                                                 | :heavy_check_mark:                                                    | N/A                                                                   |
-| `vertical`                                                            | *str*                                                                 | :heavy_check_mark:                                                    | N/A                                                                   |
+| `x_connection_token`                                                  | *str*                                                                 | :heavy_check_mark:                                                    | N/A                                                                   |
 | `pass_through_request_dto`                                            | [models.PassThroughRequestDto](../../models/passthroughrequestdto.md) | :heavy_check_mark:                                                    | N/A                                                                   |
 | `retries`                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)      | :heavy_minus_sign:                                                    | Configuration to override the default retry behavior of the client.   |
 
 
 ### Response
 
-**[models.PassThroughResponse](../../models/passthroughresponse.md)**
+**[models.RequestResponse](../../models/requestresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
