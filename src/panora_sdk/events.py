@@ -12,8 +12,8 @@ class Events(BaseSDK):
     
     def get_panora_core_events(
         self, *,
-        page: Optional[float] = None,
-        limit: Optional[float] = None,
+        page: Optional[float] = 1,
+        limit: Optional[float] = 10,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -87,8 +87,8 @@ class Events(BaseSDK):
     
     async def get_panora_core_events_async(
         self, *,
-        page: Optional[float] = None,
-        limit: Optional[float] = None,
+        page: Optional[float] = 1,
+        limit: Optional[float] = 10,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,

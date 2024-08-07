@@ -3,9 +3,108 @@
 
 ### Available Operations
 
+* [get_field_mapping_values](#get_field_mapping_values) - Retrieve field mappings values
+* [get_field_mappings_entities](#get_field_mappings_entities) - Retrieve field mapping entities
+* [get_field_mappings](#get_field_mappings) - Retrieve field mappings
 * [definitions](#definitions) - Define target Field
 * [define_custom_field](#define_custom_field) - Create Custom Field
 * [map](#map) - Map Custom Field
+
+## get_field_mapping_values
+
+Retrieve field mappings values
+
+### Example Usage
+
+```python
+from panora_sdk import Panora
+
+s = Panora(
+    api_key="<YOUR_API_KEY_HERE>",
+)
+
+
+s.field_mappings.get_field_mapping_values()
+
+# Use the SDK ...
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| models.SDKError | 4xx-5xx         | */*             |
+
+## get_field_mappings_entities
+
+Retrieve field mapping entities
+
+### Example Usage
+
+```python
+from panora_sdk import Panora
+
+s = Panora(
+    api_key="<YOUR_API_KEY_HERE>",
+)
+
+
+s.field_mappings.get_field_mappings_entities()
+
+# Use the SDK ...
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| models.SDKError | 4xx-5xx         | */*             |
+
+## get_field_mappings
+
+Retrieve field mappings
+
+### Example Usage
+
+```python
+from panora_sdk import Panora
+
+s = Panora(
+    api_key="<YOUR_API_KEY_HERE>",
+)
+
+
+s.field_mappings.get_field_mappings()
+
+# Use the SDK ...
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## definitions
 

@@ -20,7 +20,6 @@ s = Panora(
 
 
 s.auth.login.sign_in(request={
-    "id_user": "<value>",
     "email": "Oda.Treutel97@hotmail.com",
     "password_hash": "<value>",
 })

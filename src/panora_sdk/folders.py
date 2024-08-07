@@ -15,7 +15,7 @@ class Folders(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = None,
+        limit: Optional[float] = 30,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -112,7 +112,7 @@ class Folders(BaseSDK):
         self, *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = None,
+        limit: Optional[float] = 30,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -208,8 +208,8 @@ class Folders(BaseSDK):
     def create(
         self, *,
         x_connection_token: str,
-        remote_data: bool,
         unified_filestorage_folder_input: Union[models.UnifiedFilestorageFolderInput, models.UnifiedFilestorageFolderInputTypedDict],
+        remote_data: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -219,8 +219,8 @@ class Folders(BaseSDK):
         Create Folders in any supported Filestorage software
 
         :param x_connection_token: The connection token
-        :param remote_data: 
         :param unified_filestorage_folder_input: 
+        :param remote_data: Set to true to include data from the original Accounting software.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -289,8 +289,8 @@ class Folders(BaseSDK):
     async def create_async(
         self, *,
         x_connection_token: str,
-        remote_data: bool,
         unified_filestorage_folder_input: Union[models.UnifiedFilestorageFolderInput, models.UnifiedFilestorageFolderInputTypedDict],
+        remote_data: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -300,8 +300,8 @@ class Folders(BaseSDK):
         Create Folders in any supported Filestorage software
 
         :param x_connection_token: The connection token
-        :param remote_data: 
         :param unified_filestorage_folder_input: 
+        :param remote_data: Set to true to include data from the original Accounting software.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

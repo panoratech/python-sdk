@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 from panora_sdk.types import BaseModel
-from typing import TypedDict
+from typing import Optional, TypedDict
+from typing_extensions import NotRequired
 
 
 class LoginDtoTypedDict(TypedDict):
-    id_user: str
     email: str
     password_hash: str
+    id_user: NotRequired[str]
     
 
 class LoginDto(BaseModel):
-    id_user: str
     email: str
     password_hash: str
+    id_user: Optional[str] = None
     
