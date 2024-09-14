@@ -8,7 +8,7 @@ from typing import List, Optional
 
 
 class Connections(BaseSDK):
-    def get_connections(
+    def retrieve(
         self,
         *,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -53,7 +53,7 @@ class Connections(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="getConnections",
+                operation_id="retrieveConnections",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
             ),
@@ -79,7 +79,7 @@ class Connections(BaseSDK):
             http_res,
         )
 
-    async def get_connections_async(
+    async def retrieve_async(
         self,
         *,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -124,7 +124,7 @@ class Connections(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="getConnections",
+                operation_id="retrieveConnections",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
             ),
