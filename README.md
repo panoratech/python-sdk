@@ -320,7 +320,7 @@ asyncio.run(main())
 
 ### [connections](docs/sdks/connections/README.md)
 
-* [get_connections](docs/sdks/connections/README.md#get_connections) - List Connections
+* [retrieve](docs/sdks/connections/README.md#retrieve) - List Connections
 
 ### [crm](docs/sdks/crm/README.md)
 

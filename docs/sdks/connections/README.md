@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [get_connections](#get_connections) - List Connections
+* [retrieve](#retrieve) - List Connections
 
-## get_connections
+## retrieve
 
 List Connections
 
@@ -20,7 +20,7 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-res = s.connections.get_connections()
+res = s.connections.retrieve()
 
 if res is not None:
     # handle response
