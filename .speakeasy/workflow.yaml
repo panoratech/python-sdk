@@ -10,6 +10,9 @@ targets:
     python:
         target: python
         source: openapi-main
+        publish:
+            pypi:
+                token: $pypi_token
         codeSamples:
             output: codeSamples.yaml
             registry:
