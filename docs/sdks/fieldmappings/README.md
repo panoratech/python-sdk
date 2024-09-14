@@ -1,6 +1,8 @@
 # FieldMappings
 (*field_mappings*)
 
+## Overview
+
 ### Available Operations
 
 * [get_field_mapping_values](#get_field_mapping_values) - Retrieve field mappings values
@@ -23,7 +25,6 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
 s.field_mappings.get_field_mapping_values()
 
 # Use the SDK ...
@@ -42,6 +43,7 @@ s.field_mappings.get_field_mapping_values()
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
 
+
 ## get_field_mappings_entities
 
 Retrieve field mapping entities
@@ -54,7 +56,6 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
-
 
 s.field_mappings.get_field_mappings_entities()
 
@@ -74,6 +75,7 @@ s.field_mappings.get_field_mappings_entities()
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
 
+
 ## get_field_mappings
 
 Retrieve field mappings
@@ -86,7 +88,6 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
-
 
 s.field_mappings.get_field_mappings()
 
@@ -106,6 +107,7 @@ s.field_mappings.get_field_mappings()
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
 
+
 ## definitions
 
 Define target Field
@@ -119,7 +121,6 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
-
 
 res = s.field_mappings.definitions(request={
     "object_type_owner": panora_sdk.ObjectTypeOwner.COMPANY,
@@ -141,15 +142,16 @@ if res is not None:
 | `request`                                                           | [models.DefineTargetFieldDto](../../models/definetargetfielddto.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[models.CustomFieldResponse](../../models/customfieldresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
+
 
 ## define_custom_field
 
@@ -164,7 +166,6 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
-
 
 res = s.field_mappings.define_custom_field(request={
     "object_type_owner": panora_sdk.CustomFieldCreateDtoObjectTypeOwner.COMPANY,
@@ -189,15 +190,16 @@ if res is not None:
 | `request`                                                           | [models.CustomFieldCreateDto](../../models/customfieldcreatedto.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[models.CustomFieldResponse](../../models/customfieldresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
+
 
 ## map
 
@@ -211,7 +213,6 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
-
 
 res = s.field_mappings.map(request={
     "attribute_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
@@ -233,10 +234,10 @@ if res is not None:
 | `request`                                                             | [models.MapFieldToProviderDto](../../models/mapfieldtoproviderdto.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 | `retries`                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)      | :heavy_minus_sign:                                                    | Configuration to override the default retry behavior of the client.   |
 
-
 ### Response
 
 **[models.CustomFieldResponse](../../models/customfieldresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

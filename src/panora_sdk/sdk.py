@@ -3,10 +3,10 @@
 from .basesdk import BaseSDK
 from .httpclient import AsyncHttpClient, HttpClient
 from .sdkconfiguration import SDKConfiguration
-from .utils.logger import Logger, NoOpLogger
+from .utils.logger import Logger, get_default_logger
 from .utils.retries import RetryConfig
 import httpx
-from panora_sdk import models
+from panora_sdk import models, utils
 from panora_sdk._hooks import HookContext, SDKHooks
 from panora_sdk.accounting import Accounting
 from panora_sdk.ats import Ats
@@ -22,15 +22,19 @@ from panora_sdk.linkedusers import LinkedUsers
 from panora_sdk.marketingautomation import Marketingautomation
 from panora_sdk.passthrough import Passthrough
 from panora_sdk.projects import Projects
+from panora_sdk.rag import Rag
 from panora_sdk.sync import Sync
 from panora_sdk.ticketing import Ticketing
 from panora_sdk.types import OptionalNullable, UNSET
-import panora_sdk.utils as utils
 from panora_sdk.webhooks import Webhooks
 from typing import Any, Callable, Dict, Optional, Union
 
+
 class Panora(BaseSDK):
     r"""Panora API: A unified API to ship integrations"""
+
+    rag: Rag
+    filestorage: Filestorage
     auth: Auth
     connections: Connections
     webhooks: Webhooks
@@ -46,8 +50,8 @@ class Panora(BaseSDK):
     marketingautomation: Marketingautomation
     ats: Ats
     accounting: Accounting
-    filestorage: Filestorage
     ecommerce: Ecommerce
+
     def __init__(
         self,
         api_key: Union[str, Callable[[], str]],
@@ -58,7 +62,7 @@ class Panora(BaseSDK):
         async_client: Optional[AsyncHttpClient] = None,
         retry_config: OptionalNullable[RetryConfig] = UNSET,
         timeout_ms: Optional[int] = None,
-        debug_logger: Optional[Logger] = None
+        debug_logger: Optional[Logger] = None,
     ) -> None:
         r"""Instantiates the SDK configuring it with the provided parameters.
 
@@ -82,38 +86,42 @@ class Panora(BaseSDK):
             async_client = httpx.AsyncClient()
 
         if debug_logger is None:
-            debug_logger = NoOpLogger()
+            debug_logger = get_default_logger()
 
         assert issubclass(
             type(async_client), AsyncHttpClient
         ), "The provided async_client must implement the AsyncHttpClient protocol."
-        
+
         security: Any = None
         if callable(api_key):
-            security = lambda: models.Security(api_key = api_key()) # pylint: disable=unnecessary-lambda-assignment
+            security = lambda: models.Security(api_key=api_key())  # pylint: disable=unnecessary-lambda-assignment
         else:
-            security = models.Security(api_key = api_key)
+            security = models.Security(api_key=api_key)
 
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
-    
 
-        BaseSDK.__init__(self, SDKConfiguration(
-            client=client,
-            async_client=async_client,
-            security=security,
-            server_url=server_url,
-            server_idx=server_idx,
-            retry_config=retry_config,
-            timeout_ms=timeout_ms,
-            debug_logger=debug_logger
-        ))
+        BaseSDK.__init__(
+            self,
+            SDKConfiguration(
+                client=client,
+                async_client=async_client,
+                security=security,
+                server_url=server_url,
+                server_idx=server_idx,
+                retry_config=retry_config,
+                timeout_ms=timeout_ms,
+                debug_logger=debug_logger,
+            ),
+        )
 
         hooks = SDKHooks()
 
         current_server_url, *_ = self.sdk_configuration.get_server_details()
-        server_url, self.sdk_configuration.client = hooks.sdk_init(current_server_url, self.sdk_configuration.client)
+        server_url, self.sdk_configuration.client = hooks.sdk_init(
+            current_server_url, self.sdk_configuration.client
+        )
         if current_server_url != server_url:
             self.sdk_configuration.server_url = server_url
 
@@ -122,8 +130,9 @@ class Panora(BaseSDK):
 
         self._init_sdks()
 
-
     def _init_sdks(self):
+        self.rag = Rag(self.sdk_configuration)
+        self.filestorage = Filestorage(self.sdk_configuration)
         self.auth = Auth(self.sdk_configuration)
         self.connections = Connections(self.sdk_configuration)
         self.webhooks = Webhooks(self.sdk_configuration)
@@ -139,12 +148,11 @@ class Panora(BaseSDK):
         self.marketingautomation = Marketingautomation(self.sdk_configuration)
         self.ats = Ats(self.sdk_configuration)
         self.accounting = Accounting(self.sdk_configuration)
-        self.filestorage = Filestorage(self.sdk_configuration)
         self.ecommerce = Ecommerce(self.sdk_configuration)
-    
-    
+
     def hello(
-        self, *,
+        self,
+        *,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -158,7 +166,7 @@ class Panora(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
         req = self.build_request(
@@ -175,40 +183,44 @@ class Panora(BaseSDK):
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="hello",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         if utils.match_response(http_res, "200", "text/plain"):
             return http_res.text
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
 
-    
-    
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )
+
     async def hello_async(
-        self, *,
+        self,
+        *,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -222,10 +234,10 @@ class Panora(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        req = self.build_request(
+        req = self.build_request_async(
             method="GET",
             path="/",
             base_url=base_url,
@@ -239,40 +251,44 @@ class Panora(BaseSDK):
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="hello", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="hello",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         if utils.match_response(http_res, "200", "text/plain"):
             return http_res.text
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
 
-    
-    
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )
+
     def health(
-        self, *,
+        self,
+        *,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -286,7 +302,7 @@ class Panora(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
         req = self.build_request(
@@ -303,40 +319,44 @@ class Panora(BaseSDK):
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="health",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         if utils.match_response(http_res, "200", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[float])
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
 
-    
-    
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )
+
     async def health_async(
-        self, *,
+        self,
+        *,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -350,10 +370,10 @@ class Panora(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        req = self.build_request(
+        req = self.build_request_async(
             method="GET",
             path="/health",
             base_url=base_url,
@@ -367,34 +387,37 @@ class Panora(BaseSDK):
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="health", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="health",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         if utils.match_response(http_res, "200", "application/json"):
             return utils.unmarshal_json(http_res.text, Optional[float])
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
 
-    
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )

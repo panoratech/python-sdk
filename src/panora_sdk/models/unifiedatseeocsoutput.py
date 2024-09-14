@@ -2,56 +2,30 @@
 
 from __future__ import annotations
 from datetime import datetime
-from enum import Enum
-from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from panora_sdk.types import (
+    BaseModel,
+    Nullable,
+    OptionalNullable,
+    UNSET,
+    UNSET_SENTINEL,
+)
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
-
-class Race(str, Enum):
-    r"""The race of the candidate"""
-    AMERICAN_INDIAN_OR_ALASKAN_NATIVE = "AMERICAN_INDIAN_OR_ALASKAN_NATIVE"
-    ASIAN = "ASIAN"
-    BLACK_OR_AFRICAN_AMERICAN = "BLACK_OR_AFRICAN_AMERICAN"
-    HISPANIC_OR_LATINO = "HISPANIC_OR_LATINO"
-    WHITE = "WHITE"
-    NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER = "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER"
-    TWO_OR_MORE_RACES = "TWO_OR_MORE_RACES"
-    DECLINE_TO_SELF_IDENTIFY = "DECLINE_TO_SELF_IDENTIFY"
-
-class Gender(str, Enum):
-    r"""The gender of the candidate"""
-    MALE = "MALE"
-    FEMALE = "FEMALE"
-    NON_BINARY = "NON_BINARY"
-    OTHER = "OTHER"
-    DECLINE_TO_SELF_IDENTIFY = "DECLINE_TO_SELF_IDENTIFY"
-
-class VeteranStatus(str, Enum):
-    r"""The veteran status of the candidate"""
-    I_AM_NOT_A_PROTECTED_VETERAN = "I_AM_NOT_A_PROTECTED_VETERAN"
-    I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN = "I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN"
-    I_DONT_WISH_TO_ANSWER = "I_DONT_WISH_TO_ANSWER"
-
-class DisabilityStatus(str, Enum):
-    r"""The disability status of the candidate"""
-    YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY = "YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY"
-    NO_I_DONT_HAVE_A_DISABILITY = "NO_I_DONT_HAVE_A_DISABILITY"
-    I_DONT_WISH_TO_ANSWER = "I_DONT_WISH_TO_ANSWER"
 
 class UnifiedAtsEeocsOutputTypedDict(TypedDict):
     candidate_id: NotRequired[Nullable[str]]
     r"""The UUID of the candidate"""
     submitted_at: NotRequired[Nullable[datetime]]
     r"""The submission date of the EEOC"""
-    race: NotRequired[Nullable[Race]]
+    race: NotRequired[Nullable[str]]
     r"""The race of the candidate"""
-    gender: NotRequired[Nullable[Gender]]
+    gender: NotRequired[Nullable[str]]
     r"""The gender of the candidate"""
-    veteran_status: NotRequired[Nullable[VeteranStatus]]
+    veteran_status: NotRequired[Nullable[str]]
     r"""The veteran status of the candidate"""
-    disability_status: NotRequired[Nullable[DisabilityStatus]]
+    disability_status: NotRequired[Nullable[str]]
     r"""The disability status of the candidate"""
     field_mappings: NotRequired[Nullable[Dict[str, Any]]]
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
@@ -65,38 +39,75 @@ class UnifiedAtsEeocsOutputTypedDict(TypedDict):
     r"""The created date of the object"""
     modified_at: NotRequired[Nullable[datetime]]
     r"""The modified date of the object"""
-    
+
 
 class UnifiedAtsEeocsOutput(BaseModel):
     candidate_id: OptionalNullable[str] = UNSET
     r"""The UUID of the candidate"""
+
     submitted_at: OptionalNullable[datetime] = UNSET
     r"""The submission date of the EEOC"""
-    race: OptionalNullable[Race] = UNSET
+
+    race: OptionalNullable[str] = UNSET
     r"""The race of the candidate"""
-    gender: OptionalNullable[Gender] = UNSET
+
+    gender: OptionalNullable[str] = UNSET
     r"""The gender of the candidate"""
-    veteran_status: OptionalNullable[VeteranStatus] = UNSET
+
+    veteran_status: OptionalNullable[str] = UNSET
     r"""The veteran status of the candidate"""
-    disability_status: OptionalNullable[DisabilityStatus] = UNSET
+
+    disability_status: OptionalNullable[str] = UNSET
     r"""The disability status of the candidate"""
+
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
+
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the EEOC"""
+
     remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the EEOC in the context of the 3rd Party"""
+
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the EEOC in the context of the 3rd Party"""
+
     created_at: OptionalNullable[datetime] = UNSET
     r"""The created date of the object"""
+
     modified_at: OptionalNullable[datetime] = UNSET
     r"""The modified date of the object"""
-    
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["candidate_id", "submitted_at", "race", "gender", "veteran_status", "disability_status", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
-        nullable_fields = ["candidate_id", "submitted_at", "race", "gender", "veteran_status", "disability_status", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        optional_fields = [
+            "candidate_id",
+            "submitted_at",
+            "race",
+            "gender",
+            "veteran_status",
+            "disability_status",
+            "field_mappings",
+            "id",
+            "remote_id",
+            "remote_data",
+            "created_at",
+            "modified_at",
+        ]
+        nullable_fields = [
+            "candidate_id",
+            "submitted_at",
+            "race",
+            "gender",
+            "veteran_status",
+            "disability_status",
+            "field_mappings",
+            "id",
+            "remote_id",
+            "remote_data",
+            "created_at",
+            "modified_at",
+        ]
         null_default_fields = []
 
         serialized = handler(self)
@@ -106,21 +117,19 @@ class UnifiedAtsEeocsOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
+            serialized.pop(k, None)
+
+            optional_nullable = k in optional_fields and k in nullable_fields
+            is_set = (
+                self.__pydantic_fields_set__.intersection({n})
+                or k in null_default_fields
+            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields
-                or (
-                    k in optional_fields
-                    and k in nullable_fields
-                    and (
-                        self.__pydantic_fields_set__.intersection({n})
-                        or k in null_default_fields
-                    )  # pylint: disable=no-member
-                )
+                not k in optional_fields or (optional_nullable and is_set)
             ):
                 m[k] = val
 
         return m
-        

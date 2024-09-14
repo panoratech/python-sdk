@@ -13,13 +13,14 @@ class CreateProjectDtoTypedDict(TypedDict):
     r"""The user ID"""
     id_organization: NotRequired[str]
     r"""The organization ID"""
-    
+
 
 class CreateProjectDto(BaseModel):
     name: str
     r"""The name of the project"""
+
     id_user: str
     r"""The user ID"""
+
     id_organization: Optional[str] = None
     r"""The organization ID"""
-    

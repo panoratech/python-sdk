@@ -2,25 +2,24 @@
 
 from .basesdk import BaseSDK
 from jsonpath import JSONPath
-from panora_sdk import models
+from panora_sdk import models, utils
 from panora_sdk._hooks import HookContext
 from panora_sdk.types import OptionalNullable, UNSET
-import panora_sdk.utils as utils
 from typing import Any, Dict, Optional, Union
 
+
 class PanoraAccountingContacts(BaseSDK):
-    
-    
     def list(
-        self, *,
+        self,
+        *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 30,
+        limit: Optional[float] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> models.ListAccountingContactsResponse:
+    ) -> Optional[models.ListAccountingContactsResponse]:
         r"""List  Contacts
 
         :param x_connection_token: The connection token
@@ -35,17 +34,17 @@ class PanoraAccountingContacts(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         request = models.ListAccountingContactsRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
             limit=limit,
             cursor=cursor,
         )
-        
+
         req = self.build_request(
             method="GET",
             path="/accounting/contacts",
@@ -60,28 +59,26 @@ class PanoraAccountingContacts(BaseSDK):
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="listAccountingContacts", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="listAccountingContacts",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         def next_func() -> Optional[models.ListAccountingContactsResponse]:
             body = utils.unmarshal_json(http_res.text, Dict[Any, Any])
             next_cursor = JSONPath("$.next_cursor").parse(body)
@@ -97,27 +94,38 @@ class PanoraAccountingContacts(BaseSDK):
                 cursor=next_cursor,
                 retries=retries,
             )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return models.ListAccountingContactsResponse(result=utils.unmarshal_json(http_res.text, Optional[models.ListAccountingContactsResponseBody]), next=next_func)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.ListAccountingContactsResponse(
+                result=utils.unmarshal_json(
+                    http_res.text, Optional[models.ListAccountingContactsResponseBody]
+                ),
+                next=next_func,
+            )
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )
+
     async def list_async(
-        self, *,
+        self,
+        *,
         x_connection_token: str,
         remote_data: Optional[bool] = None,
-        limit: Optional[float] = 30,
+        limit: Optional[float] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> models.ListAccountingContactsResponse:
+    ) -> Optional[models.ListAccountingContactsResponse]:
         r"""List  Contacts
 
         :param x_connection_token: The connection token
@@ -132,18 +140,18 @@ class PanoraAccountingContacts(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         request = models.ListAccountingContactsRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
             limit=limit,
             cursor=cursor,
         )
-        
-        req = self.build_request(
+
+        req = self.build_request_async(
             method="GET",
             path="/accounting/contacts",
             base_url=base_url,
@@ -157,28 +165,26 @@ class PanoraAccountingContacts(BaseSDK):
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="listAccountingContacts", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="listAccountingContacts",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         def next_func() -> Optional[models.ListAccountingContactsResponse]:
             body = utils.unmarshal_json(http_res.text, Dict[Any, Any])
             next_cursor = JSONPath("$.next_cursor").parse(body)
@@ -194,21 +200,35 @@ class PanoraAccountingContacts(BaseSDK):
                 cursor=next_cursor,
                 retries=retries,
             )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return models.ListAccountingContactsResponse(result=utils.unmarshal_json(http_res.text, Optional[models.ListAccountingContactsResponseBody]), next=next_func)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.ListAccountingContactsResponse(
+                result=utils.unmarshal_json(
+                    http_res.text, Optional[models.ListAccountingContactsResponseBody]
+                ),
+                next=next_func,
+            )
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )
+
     def create(
-        self, *,
+        self,
+        *,
         x_connection_token: str,
-        unified_accounting_contact_input: Union[models.UnifiedAccountingContactInput, models.UnifiedAccountingContactInputTypedDict],
+        unified_accounting_contact_input: Union[
+            models.UnifiedAccountingContactInput,
+            models.UnifiedAccountingContactInputTypedDict,
+        ],
         remote_data: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -219,7 +239,7 @@ class PanoraAccountingContacts(BaseSDK):
         Create contacts in any supported Accounting software
 
         :param x_connection_token: The connection token
-        :param unified_accounting_contact_input: 
+        :param unified_accounting_contact_input:
         :param remote_data: Set to true to include data from the original Accounting software.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -229,16 +249,18 @@ class PanoraAccountingContacts(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         request = models.CreateAccountingContactRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_accounting_contact_input=utils.get_pydantic_model(unified_accounting_contact_input, models.UnifiedAccountingContactInput),
+            unified_accounting_contact_input=utils.get_pydantic_model(
+                unified_accounting_contact_input, models.UnifiedAccountingContactInput
+            ),
         )
-        
+
         req = self.build_request(
             method="POST",
             path="/accounting/contacts",
@@ -251,45 +273,60 @@ class PanoraAccountingContacts(BaseSDK):
             user_agent_header="user-agent",
             accept_header_value="application/json",
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request.unified_accounting_contact_input, False, False, "json", models.UnifiedAccountingContactInput),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.unified_accounting_contact_input,
+                False,
+                False,
+                "json",
+                models.UnifiedAccountingContactInput,
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="createAccountingContact", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "201", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.UnifiedAccountingContactOutput])
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="createAccountingContact",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "201", "application/json"):
+            return utils.unmarshal_json(
+                http_res.text, Optional[models.UnifiedAccountingContactOutput]
+            )
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )
+
     async def create_async(
-        self, *,
+        self,
+        *,
         x_connection_token: str,
-        unified_accounting_contact_input: Union[models.UnifiedAccountingContactInput, models.UnifiedAccountingContactInputTypedDict],
+        unified_accounting_contact_input: Union[
+            models.UnifiedAccountingContactInput,
+            models.UnifiedAccountingContactInputTypedDict,
+        ],
         remote_data: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -300,7 +337,7 @@ class PanoraAccountingContacts(BaseSDK):
         Create contacts in any supported Accounting software
 
         :param x_connection_token: The connection token
-        :param unified_accounting_contact_input: 
+        :param unified_accounting_contact_input:
         :param remote_data: Set to true to include data from the original Accounting software.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -310,17 +347,19 @@ class PanoraAccountingContacts(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         request = models.CreateAccountingContactRequest(
             x_connection_token=x_connection_token,
             remote_data=remote_data,
-            unified_accounting_contact_input=utils.get_pydantic_model(unified_accounting_contact_input, models.UnifiedAccountingContactInput),
+            unified_accounting_contact_input=utils.get_pydantic_model(
+                unified_accounting_contact_input, models.UnifiedAccountingContactInput
+            ),
         )
-        
-        req = self.build_request(
+
+        req = self.build_request_async(
             method="POST",
             path="/accounting/contacts",
             base_url=base_url,
@@ -332,43 +371,55 @@ class PanoraAccountingContacts(BaseSDK):
             user_agent_header="user-agent",
             accept_header_value="application/json",
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request.unified_accounting_contact_input, False, False, "json", models.UnifiedAccountingContactInput),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.unified_accounting_contact_input,
+                False,
+                False,
+                "json",
+                models.UnifiedAccountingContactInput,
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="createAccountingContact", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="createAccountingContact",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         if utils.match_response(http_res, "201", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.UnifiedAccountingContactOutput])
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            return utils.unmarshal_json(
+                http_res.text, Optional[models.UnifiedAccountingContactOutput]
+            )
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
 
-    
-    
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )
+
     def retrieve(
-        self, *,
+        self,
+        *,
         x_connection_token: str,
         id: str,
         remote_data: Optional[bool] = None,
@@ -391,16 +442,16 @@ class PanoraAccountingContacts(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         request = models.RetrieveAccountingContactRequest(
             x_connection_token=x_connection_token,
             id=id,
             remote_data=remote_data,
         )
-        
+
         req = self.build_request(
             method="GET",
             path="/accounting/contacts/{id}",
@@ -415,40 +466,46 @@ class PanoraAccountingContacts(BaseSDK):
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="retrieveAccountingContact", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="retrieveAccountingContact",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.UnifiedAccountingContactOutput])
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
+        if utils.match_response(http_res, "200", "application/json"):
+            return utils.unmarshal_json(
+                http_res.text, Optional[models.UnifiedAccountingContactOutput]
+            )
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )
+
     async def retrieve_async(
-        self, *,
+        self,
+        *,
         x_connection_token: str,
         id: str,
         remote_data: Optional[bool] = None,
@@ -471,17 +528,17 @@ class PanoraAccountingContacts(BaseSDK):
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         request = models.RetrieveAccountingContactRequest(
             x_connection_token=x_connection_token,
             id=id,
             remote_data=remote_data,
         )
-        
-        req = self.build_request(
+
+        req = self.build_request_async(
             method="GET",
             path="/accounting/contacts/{id}",
             base_url=base_url,
@@ -495,34 +552,39 @@ class PanoraAccountingContacts(BaseSDK):
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="retrieveAccountingContact", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[models.UnifiedAccountingContactOutput])
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise models.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="retrieveAccountingContact",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return utils.unmarshal_json(
+                http_res.text, Optional[models.UnifiedAccountingContactOutput]
+            )
+        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+            raise models.SDKError(
+                "API error occurred", http_res.status_code, http_res.text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        raise models.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res.text,
+            http_res,
+        )

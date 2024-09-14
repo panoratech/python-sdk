@@ -2,26 +2,17 @@
 
 from __future__ import annotations
 from datetime import datetime
-from enum import Enum
-from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from panora_sdk.types import (
+    BaseModel,
+    Nullable,
+    OptionalNullable,
+    UNSET,
+    UNSET_SENTINEL,
+)
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
-
-class UnifiedAtsJobOutputStatus(str, Enum):
-    r"""The status of the job"""
-    OPEN = "OPEN"
-    CLOSED = "CLOSED"
-    DRAFT = "DRAFT"
-    ARCHIVED = "ARCHIVED"
-    PENDING = "PENDING"
-
-class UnifiedAtsJobOutputType(str, Enum):
-    r"""The type of the job"""
-    POSTING = "POSTING"
-    REQUISITION = "REQUISITION"
-    PROFILE = "PROFILE"
 
 class UnifiedAtsJobOutputTypedDict(TypedDict):
     name: NotRequired[Nullable[str]]
@@ -30,9 +21,9 @@ class UnifiedAtsJobOutputTypedDict(TypedDict):
     r"""The description of the job"""
     code: NotRequired[Nullable[str]]
     r"""The code of the job"""
-    status: NotRequired[Nullable[UnifiedAtsJobOutputStatus]]
+    status: NotRequired[Nullable[str]]
     r"""The status of the job"""
-    type: NotRequired[Nullable[UnifiedAtsJobOutputType]]
+    type: NotRequired[Nullable[str]]
     r"""The type of the job"""
     confidential: NotRequired[Nullable[bool]]
     r"""Whether the job is confidential"""
@@ -60,50 +51,105 @@ class UnifiedAtsJobOutputTypedDict(TypedDict):
     r"""The created date of the object"""
     modified_at: NotRequired[Nullable[datetime]]
     r"""The modified date of the object"""
-    
+
 
 class UnifiedAtsJobOutput(BaseModel):
     name: OptionalNullable[str] = UNSET
     r"""The name of the job"""
+
     description: OptionalNullable[str] = UNSET
     r"""The description of the job"""
+
     code: OptionalNullable[str] = UNSET
     r"""The code of the job"""
-    status: OptionalNullable[UnifiedAtsJobOutputStatus] = UNSET
+
+    status: OptionalNullable[str] = UNSET
     r"""The status of the job"""
-    type: OptionalNullable[UnifiedAtsJobOutputType] = UNSET
+
+    type: OptionalNullable[str] = UNSET
     r"""The type of the job"""
+
     confidential: OptionalNullable[bool] = UNSET
     r"""Whether the job is confidential"""
+
     departments: OptionalNullable[List[str]] = UNSET
     r"""The departments UUIDs associated with the job"""
+
     offices: OptionalNullable[List[str]] = UNSET
     r"""The offices UUIDs associated with the job"""
+
     managers: OptionalNullable[List[str]] = UNSET
     r"""The managers UUIDs associated with the job"""
+
     recruiters: OptionalNullable[List[str]] = UNSET
     r"""The recruiters UUIDs associated with the job"""
+
     remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote creation date of the job"""
+
     remote_updated_at: OptionalNullable[datetime] = UNSET
     r"""The remote modification date of the job"""
+
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
+
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the job"""
+
     remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the job in the context of the 3rd Party"""
+
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the job in the context of the 3rd Party"""
+
     created_at: OptionalNullable[datetime] = UNSET
     r"""The created date of the object"""
+
     modified_at: OptionalNullable[datetime] = UNSET
     r"""The modified date of the object"""
-    
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["name", "description", "code", "status", "type", "confidential", "departments", "offices", "managers", "recruiters", "remote_created_at", "remote_updated_at", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
-        nullable_fields = ["name", "description", "code", "status", "type", "confidential", "departments", "offices", "managers", "recruiters", "remote_created_at", "remote_updated_at", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        optional_fields = [
+            "name",
+            "description",
+            "code",
+            "status",
+            "type",
+            "confidential",
+            "departments",
+            "offices",
+            "managers",
+            "recruiters",
+            "remote_created_at",
+            "remote_updated_at",
+            "field_mappings",
+            "id",
+            "remote_id",
+            "remote_data",
+            "created_at",
+            "modified_at",
+        ]
+        nullable_fields = [
+            "name",
+            "description",
+            "code",
+            "status",
+            "type",
+            "confidential",
+            "departments",
+            "offices",
+            "managers",
+            "recruiters",
+            "remote_created_at",
+            "remote_updated_at",
+            "field_mappings",
+            "id",
+            "remote_id",
+            "remote_data",
+            "created_at",
+            "modified_at",
+        ]
         null_default_fields = []
 
         serialized = handler(self)
@@ -113,21 +159,19 @@ class UnifiedAtsJobOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
+            serialized.pop(k, None)
+
+            optional_nullable = k in optional_fields and k in nullable_fields
+            is_set = (
+                self.__pydantic_fields_set__.intersection({n})
+                or k in null_default_fields
+            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields
-                or (
-                    k in optional_fields
-                    and k in nullable_fields
-                    and (
-                        self.__pydantic_fields_set__.intersection({n})
-                        or k in null_default_fields
-                    )  # pylint: disable=no-member
-                )
+                not k in optional_fields or (optional_nullable and is_set)
             ):
                 m[k] = val
 
         return m
-        

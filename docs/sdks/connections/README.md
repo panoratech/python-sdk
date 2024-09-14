@@ -1,6 +1,8 @@
 # Connections
 (*connections*)
 
+## Overview
+
 ### Available Operations
 
 * [get_connections](#get_connections) - List Connections
@@ -18,7 +20,6 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
 res = s.connections.get_connections()
 
 if res is not None:
@@ -33,10 +34,10 @@ if res is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[List[models.Connection]](../../models/.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -23,6 +23,7 @@ from panora_sdk.trackingcategories import Trackingcategories
 from panora_sdk.transactions import Transactions
 from panora_sdk.vendorcredits import Vendorcredits
 
+
 class Accounting(BaseSDK):
     accounts: PanoraAccounts
     addresses: Addresses
@@ -44,11 +45,12 @@ class Accounting(BaseSDK):
     trackingcategories: Trackingcategories
     transactions: Transactions
     vendorcredits: Vendorcredits
+
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
         self.sdk_configuration = sdk_config
         self._init_sdks()
-    
+
     def _init_sdks(self):
         self.accounts = PanoraAccounts(self.sdk_configuration)
         self.addresses = Addresses(self.sdk_configuration)
@@ -70,4 +72,3 @@ class Accounting(BaseSDK):
         self.trackingcategories = Trackingcategories(self.sdk_configuration)
         self.transactions = Transactions(self.sdk_configuration)
         self.vendorcredits = Vendorcredits(self.sdk_configuration)
-    

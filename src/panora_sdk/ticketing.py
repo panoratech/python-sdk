@@ -12,6 +12,7 @@ from panora_sdk.teams import Teams
 from panora_sdk.tickets import Tickets
 from panora_sdk.users import Users
 
+
 class Ticketing(BaseSDK):
     tickets: Tickets
     users: Users
@@ -22,11 +23,12 @@ class Ticketing(BaseSDK):
     tags: Tags
     teams: Teams
     attachments: PanoraTicketingAttachments
+
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
         self.sdk_configuration = sdk_config
         self._init_sdks()
-    
+
     def _init_sdks(self):
         self.tickets = Tickets(self.sdk_configuration)
         self.users = Users(self.sdk_configuration)
@@ -37,4 +39,3 @@ class Ticketing(BaseSDK):
         self.tags = Tags(self.sdk_configuration)
         self.teams = Teams(self.sdk_configuration)
         self.attachments = PanoraTicketingAttachments(self.sdk_configuration)
-    

@@ -10,8 +10,10 @@ from typing import TypedDict
 
 class CustomFieldResponseDataType(str, Enum):
     r"""Attribute Data Type"""
+
     STRING = "string"
     NUMBER = "number"
+
 
 class CustomFieldResponseTypedDict(TypedDict):
     id_attribute: Nullable[str]
@@ -42,42 +44,70 @@ class CustomFieldResponseTypedDict(TypedDict):
     r"""Attribute Created Date"""
     modified_at: Nullable[datetime]
     r"""Attribute Modified Date"""
-    
+
 
 class CustomFieldResponse(BaseModel):
     id_attribute: Nullable[str]
     r"""Attribute Id"""
+
     status: Nullable[str]
     r"""Attribute Status"""
+
     ressource_owner_type: Nullable[str]
     r"""Attribute Ressource Owner Type"""
+
     slug: Nullable[str]
     r"""Attribute Slug"""
+
     description: Nullable[str]
     r"""Attribute Description"""
+
     data_type: Nullable[CustomFieldResponseDataType]
     r"""Attribute Data Type"""
+
     remote_id: Nullable[str]
     r"""Attribute Remote Id"""
+
     source: Nullable[str]
     r"""Attribute Source"""
+
     id_entity: Nullable[str]
     r"""Attribute Entity Id"""
+
     id_project: Nullable[str]
     r"""Attribute Project Id"""
+
     scope: Nullable[str]
     r"""Attribute Scope"""
+
     id_consumer: Nullable[str]
     r"""Attribute Consumer Id"""
+
     created_at: Nullable[datetime]
     r"""Attribute Created Date"""
+
     modified_at: Nullable[datetime]
     r"""Attribute Modified Date"""
-    
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = []
-        nullable_fields = ["id_attribute", "status", "ressource_owner_type", "slug", "description", "data_type", "remote_id", "source", "id_entity", "id_project", "scope", "id_consumer", "created_at", "modified_at"]
+        nullable_fields = [
+            "id_attribute",
+            "status",
+            "ressource_owner_type",
+            "slug",
+            "description",
+            "data_type",
+            "remote_id",
+            "source",
+            "id_entity",
+            "id_project",
+            "scope",
+            "id_consumer",
+            "created_at",
+            "modified_at",
+        ]
         null_default_fields = []
 
         serialized = handler(self)
@@ -87,21 +117,19 @@ class CustomFieldResponse(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
+            serialized.pop(k, None)
+
+            optional_nullable = k in optional_fields and k in nullable_fields
+            is_set = (
+                self.__pydantic_fields_set__.intersection({n})
+                or k in null_default_fields
+            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields
-                or (
-                    k in optional_fields
-                    and k in nullable_fields
-                    and (
-                        self.__pydantic_fields_set__.intersection({n})
-                        or k in null_default_fields
-                    )  # pylint: disable=no-member
-                )
+                not k in optional_fields or (optional_nullable and is_set)
             ):
                 m[k] = val
 
         return m
-        

@@ -47,3 +47,13 @@ Based on:
 - Speakeasy CLI 1.355.0 (2.387.0) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [python v0.5.1] .
+
+## 2024-09-14 17:55:23
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.396.9 (2.415.7) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.6.0] .
+### Releases
+- [PyPI v0.6.0] https://pypi.org/project/panora-sdk/0.6.0 - .

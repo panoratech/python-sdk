@@ -1,6 +1,8 @@
 # Payments
 (*accounting.payments*)
 
+## Overview
+
 ### Available Operations
 
 * [list](#list) - List  Payments
@@ -20,17 +22,15 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
 res = s.accounting.payments.list(x_connection_token="<value>", remote_data=True, limit=10, cursor="1b8b05bb-5273-4012-b520-8657b0b90874")
 
 if res is not None:
     while True:
         # handle items
 
-        res = res.Next()
+        res = res.next()
         if res is None:
             break
-
 
 ```
 
@@ -44,15 +44,16 @@ if res is not None:
 | `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Set to get the number of records after this cursor.                 | 1b8b05bb-5273-4012-b520-8657b0b90874                                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
-
 ### Response
 
 **[models.ListAccountingPaymentResponse](../../models/listaccountingpaymentresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
+
 
 ## create
 
@@ -61,14 +62,42 @@ Create Payments in any supported Accounting software
 ### Example Usage
 
 ```python
+import dateutil.parser
 from panora_sdk import Panora
 
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
-res = s.accounting.payments.create(x_connection_token="<value>", unified_accounting_payment_input={}, remote_data=False)
+res = s.accounting.payments.create(x_connection_token="<value>", unified_accounting_payment_input={
+    "invoice_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "transaction_date": dateutil.parser.isoparse("2024-06-15T12:00:00Z"),
+    "contact_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "account_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "currency": "USD",
+    "exchange_rate": "1.2",
+    "total_amount": 10000,
+    "type": "Credit Card",
+    "company_info_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "accounting_period_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    "tracking_categories": [
+        "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+    ],
+    "line_items": [
+        {
+            "name": "Net Income",
+            "value": 100000,
+            "type": "Operating Activities",
+            "parent_item": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+            "remote_id": "report_item_1234",
+            "remote_generated_at": dateutil.parser.isoparse("2024-07-01T12:00:00Z"),
+            "company_info_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+            "created_at": dateutil.parser.isoparse("2024-06-15T12:00:00Z"),
+            "modified_at": dateutil.parser.isoparse("2024-06-15T12:00:00Z"),
+        },
+    ],
+    "field_mappings": {},
+}, remote_data=False)
 
 if res is not None:
     # handle response
@@ -85,15 +114,16 @@ if res is not None:
 | `remote_data`                                                                         | *Optional[bool]*                                                                      | :heavy_minus_sign:                                                                    | Set to true to include data from the original Accounting software.                    | false                                                                                 |
 | `retries`                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                      | :heavy_minus_sign:                                                                    | Configuration to override the default retry behavior of the client.                   |                                                                                       |
 
-
 ### Response
 
 **[models.UnifiedAccountingPaymentOutput](../../models/unifiedaccountingpaymentoutput.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
+
 
 ## retrieve
 
@@ -107,7 +137,6 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
-
 
 res = s.accounting.payments.retrieve(x_connection_token="<value>", id="801f9ede-c698-4e66-a7fc-48d19eebaa4f", remote_data=False)
 
@@ -126,10 +155,10 @@ if res is not None:
 | `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Accounting software.  | false                                                               |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
-
 ### Response
 
 **[models.UnifiedAccountingPaymentOutput](../../models/unifiedaccountingpaymentoutput.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

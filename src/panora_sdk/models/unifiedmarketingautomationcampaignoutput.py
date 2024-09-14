@@ -7,8 +7,7 @@ from typing import TypedDict
 
 class UnifiedMarketingautomationCampaignOutputTypedDict(TypedDict):
     pass
-    
+
 
 class UnifiedMarketingautomationCampaignOutput(BaseModel):
     pass
-    
