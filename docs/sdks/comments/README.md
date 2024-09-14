@@ -1,6 +1,8 @@
 # Comments
 (*ticketing.comments*)
 
+## Overview
+
 ### Available Operations
 
 * [list](#list) - List Comments
@@ -20,17 +22,15 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
 res = s.ticketing.comments.list(x_connection_token="<value>", remote_data=True, limit=10, cursor="1b8b05bb-5273-4012-b520-8657b0b90874")
 
 if res is not None:
     while True:
         # handle items
 
-        res = res.Next()
+        res = res.next()
         if res is None:
             break
-
 
 ```
 
@@ -44,15 +44,16 @@ if res is not None:
 | `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Set to get the number of records after this cursor.                 | 1b8b05bb-5273-4012-b520-8657b0b90874                                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
-
 ### Response
 
 **[models.ListTicketingCommentsResponse](../../models/listticketingcommentsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
+
 
 ## create
 
@@ -61,19 +62,17 @@ Create Comments in any supported Ticketing software
 ### Example Usage
 
 ```python
-import panora_sdk
 from panora_sdk import Panora
 
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
 res = s.ticketing.comments.create(x_connection_token="<value>", unified_ticketing_comment_input={
     "body": "Assigned to Eric !",
     "html_body": "<p>Assigned to Eric !</p>",
     "is_private": False,
-    "creator_type": panora_sdk.UnifiedTicketingCommentInputCreatorType.USER,
+    "creator_type": "USER",
     "ticket_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
     "contact_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
     "user_id": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
@@ -97,15 +96,16 @@ if res is not None:
 | `remote_data`                                                                       | *Optional[bool]*                                                                    | :heavy_minus_sign:                                                                  | Set to true to include data from the original Ticketing software.                   |
 | `retries`                                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                    | :heavy_minus_sign:                                                                  | Configuration to override the default retry behavior of the client.                 |
 
-
 ### Response
 
 **[models.UnifiedTicketingCommentOutput](../../models/unifiedticketingcommentoutput.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
+
 
 ## retrieve
 
@@ -120,8 +120,7 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
-res = s.ticketing.comments.retrieve(x_connection_token="<value>", id="<value>")
+res = s.ticketing.comments.retrieve(x_connection_token="<value>", id="<id>")
 
 if res is not None:
     # handle response
@@ -138,10 +137,10 @@ if res is not None:
 | `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Ticketing software.   |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[models.RetrieveTicketingCommentResponseBody](../../models/retrieveticketingcommentresponsebody.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

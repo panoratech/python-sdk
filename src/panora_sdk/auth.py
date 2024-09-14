@@ -4,13 +4,14 @@ from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
 from panora_sdk.login import Login
 
+
 class Auth(BaseSDK):
     login: Login
+
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
         self.sdk_configuration = sdk_config
         self._init_sdks()
-    
+
     def _init_sdks(self):
         self.login = Login(self.sdk_configuration)
-    

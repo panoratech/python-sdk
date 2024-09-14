@@ -7,8 +7,9 @@ from panora_sdk.types import BaseModel
 from typing import TypedDict
 
 
-class EventResponseType(str, Enum):
+class Type(str, Enum):
     r"""Scope of the event"""
+
     CRM_CONTACT_CREATED = "crm.contact.created"
     CRM_CONTACT_PULLED = "crm.contact.pulled"
     CRM_COMPANY_CREATED = "crm.company.created"
@@ -66,17 +67,22 @@ class EventResponseType(str, Enum):
     FILESTORAGE_SHAREDLINK_PULLED = "filestorage.sharedlink.pulled"
     CONNECTION_CREATED = "connection.created"
 
+
 class EventResponseStatus(str, Enum):
     r"""Status of the event"""
+
     SUCCESS = "success"
     FAIL = "fail"
 
+
 class Method(str, Enum):
     r"""HTTP method used for the event"""
+
     GET = "GET"
     POST = "POST"
     PUT = "PUT"
     DELETE = "DELETE"
+
 
 class EventResponseTypedDict(TypedDict):
     id_event: str
@@ -85,7 +91,7 @@ class EventResponseTypedDict(TypedDict):
     r"""Connection ID associated with the event"""
     id_project: str
     r"""Project ID associated with the event"""
-    type: EventResponseType
+    type: Type
     r"""Scope of the event"""
     status: EventResponseStatus
     r"""Status of the event"""
@@ -101,29 +107,38 @@ class EventResponseTypedDict(TypedDict):
     r"""Timestamp of the event"""
     id_linked_user: str
     r"""Linked user ID associated with the event"""
-    
+
 
 class EventResponse(BaseModel):
     id_event: str
     r"""Unique identifier for the event"""
+
     id_connection: str
     r"""Connection ID associated with the event"""
+
     id_project: str
     r"""Project ID associated with the event"""
-    type: EventResponseType
+
+    type: Type
     r"""Scope of the event"""
+
     status: EventResponseStatus
     r"""Status of the event"""
+
     direction: str
     r"""Direction of the event"""
+
     method: Method
     r"""HTTP method used for the event"""
+
     url: str
     r"""URL associated with the event"""
+
     provider: str
     r"""Provider associated with the event"""
+
     timestamp: datetime
     r"""Timestamp of the event"""
+
     id_linked_user: str
     r"""Linked user ID associated with the event"""
-    

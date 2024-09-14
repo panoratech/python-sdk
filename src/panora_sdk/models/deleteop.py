@@ -10,9 +10,10 @@ from typing_extensions import Annotated
 class DeleteRequestTypedDict(TypedDict):
     id: str
     r"""id of the webhook to delete."""
-    
+
 
 class DeleteRequest(BaseModel):
-    id: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    id: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
     r"""id of the webhook to delete."""
-    

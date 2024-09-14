@@ -12,31 +12,40 @@ from typing_extensions import Annotated
 class RequestRequestTypedDict(TypedDict):
     x_connection_token: str
     pass_through_request_dto: PassThroughRequestDtoTypedDict
-    
+
 
 class RequestRequest(BaseModel):
-    x_connection_token: Annotated[str, pydantic.Field(alias="x-connection-token"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
-    pass_through_request_dto: Annotated[PassThroughRequestDto, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
-    
+    x_connection_token: Annotated[
+        str,
+        pydantic.Field(alias="x-connection-token"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ]
+
+    pass_through_request_dto: Annotated[
+        PassThroughRequestDto,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
 
 class RequestPassthroughResponseBodyTypedDict(TypedDict):
     pass
-    
+
 
 class RequestPassthroughResponseBody(BaseModel):
     pass
-    
+
 
 class RequestResponseBodyTypedDict(TypedDict):
     pass
-    
+
 
 class RequestResponseBody(BaseModel):
     pass
-    
 
-RequestResponseTypedDict = Union[RequestResponseBodyTypedDict, RequestPassthroughResponseBodyTypedDict]
+
+RequestResponseTypedDict = Union[
+    RequestResponseBodyTypedDict, RequestPassthroughResponseBodyTypedDict
+]
 
 
 RequestResponse = Union[RequestResponseBody, RequestPassthroughResponseBody]
-

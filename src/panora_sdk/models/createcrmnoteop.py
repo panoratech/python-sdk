@@ -3,7 +3,12 @@
 from __future__ import annotations
 from .unifiedcrmnoteinput import UnifiedCrmNoteInput, UnifiedCrmNoteInputTypedDict
 from panora_sdk.types import BaseModel
-from panora_sdk.utils import FieldMetadata, HeaderMetadata, QueryParamMetadata, RequestMetadata
+from panora_sdk.utils import (
+    FieldMetadata,
+    HeaderMetadata,
+    QueryParamMetadata,
+    RequestMetadata,
+)
 import pydantic
 from typing import Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
@@ -15,12 +20,23 @@ class CreateCrmNoteRequestTypedDict(TypedDict):
     unified_crm_note_input: UnifiedCrmNoteInputTypedDict
     remote_data: NotRequired[bool]
     r"""Set to true to include data from the original Crm software."""
-    
+
 
 class CreateCrmNoteRequest(BaseModel):
-    x_connection_token: Annotated[str, pydantic.Field(alias="x-connection-token"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
+    x_connection_token: Annotated[
+        str,
+        pydantic.Field(alias="x-connection-token"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ]
     r"""The connection token"""
-    unified_crm_note_input: Annotated[UnifiedCrmNoteInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
-    remote_data: Annotated[Optional[bool], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+
+    unified_crm_note_input: Annotated[
+        UnifiedCrmNoteInput,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
+    remote_data: Annotated[
+        Optional[bool],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
     r"""Set to true to include data from the original Crm software."""
-    

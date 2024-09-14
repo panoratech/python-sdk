@@ -1,6 +1,8 @@
 # Candidates
 (*ats.candidates*)
 
+## Overview
+
 ### Available Operations
 
 * [list](#list) - List  Candidates
@@ -20,17 +22,15 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
 res = s.ats.candidates.list(x_connection_token="<value>", remote_data=True, limit=10, cursor="1b8b05bb-5273-4012-b520-8657b0b90874")
 
 if res is not None:
     while True:
         # handle items
 
-        res = res.Next()
+        res = res.next()
         if res is None:
             break
-
 
 ```
 
@@ -44,15 +44,16 @@ if res is not None:
 | `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Set to get the number of records after this cursor.                 | 1b8b05bb-5273-4012-b520-8657b0b90874                                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
-
 ### Response
 
 **[models.ListAtsCandidateResponse](../../models/listatscandidateresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
+
 
 ## create
 
@@ -62,13 +63,11 @@ Create Candidates in any supported Ats software
 
 ```python
 import dateutil.parser
-import panora_sdk
 from panora_sdk import Panora
 
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
-
 
 res = s.ats.candidates.create(x_connection_token="<value>", unified_ats_candidate_input={
     "first_name": "Joe",
@@ -100,13 +99,13 @@ res = s.ats.candidates.create(x_connection_token="<value>", unified_ats_candidat
     "phone_numbers": [
         {
             "phone_number": "+33660688899",
-            "phone_type": panora_sdk.PhoneType.WORK,
+            "phone_type": "WORK",
         },
     ],
     "email_addresses": [
         {
             "email_address": "joedoe@gmail.com",
-            "email_address_type": panora_sdk.EmailAddressType.WORK,
+            "email_address_type": "WORK",
         },
     ],
     "field_mappings": {
@@ -130,15 +129,16 @@ if res is not None:
 | `remote_data`                                                               | *Optional[bool]*                                                            | :heavy_minus_sign:                                                          | Set to true to include data from the original Ats software.                 | false                                                                       |
 | `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |                                                                             |
 
-
 ### Response
 
 **[models.UnifiedAtsCandidateOutput](../../models/unifiedatscandidateoutput.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
+
 
 ## retrieve
 
@@ -152,7 +152,6 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
-
 
 res = s.ats.candidates.retrieve(x_connection_token="<value>", id="801f9ede-c698-4e66-a7fc-48d19eebaa4f", remote_data=False)
 
@@ -171,10 +170,10 @@ if res is not None:
 | `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Ats software.         | false                                                               |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
-
 ### Response
 
 **[models.UnifiedAtsCandidateOutput](../../models/unifiedatscandidateoutput.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

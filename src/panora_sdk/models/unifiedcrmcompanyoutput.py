@@ -4,187 +4,38 @@ from __future__ import annotations
 from .address import Address, AddressTypedDict
 from .email import Email, EmailTypedDict
 from .phone import Phone, PhoneTypedDict
-from enum import Enum
-from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from panora_sdk.types import (
+    BaseModel,
+    Nullable,
+    OptionalNullable,
+    UNSET,
+    UNSET_SENTINEL,
+)
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
 
 
-class Industry(str, Enum):
-    r"""The industry of the company. Authorized values can be found in the Industry enum."""
-    ACCOUNTING = "ACCOUNTING"
-    AIRLINES_AVIATION = "AIRLINES_AVIATION"
-    ALTERNATIVE_DISPUTE_RESOLUTION = "ALTERNATIVE_DISPUTE_RESOLUTION"
-    ALTERNATIVE_MEDICINE = "ALTERNATIVE_MEDICINE"
-    ANIMATION = "ANIMATION"
-    APPAREL_FASHION = "APPAREL_FASHION"
-    ARCHITECTURE_PLANNING = "ARCHITECTURE_PLANNING"
-    ARTS_AND_CRAFTS = "ARTS_AND_CRAFTS"
-    AUTOMOTIVE = "AUTOMOTIVE"
-    AVIATION_AEROSPACE = "AVIATION_AEROSPACE"
-    BANKING = "BANKING"
-    BIOTECHNOLOGY = "BIOTECHNOLOGY"
-    BROADCAST_MEDIA = "BROADCAST_MEDIA"
-    BUILDING_MATERIALS = "BUILDING_MATERIALS"
-    BUSINESS_SUPPLIES_AND_EQUIPMENT = "BUSINESS_SUPPLIES_AND_EQUIPMENT"
-    CAPITAL_MARKETS = "CAPITAL_MARKETS"
-    CHEMICALS = "CHEMICALS"
-    CIVIC_SOCIAL_ORGANIZATION = "CIVIC_SOCIAL_ORGANIZATION"
-    CIVIL_ENGINEERING = "CIVIL_ENGINEERING"
-    COMMERCIAL_REAL_ESTATE = "COMMERCIAL_REAL_ESTATE"
-    COMPUTER_NETWORK_SECURITY = "COMPUTER_NETWORK_SECURITY"
-    COMPUTER_GAMES = "COMPUTER_GAMES"
-    COMPUTER_HARDWARE = "COMPUTER_HARDWARE"
-    COMPUTER_NETWORKING = "COMPUTER_NETWORKING"
-    COMPUTER_SOFTWARE = "COMPUTER_SOFTWARE"
-    INTERNET = "INTERNET"
-    CONSTRUCTION = "CONSTRUCTION"
-    CONSUMER_ELECTRONICS = "CONSUMER_ELECTRONICS"
-    CONSUMER_GOODS = "CONSUMER_GOODS"
-    CONSUMER_SERVICES = "CONSUMER_SERVICES"
-    COSMETICS = "COSMETICS"
-    DAIRY = "DAIRY"
-    DEFENSE_SPACE = "DEFENSE_SPACE"
-    DESIGN = "DESIGN"
-    EDUCATION_MANAGEMENT = "EDUCATION_MANAGEMENT"
-    E_LEARNING = "E_LEARNING"
-    ELECTRICAL_ELECTRONIC_MANUFACTURING = "ELECTRICAL_ELECTRONIC_MANUFACTURING"
-    ENTERTAINMENT = "ENTERTAINMENT"
-    ENVIRONMENTAL_SERVICES = "ENVIRONMENTAL_SERVICES"
-    EVENTS_SERVICES = "EVENTS_SERVICES"
-    EXECUTIVE_OFFICE = "EXECUTIVE_OFFICE"
-    FACILITIES_SERVICES = "FACILITIES_SERVICES"
-    FARMING = "FARMING"
-    FINANCIAL_SERVICES = "FINANCIAL_SERVICES"
-    FINE_ART = "FINE_ART"
-    FISHERY = "FISHERY"
-    FOOD_BEVERAGES = "FOOD_BEVERAGES"
-    FOOD_PRODUCTION = "FOOD_PRODUCTION"
-    FUND_RAISING = "FUND_RAISING"
-    FURNITURE = "FURNITURE"
-    GAMBLING_CASINOS = "GAMBLING_CASINOS"
-    GLASS_CERAMICS_CONCRETE = "GLASS_CERAMICS_CONCRETE"
-    GOVERNMENT_ADMINISTRATION = "GOVERNMENT_ADMINISTRATION"
-    GOVERNMENT_RELATIONS = "GOVERNMENT_RELATIONS"
-    GRAPHIC_DESIGN = "GRAPHIC_DESIGN"
-    HEALTH_WELLNESS_AND_FITNESS = "HEALTH_WELLNESS_AND_FITNESS"
-    HIGHER_EDUCATION = "HIGHER_EDUCATION"
-    HOSPITAL_HEALTH_CARE = "HOSPITAL_HEALTH_CARE"
-    HOSPITALITY = "HOSPITALITY"
-    HUMAN_RESOURCES = "HUMAN_RESOURCES"
-    IMPORT_AND_EXPORT = "IMPORT_AND_EXPORT"
-    INDIVIDUAL_FAMILY_SERVICES = "INDIVIDUAL_FAMILY_SERVICES"
-    INDUSTRIAL_AUTOMATION = "INDUSTRIAL_AUTOMATION"
-    INFORMATION_SERVICES = "INFORMATION_SERVICES"
-    INFORMATION_TECHNOLOGY_AND_SERVICES = "INFORMATION_TECHNOLOGY_AND_SERVICES"
-    INSURANCE = "INSURANCE"
-    INTERNATIONAL_AFFAIRS = "INTERNATIONAL_AFFAIRS"
-    INTERNATIONAL_TRADE_AND_DEVELOPMENT = "INTERNATIONAL_TRADE_AND_DEVELOPMENT"
-    INVESTMENT_BANKING = "INVESTMENT_BANKING"
-    INVESTMENT_MANAGEMENT = "INVESTMENT_MANAGEMENT"
-    JUDICIARY = "JUDICIARY"
-    LAW_ENFORCEMENT = "LAW_ENFORCEMENT"
-    LAW_PRACTICE = "LAW_PRACTICE"
-    LEGAL_SERVICES = "LEGAL_SERVICES"
-    LEGISLATIVE_OFFICE = "LEGISLATIVE_OFFICE"
-    LEISURE_TRAVEL_TOURISM = "LEISURE_TRAVEL_TOURISM"
-    LIBRARIES = "LIBRARIES"
-    LOGISTICS_AND_SUPPLY_CHAIN = "LOGISTICS_AND_SUPPLY_CHAIN"
-    LUXURY_GOODS_JEWELRY = "LUXURY_GOODS_JEWELRY"
-    MACHINERY = "MACHINERY"
-    MANAGEMENT_CONSULTING = "MANAGEMENT_CONSULTING"
-    MARITIME = "MARITIME"
-    MARKET_RESEARCH = "MARKET_RESEARCH"
-    MARKETING_AND_ADVERTISING = "MARKETING_AND_ADVERTISING"
-    MECHANICAL_OR_INDUSTRIAL_ENGINEERING = "MECHANICAL_OR_INDUSTRIAL_ENGINEERING"
-    MEDIA_PRODUCTION = "MEDIA_PRODUCTION"
-    MEDICAL_DEVICES = "MEDICAL_DEVICES"
-    MEDICAL_PRACTICE = "MEDICAL_PRACTICE"
-    MENTAL_HEALTH_CARE = "MENTAL_HEALTH_CARE"
-    MILITARY = "MILITARY"
-    MINING_METALS = "MINING_METALS"
-    MOTION_PICTURES_AND_FILM = "MOTION_PICTURES_AND_FILM"
-    MUSEUMS_AND_INSTITUTIONS = "MUSEUMS_AND_INSTITUTIONS"
-    MUSIC = "MUSIC"
-    NANOTECHNOLOGY = "NANOTECHNOLOGY"
-    NEWSPAPERS = "NEWSPAPERS"
-    NON_PROFIT_ORGANIZATION_MANAGEMENT = "NON_PROFIT_ORGANIZATION_MANAGEMENT"
-    OIL_ENERGY = "OIL_ENERGY"
-    ONLINE_MEDIA = "ONLINE_MEDIA"
-    OUTSOURCING_OFFSHORING = "OUTSOURCING_OFFSHORING"
-    PACKAGE_FREIGHT_DELIVERY = "PACKAGE_FREIGHT_DELIVERY"
-    PACKAGING_AND_CONTAINERS = "PACKAGING_AND_CONTAINERS"
-    PAPER_FOREST_PRODUCTS = "PAPER_FOREST_PRODUCTS"
-    PERFORMING_ARTS = "PERFORMING_ARTS"
-    PHARMACEUTICALS = "PHARMACEUTICALS"
-    PHILANTHROPY = "PHILANTHROPY"
-    PHOTOGRAPHY = "PHOTOGRAPHY"
-    PLASTICS = "PLASTICS"
-    POLITICAL_ORGANIZATION = "POLITICAL_ORGANIZATION"
-    PRIMARY_SECONDARY_EDUCATION = "PRIMARY_SECONDARY_EDUCATION"
-    PRINTING = "PRINTING"
-    PROFESSIONAL_TRAINING_COACHING = "PROFESSIONAL_TRAINING_COACHING"
-    PROGRAM_DEVELOPMENT = "PROGRAM_DEVELOPMENT"
-    PUBLIC_POLICY = "PUBLIC_POLICY"
-    PUBLIC_RELATIONS_AND_COMMUNICATIONS = "PUBLIC_RELATIONS_AND_COMMUNICATIONS"
-    PUBLIC_SAFETY = "PUBLIC_SAFETY"
-    PUBLISHING = "PUBLISHING"
-    RAILROAD_MANUFACTURE = "RAILROAD_MANUFACTURE"
-    RANCHING = "RANCHING"
-    REAL_ESTATE = "REAL_ESTATE"
-    RECREATIONAL_FACILITIES_AND_SERVICES = "RECREATIONAL_FACILITIES_AND_SERVICES"
-    RELIGIOUS_INSTITUTIONS = "RELIGIOUS_INSTITUTIONS"
-    RENEWABLES_ENVIRONMENT = "RENEWABLES_ENVIRONMENT"
-    RESEARCH = "RESEARCH"
-    RESTAURANTS = "RESTAURANTS"
-    RETAIL = "RETAIL"
-    SECURITY_AND_INVESTIGATIONS = "SECURITY_AND_INVESTIGATIONS"
-    SEMICONDUCTORS = "SEMICONDUCTORS"
-    SHIPBUILDING = "SHIPBUILDING"
-    SPORTING_GOODS = "SPORTING_GOODS"
-    SPORTS = "SPORTS"
-    STAFFING_AND_RECRUITING = "STAFFING_AND_RECRUITING"
-    SUPERMARKETS = "SUPERMARKETS"
-    TELECOMMUNICATIONS = "TELECOMMUNICATIONS"
-    TEXTILES = "TEXTILES"
-    THINK_TANKS = "THINK_TANKS"
-    TOBACCO = "TOBACCO"
-    TRANSLATION_AND_LOCALIZATION = "TRANSLATION_AND_LOCALIZATION"
-    TRANSPORTATION_TRUCKING_RAILROAD = "TRANSPORTATION_TRUCKING_RAILROAD"
-    UTILITIES = "UTILITIES"
-    VENTURE_CAPITAL_PRIVATE_EQUITY = "VENTURE_CAPITAL_PRIVATE_EQUITY"
-    VETERINARY = "VETERINARY"
-    WAREHOUSING = "WAREHOUSING"
-    WHOLESALE = "WHOLESALE"
-    WINE_AND_SPIRITS = "WINE_AND_SPIRITS"
-    WIRELESS = "WIRELESS"
-    WRITING_AND_EDITING = "WRITING_AND_EDITING"
-
 class CreatedAtTypedDict(TypedDict):
     r"""The created date of the object"""
-    
-    
+
 
 class CreatedAt(BaseModel):
     r"""The created date of the object"""
-    
-    
+
 
 class ModifiedAtTypedDict(TypedDict):
     r"""The modified date of the object"""
-    
-    
+
 
 class ModifiedAt(BaseModel):
     r"""The modified date of the object"""
-    
-    
+
 
 class UnifiedCrmCompanyOutputTypedDict(TypedDict):
     name: Nullable[str]
     r"""The name of the company"""
-    industry: NotRequired[Nullable[Industry]]
+    industry: NotRequired[Nullable[str]]
     r"""The industry of the company. Authorized values can be found in the Industry enum."""
     number_of_employees: NotRequired[Nullable[float]]
     r"""The number of employees of the company"""
@@ -208,40 +59,79 @@ class UnifiedCrmCompanyOutputTypedDict(TypedDict):
     r"""The created date of the object"""
     modified_at: NotRequired[Nullable[ModifiedAtTypedDict]]
     r"""The modified date of the object"""
-    
+
 
 class UnifiedCrmCompanyOutput(BaseModel):
     name: Nullable[str]
     r"""The name of the company"""
-    industry: OptionalNullable[Industry] = UNSET
+
+    industry: OptionalNullable[str] = UNSET
     r"""The industry of the company. Authorized values can be found in the Industry enum."""
+
     number_of_employees: OptionalNullable[float] = UNSET
     r"""The number of employees of the company"""
+
     user_id: OptionalNullable[str] = UNSET
     r"""The UUID of the user who owns the company"""
+
     email_addresses: OptionalNullable[List[Email]] = UNSET
     r"""The email addresses of the company"""
+
     addresses: OptionalNullable[List[Address]] = UNSET
     r"""The addresses of the company"""
+
     phone_numbers: OptionalNullable[List[Phone]] = UNSET
     r"""The phone numbers of the company"""
+
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the company between the remote 3rd party & Panora"""
+
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the company"""
+
     remote_id: OptionalNullable[str] = UNSET
     r"""The id of the company in the context of the Crm 3rd Party"""
+
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the company in the context of the Crm 3rd Party"""
+
     created_at: OptionalNullable[CreatedAt] = UNSET
     r"""The created date of the object"""
+
     modified_at: OptionalNullable[ModifiedAt] = UNSET
     r"""The modified date of the object"""
-    
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["industry", "number_of_employees", "user_id", "email_addresses", "addresses", "phone_numbers", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
-        nullable_fields = ["name", "industry", "number_of_employees", "user_id", "email_addresses", "addresses", "phone_numbers", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        optional_fields = [
+            "industry",
+            "number_of_employees",
+            "user_id",
+            "email_addresses",
+            "addresses",
+            "phone_numbers",
+            "field_mappings",
+            "id",
+            "remote_id",
+            "remote_data",
+            "created_at",
+            "modified_at",
+        ]
+        nullable_fields = [
+            "name",
+            "industry",
+            "number_of_employees",
+            "user_id",
+            "email_addresses",
+            "addresses",
+            "phone_numbers",
+            "field_mappings",
+            "id",
+            "remote_id",
+            "remote_data",
+            "created_at",
+            "modified_at",
+        ]
         null_default_fields = []
 
         serialized = handler(self)
@@ -251,21 +141,19 @@ class UnifiedCrmCompanyOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
+            serialized.pop(k, None)
+
+            optional_nullable = k in optional_fields and k in nullable_fields
+            is_set = (
+                self.__pydantic_fields_set__.intersection({n})
+                or k in null_default_fields
+            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields
-                or (
-                    k in optional_fields
-                    and k in nullable_fields
-                    and (
-                        self.__pydantic_fields_set__.intersection({n})
-                        or k in null_default_fields
-                    )  # pylint: disable=no-member
-                )
+                not k in optional_fields or (optional_nullable and is_set)
             ):
                 m[k] = val
 
         return m
-        

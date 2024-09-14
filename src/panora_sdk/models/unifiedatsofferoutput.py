@@ -2,44 +2,33 @@
 
 from __future__ import annotations
 from datetime import datetime
-from enum import Enum
-from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
+from panora_sdk.types import (
+    BaseModel,
+    Nullable,
+    OptionalNullable,
+    UNSET,
+    UNSET_SENTINEL,
+)
 from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 from typing_extensions import NotRequired
 
 
-class UnifiedAtsOfferOutputStatus(str, Enum):
-    r"""The status of the offer"""
-    DRAFT = "DRAFT"
-    APPROVAL_SENT = "APPROVAL_SENT"
-    APPROVED = "APPROVED"
-    SENT = "SENT"
-    SENT_MANUALLY = "SENT_MANUALLY"
-    OPENED = "OPENED"
-    DENIED = "DENIED"
-    SIGNED = "SIGNED"
-    DEPRECATED = "DEPRECATED"
-
 class UnifiedAtsOfferOutputCreatedAtTypedDict(TypedDict):
     r"""The created date of the object"""
-    
-    
+
 
 class UnifiedAtsOfferOutputCreatedAt(BaseModel):
     r"""The created date of the object"""
-    
-    
+
 
 class UnifiedAtsOfferOutputModifiedAtTypedDict(TypedDict):
     r"""The modified date of the object"""
-    
-    
+
 
 class UnifiedAtsOfferOutputModifiedAt(BaseModel):
     r"""The modified date of the object"""
-    
-    
+
 
 class UnifiedAtsOfferOutputTypedDict(TypedDict):
     created_by: NotRequired[Nullable[str]]
@@ -52,7 +41,7 @@ class UnifiedAtsOfferOutputTypedDict(TypedDict):
     r"""The sending date of the offer"""
     start_date: NotRequired[Nullable[datetime]]
     r"""The start date of the offer"""
-    status: NotRequired[Nullable[UnifiedAtsOfferOutputStatus]]
+    status: NotRequired[Nullable[str]]
     r"""The status of the offer"""
     application_id: NotRequired[Nullable[str]]
     r"""The UUID of the application"""
@@ -68,40 +57,80 @@ class UnifiedAtsOfferOutputTypedDict(TypedDict):
     r"""The created date of the object"""
     modified_at: NotRequired[Nullable[UnifiedAtsOfferOutputModifiedAtTypedDict]]
     r"""The modified date of the object"""
-    
+
 
 class UnifiedAtsOfferOutput(BaseModel):
     created_by: OptionalNullable[str] = UNSET
     r"""The UUID of the creator"""
+
     remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote creation date of the offer"""
+
     closed_at: OptionalNullable[datetime] = UNSET
     r"""The closing date of the offer"""
+
     sent_at: OptionalNullable[datetime] = UNSET
     r"""The sending date of the offer"""
+
     start_date: OptionalNullable[datetime] = UNSET
     r"""The start date of the offer"""
-    status: OptionalNullable[UnifiedAtsOfferOutputStatus] = UNSET
+
+    status: OptionalNullable[str] = UNSET
     r"""The status of the offer"""
+
     application_id: OptionalNullable[str] = UNSET
     r"""The UUID of the application"""
+
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
+
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the offer"""
+
     remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the offer in the context of the 3rd Party"""
+
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the offer in the context of the 3rd Party"""
+
     created_at: OptionalNullable[UnifiedAtsOfferOutputCreatedAt] = UNSET
     r"""The created date of the object"""
+
     modified_at: OptionalNullable[UnifiedAtsOfferOutputModifiedAt] = UNSET
     r"""The modified date of the object"""
-    
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["created_by", "remote_created_at", "closed_at", "sent_at", "start_date", "status", "application_id", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
-        nullable_fields = ["created_by", "remote_created_at", "closed_at", "sent_at", "start_date", "status", "application_id", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        optional_fields = [
+            "created_by",
+            "remote_created_at",
+            "closed_at",
+            "sent_at",
+            "start_date",
+            "status",
+            "application_id",
+            "field_mappings",
+            "id",
+            "remote_id",
+            "remote_data",
+            "created_at",
+            "modified_at",
+        ]
+        nullable_fields = [
+            "created_by",
+            "remote_created_at",
+            "closed_at",
+            "sent_at",
+            "start_date",
+            "status",
+            "application_id",
+            "field_mappings",
+            "id",
+            "remote_id",
+            "remote_data",
+            "created_at",
+            "modified_at",
+        ]
         null_default_fields = []
 
         serialized = handler(self)
@@ -111,21 +140,19 @@ class UnifiedAtsOfferOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
+            serialized.pop(k, None)
+
+            optional_nullable = k in optional_fields and k in nullable_fields
+            is_set = (
+                self.__pydantic_fields_set__.intersection({n})
+                or k in null_default_fields
+            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields
-                or (
-                    k in optional_fields
-                    and k in nullable_fields
-                    and (
-                        self.__pydantic_fields_set__.intersection({n})
-                        or k in null_default_fields
-                    )  # pylint: disable=no-member
-                )
+                not k in optional_fields or (optional_nullable and is_set)
             ):
                 m[k] = val
 
         return m
-        

@@ -11,6 +11,7 @@ from panora_sdk.panora_users import PanoraUsers
 from panora_sdk.stages import Stages
 from panora_sdk.tasks import Tasks
 
+
 class Crm(BaseSDK):
     companies: Companies
     contacts: PanoraContacts
@@ -20,11 +21,12 @@ class Crm(BaseSDK):
     stages: Stages
     tasks: Tasks
     users: PanoraUsers
+
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
         self.sdk_configuration = sdk_config
         self._init_sdks()
-    
+
     def _init_sdks(self):
         self.companies = Companies(self.sdk_configuration)
         self.contacts = PanoraContacts(self.sdk_configuration)
@@ -34,4 +36,3 @@ class Crm(BaseSDK):
         self.stages = Stages(self.sdk_configuration)
         self.tasks = Tasks(self.sdk_configuration)
         self.users = PanoraUsers(self.sdk_configuration)
-    

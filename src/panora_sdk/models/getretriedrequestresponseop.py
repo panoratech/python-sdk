@@ -11,9 +11,12 @@ from typing_extensions import Annotated
 class GetRetriedRequestResponseRequestTypedDict(TypedDict):
     retry_id: str
     r"""id of the retryJob returned when you initiated a passthrough request."""
-    
+
 
 class GetRetriedRequestResponseRequest(BaseModel):
-    retry_id: Annotated[str, pydantic.Field(alias="retryId"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    retry_id: Annotated[
+        str,
+        pydantic.Field(alias="retryId"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""id of the retryJob returned when you initiated a passthrough request."""
-    

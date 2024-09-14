@@ -7,7 +7,6 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
 res = s.hello()
 
 if res is not None:

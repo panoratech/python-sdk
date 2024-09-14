@@ -1,14 +1,16 @@
 # Fulfillments
 (*ecommerce.fulfillments*)
 
+## Overview
+
 ### Available Operations
 
-* [list](#list) - List a batch of Fulfillments
-* [retrieve](#retrieve) - Retrieve a Fulfillment
+* [list](#list) - List Fulfillments
+* [retrieve](#retrieve) - Retrieve Fulfillments
 
 ## list
 
-List a batch of Fulfillments
+List Fulfillments
 
 ### Example Usage
 
@@ -19,17 +21,15 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
 res = s.ecommerce.fulfillments.list(x_connection_token="<value>", remote_data=True, limit=10, cursor="1b8b05bb-5273-4012-b520-8657b0b90874")
 
 if res is not None:
     while True:
         # handle items
 
-        res = res.Next()
+        res = res.next()
         if res is None:
             break
-
 
 ```
 
@@ -43,19 +43,20 @@ if res is not None:
 | `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Set to get the number of records after this cursor.                 | 1b8b05bb-5273-4012-b520-8657b0b90874                                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
-
 ### Response
 
 **[models.ListEcommerceFulfillmentsResponse](../../models/listecommercefulfillmentsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
 
+
 ## retrieve
 
-Retrieve a fulfillment from any connected Ats software
+Retrieve fulfillments from any connected Ats software
 
 ### Example Usage
 
@@ -66,8 +67,7 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
-
-res = s.ecommerce.fulfillments.retrieve(x_connection_token="<value>", id="<value>")
+res = s.ecommerce.fulfillments.retrieve(x_connection_token="<value>", id="<id>")
 
 if res is not None:
     # handle response
@@ -84,10 +84,10 @@ if res is not None:
 | `remote_data`                                                       | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Set to true to include data from the original Ats software.         |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[models.UnifiedEcommerceFulfillmentOutput](../../models/unifiedecommercefulfillmentoutput.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

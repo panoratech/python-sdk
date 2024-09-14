@@ -19,30 +19,48 @@ class ListAtsOfferRequestTypedDict(TypedDict):
     r"""Set to get the number of records."""
     cursor: NotRequired[str]
     r"""Set to get the number of records after this cursor."""
-    
+
 
 class ListAtsOfferRequest(BaseModel):
-    x_connection_token: Annotated[str, pydantic.Field(alias="x-connection-token"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
+    x_connection_token: Annotated[
+        str,
+        pydantic.Field(alias="x-connection-token"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ]
     r"""The connection token"""
-    remote_data: Annotated[Optional[bool], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+
+    remote_data: Annotated[
+        Optional[bool],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
     r"""Set to true to include data from the original software."""
-    limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = 30
+
+    limit: Annotated[
+        Optional[float],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = 50
     r"""Set to get the number of records."""
-    cursor: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+
+    cursor: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
     r"""Set to get the number of records after this cursor."""
-    
+
 
 class ListAtsOfferResponseBodyTypedDict(TypedDict):
     prev_cursor: Nullable[str]
     next_cursor: Nullable[str]
     data: List[UnifiedAtsOfferOutputTypedDict]
-    
+
 
 class ListAtsOfferResponseBody(BaseModel):
     prev_cursor: Nullable[str]
+
     next_cursor: Nullable[str]
+
     data: List[UnifiedAtsOfferOutput]
-    
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = []
@@ -56,31 +74,29 @@ class ListAtsOfferResponseBody(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
+            serialized.pop(k, None)
+
+            optional_nullable = k in optional_fields and k in nullable_fields
+            is_set = (
+                self.__pydantic_fields_set__.intersection({n})
+                or k in null_default_fields
+            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields
-                or (
-                    k in optional_fields
-                    and k in nullable_fields
-                    and (
-                        self.__pydantic_fields_set__.intersection({n})
-                        or k in null_default_fields
-                    )  # pylint: disable=no-member
-                )
+                not k in optional_fields or (optional_nullable and is_set)
             ):
                 m[k] = val
 
         return m
-        
+
 
 class ListAtsOfferResponseTypedDict(TypedDict):
     result: ListAtsOfferResponseBodyTypedDict
-    
+
 
 class ListAtsOfferResponse(BaseModel):
     next: Callable[[], Optional[ListAtsOfferResponse]]
-    
+
     result: ListAtsOfferResponseBody
-    
