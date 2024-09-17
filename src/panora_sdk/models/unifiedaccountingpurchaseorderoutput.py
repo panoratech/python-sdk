@@ -3,13 +3,7 @@
 from __future__ import annotations
 from .lineitem import LineItem, LineItemTypedDict
 from datetime import datetime
-from panora_sdk.types import (
-    BaseModel,
-    Nullable,
-    OptionalNullable,
-    UNSET,
-    UNSET_SENTINEL,
-)
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import List, Optional, TypedDict
 from typing_extensions import NotRequired
@@ -17,19 +11,23 @@ from typing_extensions import NotRequired
 
 class UnifiedAccountingPurchaseorderOutputFieldMappingsTypedDict(TypedDict):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedAccountingPurchaseorderOutputFieldMappings(BaseModel):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedAccountingPurchaseorderOutputRemoteDataTypedDict(TypedDict):
     r"""The remote data of the purchase order in the context of the 3rd Party"""
-
+    
+    
 
 class UnifiedAccountingPurchaseorderOutputRemoteData(BaseModel):
     r"""The remote data of the purchase order in the context of the 3rd Party"""
-
+    
+    
 
 class UnifiedAccountingPurchaseorderOutputTypedDict(TypedDict):
     status: NotRequired[Nullable[str]]
@@ -62,9 +60,7 @@ class UnifiedAccountingPurchaseorderOutputTypedDict(TypedDict):
     r"""The UUID of the associated accounting period"""
     line_items: NotRequired[List[LineItemTypedDict]]
     r"""The line items associated with this purchase order"""
-    field_mappings: NotRequired[
-        Nullable[UnifiedAccountingPurchaseorderOutputFieldMappingsTypedDict]
-    ]
+    field_mappings: NotRequired[Nullable[UnifiedAccountingPurchaseorderOutputFieldMappingsTypedDict]]
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     id: NotRequired[Nullable[str]]
     r"""The UUID of the purchase order record"""
@@ -74,141 +70,66 @@ class UnifiedAccountingPurchaseorderOutputTypedDict(TypedDict):
     r"""The date when the purchase order was created in the remote system"""
     remote_updated_at: NotRequired[Nullable[datetime]]
     r"""The date when the purchase order was last updated in the remote system"""
-    remote_data: NotRequired[
-        Nullable[UnifiedAccountingPurchaseorderOutputRemoteDataTypedDict]
-    ]
+    remote_data: NotRequired[Nullable[UnifiedAccountingPurchaseorderOutputRemoteDataTypedDict]]
     r"""The remote data of the purchase order in the context of the 3rd Party"""
     created_at: NotRequired[Nullable[datetime]]
     r"""The created date of the purchase order record"""
     modified_at: NotRequired[Nullable[datetime]]
     r"""The last modified date of the purchase order record"""
-
+    
 
 class UnifiedAccountingPurchaseorderOutput(BaseModel):
     status: OptionalNullable[str] = UNSET
     r"""The status of the purchase order"""
-
     issue_date: OptionalNullable[datetime] = UNSET
     r"""The issue date of the purchase order"""
-
     purchase_order_number: OptionalNullable[str] = UNSET
     r"""The purchase order number"""
-
     delivery_date: OptionalNullable[datetime] = UNSET
     r"""The delivery date for the purchase order"""
-
     delivery_address: OptionalNullable[str] = UNSET
     r"""The UUID of the delivery address"""
-
     customer: OptionalNullable[str] = UNSET
     r"""The UUID of the customer"""
-
     vendor: OptionalNullable[str] = UNSET
     r"""The UUID of the vendor"""
-
     memo: OptionalNullable[str] = UNSET
     r"""A memo or note for the purchase order"""
-
     company_id: OptionalNullable[str] = UNSET
     r"""The UUID of the company"""
-
     total_amount: OptionalNullable[float] = UNSET
     r"""The total amount of the purchase order in cents"""
-
     currency: OptionalNullable[str] = UNSET
     r"""The currency of the purchase order"""
-
     exchange_rate: OptionalNullable[str] = UNSET
     r"""The exchange rate applied to the purchase order"""
-
     tracking_categories: OptionalNullable[List[str]] = UNSET
     r"""The UUIDs of the tracking categories associated with the purchase order"""
-
     accounting_period_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated accounting period"""
-
     line_items: Optional[List[LineItem]] = None
     r"""The line items associated with this purchase order"""
-
-    field_mappings: OptionalNullable[
-        UnifiedAccountingPurchaseorderOutputFieldMappings
-    ] = UNSET
+    field_mappings: OptionalNullable[UnifiedAccountingPurchaseorderOutputFieldMappings] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the purchase order record"""
-
     remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the purchase order in the context of the 3rd Party"""
-
     remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The date when the purchase order was created in the remote system"""
-
     remote_updated_at: OptionalNullable[datetime] = UNSET
     r"""The date when the purchase order was last updated in the remote system"""
-
-    remote_data: OptionalNullable[UnifiedAccountingPurchaseorderOutputRemoteData] = (
-        UNSET
-    )
+    remote_data: OptionalNullable[UnifiedAccountingPurchaseorderOutputRemoteData] = UNSET
     r"""The remote data of the purchase order in the context of the 3rd Party"""
-
     created_at: OptionalNullable[datetime] = UNSET
     r"""The created date of the purchase order record"""
-
     modified_at: OptionalNullable[datetime] = UNSET
     r"""The last modified date of the purchase order record"""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "status",
-            "issue_date",
-            "purchase_order_number",
-            "delivery_date",
-            "delivery_address",
-            "customer",
-            "vendor",
-            "memo",
-            "company_id",
-            "total_amount",
-            "currency",
-            "exchange_rate",
-            "tracking_categories",
-            "accounting_period_id",
-            "line_items",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_created_at",
-            "remote_updated_at",
-            "remote_data",
-            "created_at",
-            "modified_at",
-        ]
-        nullable_fields = [
-            "status",
-            "issue_date",
-            "purchase_order_number",
-            "delivery_date",
-            "delivery_address",
-            "customer",
-            "vendor",
-            "memo",
-            "company_id",
-            "total_amount",
-            "currency",
-            "exchange_rate",
-            "tracking_categories",
-            "accounting_period_id",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_created_at",
-            "remote_updated_at",
-            "remote_data",
-            "created_at",
-            "modified_at",
-        ]
+        optional_fields = ["status", "issue_date", "purchase_order_number", "delivery_date", "delivery_address", "customer", "vendor", "memo", "company_id", "total_amount", "currency", "exchange_rate", "tracking_categories", "accounting_period_id", "line_items", "field_mappings", "id", "remote_id", "remote_created_at", "remote_updated_at", "remote_data", "created_at", "modified_at"]
+        nullable_fields = ["status", "issue_date", "purchase_order_number", "delivery_date", "delivery_address", "customer", "vendor", "memo", "company_id", "total_amount", "currency", "exchange_rate", "tracking_categories", "accounting_period_id", "field_mappings", "id", "remote_id", "remote_created_at", "remote_updated_at", "remote_data", "created_at", "modified_at"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -218,19 +139,21 @@ class UnifiedAccountingPurchaseorderOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        

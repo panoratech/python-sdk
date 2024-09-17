@@ -9,9 +9,8 @@ from typing_extensions import Annotated
 
 class RetrieveLinkedUserRequestTypedDict(TypedDict):
     id: str
-
+    
 
 class RetrieveLinkedUserRequest(BaseModel):
-    id: Annotated[
-        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
-    ]
+    id: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    

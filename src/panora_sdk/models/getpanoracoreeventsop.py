@@ -10,15 +10,9 @@ from typing_extensions import Annotated, NotRequired
 class GetPanoraCoreEventsRequestTypedDict(TypedDict):
     page: NotRequired[float]
     limit: NotRequired[float]
-
+    
 
 class GetPanoraCoreEventsRequest(BaseModel):
-    page: Annotated[
-        Optional[float],
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = 1
-
-    limit: Annotated[
-        Optional[float],
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = 10
+    page: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = 1
+    limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = 10
+    

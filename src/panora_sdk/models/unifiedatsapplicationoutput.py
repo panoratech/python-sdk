@@ -2,13 +2,7 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import (
-    BaseModel,
-    Nullable,
-    OptionalNullable,
-    UNSET,
-    UNSET_SENTINEL,
-)
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, Optional, TypedDict
 from typing_extensions import NotRequired
@@ -49,99 +43,48 @@ class UnifiedAtsApplicationOutputTypedDict(TypedDict):
     r"""The remote created date of the object"""
     remote_modified_at: NotRequired[Nullable[datetime]]
     r"""The remote modified date of the object"""
-
+    
 
 class UnifiedAtsApplicationOutput(BaseModel):
     applied_at: OptionalNullable[datetime] = UNSET
     r"""The application date"""
-
     rejected_at: OptionalNullable[datetime] = UNSET
     r"""The rejection date"""
-
     offers: OptionalNullable[List[str]] = UNSET
     r"""The offers UUIDs for the application"""
-
     source: OptionalNullable[str] = UNSET
     r"""The source of the application"""
-
     credited_to: OptionalNullable[str] = UNSET
     r"""The UUID of the person credited for the application"""
-
     current_stage: OptionalNullable[str] = UNSET
     r"""The UUID of the current stage of the application"""
-
     reject_reason: OptionalNullable[str] = UNSET
     r"""The rejection reason for the application"""
-
     candidate_id: OptionalNullable[str] = UNSET
     r"""The UUID of the candidate"""
-
     job_id: Optional[str] = None
     r"""The UUID of the job"""
-
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the application"""
-
     remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the application in the context of the 3rd Party"""
-
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the application in the context of the 3rd Party"""
-
     created_at: OptionalNullable[datetime] = UNSET
     r"""The created date of the object"""
-
     modified_at: OptionalNullable[datetime] = UNSET
     r"""The modified date of the object"""
-
     remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The remote created date of the object"""
-
     remote_modified_at: OptionalNullable[datetime] = UNSET
     r"""The remote modified date of the object"""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "applied_at",
-            "rejected_at",
-            "offers",
-            "source",
-            "credited_to",
-            "current_stage",
-            "reject_reason",
-            "candidate_id",
-            "job_id",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_data",
-            "created_at",
-            "modified_at",
-            "remote_created_at",
-            "remote_modified_at",
-        ]
-        nullable_fields = [
-            "applied_at",
-            "rejected_at",
-            "offers",
-            "source",
-            "credited_to",
-            "current_stage",
-            "reject_reason",
-            "candidate_id",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_data",
-            "created_at",
-            "modified_at",
-            "remote_created_at",
-            "remote_modified_at",
-        ]
+        optional_fields = ["applied_at", "rejected_at", "offers", "source", "credited_to", "current_stage", "reject_reason", "candidate_id", "job_id", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at", "remote_created_at", "remote_modified_at"]
+        nullable_fields = ["applied_at", "rejected_at", "offers", "source", "credited_to", "current_stage", "reject_reason", "candidate_id", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at", "remote_created_at", "remote_modified_at"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -151,19 +94,21 @@ class UnifiedAtsApplicationOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        

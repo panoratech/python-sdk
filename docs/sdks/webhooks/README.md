@@ -1,8 +1,6 @@
 # Webhooks
 (*webhooks*)
 
-## Overview
-
 ### Available Operations
 
 * [list](#list) - List webhooks
@@ -24,6 +22,7 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
+
 res = s.webhooks.list()
 
 if res is not None:
@@ -38,16 +37,15 @@ if res is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
 ### Response
 
 **[List[models.WebhookResponse]](../../models/.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## create
 
@@ -61,6 +59,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.webhooks.create(request={
     "url": "https://acme.com/webhook_receiver",
@@ -83,16 +82,15 @@ if res is not None:
 | `request`                                                           | [models.WebhookDto](../../models/webhookdto.md)                     | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
 ### Response
 
 **[models.WebhookResponse](../../models/webhookresponse.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## delete
 
@@ -106,6 +104,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.webhooks.delete(id="801f9ede-c698-4e66-a7fc-48d19eebaa4f")
 
@@ -122,16 +121,15 @@ if res is not None:
 | `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the webhook to delete.                                        | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
+
 ### Response
 
 **[models.WebhookResponse](../../models/webhookresponse.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## update_status
 
@@ -145,6 +143,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.webhooks.update_status(id="801f9ede-c698-4e66-a7fc-48d19eebaa4f")
 
@@ -161,16 +160,15 @@ if res is not None:
 | `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | id of the webhook to update.                                        | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
+
 ### Response
 
 **[models.WebhookResponse](../../models/webhookresponse.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## verify_event
 
@@ -185,9 +183,10 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
+
 res = s.webhooks.verify_event(request={
     "payload": {
-
+        "key": "<value>",
     },
     "signature": "<value>",
     "secret": "<value>",
@@ -206,10 +205,10 @@ if res is not None:
 | `request`                                                                   | [models.SignatureVerificationDto](../../models/signatureverificationdto.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 | `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |
 
+
 ### Response
 
 **[Dict[str, Any]](../../models/.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

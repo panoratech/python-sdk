@@ -2,13 +2,7 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import (
-    BaseModel,
-    Nullable,
-    OptionalNullable,
-    UNSET,
-    UNSET_SENTINEL,
-)
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import TypedDict
 from typing_extensions import NotRequired
@@ -16,19 +10,23 @@ from typing_extensions import NotRequired
 
 class UnifiedHrisBenefitOutputFieldMappingsTypedDict(TypedDict):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedHrisBenefitOutputFieldMappings(BaseModel):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedHrisBenefitOutputRemoteDataTypedDict(TypedDict):
     r"""The remote data of the benefit in the context of the 3rd Party"""
-
+    
+    
 
 class UnifiedHrisBenefitOutputRemoteData(BaseModel):
     r"""The remote data of the benefit in the context of the 3rd Party"""
-
+    
+    
 
 class UnifiedHrisBenefitOutputTypedDict(TypedDict):
     provider_name: NotRequired[Nullable[str]]
@@ -45,9 +43,7 @@ class UnifiedHrisBenefitOutputTypedDict(TypedDict):
     r"""The end date of the benefit"""
     employer_benefit_id: NotRequired[Nullable[str]]
     r"""The UUID of the associated employer benefit"""
-    field_mappings: NotRequired[
-        Nullable[UnifiedHrisBenefitOutputFieldMappingsTypedDict]
-    ]
+    field_mappings: NotRequired[Nullable[UnifiedHrisBenefitOutputFieldMappingsTypedDict]]
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     id: NotRequired[Nullable[str]]
     r"""The UUID of the benefit record"""
@@ -63,90 +59,44 @@ class UnifiedHrisBenefitOutputTypedDict(TypedDict):
     r"""The last modified date of the benefit record"""
     remote_was_deleted: NotRequired[Nullable[bool]]
     r"""Indicates if the benefit was deleted in the remote system"""
-
+    
 
 class UnifiedHrisBenefitOutput(BaseModel):
     provider_name: OptionalNullable[str] = UNSET
     r"""The name of the benefit provider"""
-
     employee_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated employee"""
-
     employee_contribution: OptionalNullable[float] = UNSET
     r"""The employee contribution amount"""
-
     company_contribution: OptionalNullable[float] = UNSET
     r"""The company contribution amount"""
-
     start_date: OptionalNullable[datetime] = UNSET
     r"""The start date of the benefit"""
-
     end_date: OptionalNullable[datetime] = UNSET
     r"""The end date of the benefit"""
-
     employer_benefit_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated employer benefit"""
-
     field_mappings: OptionalNullable[UnifiedHrisBenefitOutputFieldMappings] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the benefit record"""
-
     remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the benefit in the context of the 3rd Party"""
-
     remote_data: OptionalNullable[UnifiedHrisBenefitOutputRemoteData] = UNSET
     r"""The remote data of the benefit in the context of the 3rd Party"""
-
     remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The date when the benefit was created in the 3rd party system"""
-
     created_at: OptionalNullable[datetime] = UNSET
     r"""The created date of the benefit record"""
-
     modified_at: OptionalNullable[datetime] = UNSET
     r"""The last modified date of the benefit record"""
-
     remote_was_deleted: OptionalNullable[bool] = UNSET
     r"""Indicates if the benefit was deleted in the remote system"""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "provider_name",
-            "employee_id",
-            "employee_contribution",
-            "company_contribution",
-            "start_date",
-            "end_date",
-            "employer_benefit_id",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_data",
-            "remote_created_at",
-            "created_at",
-            "modified_at",
-            "remote_was_deleted",
-        ]
-        nullable_fields = [
-            "provider_name",
-            "employee_id",
-            "employee_contribution",
-            "company_contribution",
-            "start_date",
-            "end_date",
-            "employer_benefit_id",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_data",
-            "remote_created_at",
-            "created_at",
-            "modified_at",
-            "remote_was_deleted",
-        ]
+        optional_fields = ["provider_name", "employee_id", "employee_contribution", "company_contribution", "start_date", "end_date", "employer_benefit_id", "field_mappings", "id", "remote_id", "remote_data", "remote_created_at", "created_at", "modified_at", "remote_was_deleted"]
+        nullable_fields = ["provider_name", "employee_id", "employee_contribution", "company_contribution", "start_date", "end_date", "employer_benefit_id", "field_mappings", "id", "remote_id", "remote_data", "remote_created_at", "created_at", "modified_at", "remote_was_deleted"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -156,19 +106,21 @@ class UnifiedHrisBenefitOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        

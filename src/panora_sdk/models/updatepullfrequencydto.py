@@ -20,26 +20,21 @@ class UpdatePullFrequencyDtoTypedDict(TypedDict):
     r"""Frequency in seconds"""
     ticketing: float
     r"""Frequency in seconds"""
-
+    
 
 class UpdatePullFrequencyDto(BaseModel):
     crm: float
     r"""Frequency in seconds"""
-
     ats: float
     r"""Frequency in seconds"""
-
     hris: float
     r"""Frequency in seconds"""
-
     accounting: float
     r"""Frequency in seconds"""
-
     filestorage: float
     r"""Frequency in seconds"""
-
     ecommerce: float
     r"""Frequency in seconds"""
-
     ticketing: float
     r"""Frequency in seconds"""
+    

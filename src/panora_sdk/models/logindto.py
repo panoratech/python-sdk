@@ -10,11 +10,10 @@ class LoginDtoTypedDict(TypedDict):
     email: str
     password_hash: str
     id_user: NotRequired[str]
-
+    
 
 class LoginDto(BaseModel):
     email: str
-
     password_hash: str
-
     id_user: Optional[str] = None
+    

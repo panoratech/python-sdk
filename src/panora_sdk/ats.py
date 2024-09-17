@@ -18,7 +18,6 @@ from panora_sdk.panora_tags import PanoraTags
 from panora_sdk.rejectreasons import Rejectreasons
 from panora_sdk.scorecards import Scorecards
 
-
 class Ats(BaseSDK):
     activities: Activities
     applications: Applications
@@ -35,12 +34,11 @@ class Ats(BaseSDK):
     tags: PanoraTags
     users: PanoraAtsUsers
     eeocs: Eeocs
-
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
         self.sdk_configuration = sdk_config
         self._init_sdks()
-
+    
     def _init_sdks(self):
         self.activities = Activities(self.sdk_configuration)
         self.applications = Applications(self.sdk_configuration)
@@ -57,3 +55,4 @@ class Ats(BaseSDK):
         self.tags = PanoraTags(self.sdk_configuration)
         self.users = PanoraAtsUsers(self.sdk_configuration)
         self.eeocs = Eeocs(self.sdk_configuration)
+    

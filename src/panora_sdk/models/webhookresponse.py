@@ -26,49 +26,32 @@ class WebhookResponseTypedDict(TypedDict):
     r"""The project id tied to the webhook."""
     last_update: Nullable[datetime]
     r"""The last update date of the webhook."""
-
+    
 
 class WebhookResponse(BaseModel):
     id_webhook_endpoint: Nullable[str]
     r"""The unique UUID of the webhook."""
-
     endpoint_description: Nullable[str]
     r"""The description of the webhook."""
-
     url: Nullable[str]
     r"""The endpoint url of the webhook."""
-
     secret: str
     r"""The secret of the webhook."""
-
     active: Nullable[bool]
     r"""The status of the webhook."""
-
     created_at: Nullable[datetime]
     r"""The created date of the webhook."""
-
     scope: Nullable[List[str]]
     r"""The events that the webhook listen to."""
-
     id_project: Nullable[str]
     r"""The project id tied to the webhook."""
-
     last_update: Nullable[datetime]
     r"""The last update date of the webhook."""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = []
-        nullable_fields = [
-            "id_webhook_endpoint",
-            "endpoint_description",
-            "url",
-            "active",
-            "created_at",
-            "scope",
-            "id_project",
-            "last_update",
-        ]
+        nullable_fields = ["id_webhook_endpoint", "endpoint_description", "url", "active", "created_at", "scope", "id_project", "last_update"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -78,19 +61,21 @@ class WebhookResponse(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        

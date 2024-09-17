@@ -1,8 +1,6 @@
 # LinkedUsers
 (*linked_users*)
 
-## Overview
-
 ### Available Operations
 
 * [create](#create) - Create Linked Users
@@ -24,6 +22,7 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
+
 res = s.linked_users.create(request={
     "linked_user_origin_id": "id_1",
     "alias": "acme",
@@ -42,16 +41,15 @@ if res is not None:
 | `request`                                                           | [models.CreateLinkedUserDto](../../models/createlinkeduserdto.md)   | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
 ### Response
 
 **[models.LinkedUserResponse](../../models/linkeduserresponse.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## list
 
@@ -65,6 +63,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.linked_users.list()
 
@@ -80,16 +79,15 @@ if res is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
 ### Response
 
 **[List[models.LinkedUserResponse]](../../models/.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## import_batch
 
@@ -103,6 +101,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.linked_users.import_batch(request={
     "linked_user_origin_ids": [
@@ -124,16 +123,15 @@ if res is not None:
 | `request`                                                                   | [models.CreateBatchLinkedUserDto](../../models/createbatchlinkeduserdto.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 | `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |
 
+
 ### Response
 
 **[List[models.LinkedUserResponse]](../../models/.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## retrieve
 
@@ -147,6 +145,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.linked_users.retrieve(id="801f9ede-c698-4e66-a7fc-48d19eebaa4f")
 
@@ -163,16 +162,15 @@ if res is not None:
 | `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 | 801f9ede-c698-4e66-a7fc-48d19eebaa4f                                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
+
 ### Response
 
 **[models.LinkedUserResponse](../../models/linkeduserresponse.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## remote_id
 
@@ -186,6 +184,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.linked_users.remote_id(remote_id="id_1")
 
@@ -202,10 +201,10 @@ if res is not None:
 | `remote_id`                                                         | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 | id_1                                                                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
+
 ### Response
 
 **[models.LinkedUserResponse](../../models/linkeduserresponse.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -7,7 +7,8 @@ from typing import TypedDict
 
 class UpdatePullFrequencyResponseBodyTypedDict(TypedDict):
     pass
-
+    
 
 class UpdatePullFrequencyResponseBody(BaseModel):
     pass
+    

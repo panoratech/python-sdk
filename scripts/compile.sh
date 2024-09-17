@@ -20,8 +20,6 @@ run_command() {
     } &> "$output_file" &
 }
 
-poetry run python scripts/prepare-readme.py
-
 # Create temporary files for outputs and statuses
 for cmd in compileall pylint mypy pyright; do
     output_files[$cmd]=$(mktemp)

@@ -1,2 +1,5 @@
 # Rag
 (*rag*)
+
+### Available Operations
+

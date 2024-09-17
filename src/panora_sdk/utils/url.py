@@ -18,12 +18,7 @@ from .metadata import (
     PathParamMetadata,
     find_field_metadata,
 )
-from .values import (
-    _get_serialized_params,
-    _is_set,
-    _populate_from_globals,
-    _val_to_string,
-)
+from .values import _get_serialized_params, _populate_from_globals, _val_to_string
 
 
 def generate_url(
@@ -37,7 +32,7 @@ def generate_url(
     globals_already_populated = _populate_path_params(
         path_params, gbls, path_param_values, []
     )
-    if _is_set(gbls):
+    if gbls is not None:
         _populate_path_params(gbls, None, path_param_values, globals_already_populated)
 
     for key, value in path_param_values.items():
@@ -69,14 +64,14 @@ def _populate_path_params(
         if param_metadata is None:
             continue
 
-        param = getattr(path_params, name) if _is_set(path_params) else None
+        param = getattr(path_params, name) if path_params is not None else None
         param, global_found = _populate_from_globals(
             name, param, PathParamMetadata, gbls
         )
         if global_found:
             globals_already_populated.append(name)
 
-        if not _is_set(param):
+        if param is None:
             continue
 
         f_name = field.alias if field.alias is not None else name
@@ -92,13 +87,13 @@ def _populate_path_params(
             if param_metadata.style == "simple":
                 if isinstance(param, List):
                     for pp_val in param:
-                        if not _is_set(pp_val):
+                        if pp_val is None:
                             continue
                         pp_vals.append(_val_to_string(pp_val))
                     path_param_values[f_name] = ",".join(pp_vals)
                 elif isinstance(param, Dict):
                     for pp_key in param:
-                        if not _is_set(param[pp_key]):
+                        if param[pp_key] is None:
                             continue
                         if param_metadata.explode:
                             pp_vals.append(f"{pp_key}={_val_to_string(param[pp_key])}")
@@ -121,7 +116,7 @@ def _populate_path_params(
                         )
 
                         param_field_val = getattr(param, name)
-                        if not _is_set(param_field_val):
+                        if param_field_val is None:
                             continue
                         if param_metadata.explode:
                             pp_vals.append(
@@ -132,7 +127,7 @@ def _populate_path_params(
                                 f"{param_name},{_val_to_string(param_field_val)}"
                             )
                     path_param_values[f_name] = ",".join(pp_vals)
-                elif _is_set(param):
+                else:
                     path_param_values[f_name] = _val_to_string(param)
 
     return globals_already_populated

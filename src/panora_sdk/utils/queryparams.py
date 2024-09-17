@@ -15,12 +15,7 @@ from .metadata import (
     QueryParamMetadata,
     find_field_metadata,
 )
-from .values import (
-    _get_serialized_params,
-    _is_set,
-    _populate_from_globals,
-    _val_to_string,
-)
+from .values import _get_serialized_params, _populate_from_globals, _val_to_string
 from .forms import _populate_form
 
 
@@ -31,7 +26,7 @@ def get_query_params(
     params: Dict[str, List[str]] = {}
 
     globals_already_populated = _populate_query_params(query_params, gbls, params, [])
-    if _is_set(gbls):
+    if gbls is not None:
         _populate_query_params(gbls, None, params, globals_already_populated)
 
     return params
@@ -60,7 +55,7 @@ def _populate_query_params(
         if not metadata:
             continue
 
-        value = getattr(query_params, name) if _is_set(query_params) else None
+        value = getattr(query_params, name) if query_params is not None else None
 
         value, global_found = _populate_from_globals(
             name, value, QueryParamMetadata, gbls
@@ -104,7 +99,7 @@ def _populate_deep_object_query_params(
     obj: Any,
     params: Dict[str, List[str]],
 ):
-    if not _is_set(obj):
+    if obj is None:
         return
 
     if isinstance(obj, BaseModel):
@@ -118,7 +113,10 @@ def _populate_deep_object_query_params_basemodel(
     obj: Any,
     params: Dict[str, List[str]],
 ):
-    if not _is_set(obj) or not isinstance(obj, BaseModel):
+    if obj is None:
+        return
+
+    if not isinstance(obj, BaseModel):
         return
 
     obj_fields: Dict[str, FieldInfo] = obj.__class__.model_fields
@@ -130,11 +128,11 @@ def _populate_deep_object_query_params_basemodel(
         params_key = f"{prior_params_key}[{f_name}]"
 
         obj_param_metadata = find_field_metadata(obj_field, QueryParamMetadata)
-        if not _is_set(obj_param_metadata):
+        if obj_param_metadata is None:
             continue
 
         obj_val = getattr(obj, name)
-        if not _is_set(obj_val):
+        if obj_val is None:
             continue
 
         if isinstance(obj_val, BaseModel):
@@ -152,11 +150,11 @@ def _populate_deep_object_query_params_dict(
     value: Dict,
     params: Dict[str, List[str]],
 ):
-    if not _is_set(value):
+    if value is None:
         return
 
     for key, val in value.items():
-        if not _is_set(val):
+        if val is None:
             continue
 
         params_key = f"{prior_params_key}[{key}]"
@@ -176,11 +174,11 @@ def _populate_deep_object_query_params_list(
     value: List,
     params: Dict[str, List[str]],
 ):
-    if not _is_set(value):
+    if value is None:
         return
 
     for val in value:
-        if not _is_set(val):
+        if val is None:
             continue
 
         if params.get(params_key) is None:

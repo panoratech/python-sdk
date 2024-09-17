@@ -1,8 +1,6 @@
 # Events
 (*events*)
 
-## Overview
-
 ### Available Operations
 
 * [get_panora_core_events](#get_panora_core_events) - List Events
@@ -20,6 +18,7 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
+
 res = s.events.get_panora_core_events()
 
 if res is not None:
@@ -36,10 +35,10 @@ if res is not None:
 | `limit`                                                             | *Optional[float]*                                                   | :heavy_minus_sign:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
 ### Response
 
 **[List[models.EventResponse]](../../models/.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

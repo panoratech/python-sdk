@@ -147,14 +147,15 @@ def _parse_event(
         data = data[:-1]
         event.data = data
 
-        data_is_primitive = (
-            data.isnumeric() or data == "true" or data == "false" or data == "null"
-        )
-        data_is_json = (
-            data.startswith("{") or data.startswith("[") or data.startswith('"')
-        )
-
-        if data_is_primitive or data_is_json:
+        if (
+            data.isnumeric()
+            or data == "true"
+            or data == "false"
+            or data == "null"
+            or data.startswith("{")
+            or data.startswith("[")
+            or data.startswith('"')
+        ):
             try:
                 event.data = json.loads(data)
             except Exception:

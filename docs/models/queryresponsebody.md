@@ -1,4 +1,4 @@
-# RagControllerQueryEmbeddingsResponseBody
+# QueryResponseBody
 
 
 ## Fields

@@ -1,8 +1,6 @@
 # Retryid
 (*passthrough.retryid*)
 
-## Overview
-
 ### Available Operations
 
 * [get_retried_request_response](#get_retried_request_response) - Retrieve response of a failed passthrough request due to rate limits
@@ -19,6 +17,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 s.passthrough.retryid.get_retried_request_response(retry_id="<value>")
 

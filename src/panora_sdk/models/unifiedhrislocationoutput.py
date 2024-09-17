@@ -2,13 +2,7 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import (
-    BaseModel,
-    Nullable,
-    OptionalNullable,
-    UNSET,
-    UNSET_SENTINEL,
-)
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import TypedDict
 from typing_extensions import NotRequired
@@ -16,19 +10,23 @@ from typing_extensions import NotRequired
 
 class UnifiedHrisLocationOutputFieldMappingsTypedDict(TypedDict):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedHrisLocationOutputFieldMappings(BaseModel):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedHrisLocationOutputRemoteDataTypedDict(TypedDict):
     r"""The remote data of the location in the context of the 3rd Party"""
-
+    
+    
 
 class UnifiedHrisLocationOutputRemoteData(BaseModel):
     r"""The remote data of the location in the context of the 3rd Party"""
-
+    
+    
 
 class UnifiedHrisLocationOutputTypedDict(TypedDict):
     name: NotRequired[Nullable[str]]
@@ -53,9 +51,7 @@ class UnifiedHrisLocationOutputTypedDict(TypedDict):
     r"""The UUID of the company associated with the location"""
     employee_id: NotRequired[Nullable[str]]
     r"""The UUID of the employee associated with the location"""
-    field_mappings: NotRequired[
-        Nullable[UnifiedHrisLocationOutputFieldMappingsTypedDict]
-    ]
+    field_mappings: NotRequired[Nullable[UnifiedHrisLocationOutputFieldMappingsTypedDict]]
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
     id: NotRequired[Nullable[str]]
     r"""The UUID of the location record"""
@@ -71,110 +67,52 @@ class UnifiedHrisLocationOutputTypedDict(TypedDict):
     r"""The last modified date of the location record"""
     remote_was_deleted: NotRequired[Nullable[bool]]
     r"""Indicates if the location was deleted in the remote system"""
-
+    
 
 class UnifiedHrisLocationOutput(BaseModel):
     name: OptionalNullable[str] = UNSET
     r"""The name of the location"""
-
     phone_number: OptionalNullable[str] = UNSET
     r"""The phone number of the location"""
-
     street_1: OptionalNullable[str] = UNSET
     r"""The first line of the street address"""
-
     street_2: OptionalNullable[str] = UNSET
     r"""The second line of the street address"""
-
     city: OptionalNullable[str] = UNSET
     r"""The city of the location"""
-
     state: OptionalNullable[str] = UNSET
     r"""The state or region of the location"""
-
     zip_code: OptionalNullable[str] = UNSET
     r"""The zip or postal code of the location"""
-
     country: OptionalNullable[str] = UNSET
     r"""The country of the location"""
-
     location_type: OptionalNullable[str] = UNSET
     r"""The type of the location"""
-
     company_id: OptionalNullable[str] = UNSET
     r"""The UUID of the company associated with the location"""
-
     employee_id: OptionalNullable[str] = UNSET
     r"""The UUID of the employee associated with the location"""
-
     field_mappings: OptionalNullable[UnifiedHrisLocationOutputFieldMappings] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the location record"""
-
     remote_id: OptionalNullable[str] = UNSET
     r"""The remote ID of the location in the context of the 3rd Party"""
-
     remote_data: OptionalNullable[UnifiedHrisLocationOutputRemoteData] = UNSET
     r"""The remote data of the location in the context of the 3rd Party"""
-
     remote_created_at: OptionalNullable[datetime] = UNSET
     r"""The date when the location was created in the 3rd party system"""
-
     created_at: OptionalNullable[datetime] = UNSET
     r"""The created date of the location record"""
-
     modified_at: OptionalNullable[datetime] = UNSET
     r"""The last modified date of the location record"""
-
     remote_was_deleted: OptionalNullable[bool] = UNSET
     r"""Indicates if the location was deleted in the remote system"""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "name",
-            "phone_number",
-            "street_1",
-            "street_2",
-            "city",
-            "state",
-            "zip_code",
-            "country",
-            "location_type",
-            "company_id",
-            "employee_id",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_data",
-            "remote_created_at",
-            "created_at",
-            "modified_at",
-            "remote_was_deleted",
-        ]
-        nullable_fields = [
-            "name",
-            "phone_number",
-            "street_1",
-            "street_2",
-            "city",
-            "state",
-            "zip_code",
-            "country",
-            "location_type",
-            "company_id",
-            "employee_id",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_data",
-            "remote_created_at",
-            "created_at",
-            "modified_at",
-            "remote_was_deleted",
-        ]
+        optional_fields = ["name", "phone_number", "street_1", "street_2", "city", "state", "zip_code", "country", "location_type", "company_id", "employee_id", "field_mappings", "id", "remote_id", "remote_data", "remote_created_at", "created_at", "modified_at", "remote_was_deleted"]
+        nullable_fields = ["name", "phone_number", "street_1", "street_2", "city", "state", "zip_code", "country", "location_type", "company_id", "employee_id", "field_mappings", "id", "remote_id", "remote_data", "remote_created_at", "created_at", "modified_at", "remote_was_deleted"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -184,19 +122,21 @@ class UnifiedHrisLocationOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        

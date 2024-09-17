@@ -9,12 +9,9 @@ from panora_sdk.emails import Emails
 from panora_sdk.lists import Lists
 from panora_sdk.messages import Messages
 from panora_sdk.panora_events import PanoraEvents
-from panora_sdk.panora_marketingautomation_contacts import (
-    PanoraMarketingautomationContacts,
-)
+from panora_sdk.panora_marketingautomation_contacts import PanoraMarketingautomationContacts
 from panora_sdk.panora_marketingautomation_users import PanoraMarketingautomationUsers
 from panora_sdk.templates import Templates
-
 
 class Marketingautomation(BaseSDK):
     actions: Actions
@@ -27,12 +24,11 @@ class Marketingautomation(BaseSDK):
     messages: Messages
     templates: Templates
     users: PanoraMarketingautomationUsers
-
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
         self.sdk_configuration = sdk_config
         self._init_sdks()
-
+    
     def _init_sdks(self):
         self.actions = Actions(self.sdk_configuration)
         self.automations = Automations(self.sdk_configuration)
@@ -44,3 +40,4 @@ class Marketingautomation(BaseSDK):
         self.messages = Messages(self.sdk_configuration)
         self.templates = Templates(self.sdk_configuration)
         self.users = PanoraMarketingautomationUsers(self.sdk_configuration)
+    

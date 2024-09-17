@@ -4,13 +4,7 @@ from __future__ import annotations
 from .address import Address, AddressTypedDict
 from .email import Email, EmailTypedDict
 from .phone import Phone, PhoneTypedDict
-from panora_sdk.types import (
-    BaseModel,
-    Nullable,
-    OptionalNullable,
-    UNSET,
-    UNSET_SENTINEL,
-)
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
@@ -18,19 +12,23 @@ from typing_extensions import NotRequired
 
 class CreatedAtTypedDict(TypedDict):
     r"""The created date of the object"""
-
+    
+    
 
 class CreatedAt(BaseModel):
     r"""The created date of the object"""
-
+    
+    
 
 class ModifiedAtTypedDict(TypedDict):
     r"""The modified date of the object"""
-
+    
+    
 
 class ModifiedAt(BaseModel):
     r"""The modified date of the object"""
-
+    
+    
 
 class UnifiedCrmCompanyOutputTypedDict(TypedDict):
     name: Nullable[str]
@@ -59,79 +57,40 @@ class UnifiedCrmCompanyOutputTypedDict(TypedDict):
     r"""The created date of the object"""
     modified_at: NotRequired[Nullable[ModifiedAtTypedDict]]
     r"""The modified date of the object"""
-
+    
 
 class UnifiedCrmCompanyOutput(BaseModel):
     name: Nullable[str]
     r"""The name of the company"""
-
     industry: OptionalNullable[str] = UNSET
     r"""The industry of the company. Authorized values can be found in the Industry enum."""
-
     number_of_employees: OptionalNullable[float] = UNSET
     r"""The number of employees of the company"""
-
     user_id: OptionalNullable[str] = UNSET
     r"""The UUID of the user who owns the company"""
-
     email_addresses: OptionalNullable[List[Email]] = UNSET
     r"""The email addresses of the company"""
-
     addresses: OptionalNullable[List[Address]] = UNSET
     r"""The addresses of the company"""
-
     phone_numbers: OptionalNullable[List[Phone]] = UNSET
     r"""The phone numbers of the company"""
-
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the company between the remote 3rd party & Panora"""
-
     id: OptionalNullable[str] = UNSET
     r"""The UUID of the company"""
-
     remote_id: OptionalNullable[str] = UNSET
     r"""The id of the company in the context of the Crm 3rd Party"""
-
     remote_data: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The remote data of the company in the context of the Crm 3rd Party"""
-
     created_at: OptionalNullable[CreatedAt] = UNSET
     r"""The created date of the object"""
-
     modified_at: OptionalNullable[ModifiedAt] = UNSET
     r"""The modified date of the object"""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "industry",
-            "number_of_employees",
-            "user_id",
-            "email_addresses",
-            "addresses",
-            "phone_numbers",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_data",
-            "created_at",
-            "modified_at",
-        ]
-        nullable_fields = [
-            "name",
-            "industry",
-            "number_of_employees",
-            "user_id",
-            "email_addresses",
-            "addresses",
-            "phone_numbers",
-            "field_mappings",
-            "id",
-            "remote_id",
-            "remote_data",
-            "created_at",
-            "modified_at",
-        ]
+        optional_fields = ["industry", "number_of_employees", "user_id", "email_addresses", "addresses", "phone_numbers", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
+        nullable_fields = ["name", "industry", "number_of_employees", "user_id", "email_addresses", "addresses", "phone_numbers", "field_mappings", "id", "remote_id", "remote_data", "created_at", "modified_at"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -141,19 +100,21 @@ class UnifiedCrmCompanyOutput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        

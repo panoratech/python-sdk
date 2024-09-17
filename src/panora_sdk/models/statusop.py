@@ -18,13 +18,10 @@ class PathParamVertical(str, Enum):
     ACCOUNTING = "accounting"
     ECOMMERCE = "ecommerce"
 
-
 class StatusRequestTypedDict(TypedDict):
     vertical: PathParamVertical
-
+    
 
 class StatusRequest(BaseModel):
-    vertical: Annotated[
-        PathParamVertical,
-        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
-    ]
+    vertical: Annotated[PathParamVertical, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    
