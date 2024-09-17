@@ -2,13 +2,7 @@
 
 from __future__ import annotations
 from datetime import datetime
-from panora_sdk.types import (
-    BaseModel,
-    Nullable,
-    OptionalNullable,
-    UNSET,
-    UNSET_SENTINEL,
-)
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Any, Dict, List, TypedDict
 from typing_extensions import NotRequired
@@ -35,64 +29,34 @@ class UnifiedCrmEngagementInputTypedDict(TypedDict):
     r"""The UUIDs of contacts tied to the engagement object"""
     field_mappings: NotRequired[Nullable[Dict[str, Any]]]
     r"""The custom field mappings of the engagement between the remote 3rd party & Panora"""
-
+    
 
 class UnifiedCrmEngagementInput(BaseModel):
     type: Nullable[str]
     r"""The type of the engagement. Authorized values are EMAIL, CALL or MEETING"""
-
     content: OptionalNullable[str] = UNSET
     r"""The content of the engagement"""
-
     direction: OptionalNullable[str] = UNSET
     r"""The direction of the engagement. Authorized values are INBOUND or OUTBOUND"""
-
     subject: OptionalNullable[str] = UNSET
     r"""The subject of the engagement"""
-
     start_at: OptionalNullable[datetime] = UNSET
     r"""The start time of the engagement"""
-
     end_time: OptionalNullable[datetime] = UNSET
     r"""The end time of the engagement"""
-
     user_id: OptionalNullable[str] = UNSET
     r"""The UUID of the user tied to the engagement"""
-
     company_id: OptionalNullable[str] = UNSET
     r"""The UUID of the company tied to the engagement"""
-
     contacts: OptionalNullable[List[str]] = UNSET
     r"""The UUIDs of contacts tied to the engagement object"""
-
     field_mappings: OptionalNullable[Dict[str, Any]] = UNSET
     r"""The custom field mappings of the engagement between the remote 3rd party & Panora"""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "content",
-            "direction",
-            "subject",
-            "start_at",
-            "end_time",
-            "user_id",
-            "company_id",
-            "contacts",
-            "field_mappings",
-        ]
-        nullable_fields = [
-            "type",
-            "content",
-            "direction",
-            "subject",
-            "start_at",
-            "end_time",
-            "user_id",
-            "company_id",
-            "contacts",
-            "field_mappings",
-        ]
+        optional_fields = ["content", "direction", "subject", "start_at", "end_time", "user_id", "company_id", "contacts", "field_mappings"]
+        nullable_fields = ["type", "content", "direction", "subject", "start_at", "end_time", "user_id", "company_id", "contacts", "field_mappings"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -102,19 +66,21 @@ class UnifiedCrmEngagementInput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        

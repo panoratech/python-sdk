@@ -10,10 +10,9 @@ from typing_extensions import Annotated
 class UpdateStatusRequestTypedDict(TypedDict):
     id: str
     r"""id of the webhook to update."""
-
+    
 
 class UpdateStatusRequest(BaseModel):
-    id: Annotated[
-        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
-    ]
+    id: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""id of the webhook to update."""
+    

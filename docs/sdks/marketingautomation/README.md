@@ -1,2 +1,5 @@
 # Marketingautomation
 (*marketingautomation*)
+
+### Available Operations
+

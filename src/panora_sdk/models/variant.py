@@ -7,7 +7,8 @@ from typing import TypedDict
 
 class VariantTypedDict(TypedDict):
     pass
-
+    
 
 class Variant(BaseModel):
     pass
+    

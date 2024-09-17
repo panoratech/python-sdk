@@ -9,15 +9,13 @@ from pydantic import ConfigDict, create_model
 from pydantic_core import from_json
 from typing_inspect import is_optional_type
 
-from ..types.basemodel import BaseModel, Nullable, OptionalNullable, Unset
+from ..types.basemodel import BaseModel, Nullable, OptionalNullable
 
 
 def serialize_decimal(as_str: bool):
     def serialize(d):
         if is_optional_type(type(d)) and d is None:
             return None
-        if isinstance(d, Unset):
-            return d
 
         if not isinstance(d, Decimal):
             raise ValueError("Expected Decimal object")
@@ -31,7 +29,7 @@ def validate_decimal(d):
     if d is None:
         return None
 
-    if isinstance(d, (Decimal, Unset)):
+    if isinstance(d, Decimal):
         return d
 
     if not isinstance(d, (str, int, float)):
@@ -44,8 +42,6 @@ def serialize_float(as_str: bool):
     def serialize(f):
         if is_optional_type(type(f)) and f is None:
             return None
-        if isinstance(f, Unset):
-            return f
 
         if not isinstance(f, float):
             raise ValueError("Expected float")
@@ -59,7 +55,7 @@ def validate_float(f):
     if f is None:
         return None
 
-    if isinstance(f, (float, Unset)):
+    if isinstance(f, float):
         return f
 
     if not isinstance(f, str):
@@ -69,16 +65,14 @@ def validate_float(f):
 
 
 def serialize_int(as_str: bool):
-    def serialize(i):
-        if is_optional_type(type(i)) and i is None:
+    def serialize(b):
+        if is_optional_type(type(b)) and b is None:
             return None
-        if isinstance(i, Unset):
-            return i
 
-        if not isinstance(i, int):
+        if not isinstance(b, int):
             raise ValueError("Expected int")
 
-        return str(i) if as_str else i
+        return str(b) if as_str else b
 
     return serialize
 
@@ -87,7 +81,7 @@ def validate_int(b):
     if b is None:
         return None
 
-    if isinstance(b, (int, Unset)):
+    if isinstance(b, int):
         return b
 
     if not isinstance(b, str):
@@ -100,9 +94,6 @@ def validate_open_enum(is_int: bool):
     def validate(e):
         if e is None:
             return None
-
-        if isinstance(e, Unset):
-            return e
 
         if is_int:
             if not isinstance(e, int):

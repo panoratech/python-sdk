@@ -18,7 +18,6 @@ from panora_sdk.timeoffbalances import Timeoffbalances
 from panora_sdk.timeoffs import Timeoffs
 from panora_sdk.timesheetentries import Timesheetentries
 
-
 class Hris(BaseSDK):
     bankinfos: Bankinfos
     benefits: Benefits
@@ -35,12 +34,11 @@ class Hris(BaseSDK):
     timeoffs: Timeoffs
     timeoffbalances: Timeoffbalances
     timesheetentries: Timesheetentries
-
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
         self.sdk_configuration = sdk_config
         self._init_sdks()
-
+    
     def _init_sdks(self):
         self.bankinfos = Bankinfos(self.sdk_configuration)
         self.benefits = Benefits(self.sdk_configuration)
@@ -57,3 +55,4 @@ class Hris(BaseSDK):
         self.timeoffs = Timeoffs(self.sdk_configuration)
         self.timeoffbalances = Timeoffbalances(self.sdk_configuration)
         self.timesheetentries = Timesheetentries(self.sdk_configuration)
+    

@@ -3,13 +3,7 @@
 from __future__ import annotations
 from .lineitem import LineItem, LineItemTypedDict
 from datetime import datetime
-from panora_sdk.types import (
-    BaseModel,
-    Nullable,
-    OptionalNullable,
-    UNSET,
-    UNSET_SENTINEL,
-)
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import List, Optional, TypedDict
 from typing_extensions import NotRequired
@@ -17,11 +11,13 @@ from typing_extensions import NotRequired
 
 class UnifiedAccountingPaymentInputFieldMappingsTypedDict(TypedDict):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedAccountingPaymentInputFieldMappings(BaseModel):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedAccountingPaymentInputTypedDict(TypedDict):
     invoice_id: NotRequired[Nullable[str]]
@@ -48,83 +44,42 @@ class UnifiedAccountingPaymentInputTypedDict(TypedDict):
     r"""The UUIDs of the tracking categories associated with the payment"""
     line_items: NotRequired[List[LineItemTypedDict]]
     r"""The line items associated with this payment"""
-    field_mappings: NotRequired[
-        Nullable[UnifiedAccountingPaymentInputFieldMappingsTypedDict]
-    ]
+    field_mappings: NotRequired[Nullable[UnifiedAccountingPaymentInputFieldMappingsTypedDict]]
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
 
 class UnifiedAccountingPaymentInput(BaseModel):
     invoice_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated invoice"""
-
     transaction_date: OptionalNullable[datetime] = UNSET
     r"""The date of the transaction"""
-
     contact_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated contact"""
-
     account_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated account"""
-
     currency: OptionalNullable[str] = UNSET
     r"""The currency of the payment"""
-
     exchange_rate: OptionalNullable[str] = UNSET
     r"""The exchange rate applied to the payment"""
-
     total_amount: OptionalNullable[float] = UNSET
     r"""The total amount of the payment in cents"""
-
     type: OptionalNullable[str] = UNSET
     r"""The type of payment"""
-
     company_info_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated company info"""
-
     accounting_period_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated accounting period"""
-
     tracking_categories: OptionalNullable[List[str]] = UNSET
     r"""The UUIDs of the tracking categories associated with the payment"""
-
     line_items: Optional[List[LineItem]] = None
     r"""The line items associated with this payment"""
-
     field_mappings: OptionalNullable[UnifiedAccountingPaymentInputFieldMappings] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "invoice_id",
-            "transaction_date",
-            "contact_id",
-            "account_id",
-            "currency",
-            "exchange_rate",
-            "total_amount",
-            "type",
-            "company_info_id",
-            "accounting_period_id",
-            "tracking_categories",
-            "line_items",
-            "field_mappings",
-        ]
-        nullable_fields = [
-            "invoice_id",
-            "transaction_date",
-            "contact_id",
-            "account_id",
-            "currency",
-            "exchange_rate",
-            "total_amount",
-            "type",
-            "company_info_id",
-            "accounting_period_id",
-            "tracking_categories",
-            "field_mappings",
-        ]
+        optional_fields = ["invoice_id", "transaction_date", "contact_id", "account_id", "currency", "exchange_rate", "total_amount", "type", "company_info_id", "accounting_period_id", "tracking_categories", "line_items", "field_mappings"]
+        nullable_fields = ["invoice_id", "transaction_date", "contact_id", "account_id", "currency", "exchange_rate", "total_amount", "type", "company_info_id", "accounting_period_id", "tracking_categories", "field_mappings"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -134,19 +89,21 @@ class UnifiedAccountingPaymentInput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        

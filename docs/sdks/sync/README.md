@@ -1,8 +1,6 @@
 # Sync
 (*sync*)
 
-## Overview
-
 ### Available Operations
 
 * [status](#status) - Retrieve sync status of a certain vertical
@@ -24,6 +22,7 @@ s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
 
+
 s.sync.status(vertical=panora_sdk.PathParamVertical.TICKETING)
 
 # Use the SDK ...
@@ -43,7 +42,6 @@ s.sync.status(vertical=panora_sdk.PathParamVertical.TICKETING)
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
 
-
 ## resync
 
 Resync common objects across a vertical
@@ -56,6 +54,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.sync.resync()
 
@@ -71,16 +70,15 @@ if res is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
 ### Response
 
 **[models.ResyncStatusDto](../../models/resyncstatusdto.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## update_pull_frequency
 
@@ -94,6 +92,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.sync.update_pull_frequency(request={
     "crm": 1800,
@@ -118,16 +117,15 @@ if res is not None:
 | `request`                                                               | [models.UpdatePullFrequencyDto](../../models/updatepullfrequencydto.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 | `retries`                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)        | :heavy_minus_sign:                                                      | Configuration to override the default retry behavior of the client.     |
 
+
 ### Response
 
 **[models.UpdatePullFrequencyResponseBody](../../models/updatepullfrequencyresponsebody.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | models.SDKError | 4xx-5xx         | */*             |
-
 
 ## get_pull_frequency
 
@@ -141,6 +139,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 res = s.sync.get_pull_frequency()
 
@@ -156,10 +155,10 @@ if res is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
+
 ### Response
 
 **[models.UpdatePullFrequencyDto](../../models/updatepullfrequencydto.md)**
-
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -10,11 +10,8 @@ from typing_extensions import Annotated
 
 class RemoteIDRequestTypedDict(TypedDict):
     remote_id: str
-
+    
 
 class RemoteIDRequest(BaseModel):
-    remote_id: Annotated[
-        str,
-        pydantic.Field(alias="remoteId"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ]
+    remote_id: Annotated[str, pydantic.Field(alias="remoteId"), FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
+    

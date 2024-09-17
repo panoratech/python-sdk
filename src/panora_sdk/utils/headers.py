@@ -15,16 +15,16 @@ from .metadata import (
     find_field_metadata,
 )
 
-from .values import _is_set, _populate_from_globals, _val_to_string
+from .values import _populate_from_globals, _val_to_string
 
 
 def get_headers(headers_params: Any, gbls: Optional[Any] = None) -> Dict[str, str]:
     headers: Dict[str, str] = {}
 
     globals_already_populated = []
-    if _is_set(headers_params):
+    if headers_params is not None:
         globals_already_populated = _populate_headers(headers_params, gbls, headers, [])
-    if _is_set(gbls):
+    if gbls is not None:
         _populate_headers(gbls, None, headers, globals_already_populated)
 
     return headers
@@ -67,7 +67,7 @@ def _populate_headers(
 
 
 def _serialize_header(explode: bool, obj: Any) -> str:
-    if not _is_set(obj):
+    if obj is None:
         return ""
 
     if isinstance(obj, BaseModel):
@@ -83,7 +83,7 @@ def _serialize_header(explode: bool, obj: Any) -> str:
             f_name = obj_field.alias if obj_field.alias is not None else name
 
             val = getattr(obj, name)
-            if not _is_set(val):
+            if val is None:
                 continue
 
             if explode:
@@ -98,7 +98,7 @@ def _serialize_header(explode: bool, obj: Any) -> str:
         items = []
 
         for key, value in obj.items():
-            if not _is_set(value):
+            if value is None:
                 continue
 
             if explode:
@@ -113,14 +113,14 @@ def _serialize_header(explode: bool, obj: Any) -> str:
         items = []
 
         for value in obj:
-            if not _is_set(value):
+            if value is None:
                 continue
 
             items.append(_val_to_string(value))
 
         if len(items) > 0:
             return ",".join(items)
-    elif _is_set(obj):
+    else:
         return f"{_val_to_string(obj)}"
 
     return ""

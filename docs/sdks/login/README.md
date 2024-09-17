@@ -1,8 +1,6 @@
 # Login
 (*auth.login*)
 
-## Overview
-
 ### Available Operations
 
 * [sign_in](#sign_in) - Log In
@@ -19,6 +17,7 @@ from panora_sdk import Panora
 s = Panora(
     api_key="<YOUR_API_KEY_HERE>",
 )
+
 
 s.auth.login.sign_in(request={
     "email": "Oda.Treutel97@hotmail.com",

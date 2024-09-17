@@ -1,2 +1,5 @@
 # Ecommerce
 (*ecommerce*)
+
+### Available Operations
+

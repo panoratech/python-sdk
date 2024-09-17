@@ -9,17 +9,8 @@ from typing_extensions import Annotated
 
 class SecurityTypedDict(TypedDict):
     api_key: str
-
+    
 
 class Security(BaseModel):
-    api_key: Annotated[
-        str,
-        FieldMetadata(
-            security=SecurityMetadata(
-                scheme=True,
-                scheme_type="apiKey",
-                sub_type="header",
-                field_name="x-api-key",
-            )
-        ),
-    ]
+    api_key: Annotated[str, FieldMetadata(security=SecurityMetadata(scheme=True, scheme_type="apiKey", sub_type="header", field_name="x-api-key"))]
+    

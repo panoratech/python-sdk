@@ -3,13 +3,7 @@
 from __future__ import annotations
 from .lineitem import LineItem, LineItemTypedDict
 from datetime import datetime
-from panora_sdk.types import (
-    BaseModel,
-    Nullable,
-    OptionalNullable,
-    UNSET,
-    UNSET_SENTINEL,
-)
+from panora_sdk.types import BaseModel, Nullable, OptionalNullable, UNSET, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import List, Optional, TypedDict
 from typing_extensions import NotRequired
@@ -17,11 +11,13 @@ from typing_extensions import NotRequired
 
 class UnifiedAccountingInvoiceInputFieldMappingsTypedDict(TypedDict):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedAccountingInvoiceInputFieldMappings(BaseModel):
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
+    
 
 class UnifiedAccountingInvoiceInputTypedDict(TypedDict):
     type: NotRequired[Nullable[str]]
@@ -60,113 +56,54 @@ class UnifiedAccountingInvoiceInputTypedDict(TypedDict):
     r"""The UUIDs of the tracking categories associated with the invoice"""
     line_items: NotRequired[List[LineItemTypedDict]]
     r"""The line items associated with this invoice"""
-    field_mappings: NotRequired[
-        Nullable[UnifiedAccountingInvoiceInputFieldMappingsTypedDict]
-    ]
+    field_mappings: NotRequired[Nullable[UnifiedAccountingInvoiceInputFieldMappingsTypedDict]]
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
 
 class UnifiedAccountingInvoiceInput(BaseModel):
     type: OptionalNullable[str] = UNSET
     r"""The type of the invoice"""
-
     number: OptionalNullable[str] = UNSET
     r"""The invoice number"""
-
     issue_date: OptionalNullable[datetime] = UNSET
     r"""The date the invoice was issued"""
-
     due_date: OptionalNullable[datetime] = UNSET
     r"""The due date of the invoice"""
-
     paid_on_date: OptionalNullable[datetime] = UNSET
     r"""The date the invoice was paid"""
-
     memo: OptionalNullable[str] = UNSET
     r"""A memo or note on the invoice"""
-
     currency: OptionalNullable[str] = UNSET
     r"""The currency of the invoice"""
-
     exchange_rate: OptionalNullable[str] = UNSET
     r"""The exchange rate applied to the invoice"""
-
     total_discount: OptionalNullable[float] = UNSET
     r"""The total discount applied to the invoice"""
-
     sub_total: OptionalNullable[float] = UNSET
     r"""The subtotal of the invoice"""
-
     status: OptionalNullable[str] = UNSET
     r"""The status of the invoice"""
-
     total_tax_amount: OptionalNullable[float] = UNSET
     r"""The total tax amount on the invoice"""
-
     total_amount: OptionalNullable[float] = UNSET
     r"""The total amount of the invoice"""
-
     balance: OptionalNullable[float] = UNSET
     r"""The remaining balance on the invoice"""
-
     contact_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated contact"""
-
     accounting_period_id: OptionalNullable[str] = UNSET
     r"""The UUID of the associated accounting period"""
-
     tracking_categories: OptionalNullable[List[str]] = UNSET
     r"""The UUIDs of the tracking categories associated with the invoice"""
-
     line_items: Optional[List[LineItem]] = None
     r"""The line items associated with this invoice"""
-
     field_mappings: OptionalNullable[UnifiedAccountingInvoiceInputFieldMappings] = UNSET
     r"""The custom field mappings of the object between the remote 3rd party & Panora"""
-
+    
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "type",
-            "number",
-            "issue_date",
-            "due_date",
-            "paid_on_date",
-            "memo",
-            "currency",
-            "exchange_rate",
-            "total_discount",
-            "sub_total",
-            "status",
-            "total_tax_amount",
-            "total_amount",
-            "balance",
-            "contact_id",
-            "accounting_period_id",
-            "tracking_categories",
-            "line_items",
-            "field_mappings",
-        ]
-        nullable_fields = [
-            "type",
-            "number",
-            "issue_date",
-            "due_date",
-            "paid_on_date",
-            "memo",
-            "currency",
-            "exchange_rate",
-            "total_discount",
-            "sub_total",
-            "status",
-            "total_tax_amount",
-            "total_amount",
-            "balance",
-            "contact_id",
-            "accounting_period_id",
-            "tracking_categories",
-            "field_mappings",
-        ]
+        optional_fields = ["type", "number", "issue_date", "due_date", "paid_on_date", "memo", "currency", "exchange_rate", "total_discount", "sub_total", "status", "total_tax_amount", "total_amount", "balance", "contact_id", "accounting_period_id", "tracking_categories", "line_items", "field_mappings"]
+        nullable_fields = ["type", "number", "issue_date", "due_date", "paid_on_date", "memo", "currency", "exchange_rate", "total_discount", "sub_total", "status", "total_tax_amount", "total_amount", "balance", "contact_id", "accounting_period_id", "tracking_categories", "field_mappings"]
         null_default_fields = []
 
         serialized = handler(self)
@@ -176,19 +113,21 @@ class UnifiedAccountingInvoiceInput(BaseModel):
         for n, f in self.model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
-            serialized.pop(k, None)
-
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
 
             if val is not None and val != UNSET_SENTINEL:
                 m[k] = val
             elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
             ):
                 m[k] = val
 
         return m
+        
