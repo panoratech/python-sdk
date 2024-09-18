@@ -186,7 +186,11 @@ s = Panora(
 
 res = s.webhooks.verify_event(request={
     "payload": {
-        "key": "<value>",
+        "id_event": "801f9ede-c698-4e66-a7fc-48d19eebaa4f",
+        "type": "connection.created",
+        "data": {
+            "key": "<value>",
+        },
     },
     "signature": "<value>",
     "secret": "<value>",
@@ -208,7 +212,7 @@ if res is not None:
 
 ### Response
 
-**[Dict[str, Any]](../../models/.md)**
+**[models.EventPayload](../../models/eventpayload.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

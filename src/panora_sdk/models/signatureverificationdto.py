@@ -6,8 +6,61 @@ from pydantic import model_serializer
 from typing import Any, Dict, TypedDict
 
 
+class PayloadTypedDict(TypedDict):
+    r"""The payload event of the webhook."""
+    
+    id_event: Nullable[str]
+    r"""The id of the event."""
+    type: Nullable[str]
+    r"""The type of the event."""
+    data: Nullable[Dict[str, Any]]
+    r"""The data payload event of the webhook."""
+    
+
+class Payload(BaseModel):
+    r"""The payload event of the webhook."""
+    
+    id_event: Nullable[str]
+    r"""The id of the event."""
+    type: Nullable[str]
+    r"""The type of the event."""
+    data: Nullable[Dict[str, Any]]
+    r"""The data payload event of the webhook."""
+    
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = []
+        nullable_fields = ["id_event", "type", "data"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields
+                or (
+                    k in optional_fields
+                    and k in nullable_fields
+                    and (
+                        self.__pydantic_fields_set__.intersection({n})
+                        or k in null_default_fields
+                    )  # pylint: disable=no-member
+                )
+            ):
+                m[k] = val
+
+        return m
+        
+
 class SignatureVerificationDtoTypedDict(TypedDict):
-    payload: Nullable[Dict[str, Any]]
+    payload: Nullable[PayloadTypedDict]
     r"""The payload event of the webhook."""
     signature: Nullable[str]
     r"""The signature of the webhook."""
@@ -16,7 +69,7 @@ class SignatureVerificationDtoTypedDict(TypedDict):
     
 
 class SignatureVerificationDto(BaseModel):
-    payload: Nullable[Dict[str, Any]]
+    payload: Nullable[Payload]
     r"""The payload event of the webhook."""
     signature: Nullable[str]
     r"""The signature of the webhook."""

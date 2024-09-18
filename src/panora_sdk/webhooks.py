@@ -5,7 +5,7 @@ from panora_sdk import models
 from panora_sdk._hooks import HookContext
 from panora_sdk.types import BaseModel, OptionalNullable, UNSET
 import panora_sdk.utils as utils
-from typing import Any, Dict, List, Optional, Union, cast
+from typing import List, Optional, Union, cast
 
 class Webhooks(BaseSDK):
     
@@ -588,7 +588,7 @@ class Webhooks(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[models.EventPayload]:
         r"""Verify payload signature of the webhook
 
         :param request: The request object to send.
@@ -646,7 +646,7 @@ class Webhooks(BaseSDK):
         )
         
         if utils.match_response(http_res, "201", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[Dict[str, Any]])
+            return utils.unmarshal_json(http_res.text, Optional[models.EventPayload])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
@@ -661,7 +661,7 @@ class Webhooks(BaseSDK):
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[models.EventPayload]:
         r"""Verify payload signature of the webhook
 
         :param request: The request object to send.
@@ -719,7 +719,7 @@ class Webhooks(BaseSDK):
         )
         
         if utils.match_response(http_res, "201", "application/json"):
-            return utils.unmarshal_json(http_res.text, Optional[Dict[str, Any]])
+            return utils.unmarshal_json(http_res.text, Optional[models.EventPayload])
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise models.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         
