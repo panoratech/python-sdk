@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 115d0df7-1198-46c9-9d03-a640abffed12
 management:
-  docChecksum: ef657b2aadcc7b6b8d116b9b11322b80
+  docChecksum: 4d63072803072e860460c96602d7e927
   docVersion: "1.0"
   speakeasyVersion: 1.352.2
   generationVersion: 2.385.2
-  releaseVersion: 0.7.0
-  configChecksum: 969fc29be808af5933aacc160337d561
+  releaseVersion: 0.9.0
+  configChecksum: be377bf7b01dd2bfed1b8d47b09809d6
   repoURL: https://github.com/panoratech/python-sdk.git
   installationURL: https://github.com/panoratech/python-sdk.git
   published: true
@@ -32,7 +32,6 @@ features:
     unions: 3.0.1
 generatedFiles:
   - src/panora_sdk/sdkconfiguration.py
-  - src/panora_sdk/query.py
   - src/panora_sdk/rag.py
   - src/panora_sdk/files.py
   - src/panora_sdk/folders.py
@@ -168,6 +167,7 @@ generatedFiles:
   - src/panora_sdk/utils/url.py
   - src/panora_sdk/utils/values.py
   - src/panora_sdk/models/sdkerror.py
+  - src/panora_sdk/models/ragqueryoutput.py
   - src/panora_sdk/models/queryop.py
   - src/panora_sdk/models/querybody.py
   - src/panora_sdk/models/listfilestoragefileop.py
@@ -192,6 +192,7 @@ generatedFiles:
   - src/panora_sdk/models/webhookdto.py
   - src/panora_sdk/models/deleteop.py
   - src/panora_sdk/models/updatestatusop.py
+  - src/panora_sdk/models/eventpayload.py
   - src/panora_sdk/models/signatureverificationdto.py
   - src/panora_sdk/models/listticketingticketop.py
   - src/panora_sdk/models/unifiedticketingticketoutput.py
@@ -533,8 +534,8 @@ generatedFiles:
   - src/panora_sdk/models/retrieveecommercefulfillmentop.py
   - src/panora_sdk/models/security.py
   - src/panora_sdk/models/__init__.py
+  - docs/models/ragqueryoutput.md
   - docs/models/queryrequest.md
-  - docs/models/queryresponsebody.md
   - docs/models/querybody.md
   - docs/models/listfilestoragefilerequest.md
   - docs/models/listfilestoragefileresponsebody.md
@@ -568,6 +569,8 @@ generatedFiles:
   - docs/models/webhookdto.md
   - docs/models/deleterequest.md
   - docs/models/updatestatusrequest.md
+  - docs/models/eventpayload.md
+  - docs/models/payload.md
   - docs/models/signatureverificationdto.md
   - docs/models/listticketingticketrequest.md
   - docs/models/listticketingticketresponsebody.md
@@ -1210,7 +1213,6 @@ generatedFiles:
   - docs/models/utils/retryconfig.md
   - docs/sdks/panora/README.md
   - docs/sdks/rag/README.md
-  - docs/sdks/query/README.md
   - docs/sdks/filestorage/README.md
   - docs/sdks/files/README.md
   - docs/sdks/folders/README.md
@@ -4186,6 +4188,9 @@ examples:
         application/json:
           query: When does Panora incorporated?
           topK: "3"
+      responses:
+        "201":
+          application/json: []
   remoteId:
     "":
       parameters:
@@ -6444,4 +6449,6 @@ examples:
       responses:
         "201":
           application/json:
-            key: <value>
+            data: {}
+            id_event: 801f9ede-c698-4e66-a7fc-48d19eebaa4f
+            type: connection.created

@@ -31,9 +31,9 @@ class SDKConfiguration:
     server_idx: Optional[int] = 0
     language: str = "python"
     openapi_doc_version: str = "1.0"
-    sdk_version: str = "0.7.0"
+    sdk_version: str = "0.9.0"
     gen_version: str = "2.385.2"
-    user_agent: str = "speakeasy-sdk/python 0.7.0 2.385.2 1.0 panora-sdk"
+    user_agent: str = "speakeasy-sdk/python 0.9.0 2.385.2 1.0 panora-sdk"
     retry_config: OptionalNullable[RetryConfig] = Field(default_factory=lambda: UNSET)
     timeout_ms: Optional[int] = None
 

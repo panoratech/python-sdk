@@ -20,11 +20,3 @@ class QueryRequest(BaseModel):
     r"""The connection token"""
     query_body: Annotated[QueryBody, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
     
-
-class QueryResponseBodyTypedDict(TypedDict):
-    pass
-    
-
-class QueryResponseBody(BaseModel):
-    pass
-    

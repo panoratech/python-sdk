@@ -112,10 +112,9 @@ asyncio.run(main())
 * [hello](docs/sdks/panora/README.md#hello)
 * [health](docs/sdks/panora/README.md#health)
 
+### [rag](docs/sdks/rag/README.md)
 
-### [rag.query](docs/sdks/query/README.md)
-
-* [query](docs/sdks/query/README.md#query) - Query using RAG Search
+* [query](docs/sdks/rag/README.md#query) - Query using RAG Search
 
 
 ### [filestorage.files](docs/sdks/files/README.md)
